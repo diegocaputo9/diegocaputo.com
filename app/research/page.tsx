@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { GlassCard } from "@/components/GlassCard";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
-import { papers, presentations, researchIntro } from "@/content/research";
+import { blindNote, papers, presentations, researchIntro } from "@/content/research";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -30,8 +30,7 @@ const jsonLd = {
     "@type": "ScholarlyArticle",
     headline: p.title,
     author: p.authors.replace(/ et al\.$/, "").split(", ").map((name) => ({ "@type": "Person", name })),
-    about: p.keywords,
-    abstract: p.abstract.map((a) => a.text).join(" "),
+    ...(p.blind ? {} : { about: p.keywords, abstract: p.abstract.map((a) => a.text).join(" ") }),
     url: `${site.url}/research/#${p.slug}`,
     creativeWorkStatus: p.status,
   })),
@@ -81,41 +80,45 @@ export default function ResearchPage() {
                   </h2>
                   <p className="mt-3 text-[14px] text-ink-3">{p.authors}</p>
 
-                  <div className="mt-8 grid gap-10 border-t border-line pt-8 lg:grid-cols-[1fr_240px]">
-                    <div className="max-w-[70ch] space-y-4">
-                      <h3 className="sr-only">Abstract</h3>
-                      {p.abstract.map((a, j) => (
-                        <p key={j} className="text-[15px] leading-relaxed text-ink-2">
-                          {a.label && <span className="font-semibold text-ink">{a.label}. </span>}
-                          {a.text}
-                        </p>
-                      ))}
-                    </div>
-                    <aside>
-                      <h3 className="text-[13px] font-medium text-ink">Keywords</h3>
-                      <ul className="mt-3 flex flex-wrap gap-2">
-                        {p.keywords.map((k) => (
-                          <li
-                            key={k}
-                            className="rounded-full border border-line px-2.5 py-1 text-[12px] text-ink-2"
-                          >
-                            {k}
-                          </li>
+                  {p.blind ? (
+                    <p className="mt-8 border-t border-line pt-6 text-[14px] text-ink-3">{blindNote}</p>
+                  ) : (
+                    <div className="mt-8 grid gap-10 border-t border-line pt-8 lg:grid-cols-[1fr_240px]">
+                      <div className="max-w-[70ch] space-y-4">
+                        <h3 className="sr-only">Abstract</h3>
+                        {p.abstract.map((a, j) => (
+                          <p key={j} className="text-[15px] leading-relaxed text-ink-2">
+                            {a.label && <span className="font-semibold text-ink">{a.label}. </span>}
+                            {a.text}
+                          </p>
                         ))}
-                      </ul>
-                      {p.link && (
-                        <a
-                          href={p.link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink hover:text-accent"
-                        >
-                          {p.link.label}
-                          <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                        </a>
-                      )}
-                    </aside>
-                  </div>
+                      </div>
+                      <aside>
+                        <h3 className="text-[13px] font-medium text-ink">Keywords</h3>
+                        <ul className="mt-3 flex flex-wrap gap-2">
+                          {p.keywords.map((k) => (
+                            <li
+                              key={k}
+                              className="rounded-full border border-line px-2.5 py-1 text-[12px] text-ink-2"
+                            >
+                              {k}
+                            </li>
+                          ))}
+                        </ul>
+                        {p.link && (
+                          <a
+                            href={p.link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink hover:text-accent"
+                          >
+                            {p.link.label}
+                            <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                          </a>
+                        )}
+                      </aside>
+                    </div>
+                  )}
                 </GlassCard>
               </article>
             </Reveal>

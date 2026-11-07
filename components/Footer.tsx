@@ -16,7 +16,7 @@ export function Footer() {
             key={k}
             className={`px-4 py-3 ${i % 2 === 1 ? "border-l border-line" : ""} ${i > 1 ? "border-t border-line md:border-t-0" : ""} ${i === 2 ? "md:border-l" : ""}`}
           >
-            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">{k}</dt>
+            <dt className="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3">{k}</dt>
             <dd className="mt-1 text-[14px] text-ink-2">{v}</dd>
           </div>
         ))}

@@ -4,7 +4,7 @@ import {
   Factory,
   GlobeHemisphereEast,
   Package,
-  PresentationChart,
+  UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
 import { projects, type Project } from "@/content/site";
 import { ValueStream } from "./Blueprint";
@@ -20,7 +20,7 @@ const icon = {
   ai: Brain,
   asrs: Package,
   standard: ClipboardText,
-  poster: PresentationChart,
+  app: UsersThree,
 };
 
 // Each tile gets its own drafting texture so the bento never reads as identical cards.
@@ -30,7 +30,7 @@ const texture: Record<Project["visual"], string> = {
   ai: "tile-grid",
   asrs: "bg-[repeating-linear-gradient(0deg,var(--grid)_0_1px,transparent_1px_18px),repeating-linear-gradient(90deg,var(--grid)_0_1px,transparent_1px_54px)]",
   standard: "bg-[repeating-linear-gradient(0deg,var(--grid)_0_1px,transparent_1px_14px)]",
-  poster: "bg-[repeating-linear-gradient(135deg,var(--grid)_0_1px,transparent_1px_16px)]",
+  app: "bg-[repeating-linear-gradient(135deg,var(--grid)_0_1px,transparent_1px_16px)]",
 };
 
 export function Work() {
@@ -50,7 +50,7 @@ export function Work() {
                     weight="thin"
                     className="absolute bottom-4 left-4 text-ink-3 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1"
                   />
-                  <span className="absolute right-4 top-3 font-mono text-[11px] text-ink-3">{p.year}</span>
+                  <span className="absolute right-4 top-3 font-mono text-[12px] text-ink-3">{p.year}</span>
                 </div>
                 <div className="px-3 pb-3 pt-5">
                   <p className="text-[13px] text-ink-3">{p.kind}</p>

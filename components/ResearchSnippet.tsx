@@ -44,7 +44,7 @@ export function ResearchSnippet() {
           href="/research/"
           className="group mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
         >
-          Read the abstracts
+          Open the research page
           <ArrowRight size={16} weight="bold" className="transition-transform duration-300 group-hover:translate-x-0.5" />
         </Link>
       </Reveal>

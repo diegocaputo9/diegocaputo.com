@@ -51,7 +51,7 @@ export type Project = {
   summary: string;
   year: string;
   size: "lg" | "md";
-  visual: "plant" | "germany" | "ai" | "asrs" | "standard" | "poster";
+  visual: "plant" | "germany" | "ai" | "asrs" | "standard" | "app";
 };
 
 export const projects: Project[] = [
@@ -101,13 +101,13 @@ export const projects: Project[] = [
     visual: "standard",
   },
   {
-    title: "Lean lab poster, Atlanta",
-    kind: "Conference",
-    year: "Spring 2023",
+    title: "ChapterCore",
+    kind: "INCOSE Systems Showdown winner",
+    year: "2026",
     summary:
-      "Presented how the lean lab trains engineers through simulation and hands-on activities at the Lean Six Sigma & Data Science Conference in Atlanta. Won the student lean Kahoot.",
+      "A centralized management platform for student organizations: communication, records and leadership handovers in one app, with attendance-based points that reward engagement. First place out of Auburn's student teams.",
     size: "md",
-    visual: "poster",
+    visual: "app",
   },
 ];
 
@@ -205,6 +205,31 @@ export const leadership = [
   },
 ];
 
+// Coverage by Auburn Engineering news.
+export const news = [
+  {
+    title: "ISE grad student wins Systems Showdown competition",
+    date: "Apr 2026",
+    source: "Auburn Engineering",
+    href: "https://eng.auburn.edu/news/2026/04/ise-grad-student-wins-systems-showdown-competition",
+    note: "First place at INCOSE's Systems Showdown with ChapterCore, a platform for running student organizations.",
+  },
+  {
+    title: "Auburn Engineering hosts continuous improvement industry roundtable",
+    date: "Jun 2024",
+    source: "Auburn Engineering",
+    href: "https://eng.auburn.edu/news/2024/06/auburn-engineering-hosts-continuous-improvement-industry-roundtable.html",
+    note: "Leaders from Honda, Holcim, Brose, Navistar and others on building an operational excellence culture.",
+  },
+  {
+    title: "ISE graduate student presented Lean Engineering Award",
+    date: "Feb 2023",
+    source: "Auburn Engineering",
+    href: "https://eng.auburn.edu/news/2023/02/ise-graduate-student-presented-lean-engineering-award",
+    note: "Named the 2022 JT Black Lean Engineering Student of the Year.",
+  },
+];
+
 export const education = [
   { degree: "PhD, Industrial & Systems Engineering", school: "Auburn University", year: "Expected 2027" },
   { degree: "MS, Industrial & Systems Engineering", school: "Auburn University", year: "2026" },
@@ -212,15 +237,23 @@ export const education = [
   { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017" },
 ];
 
-export const honors = [
-  { title: "Winner, INCOSE Systems Showdown", year: "2026" },
-  { title: "JT Black Lean Engineering Student of the Year", year: "2022" },
+export const honors: { title: string; year: string; href?: string }[] = [
+  {
+    title: "Winner, INCOSE Systems Showdown",
+    year: "2026",
+    href: "https://eng.auburn.edu/news/2026/04/ise-grad-student-wins-systems-showdown-competition",
+  },
+  {
+    title: "JT Black Lean Engineering Student of the Year",
+    year: "2022",
+    href: "https://eng.auburn.edu/news/2023/02/ise-graduate-student-presented-lean-engineering-award",
+  },
   { title: "IPC Scholarship", year: "2023, 2024, 2025" },
   { title: "Lean Six Sigma Green Belt", year: "Auburn University" },
 ];
 
 export const about = {
-  body: "I started my career in the Dominican Republic and I'm now finishing a PhD at Auburn on how lean manufacturing is taught and evaluated. I've supervised a plant floor, built data pipelines for a bank regulator, and today I teach lean inside a working automotive learning lab.",
+  body: "I grew up in a family of engineers and started my career in the Dominican Republic. Now I'm finishing a PhD at Auburn on how lean manufacturing is taught and evaluated. I've supervised a plant floor, built data pipelines for a bank regulator, and today I teach lean inside a working automotive learning lab.",
   ai: "I use AI the way a good engineer uses any tool: to see the system faster. That means AI-assisted software for analysis and training, evaluating models for technical accuracy, and teaching engineers to use it with judgment.",
   research: [
     "Lean manufacturing training and evaluation",

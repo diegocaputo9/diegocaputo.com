@@ -14,7 +14,11 @@ export type Paper = {
   abstract: { label?: string; text: string }[];
   keywords: string[];
   link?: { label: string; href: string };
+  /** Under double-blind review: show title, venue and status only. */
+  blind?: boolean;
 };
+
+export const blindNote = "Abstract will be shared after peer review.";
 
 export const researchIntro = {
   dissertation:
@@ -33,27 +37,10 @@ export const papers: Paper[] = [
     venue: "The TQM Journal",
     status: "Manuscript prepared for submission",
     year: "2026",
-    summary:
-      "A meta-review of 22 CI/OpEx systematic reviews compared with a cross-industry practitioner roundtable, ending in a five-phase, culture-first framework.",
-    abstract: [
-      {
-        label: "Purpose",
-        text: "Continuous improvement (CI) and operational excellence (OpEx) are well established, yet the evidence is fragmented across many systematic literature reviews (SLRs) and is rarely compared with what practitioners prioritize. This study identifies what industry emphasizes when building CI-driven OpEx programs and how this compares with the review literature.",
-      },
-      {
-        label: "Design",
-        text: "A two-stream design combines a meta-review of 22 CI/OpEx SLRs identified through a PRISMA-guided search with a structured roundtable of CI/OpEx leaders from cement, automotive, commercial-vehicle and wood-products manufacturing. Eleven speakers' contributions were coded against eleven themes on a three-point depth scale.",
-      },
-      {
-        label: "Findings",
-        text: "The literature describes CI/OpEx mainly through formal methodologies and statistical toolkits such as Lean, Six Sigma and DMAIC. Practitioners instead foreground the management system that makes improvement last: people-first culture, KPI structure, sustainment, operator voice, training and standards. Sustainment, central for practitioners, is reported in only 4 of the 22 reviews.",
-      },
-      {
-        label: "Practical implications",
-        text: "A five-phase framework (foundation building, employee engagement, process implementation, sustainment, and leadership and change management) offers a culture-first sequence for building and sustaining a CI-driven OpEx program.",
-      },
-    ],
-    keywords: ["Operational excellence", "Continuous improvement", "Meta-review", "Lean", "Six Sigma", "Industry roundtable"],
+    blind: true,
+    summary: "Abstract will be shared after peer review.",
+    abstract: [],
+    keywords: [],
   },
   {
     slug: "lean-training-review",
@@ -64,20 +51,10 @@ export const papers: Paper[] = [
     venue: "ASEE Annual Conference & Exposition 2027",
     status: "Work-in-progress paper",
     year: "2027",
-    summary:
-      "A PRISMA 2020 review of 104 Lean training studies that treats training as a production process, with the learner as the unit of flow, and codes the eight wastes in each delivery method.",
-    abstract: [
-      {
-        text: "Lean manufacturing is taught through classroom courses, hands-on games, learning factories, computer simulations, virtual reality, online modules and company programs. Studies of these methods usually report learner satisfaction or knowledge gains, but they rarely examine the training process itself. This paper treats a training program as a production process, with the learner as the unit of flow, and asks what Lean waste each delivery method carries.",
-      },
-      {
-        text: "A systematic review reported according to PRISMA 2020 searched Scopus, Web of Science and IEEE Xplore (2000 to 2026). Of 9,048 records, 104 peer-reviewed studies met the eligibility criteria at full text. Each study was coded for its delivery method and for the presence, mitigation or non-determinability of each of the eight wastes; coding was drafted with AI assistance, verified by the first author and double-coded on a sample by a second reviewer.",
-      },
-      {
-        text: "Physical, co-located formats dominate the evidence (physical games 35%, learning factories 27%), and 48 of 104 studies report no evaluation or only learner perceptions. Transportation is present in 98 studies and waiting in 99. Remote delivery avoids transportation, but only 1 of the 11 fully remote studies lets learners work with real equipment. No included study uses Lean waste to evaluate how training is delivered. The paper contributes a map of how Lean is trained, a two-dimensional taxonomy of delivery methods and a waste-based lens for evaluating training designs.",
-      },
-    ],
-    keywords: ["Lean training", "Systematic review", "PRISMA 2020", "Eight wastes", "Learning factories", "AI-assisted coding"],
+    blind: true,
+    summary: "Abstract will be shared after peer review.",
+    abstract: [],
+    keywords: [],
   },
   {
     slug: "tiger-motors-platform",
@@ -92,7 +69,7 @@ export const papers: Paper[] = [
       "The Tiger Motors Lean Education Center, with each design decision mapped to the training waste it removes. Quiz scores rose from 50-56% to 80-86% across 148 students.",
     abstract: [
       {
-        text: "Electronics manufacturers face a growing shortage of engineers and technicians who can run, diagnose and improve high-mix, high-volume assembly systems. Hands-on Lean laboratories provide that experience but require travel, scheduled sessions and limited floor space. A companion review of 104 Lean training studies found transportation in 98 training designs and waiting in 99.",
+        text: "Electronics manufacturers face a growing shortage of engineers and technicians who can run, diagnose and improve high-mix, high-volume assembly systems. Hands-on Lean laboratories provide that experience but require travel, scheduled sessions and limited floor space.",
       },
       {
         text: "This paper applies Lean principles to the training process itself. It presents the Tiger Motors Lean Education Center, an open web platform developed at Auburn University under the NSF IUSE: EDU program (Award DUE-2417082), and maps each design decision to the waste it removes. The platform extends a 4,000-square-foot Integrated Manufacturing Facility (linked U-shaped cells, a conveyor line, an AS/RS, kanban and heijunka pull scheduling) to learners anywhere, organized around the Lean House with a Learn, Explore, Connect model, 360° tours and video, guided 5S and value stream mapping activities, quizzes and a certificate.",

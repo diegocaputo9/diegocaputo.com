@@ -4,21 +4,30 @@
 // "draw" it as it scrolls into view (see .sketch in globals.css). Dashed
 // construction lines (.dash) are excluded from the draw so their dashes survive.
 
-import type { ReactNode, SVGProps } from "react";
+import type { CSSProperties, ReactNode, SVGProps } from "react";
 
 const P = 1; // pathLength
 
+// `label` is the label font size in viewBox units, chosen per drawing from its
+// smallest on-screen width so every label renders at 12px or larger.
 function Sketch({
   viewBox,
+  label,
   className = "",
   children,
 }: {
   viewBox: string;
+  label: number;
   className?: string;
   children: ReactNode;
 }) {
   return (
-    <svg aria-hidden viewBox={viewBox} className={`sketch pointer-events-none select-none ${className}`}>
+    <svg
+      aria-hidden
+      viewBox={viewBox}
+      style={{ "--label": `${label}px` } as CSSProperties}
+      className={`sketch pointer-events-none select-none ${className}`}
+    >
       {children}
     </svg>
   );
@@ -62,7 +71,7 @@ function CarBody({ x, y }: { x: number; y: number }) {
 export function AssemblyLine({ className }: { className?: string }) {
   const rollers = Array.from({ length: 16 }, (_, i) => 24 + i * 40);
   return (
-    <Sketch viewBox="0 0 660 220" className={className}>
+    <Sketch viewBox="0 0 660 220" label={12} className={className}>
       {/* conveyor */}
       <line pathLength={P} x1={8} y1={176} x2={652} y2={176} />
       <line pathLength={P} x1={8} y1={190} x2={652} y2={190} />
@@ -90,7 +99,7 @@ export function AssemblyLine({ className }: { className?: string }) {
 
 export function RobotArm({ className }: { className?: string }) {
   return (
-    <Sketch viewBox="0 0 320 340" className={className}>
+    <Sketch viewBox="0 0 320 340" label={16} className={className}>
       {/* base + turntable */}
       <rect pathLength={P} x={90} y={300} width={140} height={22} rx={3} />
       <rect pathLength={P} x={128} y={270} width={64} height={30} rx={4} />
@@ -121,7 +130,7 @@ export function RobotArm({ className }: { className?: string }) {
 export function ValueStream({ className }: { className?: string }) {
   const steps = ["STAMP", "WELD", "PAINT", "ASSY"];
   return (
-    <Sketch viewBox="0 0 600 190" className={className}>
+    <Sketch viewBox="0 0 600 190" label={12} className={className}>
       {steps.map((s, i) => {
         const x = 10 + i * 150;
         return (
@@ -160,7 +169,7 @@ export function ValueStream({ className }: { className?: string }) {
 
 export function KanbanCard({ className }: { className?: string }) {
   return (
-    <Sketch viewBox="0 0 240 160" className={className}>
+    <Sketch viewBox="0 0 240 160" label={15} className={className}>
       <rect pathLength={P} x={10} y={10} width={220} height={140} rx={6} />
       <circle pathLength={P} cx={120} cy={24} r={5} />
       <line pathLength={P} x1={10} y1={40} x2={230} y2={40} />
@@ -196,7 +205,7 @@ function gearPath(cx: number, cy: number, teeth: number, rOut: number, rIn: numb
 
 export function Gears({ className }: { className?: string }) {
   return (
-    <Sketch viewBox="0 0 300 220" className={className}>
+    <Sketch viewBox="0 0 300 220" label={19} className={className}>
       <path pathLength={P} d={gearPath(100, 110, 16, 74, 62)} />
       <circle pathLength={P} cx={100} cy={110} r={18} />
       <path pathLength={P} d={gearPath(211, 86, 10, 46, 36)} />
@@ -212,7 +221,7 @@ export function Gears({ className }: { className?: string }) {
 
 export function Andon({ className }: { className?: string }) {
   return (
-    <Sketch viewBox="0 0 120 260" className={className}>
+    <Sketch viewBox="0 0 120 260" label={15} className={className}>
       <rect pathLength={P} x={40} y={14} width={40} height={10} rx={3} />
       {[24, 62, 100].map((y) => (
         <rect key={y} pathLength={P} x={36} y={y} width={48} height={38} rx={4} />

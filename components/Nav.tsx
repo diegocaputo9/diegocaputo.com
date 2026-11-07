@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { site } from "@/content/site";
 
-// "research" is both a home-page section (snippet) and its own page.
+// All links scroll to home-page sections; from /research they jump back home.
 const links = [
   { id: "work", label: "Work" },
-  { id: "research", label: "Research", page: "/research/" },
+  { id: "research", label: "Research" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
@@ -65,7 +65,7 @@ export function Nav() {
           href={onHome ? "#top" : "/"}
           className="flex h-10 items-center gap-2 rounded-full px-1.5 text-[15px] sm:px-3 font-semibold tracking-tight text-ink"
         >
-          <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-[11px] font-semibold text-bg">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-[12px] font-semibold text-bg">
             DC
           </span>
           <span className="hidden sm:inline">{site.name}</span>
@@ -82,7 +82,7 @@ export function Nav() {
                 />
               )}
               <a
-                href={l.page ?? (onHome ? `#${l.id}` : `/#${l.id}`)}
+                href={onHome ? `#${l.id}` : `/#${l.id}`}
                 onMouseEnter={() => setHovered(l.id)}
                 aria-current={active === l.id ? "true" : undefined}
                 className={`relative block rounded-full px-2.5 py-2 text-[13px] transition-colors duration-300 sm:px-4 sm:text-sm ${

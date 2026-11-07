@@ -8,8 +8,8 @@
   --bg: #fafafa;
   --bg-2: #f2f2f3;
   --ink: #18181b;
-  --ink-2: #52525b;
-  --ink-3: #71717a;
+  --ink-2: #3f3f46;
+  --ink-3: #52525b;
   --line: rgb(24 24 27 / 0.08);
   --grid: rgb(24 24 27 / 0.055);
   --accent: #3b5bdb;
@@ -17,7 +17,7 @@
   --blob-b: rgb(212 212 216 / 0.7);
   --blob-c: rgb(147 160 200 / 0.22);
   --sketch: rgb(63 63 70 / 0.34);
-  --sketch-text: rgb(63 63 70 / 0.55);
+  --sketch-text: rgb(63 63 70 / 0.8);
   --plus: rgb(24 24 27 / 0.22);
 
   /* glass */
@@ -34,8 +34,8 @@
     --bg: #0c0c0e;
     --bg-2: #141417;
     --ink: #f4f4f5;
-    --ink-2: #a1a1aa;
-    --ink-3: #8b8b94;
+    --ink-2: #d4d4d8;
+    --ink-3: #a1a1aa;
     --line: rgb(255 255 255 / 0.08);
     --grid: rgb(255 255 255 / 0.045);
     --accent: #8ea2f0;
@@ -43,7 +43,7 @@
     --blob-b: rgb(39 39 42 / 0.9);
     --blob-c: rgb(90 105 160 / 0.22);
     --sketch: rgb(212 212 216 / 0.24);
-    --sketch-text: rgb(212 212 216 / 0.42);
+    --sketch-text: rgb(212 212 216 / 0.7);
     --plus: rgb(255 255 255 / 0.2);
 
     --glass-fill: rgb(39 39 42 / 0.5);
@@ -232,7 +232,8 @@ body {
   fill: var(--sketch-text);
   stroke: none;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 9px;
+  /* --label is set per drawing in user units so labels render at >= 12px */
+  font-size: var(--label, 12px);
   letter-spacing: 0.08em;
 }
 .sketch .dim text {

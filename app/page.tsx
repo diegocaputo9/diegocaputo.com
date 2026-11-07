@@ -42,11 +42,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <About />
         <Stats />
         <Featured />
         <Work />
         <ResearchSnippet />
-        <About />
         <Experience />
         <Leadership />
         <Contact />

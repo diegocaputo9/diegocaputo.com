@@ -1,5 +1,5 @@
-import { Medal } from "@phosphor-icons/react/dist/ssr";
-import { education, honors, leadership } from "@/content/site";
+import { ArrowUpRight, Medal, Newspaper } from "@phosphor-icons/react/dist/ssr";
+import { education, honors, leadership, news } from "@/content/site";
 import { KanbanCard } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
@@ -71,7 +71,19 @@ export function Leadership() {
               <li key={h.title} className="flex items-start gap-3 border-t border-line py-4">
                 <Medal size={18} className="mt-0.5 shrink-0 text-ink-3" />
                 <div>
-                  <p className="text-[15px] font-medium text-ink">{h.title}</p>
+                  {h.href ? (
+                    <a
+                      href={h.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-center gap-1 text-[15px] font-medium text-ink hover:text-accent"
+                    >
+                      {h.title}
+                      <ArrowUpRight size={13} className="text-ink-3 group-hover:text-accent" />
+                    </a>
+                  ) : (
+                    <p className="text-[15px] font-medium text-ink">{h.title}</p>
+                  )}
                   <p className="font-mono text-[12px] text-ink-3">{h.year}</p>
                 </div>
               </li>
@@ -79,6 +91,40 @@ export function Leadership() {
           </ul>
         </Reveal>
       </div>
+
+      {/* In the news: press rows linking out to the articles */}
+      <Reveal className="mt-20">
+        <h3 className="text-xl font-semibold tracking-tight text-ink">In the news</h3>
+        <ul className="mt-5">
+          {news.map((n) => (
+            <li key={n.href} className="border-t border-line last:border-b">
+              <a
+                href={n.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group grid gap-2 py-5 md:grid-cols-[140px_1fr_auto] md:items-center md:gap-8"
+              >
+                <p className="font-mono text-[12px] text-ink-3">{n.date}</p>
+                <div>
+                  <p className="text-[16px] font-medium text-ink transition-colors group-hover:text-accent">{n.title}</p>
+                  <p className="mt-1 text-[14px] leading-relaxed text-ink-2">
+                    <span className="inline-flex items-center gap-1 text-ink-3">
+                      <Newspaper size={13} />
+                      {n.source}
+                    </span>
+                    <span className="text-ink-3"> / </span>
+                    {n.note}
+                  </p>
+                </div>
+                <ArrowUpRight
+                  size={18}
+                  className="hidden text-ink-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink md:block"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </section>
   );
 }
