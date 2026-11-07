@@ -7,6 +7,7 @@ export function Backdrop() {
       <div className="blob blob-drift-2 right-[-8vw] top-[18vh] h-[48vh] w-[48vh] bg-[var(--blob-c)]" />
       <div className="blob blob-drift-3 bottom-[-20vh] left-[30vw] h-[60vh] w-[60vh] bg-[var(--blob-b)]" />
       <div className="grid-backdrop absolute inset-0" />
+      <div className="plus-backdrop absolute inset-0" />
     </div>
   );
 }

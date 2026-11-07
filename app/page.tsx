@@ -1,10 +1,15 @@
 import { About } from "@/components/About";
 import { Backdrop } from "@/components/Backdrop";
 import { Contact } from "@/components/Contact";
+import { Experience } from "@/components/Experience";
+import { Featured } from "@/components/Featured";
+import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { Leadership } from "@/components/Leadership";
 import { Nav } from "@/components/Nav";
+import { Stats } from "@/components/Stats";
 import { Work } from "@/components/Work";
-import { site } from "@/content/site";
+import { about, honors, site } from "@/content/site";
 
 // schema.org Person: lets Google show a knowledge-panel style result for your name.
 const personJsonLd = {
@@ -12,11 +17,17 @@ const personJsonLd = {
   "@type": "Person",
   name: site.name,
   url: site.url,
-  jobTitle: site.role,
-  affiliation: { "@type": "CollegeOrUniversity", name: "Auburn University" },
+  jobTitle: site.title,
+  affiliation: { "@type": "CollegeOrUniversity", name: site.org },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Auburn University" },
+    { "@type": "CollegeOrUniversity", name: "Pontificia Universidad Católica Madre y Maestra" },
+  ],
   address: { "@type": "PostalAddress", addressLocality: "Auburn", addressRegion: "AL", addressCountry: "US" },
-  knowsAbout: site.focus,
-  sameAs: [site.links.github, site.links.linkedin].filter(Boolean),
+  knowsAbout: [...site.focus, ...about.research],
+  knowsLanguage: ["English", "Spanish"],
+  award: honors.map((h) => h.title),
+  sameAs: [site.links.linkedin, site.links.github].filter(Boolean),
 };
 
 export default function Home() {
@@ -30,16 +41,15 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Stats />
+        <Featured />
         <Work />
         <About />
+        <Experience />
+        <Leadership />
         <Contact />
       </main>
-      <footer className="mx-auto flex max-w-6xl flex-col gap-2 px-5 pb-12 pt-4 text-sm text-ink-3 sm:flex-row sm:justify-between md:px-8">
-        <p>
-          © {new Date().getFullYear()} {site.name}
-        </p>
-        <p>{site.location}</p>
-      </footer>
+      <Footer />
     </>
   );
 }

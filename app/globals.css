@@ -16,6 +16,9 @@
   --blob-a: rgb(161 161 170 / 0.38);
   --blob-b: rgb(212 212 216 / 0.7);
   --blob-c: rgb(147 160 200 / 0.22);
+  --sketch: rgb(63 63 70 / 0.34);
+  --sketch-text: rgb(63 63 70 / 0.55);
+  --plus: rgb(24 24 27 / 0.22);
 
   /* glass */
   --glass-fill: rgb(255 255 255 / 0.55);
@@ -39,6 +42,9 @@
     --blob-a: rgb(82 82 91 / 0.45);
     --blob-b: rgb(39 39 42 / 0.9);
     --blob-c: rgb(90 105 160 / 0.22);
+    --sketch: rgb(212 212 216 / 0.24);
+    --sketch-text: rgb(212 212 216 / 0.42);
+    --plus: rgb(255 255 255 / 0.2);
 
     --glass-fill: rgb(39 39 42 / 0.5);
     --glass-fill-2: rgb(39 39 42 / 0.2);
@@ -91,7 +97,23 @@ body {
     linear-gradient(to right, var(--grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, #000 45%, transparent 100%);
+}
+
+/* "+" registration marks on every 4th grid intersection, like a drawing sheet.
+   The SVG tile is used as a mask so the mark color follows the --plus token. */
+.plus-backdrop {
+  background-color: var(--plus);
+  --plus-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='224'%3E%3Cpath d='M105.5 112.5h14M112.5 105.5v14' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E");
+  --plus-fade: radial-gradient(ellipse 90% 80% at 50% 35%, #000 45%, transparent 100%);
+  -webkit-mask-image: var(--plus-tile), var(--plus-fade);
+  -webkit-mask-size: 224px 224px, 100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-image: var(--plus-tile), var(--plus-fade);
+  mask-size: 224px 224px, 100% 100%;
+  mask-repeat: repeat, no-repeat;
+  mask-composite: intersect;
 }
 
 .blob {
@@ -181,4 +203,62 @@ body {
     transform: translate3d(0, 22px, 0);
     filter: blur(6px);
   }
+}
+
+/* ------------------------------------------------------------------
+   Blueprint sketches (components/Blueprint.tsx)
+------------------------------------------------------------------- */
+.sketch {
+  color: var(--sketch);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+.sketch * {
+  vector-effect: non-scaling-stroke;
+}
+.sketch .dash {
+  stroke-dasharray: 3 5;
+  opacity: 0.8;
+}
+.sketch .dim {
+  stroke: var(--accent);
+  opacity: 0.55;
+}
+.sketch text {
+  fill: var(--sketch-text);
+  stroke: none;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.sketch .dim text {
+  fill: var(--accent);
+}
+
+/* Lines draw themselves as the drawing scrolls into view. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sketch [pathLength] {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: sketch-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 40%;
+    }
+    .sketch text {
+      animation: sketch-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+  }
+}
+@keyframes sketch-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes sketch-fade {
+  from { opacity: 0; }
 }
