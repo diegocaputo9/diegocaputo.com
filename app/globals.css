@@ -69,7 +69,17 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+}
+
+/* Nav jumps: sections have 96-128px of top padding, so pull them up so the
+   heading lands just below the floating nav (bottom edge at 72px). */
+main section[id] {
+  scroll-margin-top: -24px;
+}
+@media (min-width: 768px) {
+  main section[id] {
+    scroll-margin-top: -56px;
+  }
 }
 
 body {

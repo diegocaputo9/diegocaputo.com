@@ -4,13 +4,13 @@
 export const site = {
   name: "Diego Caputo",
   role: "Industrial & Systems Engineer",
-  title: "PhD Candidate, Industrial & Systems Engineering",
+  title: "PhD Student, Industrial & Systems Engineering",
   org: "Auburn University",
   location: "Auburn, Alabama",
   url: "https://diegocaputo.com",
   headline: "Lean systems, taught on the floor and built with AI.",
   intro:
-    "PhD candidate at Auburn University. I teach lean manufacturing, lead improvement projects, and build AI-assisted tools for industrial engineering.",
+    "PhD student at Auburn University. I teach lean manufacturing, lead improvement projects, and build AI-assisted tools for industrial engineering.",
   focus: ["Lean manufacturing", "Six Sigma / DMAIC", "AI in industrial engineering", "Engineering education"],
   // Cloudflare Web Analytics site tag (public, it ships in the page HTML)
   cfAnalyticsToken: "65d6b6c92bab4c4ea35b1b1d99d177dc",
