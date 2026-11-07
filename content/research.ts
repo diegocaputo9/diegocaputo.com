@@ -144,7 +144,7 @@ export const reports = [
 export const presentations: { title: string; venue: string; year: string; note?: string }[] = [
   {
     title: "Strategies for building an Operational Excellence program",
-    venue: "Research poster, Department of Industrial & Systems Engineering, Auburn University",
+    venue: "2025 Huntsville Research Symposium, Auburn University Research and Innovation Campus, Huntsville, AL",
     year: "2025",
     note: "With Caitlin Tran, Ethan Andrews, Allison Ledford and Gregory Harris. Literature review, industry roundtable and AI-assisted analysis condensed into a five-phase OpEx framework; funded by ICAMS.",
   },
