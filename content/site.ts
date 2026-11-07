@@ -105,7 +105,7 @@ export const projects: Project[] = [
     kind: "Conference",
     year: "Spring 2023",
     summary:
-      "Presented how the lean lab trains engineers through simulation and hands-on activities at a Lean Six Sigma and data analytics conference. Won the student lean Kahoot.",
+      "Presented how the lean lab trains engineers through simulation and hands-on activities at the Lean Six Sigma & Data Science Conference in Atlanta. Won the student lean Kahoot.",
     size: "md",
     visual: "poster",
   },

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Leadership } from "@/components/Leadership";
 import { Nav } from "@/components/Nav";
+import { ResearchSnippet } from "@/components/ResearchSnippet";
 import { Stats } from "@/components/Stats";
 import { Work } from "@/components/Work";
 import { about, honors, site } from "@/content/site";
@@ -44,6 +45,7 @@ export default function Home() {
         <Stats />
         <Featured />
         <Work />
+        <ResearchSnippet />
         <About />
         <Experience />
         <Leadership />
