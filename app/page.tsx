@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Leadership } from "@/components/Leadership";
 import { Nav } from "@/components/Nav";
+import { Outside } from "@/components/Outside";
 import { ResearchSnippet } from "@/components/ResearchSnippet";
 import { Stats } from "@/components/Stats";
 import { Work } from "@/components/Work";
@@ -25,7 +26,7 @@ const personJsonLd = {
     { "@type": "CollegeOrUniversity", name: "Pontificia Universidad Católica Madre y Maestra" },
   ],
   address: { "@type": "PostalAddress", addressLocality: "Auburn", addressRegion: "AL", addressCountry: "US" },
-  knowsAbout: [...site.focus, ...about.research],
+  knowsAbout: [...site.focus, ...about.research, "Drone photogrammetry", "Thermal imaging"],
   knowsLanguage: ["English", "Spanish"],
   award: honors.map((h) => h.title),
   identifier: { "@type": "PropertyValue", propertyID: "ORCID", value: "0009-0009-5492-0076" },
@@ -52,6 +53,7 @@ export default function Home() {
         <ResearchSnippet />
         <Experience />
         <Leadership />
+        <Outside />
         <Contact />
       </main>
       <Footer />

@@ -1,0 +1,78 @@
+import { outside } from "@/content/site";
+import { Reveal } from "./Reveal";
+import { TerrainViewer } from "./TerrainViewer";
+import { ThermalCompare } from "./ThermalCompare";
+import { findings } from "./thermal/scene";
+
+function Tags({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-6 flex flex-wrap gap-x-2 gap-y-2.5">
+      {items.map((t) => (
+        <li key={t} className="bracket text-[13px] text-ink-2">
+          {t}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Personal section: drone photogrammetry and thermal inspection.
+export function Outside() {
+  const p = outside.photogrammetry;
+  const t = outside.thermal;
+  return (
+    <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+      <Reveal>
+        <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
+        <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">
+          {outside.kicker} · {outside.title}
+        </p>
+        <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
+      </Reveal>
+
+      <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+        <Reveal>
+          <p className="font-mono text-[12px] text-ink-3">01</p>
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{p.title}</h3>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{p.text}</p>
+          <Tags items={p.tags} />
+          <p className="mt-6 text-[13px] text-ink-3">
+            <span className="sm:hidden">Drag sideways to rotate, pinch to zoom, tap to read the elevation.</span>
+            <span className="hidden sm:inline">
+              Drag to rotate. Pinch, or hold Ctrl and scroll, to zoom. Hover to read the elevation.
+            </span>
+          </p>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <TerrainViewer />
+          <p className="mt-3 text-[13px] text-ink-3">{p.note}</p>
+        </Reveal>
+      </div>
+
+      <div className="mt-20 grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+        <Reveal className="lg:order-2">
+          <p className="font-mono text-[12px] text-ink-3">02</p>
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{t.title}</h3>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{t.text}</p>
+          <ol className="mt-6 space-y-3">
+            {findings.map((f) => (
+              <li key={f.n} className="flex gap-3">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ink font-mono text-[12px] text-bg">
+                  {f.n}
+                </span>
+                <p className="text-[14px] leading-snug text-ink-2">
+                  <span className="font-medium text-ink">{f.title}.</span> {f.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <Tags items={t.tags} />
+        </Reveal>
+        <Reveal delay={0.08} className="lg:order-1">
+          <ThermalCompare />
+          <p className="mt-3 text-[13px] text-ink-3">{t.note} Drag the divider to compare.</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

@@ -267,3 +267,23 @@ export const about = {
   ],
   languages: "English and Spanish",
 };
+
+// "Outside the lab": Diego's drone side business. Both visuals on the page are
+// placeholders (generated terrain, drawn thermal scene) until real projects exist.
+export const outside = {
+  kicker: "Side business",
+  title: "Drones for engineering",
+  lede: "Outside research, I run a side business flying drones for engineering work. It's the same habit as the lab: measure first, then decide. Every flight ends in data an engineer can use.",
+  photogrammetry: {
+    title: "Photogrammetry and 3D terrain",
+    text: "Georeferenced flights capture hundreds of overlapping high-resolution photos. Stitching them together produces photo-accurate 3D models and height-accurate topographic maps that can be measured, planned on and compared over time.",
+    tags: ["Georeferenced capture", "Image stitching", "3D models", "Topographic maps", "Contours"],
+    note: "Placeholder: a generated mountain, not survey data. A real project is coming soon.",
+  },
+  thermal: {
+    title: "Thermal inspection",
+    text: "Thermal imaging shows what the eye can't: leaks, failed insulation, trapped moisture and energy losses across roofs, buildings and plant equipment. One flight becomes a ranked list of fixes.",
+    tags: ["Leak detection", "Heat loss", "Energy efficiency", "Building envelope"],
+    note: "Placeholder: an illustrative scene drawn for this page, not a real site.",
+  },
+};
