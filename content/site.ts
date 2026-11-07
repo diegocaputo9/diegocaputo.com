@@ -20,8 +20,8 @@ export const site = {
     orcid: "https://orcid.org/0009-0009-5492-0076",
     scholar: "", // TODO: Google Scholar profile URL (shows automatically once set)
     researchgate: "", // TODO: ResearchGate profile URL (shows automatically once set)
-    email: "", // left empty on purpose: add a public address to show an Email button
-    resume: "", // drop resume.pdf into /public and set "/resume.pdf" to show a Résumé button
+    email: "hello@diegocaputo.com", // Namecheap forwarder to his Gmail (Gmail itself stays private)
+    resume: "/Diego-Caputo-Resume.pdf", // built from resume/resume.html (no phone, no Gmail)
   },
 };
 
@@ -30,7 +30,7 @@ export const stats = [
   { value: "10", unit: "years", label: "across engineering, data and instruction" },
   { value: "60-80", unit: "students", label: "taught per semester in Lean Systems" },
   { value: "170→230", unit: "members", label: "SME chapter growth as president" },
-  { value: "2", unit: "countries", label: "Lean Six Sigma programs led abroad" },
+  { value: "4", unit: "countries", label: "with Lean Six Sigma programs: DR, USA, Germany, Spain" },
 ];
 
 export const featured = {
@@ -59,11 +59,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Lean Six Sigma Green Belt abroad",
+    title: "Lean Six Sigma Green Belt programs",
     kind: "Program director",
-    year: "2025-2026",
+    year: "Ongoing",
     summary:
-      "Led an international Green Belt program in Germany and Pamplona, Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch.",
+      "Green Belt programs in the Dominican Republic, the United States, Germany and Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch. 2027: Italy, Germany and Spain with new partner companies.",
     size: "lg",
     visual: "germany",
   },
@@ -147,12 +147,13 @@ export const experience: Role[] = [
   },
   {
     role: "Program Director, Lean Six Sigma Green Belt",
-    org: "Auburn University Abroad",
-    place: "Germany & Spain",
-    period: "2025 - 2026",
+    org: "Auburn University",
+    place: "DR, USA, Germany & Spain",
+    period: "2025 - Present",
     points: [
       "Designed a 3-week Lean Six Sigma module with a full DMAIC project and deliverables",
       "Led a Six Sigma project on a BSH Bosch vacuum production line",
+      "Programs run in the Dominican Republic, the United States, Germany and Spain; Italy, Germany and Spain planned for 2027",
     ],
   },
   {

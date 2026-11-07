@@ -89,9 +89,9 @@ export default function TigerMotorsPage() {
               <Reveal key={n.label} delay={i * 0.05} className="md:px-8 md:first:pl-0">
                 <dt className="sr-only">{n.label}</dt>
                 <dd>
-                  <p className="font-mono text-3xl font-medium tracking-tight text-ink md:text-4xl">
+                  <p className="flex flex-wrap items-baseline gap-x-1.5 font-mono text-[28px] font-medium leading-tight tracking-tight text-ink md:text-4xl">
                     {n.value}
-                    <span className="ml-1.5 align-middle font-sans text-sm font-normal tracking-normal text-ink-3">{n.unit}</span>
+                    <span className="font-sans text-sm font-normal tracking-normal text-ink-3">{n.unit}</span>
                   </p>
                   <p className="mt-2 text-[14px] leading-snug text-ink-2">{n.label}</p>
                 </dd>
