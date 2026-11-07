@@ -110,9 +110,9 @@ export default function ResearchPage() {
                     </dl>
                     <aside>
                       <h3 className="text-[13px] font-medium text-ink">Keywords</h3>
-                      <ul className="mt-3 flex flex-wrap gap-2">
+                      <ul className="mt-3 flex flex-wrap gap-x-2 gap-y-2.5">
                         {p.keywords.map((k) => (
-                          <li key={k} className="rounded-full border border-line px-2.5 py-1 text-[12px] text-ink-2">
+                          <li key={k} className="bracket text-[13px] text-ink-2">
                             {k}
                           </li>
                         ))}

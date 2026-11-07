@@ -1,11 +1,14 @@
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { papers, researchIntro } from "@/content/research";
+import { ValueStream } from "./Blueprint";
 import { Reveal } from "./Reveal";
 
 export function ResearchSnippet() {
   return (
-    <section id="research" className="mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+    <section id="research" className="relative isolate mx-auto max-w-6xl px-5 pb-24 pt-24 md:px-8 md:pb-32 md:pt-32">
+      {/* value stream map as a faded background behind the heading, fading toward the text */}
+      <ValueStream className="sketch-fade-left absolute right-0 top-2 -z-10 hidden w-[520px] lg:block" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Research</h2>
         <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{researchIntro.dissertation}</p>

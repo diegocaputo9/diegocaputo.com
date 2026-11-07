@@ -1,9 +1,11 @@
 import { experience } from "@/content/site";
+import { Gears } from "./Blueprint";
 import { Reveal } from "./Reveal";
 
 export function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+    <section id="experience" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+      <Gears className="absolute right-[3%] top-16 -z-10 hidden w-[200px] xl:block" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Experience</h2>
       </Reveal>

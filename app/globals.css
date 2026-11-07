@@ -250,6 +250,18 @@ body {
   fill: var(--accent);
 }
 
+/* Sketches placed behind text fade out toward the copy so they never compete with it. */
+.sketch-fade-top {
+  opacity: 0.7;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 60%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 60%);
+}
+.sketch-fade-left {
+  opacity: 0.6;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+}
+
 /* Lines draw themselves as the drawing scrolls into view. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
@@ -272,4 +284,42 @@ body {
 }
 @keyframes sketch-fade {
   from { opacity: 0; }
+}
+
+/* Keyword tags framed by drafting corner brackets (top-left + bottom-right),
+   like the frame marks on a technical drawing. Corners spread on hover. */
+.bracket {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  line-height: 1.2;
+}
+.bracket::before,
+.bracket::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--ink-3);
+  border-style: solid;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms;
+}
+.bracket::before {
+  top: 0;
+  left: 0;
+  border-width: 1.5px 0 0 1.5px;
+}
+.bracket::after {
+  right: 0;
+  bottom: 0;
+  border-width: 0 1.5px 1.5px 0;
+}
+.bracket:hover::before {
+  transform: translate(-2px, -2px);
+  border-color: var(--accent);
+}
+.bracket:hover::after {
+  transform: translate(2px, 2px);
+  border-color: var(--accent);
 }

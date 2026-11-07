@@ -130,7 +130,7 @@ export function RobotArm({ className }: { className?: string }) {
 export function ValueStream({ className }: { className?: string }) {
   const steps = ["STAMP", "WELD", "PAINT", "ASSY"];
   return (
-    <Sketch viewBox="0 0 600 190" label={12} className={className}>
+    <Sketch viewBox="0 0 600 190" label={14} className={className}>
       {steps.map((s, i) => {
         const x = 10 + i * 150;
         return (

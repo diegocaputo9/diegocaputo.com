@@ -7,7 +7,6 @@ import {
   UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
 import { projects, type Project } from "@/content/site";
-import { ValueStream } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
 
@@ -35,7 +34,7 @@ const texture: Record<Project["visual"], string> = {
 
 export function Work() {
   return (
-    <section className="mx-auto max-w-6xl px-5 pb-16 pt-5 md:px-8 md:pb-20">
+    <section className="mx-auto max-w-6xl px-5 pb-4 pt-5 md:px-8 md:pb-6">
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-12">
         {projects.map((p, i) => {
           const Icon = icon[p.visual];
@@ -62,10 +61,6 @@ export function Work() {
           );
         })}
       </ul>
-      {/* value stream strip: its own row below the grid */}
-      <div aria-hidden className="mt-20 hidden md:block">
-        <ValueStream className="mx-auto w-full max-w-[720px]" />
-      </div>
     </section>
   );
 }

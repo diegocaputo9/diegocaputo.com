@@ -1,14 +1,12 @@
 import { Sparkle, Translate } from "@phosphor-icons/react/dist/ssr";
 import { about } from "@/content/site";
-import { Gears } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
 
 // Sits right after the hero: who Diego is, then the numbers row (Stats) as evidence.
 export function About() {
   return (
-    <section id="about" className="relative isolate mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-8 md:pb-20 md:pt-20">
-      <Gears className="absolute right-[2%] -top-6 -z-10 hidden w-[190px] xl:block" />
+    <section id="about" className="relative isolate mx-auto max-w-6xl px-5 pb-16 pt-4 md:px-8 md:pb-20 md:pt-6">
       <div className="grid items-end gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
         <Reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">About</h2>

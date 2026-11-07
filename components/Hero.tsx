@@ -12,8 +12,10 @@ export function Hero() {
     <section id="top" className="relative isolate overflow-hidden">
       {/* blueprint layer: the arm peeks out above the glass card, which refracts its base */}
       <RobotArm className="absolute -z-10 hidden w-[250px] lg:block lg:right-[1%] lg:top-[4%] xl:right-[4%]" />
+      {/* assembly line as a faded background along the bottom of the hero */}
+      <AssemblyLine className="sketch-fade-top absolute bottom-0 left-1/2 -z-10 hidden w-[min(900px,88vw)] -translate-x-1/2 md:block" />
 
-      <div className="mx-auto grid min-h-[92dvh] max-w-6xl items-center gap-14 px-5 pb-12 pt-28 md:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20 lg:pt-24">
+      <div className="mx-auto grid min-h-[86dvh] max-w-6xl items-center gap-14 px-5 pb-24 pt-28 md:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20 lg:pt-24">
         <div>
           <div className="rise" style={d(0)}>
             <p className="text-sm font-medium tracking-tight text-ink-3">
@@ -70,12 +72,9 @@ export function Hero() {
             </p>
 
             <div className="mt-6 border-t border-line pt-6">
-              <ul className="flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-x-2 gap-y-2.5">
                 {site.focus.map((f) => (
-                  <li
-                    key={f}
-                    className="rounded-full bg-ink/[0.05] px-3 py-1.5 text-[13px] text-ink-2 dark:bg-white/[0.06]"
-                  >
+                  <li key={f} className="bracket text-[13px] text-ink-2">
                     {f}
                   </li>
                 ))}
@@ -118,10 +117,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* assembly line strip: its own row, so it never collides with hero copy */}
-      <div aria-hidden className="mx-auto hidden max-w-6xl px-5 pb-10 md:block md:px-8">
-        <AssemblyLine className="mx-auto w-full max-w-[860px]" />
-      </div>
     </section>
   );
 }
