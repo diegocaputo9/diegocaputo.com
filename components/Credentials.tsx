@@ -13,30 +13,31 @@ export function Credentials() {
   return (
     <div>
       <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">Credentials</p>
-      <ul className="mt-3 grid gap-2.5 sm:grid-cols-3">
+      <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
         {credentials.map((c) => (
-          <li
-            key={c.title}
-            className="glass flex items-center gap-3.5 rounded-[20px] p-3.5 sm:flex-col sm:items-start sm:gap-3 sm:p-4"
-          >
-            <div className="flex w-full items-center justify-between gap-2 max-sm:w-auto">
+          <li key={c.title} className="glass flex items-center gap-3.5 rounded-[20px] p-3.5">
+            {c.kind === "badge" ? (
+              // eslint-disable-next-line @next/next/no-img-element -- small static badge
+              <img
+                src={c.mark}
+                alt=""
+                width={256}
+                height={256}
+                className="h-11 w-11 shrink-0 drop-shadow-[0_2px_6px_rgb(0_0_0/0.18)]"
+              />
+            ) : (
               <span
                 aria-hidden
-                className={`grid h-9 w-9 shrink-0 place-items-center rounded-[11px] font-mono text-[12px] font-semibold tracking-wide ${mark[c.kind]}`}
+                className={`grid h-10 w-10 shrink-0 place-items-center rounded-[12px] font-mono text-[12px] font-semibold tracking-wide ${mark[c.kind]}`}
               >
-                {c.kind === "cert" ? <Certificate size={19} weight="duotone" /> : c.mark}
+                {c.kind === "cert" ? <Certificate size={20} weight="duotone" /> : c.mark}
               </span>
-              {c.status && (
-                <span className="hidden rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[12px] leading-none text-accent sm:inline">
-                  {c.status}
-                </span>
-              )}
-            </div>
+            )}
             <div className="min-w-0">
               <p className="text-[14px] font-medium leading-snug tracking-tight text-ink">{c.title}</p>
               <p className="mt-0.5 text-[12.5px] leading-snug text-ink-3">
                 {c.issuer}
-                {c.status && <span className="sm:hidden"> · {c.status}</span>}
+                {c.status && <span className="text-accent"> · {c.status}</span>}
               </p>
             </div>
           </li>

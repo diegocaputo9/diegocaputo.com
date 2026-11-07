@@ -31,7 +31,12 @@ export function Featured() {
               />
             </a>
             <div className="flex flex-col justify-center px-3 pb-4 lg:px-0 lg:pb-0 lg:pr-6">
-              <p className="text-[13px] text-ink-3">{featured.kind}</p>
+              <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[13px] text-ink-3">
+                {featured.kind}
+                <span className="rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[12px] leading-none text-accent">
+                  {featured.grant}
+                </span>
+              </p>
               <h3 className="mt-1 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{featured.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{featured.summary}</p>
               <ul className="mt-5 space-y-2.5">

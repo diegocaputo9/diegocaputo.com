@@ -30,11 +30,17 @@ export const site = {
 // (villanova.edu professional studies).
 export const credentials: {
   mark: string;
-  kind: "green" | "black" | "cert";
+  kind: "green" | "black" | "cert" | "badge";
   title: string;
   issuer: string;
   status?: string;
 }[] = [
+  {
+    mark: "/work/international-green-belt-badge.png",
+    kind: "badge",
+    title: "International Lean Six Sigma Green Belt",
+    issuer: "Auburn University & THWS, Germany 2026",
+  },
   { mark: "GB", kind: "green", title: "Lean Six Sigma Green Belt", issuer: "Auburn University" },
   {
     mark: "BB",
@@ -62,6 +68,7 @@ export const stats = [
 export const featured = {
   title: "Tiger Motors Lean Education Center",
   kind: "Featured project",
+  grant: "$400K NSF grant", // award 2417082: $399,694 estimated total (api.nsf.gov)
   href: "https://tigermotorslean.com",
   image: "/work/tiger-motors.jpg",
   summary:
@@ -69,7 +76,7 @@ export const featured = {
   points: [
     "360° tours of the lab and of students running the production system",
     "Learning modules organized around the Lean House, with a completion certificate",
-    "Supported by the NSF IUSE: EDU program (DUE 2417082)",
+    "Funded by a $400,000 NSF IUSE: EDU grant (DUE-2417082)",
     "Used by industry and academic partners such as Honda, GE Aerospace and Brose",
   ],
 };
@@ -81,6 +88,9 @@ export type Project = {
   year: string;
   size: "lg" | "md";
   visual: "plant" | "germany" | "ai" | "asrs" | "standard" | "app";
+  image?: { src: string; alt: string; credit: string; width: number; height: number };
+  badge?: { src: string; alt: string };
+  press?: { outlet: string; title: string; date: string; href: string };
 };
 
 export const projects: Project[] = [
@@ -89,9 +99,26 @@ export const projects: Project[] = [
     kind: "Program director",
     year: "Ongoing",
     summary:
-      "Green Belt programs in the Dominican Republic, the United States, Germany and Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch. 2027: Italy, Germany and Spain with new partner companies.",
+      "Green Belt programs in the Dominican Republic, the United States, Germany and Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch. Germany 2026 graduates earned the International Lean Six Sigma Green Belt, issued by Auburn and THWS. 2027: Italy, Germany and Spain with new partner companies.",
     size: "lg",
     visual: "germany",
+    image: {
+      src: "/work/germany-2026-mainpost.jpg",
+      alt: "Newspaper clipping from the Rhön- und Saalepost: the Auburn Germany 2026 cohort in front of the Pax Bräu brewery in Oberelsbach",
+      credit: "Rhön- und Saalepost, 11 June 2026. Photo: Markus Büttner",
+      width: 1280,
+      height: 513,
+    },
+    badge: {
+      src: "/work/international-green-belt-badge.png",
+      alt: "International Lean Six Sigma Green Belt badge, issued by Auburn University and THWS",
+    },
+    press: {
+      outlet: "Main-Post",
+      title: "Prozess-Turbo durch US-Team: Für Pax Bräu in Oberelsbach werden schnelle Lösungen gefunden",
+      date: "June 2026",
+      href: "https://www.mainpost.de/rhoengrabfeld/kreuzberg/oberelsbach-prozess-turbo-in-oberelsbach-us-team-nimmt-pax-braeu-unter-die-lupe-und-findet-schnelle-loesungen-2-114220703",
+    },
   },
   {
     title: "Sawmill process diagnostics",

@@ -36,7 +36,12 @@ const personJsonLd = {
       "@type": "EducationalOccupationalCredential",
       name: c.kind === "cert" ? `Graduate Certificate, ${c.title}` : c.title,
       credentialCategory: c.kind === "cert" ? "Graduate certificate" : "Certification",
-      recognizedBy: { "@type": "CollegeOrUniversity", name: "Auburn University" },
+      recognizedBy: c.kind === "badge"
+        ? [
+            { "@type": "CollegeOrUniversity", name: "Auburn University" },
+            { "@type": "CollegeOrUniversity", name: "Technische Hochschule Würzburg-Schweinfurt (THWS)" },
+          ]
+        : { "@type": "CollegeOrUniversity", name: "Auburn University" },
     })),
   identifier: { "@type": "PropertyValue", propertyID: "ORCID", value: "0009-0009-5492-0076" },
   sameAs: [site.links.linkedin, site.links.github, site.links.orcid, site.links.scholar, site.links.researchgate, outside.brand.youtube.href].filter(

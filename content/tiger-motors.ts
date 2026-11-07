@@ -10,7 +10,7 @@ export const tigerMotors = {
   facts: [
     ["Role", "Graduate research assistant, lead author"],
     ["Team", "Tom Devall, Gonzalo Gil, Jorge Valenzuela"],
-    ["Funding", "NSF IUSE: EDU, DUE-2417082"],
+    ["Funding", "$400K NSF IUSE: EDU grant, DUE-2417082"],
     ["Period", "2024 - present"],
   ],
   numbers: [

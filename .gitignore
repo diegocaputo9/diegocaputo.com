@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .claude/
+
+# source photos and press PDFs from Diego (web-sized copies live in public/work)
+/Germany 2026/
