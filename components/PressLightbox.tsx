@@ -128,7 +128,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
             >
               {/* eslint-disable-next-line @next/next/no-img-element -- preview */}
               <img
-                src={full.preview}
+                src={armed ? full.preview : undefined}
                 alt=""
                 aria-hidden
                 width={full.width}
