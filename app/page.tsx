@@ -28,7 +28,10 @@ const personJsonLd = {
   knowsAbout: [...site.focus, ...about.research],
   knowsLanguage: ["English", "Spanish"],
   award: honors.map((h) => h.title),
-  sameAs: [site.links.linkedin, site.links.github].filter(Boolean),
+  identifier: { "@type": "PropertyValue", propertyID: "ORCID", value: "0009-0009-5492-0076" },
+  sameAs: [site.links.linkedin, site.links.github, site.links.orcid, site.links.scholar, site.links.researchgate].filter(
+    Boolean,
+  ),
 };
 
 export default function Home() {

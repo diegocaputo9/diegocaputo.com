@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { site } from "@/content/site";
 import { AssemblyLine, RobotArm } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
+import { academicProfiles } from "./profiles";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
@@ -100,6 +101,18 @@ export function Hero() {
               >
                 <GithubLogo size={20} />
               </a>
+              {academicProfiles.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="grid h-10 w-10 place-items-center rounded-full text-ink-2 transition-colors hover:bg-ink/[0.06] hover:text-ink"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
             </div>
           </GlassCard>
         </div>

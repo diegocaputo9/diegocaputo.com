@@ -17,6 +17,9 @@ export const site = {
   links: {
     linkedin: "https://www.linkedin.com/in/diegorcaputo/",
     github: "https://github.com/diegocaputo9",
+    orcid: "https://orcid.org/0009-0009-5492-0076",
+    scholar: "", // TODO: Google Scholar profile URL (shows automatically once set)
+    researchgate: "", // TODO: ResearchGate profile URL (shows automatically once set)
     email: "", // left empty on purpose: add a public address to show an Email button
     resume: "", // drop resume.pdf into /public and set "/resume.pdf" to show a Résumé button
   },

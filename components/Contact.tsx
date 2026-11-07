@@ -2,9 +2,16 @@ import { ArrowUpRight, EnvelopeSimple, FileText, GithubLogo, LinkedinLogo } from
 import { site } from "@/content/site";
 import { Andon } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
+import { academicProfiles } from "./profiles";
 import { Reveal } from "./Reveal";
 
-type Item = { label: string; value: string; href: string; Icon: typeof GithubLogo; primary?: boolean };
+type Item = {
+  label: string;
+  value: string;
+  href: string;
+  Icon: React.ComponentType<{ size?: number; className?: string }>;
+  primary?: boolean;
+};
 
 export function Contact() {
   const items = [
@@ -17,6 +24,7 @@ export function Contact() {
     },
     site.links.resume && { label: "Résumé", value: "Résumé (PDF)", href: site.links.resume, Icon: FileText },
     { label: "GitHub", value: "GitHub", href: site.links.github, Icon: GithubLogo },
+    ...academicProfiles.map((p) => ({ ...p, value: p.label })),
   ].filter(Boolean) as Item[];
 
   return (
@@ -30,7 +38,7 @@ export function Contact() {
           <p className="mx-auto mt-5 max-w-[46ch] text-lg leading-relaxed text-ink-2">
             Open to industry roles, research collaborations and lean or AI improvement projects.
           </p>
-          <ul className="mx-auto mt-10 flex max-w-2xl flex-wrap justify-center gap-3">
+          <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
             {items.map(({ label, value, href, Icon, primary }) => (
               <li key={label}>
                 <a

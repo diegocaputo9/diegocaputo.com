@@ -6,6 +6,7 @@ import { Gears } from "@/components/Blueprint";
 import { Footer } from "@/components/Footer";
 import { GlassCard } from "@/components/GlassCard";
 import { Nav } from "@/components/Nav";
+import { academicProfiles } from "@/components/profiles";
 import { Reveal } from "@/components/Reveal";
 import { papers, presentations, researchIntro } from "@/content/research";
 import { site } from "@/content/site";
@@ -61,6 +62,21 @@ export default function ResearchPage() {
             <h1 className="mt-6 text-5xl font-semibold tracking-[-0.035em] text-ink md:text-6xl">Research</h1>
             <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-ink-2">{researchIntro.dissertation}</p>
             <p className="mt-4 max-w-[60ch] text-[15px] leading-relaxed text-ink-3">{researchIntro.thread}</p>
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {academicProfiles.map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="glass inline-flex h-10 items-center gap-2 rounded-full px-4 text-[14px] text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                  >
+                    <Icon size={16} />
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </header>
 
