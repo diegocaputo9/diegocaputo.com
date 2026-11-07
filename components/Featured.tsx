@@ -23,6 +23,9 @@ export function Featured() {
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}
               <img
                 src={featured.image}
+                srcSet={featured.imageSet}
+                sizes="(min-width: 1152px) 600px, (min-width: 1024px) 52vw, 92vw"
+                decoding="async"
                 alt="Tiger Motors Lean Education Center homepage with an isometric drawing of the assembly lab"
                 width={1456}
                 height={680}

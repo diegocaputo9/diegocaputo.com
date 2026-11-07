@@ -68,6 +68,9 @@ export default function TigerMotorsPage() {
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}
               <img
                 src={t.image}
+                srcSet={t.imageSet}
+                sizes="(min-width: 1152px) 1088px, 94vw"
+                decoding="async"
                 alt="Tiger Motors Lean Education Center homepage with an isometric drawing of the assembly lab"
                 width={1456}
                 height={680}

@@ -1,6 +1,11 @@
+import DE from "country-flag-icons/react/3x2/DE";
+import ES from "country-flag-icons/react/3x2/ES";
+import US from "country-flag-icons/react/3x2/US";
 import { experience } from "@/content/site";
 import { Gears } from "./Blueprint";
 import { Reveal } from "./Reveal";
+
+const flags = { DE, ES, US };
 
 export function Experience() {
   return (
@@ -35,6 +40,25 @@ export function Experience() {
                 </li>
               ))}
             </ul>
+            {r.countries && (
+              <ul aria-label="Program countries" className="mt-4 flex flex-wrap gap-2">
+                {r.countries.map((c) => {
+                  const Flag = flags[c.code];
+                  return (
+                    <li
+                      key={c.code}
+                      className="glass flex h-9 items-center gap-2 rounded-full pl-2.5 pr-3.5 text-[13px] text-ink-2"
+                    >
+                      <Flag
+                        aria-hidden
+                        className="h-[14px] w-[21px] shrink-0 rounded-[3px] shadow-[0_0_0_1px_rgb(0_0_0/0.12)]"
+                      />
+                      {c.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </Reveal>
         ))}
       </ol>

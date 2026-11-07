@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { projects, type Project } from "@/content/site";
 import { GlassCard } from "./GlassCard";
+import { PressLightbox } from "./PressLightbox";
 import { Reveal } from "./Reveal";
 
 // Bento rhythm: 7/5, 5/7, 6/6 on a 12-col grid.
@@ -44,26 +45,16 @@ export function Work() {
               <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-[28px] p-3">
                 {p.image ? (
                   <figure className="relative">
-                    <div className="overflow-hidden rounded-2xl border border-line bg-[#e9e6df]">
-                      {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}
-                      <img
-                        src={p.image.src}
-                        alt={p.image.alt}
-                        width={p.image.width}
-                        height={p.image.height}
-                        loading="lazy"
-                        className="aspect-[1280/513] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
-                      />
-                    </div>
+                    <PressLightbox image={p.image} articleHref={p.press?.href} />
                     {p.badge && (
                       // eslint-disable-next-line @next/next/no-img-element -- small static badge
                       <img
                         src={p.badge.src}
                         alt={p.badge.alt}
-                        width={256}
-                        height={256}
+                        width={192}
+                        height={192}
                         loading="lazy"
-                        className="absolute -bottom-6 right-4 h-[72px] w-[72px] drop-shadow-[0_6px_16px_rgb(0_0_0/0.22)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:rotate-[-4deg] md:h-[84px] md:w-[84px]"
+                        className="pointer-events-none absolute -bottom-6 right-4 h-[72px] w-[72px] drop-shadow-[0_6px_16px_rgb(0_0_0/0.22)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:rotate-[-4deg] md:h-[84px] md:w-[84px]"
                       />
                     )}
                     <figcaption className="mt-2 px-1 pr-24 font-mono text-[11.5px] leading-snug text-ink-3">

@@ -36,7 +36,7 @@ export const credentials: {
   status?: string;
 }[] = [
   {
-    mark: "/work/international-green-belt-badge.png",
+    mark: "/work/international-green-belt-badge.webp",
     kind: "badge",
     title: "International Lean Six Sigma Green Belt",
     issuer: "Auburn University & THWS, Germany 2026",
@@ -62,7 +62,7 @@ export const stats = [
   { value: "10", unit: "years", label: "across engineering, data and instruction" },
   { value: "60-80", unit: "students", label: "taught per semester in Lean Systems" },
   { value: "170→230", unit: "members", label: "SME chapter growth as president" },
-  { value: "4", unit: "countries", label: "with Lean Six Sigma programs: DR, USA, Germany, Spain" },
+  { value: "3", unit: "countries", label: "with Lean Six Sigma programs: USA, Germany, Spain" },
 ];
 
 export const featured = {
@@ -70,7 +70,8 @@ export const featured = {
   kind: "Featured project",
   grant: "$400K NSF grant", // award 2417082: $399,694 estimated total (api.nsf.gov)
   href: "https://tigermotorslean.com",
-  image: "/work/tiger-motors.jpg",
+  image: "/work/tiger-motors-1456.webp",
+  imageSet: "/work/tiger-motors-800.webp 800w, /work/tiger-motors-1456.webp 1456w",
   summary:
     "An immersive digital learning environment for Auburn's 4,000 sq ft Integrated Manufacturing Facility, a lab that simulates high-volume automotive production.",
   points: [
@@ -88,7 +89,16 @@ export type Project = {
   year: string;
   size: "lg" | "md";
   visual: "plant" | "germany" | "ai" | "asrs" | "standard" | "app";
-  image?: { src: string; alt: string; credit: string; width: number; height: number };
+  image?: {
+    src: string;
+    srcSet: string;
+    alt: string;
+    credit: string;
+    width: number;
+    height: number;
+    // whole page, opened from the thumbnail; preview loads first, src only on demand
+    full: { preview: string; src: string; alt: string; width: number; height: number };
+  };
   badge?: { src: string; alt: string };
   press?: { outlet: string; title: string; date: string; href: string };
 };
@@ -99,18 +109,26 @@ export const projects: Project[] = [
     kind: "Program director",
     year: "Ongoing",
     summary:
-      "Green Belt programs in the Dominican Republic, the United States, Germany and Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch. Germany 2026 graduates earned the International Lean Six Sigma Green Belt, issued by Auburn and THWS. 2027: Italy, Germany and Spain with new partner companies.",
+      "Green Belt programs in the United States, Germany and Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch. Germany 2026 graduates earned the International Lean Six Sigma Green Belt, issued by Auburn and THWS. 2027: Italy, Germany and Spain with new partner companies.",
     size: "lg",
     visual: "germany",
     image: {
-      src: "/work/germany-2026-mainpost.jpg",
+      src: "/work/germany-2026-mainpost-1280.webp",
+      srcSet: "/work/germany-2026-mainpost-640.webp 640w, /work/germany-2026-mainpost-1280.webp 1280w",
       alt: "Newspaper clipping from the Rhön- und Saalepost: the Auburn Germany 2026 cohort in front of the Pax Bräu brewery in Oberelsbach",
       credit: "Rhön- und Saalepost, 11 June 2026. Photo: Markus Büttner",
       width: 1280,
       height: 513,
+      full: {
+        preview: "/work/germany-2026-newspaper-720.webp",
+        src: "/work/germany-2026-newspaper-3000.webp",
+        alt: "Front page of the Rhön- und Saalepost, 11 June 2026, with the article “Prozess-Turbo in einer kleinen Brauerei” about the Auburn cohort",
+        width: 3000,
+        height: 4000,
+      },
     },
     badge: {
-      src: "/work/international-green-belt-badge.png",
+      src: "/work/international-green-belt-badge.webp",
       alt: "International Lean Six Sigma Green Belt badge, issued by Auburn University and THWS",
     },
     press: {
@@ -173,6 +191,8 @@ export type Role = {
   place: string;
   period: string;
   points: string[];
+  // ISO 3166 codes, rendered as flag chips under the points
+  countries?: { code: "DE" | "ES" | "US"; name: string }[];
 };
 
 export const experience: Role[] = [
@@ -199,14 +219,19 @@ export const experience: Role[] = [
     ],
   },
   {
-    role: "Program Director, Lean Six Sigma Green Belt",
+    role: "Program Director, International Lean Six Sigma Green Belt",
     org: "Auburn University",
-    place: "DR, USA, Germany & Spain",
+    place: "USA, Germany & Spain",
     period: "2025 - Present",
     points: [
       "Designed a 3-week Lean Six Sigma module with a full DMAIC project and deliverables",
       "Led a Six Sigma project on a BSH Bosch vacuum production line",
-      "Programs run in the Dominican Republic, the United States, Germany and Spain; Italy, Germany and Spain planned for 2027",
+      "Programs run in the United States, Germany and Spain; Italy, Germany and Spain planned for 2027",
+    ],
+    countries: [
+      { code: "DE", name: "Germany" },
+      { code: "ES", name: "Spain" },
+      { code: "US", name: "USA" },
     ],
   },
   {

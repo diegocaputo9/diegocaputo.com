@@ -21,8 +21,8 @@ export function Credentials() {
               <img
                 src={c.mark}
                 alt=""
-                width={256}
-                height={256}
+                width={192}
+                height={192}
                 className="h-11 w-11 shrink-0 drop-shadow-[0_2px_6px_rgb(0_0_0/0.18)]"
               />
             ) : (

@@ -6,7 +6,8 @@ export const tigerMotors = {
   title: "Tiger Motors Lean Education Center",
   lede: "Lean is learned by doing, but a hands-on lab only reaches the people who can travel to it. We put Auburn's automotive learning factory in a browser and measured whether people still learn.",
   href: "https://tigermotorslean.com",
-  image: "/work/tiger-motors.jpg",
+  image: "/work/tiger-motors-1456.webp",
+  imageSet: "/work/tiger-motors-800.webp 800w, /work/tiger-motors-1456.webp 1456w",
   facts: [
     ["Role", "Graduate research assistant, lead author"],
     ["Team", "Tom Devall, Gonzalo Gil, Jorge Valenzuela"],
