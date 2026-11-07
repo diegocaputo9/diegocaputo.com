@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, Medal, Newspaper } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, GraduationCap, Medal, Newspaper } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { education, honors, leadership, news } from "@/content/site";
 import { KanbanCard } from "./Blueprint";
@@ -57,12 +57,13 @@ export function Leadership() {
           <h3 className="text-xl font-semibold tracking-tight text-ink">Education</h3>
           <ul className="mt-5">
             {education.map((e) => (
-              <li key={e.degree} className="flex items-baseline justify-between gap-6 border-t border-line py-4">
-                <div>
+              <li key={e.degree} className="flex items-start gap-3 border-t border-line py-4">
+                <DegreeMark level={e.level} />
+                <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-medium text-ink">{e.degree}</p>
                   <p className="text-[14px] text-ink-3">{e.school}</p>
                 </div>
-                <p className="shrink-0 font-mono text-[12px] text-ink-3">{e.year}</p>
+                <p className="mt-1 shrink-0 font-mono text-[12px] text-ink-3">{e.year}</p>
               </li>
             ))}
           </ul>
@@ -174,5 +175,37 @@ export function Leadership() {
         </ul>
       </Reveal>
     </section>
+  );
+}
+
+// Graduation cap with rank bars: one for a bachelor's, two for a master's,
+// three for the doctorate, which is drawn in platinum. Outline only, like the
+// other icons on the site.
+function DegreeMark({ level }: { level: 1 | 2 | 3 }) {
+  const plat = level === 3;
+  return (
+    <span aria-hidden className={`flex w-[22px] shrink-0 flex-col items-center gap-[3px] ${plat ? "" : "text-ink-3"}`}>
+      {plat && (
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <linearGradient id="platinum" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style={{ stopColor: "var(--plat-1)" }} />
+              <stop offset="0.42" style={{ stopColor: "var(--plat-2)" }} />
+              <stop offset="0.6" style={{ stopColor: "var(--plat-3)" }} />
+              <stop offset="1" style={{ stopColor: "var(--plat-4)" }} />
+            </linearGradient>
+          </defs>
+        </svg>
+      )}
+      <GraduationCap
+        size={22}
+        weight="light"
+        style={plat ? { fill: "url(#platinum)" } : undefined}
+        className={plat ? "drop-shadow-[0_1px_0_var(--plat-glow)]" : undefined}
+      />
+      {Array.from({ length: level }, (_, i) => (
+        <span key={i} className={`h-[1.5px] w-3 rounded-full ${plat ? "platinum-bar" : "bg-current"}`} />
+      ))}
+    </span>
   );
 }

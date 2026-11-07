@@ -9,7 +9,7 @@ export const tigerMotors = {
   image: "/work/tiger-motors-1456.webp",
   imageSet: "/work/tiger-motors-800.webp 800w, /work/tiger-motors-1456.webp 1456w",
   facts: [
-    ["Role", "Graduate research assistant, lead author"],
+    ["Role", "Lead platform developer, graduate research assistant, lead author"],
     ["Team", "Tom Devall, Gonzalo Gil, Jorge Valenzuela"],
     ["Funding", "$400K NSF IUSE: EDU grant, DUE-2417082"],
     ["Period", "2024 - present"],
@@ -39,7 +39,7 @@ export const tigerMotors = {
     },
   ],
   role: [
-    "Built the immersive 360° training modules for the NSF-funded project",
+    "Lead developer of the platform: designed and built the site, the 360° tours and the learning modules",
     "Introduced the platform to faculty and students at THWS in Germany during International Teaching Week 2025",
     "Presented the project's progress to Auburn's Alumni Engineering Council",
     "Lead author of the SMTA Pan Pacific 2027 paper on the platform's design and evaluation",

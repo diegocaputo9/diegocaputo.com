@@ -34,8 +34,12 @@ export function Featured() {
               />
             </a>
             <div className="flex flex-col justify-center px-3 pb-4 lg:px-0 lg:pb-0 lg:pr-6">
-              <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-[13px] text-ink-3">
-                {featured.kind}
+              <p className="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[14px] font-medium text-ink-2">
+                <span>
+                  {featured.kind}
+                  <span aria-hidden className="mx-1.5 text-ink-3">·</span>
+                  <span className="font-semibold text-ink">{featured.role}</span>
+                </span>
                 <span className="rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[12px] leading-none text-accent">
                   {featured.grant}
                 </span>

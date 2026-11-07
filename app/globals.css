@@ -27,6 +27,13 @@
   --glass-rim: rgb(24 24 27 / 0.07);
   --glass-shadow: 0 1px 2px rgb(24 24 27 / 0.04), 0 12px 40px rgb(63 63 70 / 0.1);
   --glass-spec: rgb(255 255 255 / 0.9);
+
+  /* platinum (doctorate mark) */
+  --plat-1: #6b7079;
+  --plat-2: #c4c9d0;
+  --plat-3: #5c616a;
+  --plat-4: #a7adb5;
+  --plat-glow: rgb(255 255 255 / 0.9);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -52,6 +59,12 @@
     --glass-rim: rgb(255 255 255 / 0.06);
     --glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 48px rgb(0 0 0 / 0.45);
     --glass-spec: rgb(255 255 255 / 0.22);
+
+    --plat-1: #a3aab4;
+    --plat-2: #ffffff;
+    --plat-3: #959ca7;
+    --plat-4: #e2e5ea;
+    --plat-glow: rgb(0 0 0 / 0.5);
   }
 }
 
@@ -358,4 +371,9 @@ body {
   .press-dialog::backdrop {
     transition: none;
   }
+}
+
+/* Platinum rank bars under the doctorate cap */
+.platinum-bar {
+  background: linear-gradient(90deg, var(--plat-1), var(--plat-2) 45%, var(--plat-3) 70%, var(--plat-4));
 }

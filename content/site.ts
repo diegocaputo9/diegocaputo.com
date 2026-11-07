@@ -97,6 +97,7 @@ export const speaking = {
 export const featured = {
   title: "Tiger Motors Lean Education Center",
   kind: "Featured project",
+  role: "Lead Platform Developer",
   grant: "$400K NSF grant", // award 2417082: $399,694 estimated total (api.nsf.gov)
   href: "https://tigermotorslean.com",
   image: "/work/tiger-motors-1456.webp",
@@ -104,6 +105,7 @@ export const featured = {
   summary:
     "An immersive digital learning environment for Auburn's 4,000 sq ft Integrated Manufacturing Facility, a lab that simulates high-volume automotive production.",
   points: [
+    "Designed and developed the platform end to end, from the site to the learning modules",
     "360° tours of the lab and of students running the production system",
     "Learning modules organized around the Lean House, with a completion certificate",
     "Funded by a $400,000 NSF IUSE: EDU grant (DUE-2417082)",
@@ -150,7 +152,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Lean Six Sigma Green Belt programs",
-    kind: "Program director",
+    kind: "Program Director",
     year: "Ongoing",
     summary:
       "Green Belt programs in the United States, Germany and Spain: instruction, industry partnerships and student DMAIC projects, including a vacuum production line at BSH Bosch. Germany 2026 graduates earned the International Lean Six Sigma Green Belt, issued by Auburn and THWS. 2027: Italy, Germany and Spain with new partner companies.",
@@ -291,6 +293,9 @@ export type Role = {
   // ISO 3166 codes, rendered as flag chips under the points
   countries?: { code: "DE" | "ES" | "US"; name: string }[];
   certificate?: CertRef; // quiet link under the points
+  // Longer account shown when the role's "+" is opened.
+  // DRAFT written from the résumé and site notes (Nov 2026); Diego will replace it.
+  details?: string[];
 };
 
 // A certificate PDF in public/certificates, linked (not displayed) where it's relevant.
@@ -311,6 +316,11 @@ export const experience: Role[] = [
       label: "CITI Responsible Conduct of Research, 2022",
       href: "/certificates/citi-responsible-conduct-of-research-2022.pdf",
     },
+    details: [
+      "I'm the lead developer of the Tiger Motors Lean Education Center, the NSF-funded (DUE-2417082) learning platform for Auburn's Integrated Manufacturing Facility. I designed and built the site, the 360° lab tours, the Lean House learning modules and the completion certificate.",
+      "For the Auburn University Rural Partnership Institute, I map and assess process manufacturing operations such as sawmills and identify where they can improve.",
+      "I also run systematic literature reviews for my dissertation and journal manuscripts, and build websites, analytics utilities and teaching tools with AI-assisted development.",
+    ],
   },
   {
     role: "Graduate Teaching Assistant, Lean Systems",
@@ -322,6 +332,11 @@ export const experience: Role[] = [
       "Lectures and simulations on 5S, Kanban, JIT, SMED, Heijunka, A3 and the 7 wastes",
       "Kaizen advising that helped student projects raise OEE to target",
     ],
+    details: [
+      "I run every lab in Lean Systems for 60 to 80 engineers each semester, plus summer project cohorts of about 20, in Auburn's 4,000 sq ft Integrated Manufacturing Facility.",
+      "In each lab, students run the production line, we discuss the results, they apply a lean tool such as 5S, Kanban or SMED, and then run it again to measure the change.",
+      "I also give a couple of lectures each semester, evaluate student work against technical criteria and advise the Kaizen projects.",
+    ],
   },
   {
     role: "Program Director, International Lean Six Sigma Green Belt",
@@ -332,6 +347,11 @@ export const experience: Role[] = [
       "Designed a 3-week Lean Six Sigma module with a full DMAIC project and deliverables",
       "Led a Six Sigma project on a BSH Bosch vacuum production line",
       "Programs run in the United States, Germany and Spain; Italy, Germany and Spain planned for 2027",
+    ],
+    details: [
+      "I designed the three-week Lean Six Sigma module that students complete abroad, built around a full DMAIC project and its deliverables, and I teach it on site.",
+      "I handle program logistics and industry partnerships and supervise student improvement projects at partner companies, including a Six Sigma project on a BSH Bosch vacuum production line.",
+      "Cohorts ran in Germany and in Pamplona, Spain, in 2025 and 2026. Germany 2026 graduates earned the International Lean Six Sigma Green Belt, issued by Auburn and THWS.",
     ],
     countries: [
       { code: "DE", name: "Germany" },
@@ -347,6 +367,10 @@ export const experience: Role[] = [
     points: [
       "Trained and evaluated AI models, checking engineering accuracy of outputs against quality guidelines",
     ],
+    details: [
+      "I wrote and reviewed prompts and responses used to train and evaluate AI models, checking the engineering and technical accuracy of their outputs and giving structured feedback against quality guidelines.",
+      "The role was remote and self-directed, with set quality standards and deadlines.",
+    ],
   },
   {
     role: "Data Specialist",
@@ -356,6 +380,10 @@ export const experience: Role[] = [
     points: [
       "Executive dashboards for senior leadership",
       "Reusable ETL pipelines that cut about one week from each reporting cycle",
+    ],
+    details: [
+      "I designed executive dashboards that senior leadership used for decision making.",
+      "I built reusable ETL pipelines that cut data preparation by about one week in every reporting cycle, using Excel and Power BI.",
     ],
     certificate: {
       label: "Business Intelligence with Excel and Power BI, PUCMM, 2021",
@@ -368,6 +396,9 @@ export const experience: Role[] = [
     place: "Dominican Republic",
     period: "2017 - 2021",
     points: ["Analyzed and automated service provisioning processes"],
+    details: [
+      "I analyzed the provisioning processes for operating system services, assessed requirements and feasibility, and automated steps to make service activation more efficient.",
+    ],
   },
   {
     role: "Production Supervisor",
@@ -375,6 +406,9 @@ export const experience: Role[] = [
     place: "Dominican Republic",
     period: "2016 - 2017",
     points: ["Supervised about 50 operators against production, safety and quality targets"],
+    details: [
+      "I supervised about 50 plant operators against production, safety and quality requirements, and coordinated daily production schedules with limited resources.",
+    ],
   },
 ];
 
@@ -460,11 +494,12 @@ export const news: {
   },
 ];
 
-export const education = [
-  { degree: "PhD, Industrial & Systems Engineering", school: "Auburn University", year: "Expected 2027" },
-  { degree: "MS, Industrial & Systems Engineering", school: "Auburn University", year: "2026" },
-  { degree: "Master of Engineering Management", school: "Auburn University", year: "2023" },
-  { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017" },
+// level: graduation-cap rank mark (1 bar bachelor's, 2 master's, 3 doctorate in platinum)
+export const education: { degree: string; school: string; year: string; level: 1 | 2 | 3 }[] = [
+  { degree: "PhD, Industrial & Systems Engineering", school: "Auburn University", year: "Expected 2027", level: 3 },
+  { degree: "MS, Industrial & Systems Engineering", school: "Auburn University", year: "2026", level: 2 },
+  { degree: "Master of Engineering Management", school: "Auburn University", year: "2023", level: 2 },
+  { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017", level: 1 },
 ];
 
 // years: per-year links shown in one line (e.g. each IPC winners list)

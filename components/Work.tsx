@@ -82,7 +82,7 @@ export function Work() {
                   </div>
                 )}
                 <div className="px-3 pb-3 pt-5">
-                  <p className="text-[13px] text-ink-3">{p.kind}</p>
+                  <p className="text-[14px] font-semibold tracking-tight text-ink-2">{p.kind}</p>
                   <h3 className="mt-1 text-xl font-semibold tracking-tight text-ink">{p.title}</h3>
                   <p className="mt-2 max-w-[52ch] text-[15px] leading-relaxed text-ink-2">{p.summary}</p>
                   {p.press && (
