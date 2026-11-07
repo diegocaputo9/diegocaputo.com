@@ -125,7 +125,29 @@ export const papers: Paper[] = [
   },
 ];
 
-export const presentations = [
+// Released reports. Source: ~/Desktop/C.I. OpEx/07 Reports, Literature and Background/OpEx Poster.
+export const reports = [
+  {
+    slug: "ci-opex-report",
+    title: "Building an Operational Excellence Program",
+    series: "ICAMS Technical Report 24-01",
+    publisher: "Auburn University / ICAMS",
+    date: "October 2024",
+    authors: "Caitlin Tran, Allison Ledford, Ethan Andrews, Diego Caputo, Gregory Harris",
+    summary:
+      "Findings from a CI/OpEx roundtable with industry experts held at Auburn's Samuel Ginn College of Engineering on April 24, 2024, compared against the academic literature. An AI-assisted analysis of the transcript identifies the key characteristics of successful OpEx programs and a systematic approach for building one. It is the starting point for the TQM Journal manuscript above.",
+    funding:
+      "Funded by the Interdisciplinary Center for Advanced Manufacturing Systems (ICAMS) through the Industrial Base Analysis and Sustainment office of the Office of the Secretary of Defense.",
+  },
+];
+
+export const presentations: { title: string; venue: string; year: string; note?: string }[] = [
+  {
+    title: "Strategies for building an Operational Excellence program",
+    venue: "Research poster, Department of Industrial & Systems Engineering, Auburn University",
+    year: "2025",
+    note: "With Caitlin Tran, Ethan Andrews, Allison Ledford and Gregory Harris. Literature review, industry roundtable and AI-assisted analysis condensed into a five-phase OpEx framework; funded by ICAMS.",
+  },
   {
     title: "Lean lab poster: training engineers through simulation and hands-on activities",
     venue: "Lean Six Sigma & Data Science Conference, Atlanta, GA",

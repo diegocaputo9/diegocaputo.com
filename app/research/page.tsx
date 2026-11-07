@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Presentation } from "@phosphor-icons/react/dist/ssr";
+import { ArrowLeft, ArrowUpRight, FileText, Presentation } from "@phosphor-icons/react/dist/ssr";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
@@ -8,7 +8,7 @@ import { GlassCard } from "@/components/GlassCard";
 import { Nav } from "@/components/Nav";
 import { academicProfiles } from "@/components/profiles";
 import { Reveal } from "@/components/Reveal";
-import { papers, presentations, researchIntro } from "@/content/research";
+import { papers, presentations, reports, researchIntro } from "@/content/research";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -139,6 +139,32 @@ export default function ResearchPage() {
           ))}
         </div>
 
+        <section className="mx-auto max-w-6xl px-5 pt-24 md:px-8">
+          <Reveal>
+            <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Reports</h2>
+            <ul className="mt-8">
+              {reports.map((r) => (
+                <li
+                  key={r.slug}
+                  id={r.slug}
+                  className="flex scroll-mt-28 gap-4 border-t border-line py-6 last:border-b"
+                >
+                  <FileText size={22} className="mt-0.5 shrink-0 text-ink-3" />
+                  <div>
+                    <p className="font-mono text-[12px] text-ink-3">
+                      {r.series} · {r.date}
+                    </p>
+                    <p className="mt-1 text-[16px] font-medium text-ink">{r.title}</p>
+                    <p className="mt-1 text-[14px] text-ink-3">{r.authors}</p>
+                    <p className="mt-3 max-w-[70ch] text-[14px] leading-relaxed text-ink-2">{r.summary}</p>
+                    <p className="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-ink-3">{r.funding}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+
         <section className="mx-auto max-w-6xl px-5 py-24 md:px-8">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Presentations</h2>
@@ -150,7 +176,7 @@ export default function ResearchPage() {
                     <p className="font-mono text-[12px] text-ink-3">{pr.year}</p>
                     <p className="mt-1 text-[16px] font-medium text-ink">{pr.title}</p>
                     <p className="mt-1 text-[14px] text-ink-2">
-                      {pr.venue}. {pr.note}
+                      {pr.venue}.{pr.note ? ` ${pr.note}` : ""}
                     </p>
                   </div>
                 </li>
