@@ -87,7 +87,28 @@ export function Leadership() {
                   ) : (
                     <p className="text-[15px] font-medium text-ink">{h.title}</p>
                   )}
-                  <p className="font-mono text-[12px] text-ink-3">{h.year}</p>
+                  {h.years ? (
+                    <p className="mt-0.5 flex flex-wrap gap-x-3 gap-y-1">
+                      {h.years.map((y) => (
+                        <a
+                          key={y.label}
+                          href={y.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`${h.title} ${y.label} winners list`}
+                          className="group/yr inline-flex items-center gap-0.5 font-mono text-[12px] text-ink-3 underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent/50"
+                        >
+                          {y.label}
+                          <ArrowUpRight
+                            size={11}
+                            className="transition-transform duration-300 group-hover/yr:-translate-y-0.5 group-hover/yr:translate-x-0.5"
+                          />
+                        </a>
+                      ))}
+                    </p>
+                  ) : (
+                    <p className="font-mono text-[12px] text-ink-3">{h.year}</p>
+                  )}
                 </div>
               </li>
             ))}

@@ -10,7 +10,8 @@ function lockScroll(on: boolean) {
 }
 
 // Photos and figures on a work card. "hero" is one large image that fills the
-// card's visual slot; "strip" is a row of small thumbnails. Either opens a
+// card's visual slot; "strip" is a row of small thumbnails; "mosaic" is one
+// tall photo beside two stacked ones, with a "+N" tile for the rest. Either opens a
 // full-screen viewer; full-size files load only once the viewer opens.
 export function Gallery({
   items,
@@ -19,20 +20,26 @@ export function Gallery({
 }: {
   items: GalleryItem[];
   label: string;
-  variant: "hero" | "strip";
+  variant: "hero" | "strip" | "mosaic";
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
+  const [zoom, setZoom] = useState<number | null>(null); // zoomed width in px, null = fit
+  const stage = useRef<HTMLDivElement>(null);
   const many = items.length > 1;
 
   const open = (i: number) => {
     setIndex(i);
+    setZoom(null);
     dialog.current?.showModal();
     lockScroll(true);
   };
   const close = () => dialog.current?.close();
   const step = useCallback(
-    (d: number) => setIndex((i) => (i === null ? i : (i + d + items.length) % items.length)),
+    (d: number) => {
+      setZoom(null);
+      setIndex((i) => (i === null ? i : (i + d + items.length) % items.length));
+    },
     [items.length],
   );
 
@@ -54,12 +61,63 @@ export function Gallery({
   }, [many, step]);
 
   const current = index === null ? null : items[index];
+
+  // Click to zoom in around the clicked point (full file resolution, at least 1.8x); click again to fit.
+  const toggleZoom = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (zoom) return setZoom(null);
+    const img = e.currentTarget;
+    const r = img.getBoundingClientRect();
+    const fx = (e.clientX - r.left) / r.width;
+    const fy = (e.clientY - r.top) / r.height;
+    setZoom(Math.round(Math.max(img.naturalWidth, r.width * 1.8)));
+    requestAnimationFrame(() => {
+      const el = stage.current;
+      if (!el) return;
+      el.scrollLeft = fx * el.scrollWidth - el.clientWidth / 2;
+      el.scrollTop = fy * el.scrollHeight - el.clientHeight / 2;
+    });
+  };
   const btn =
     "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 active:scale-95";
 
   return (
     <>
-      {variant === "hero" ? (
+      {variant === "mosaic" ? (
+        <div className="grid h-[380px] grid-cols-[0.85fr_1fr] grid-rows-2 gap-2.5 sm:h-[520px] sm:gap-3">
+          {items.slice(0, 3).map((it, i) => {
+            const rest = items.length - 3;
+            return (
+              <button
+                key={it.src}
+                type="button"
+                onClick={() => open(i)}
+                aria-haspopup="dialog"
+                aria-label={`Open photo: ${it.caption}`}
+                className={`group/m relative block cursor-zoom-in overflow-hidden rounded-[20px] border border-line bg-bg-2 ${
+                  i === 0 ? "row-span-2" : ""
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized webp */}
+                <img
+                  src={it.thumb}
+                  alt={it.alt}
+                  width={it.width}
+                  height={it.height}
+                  loading="lazy"
+                  decoding="async"
+                  style={it.position ? { objectPosition: it.position } : undefined}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/m:scale-[1.04]"
+                />
+                {i === 2 && rest > 0 && (
+                  <span className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
+                    <ArrowsOut size={13} weight="bold" />+{rest} photos
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      ) : variant === "hero" ? (
         <button
           type="button"
           onClick={() => open(0)}
@@ -136,7 +194,8 @@ export function Gallery({
             </button>
           </div>
           <div
-            className="relative flex min-h-0 flex-1 items-center justify-center px-4 pb-4 sm:px-16"
+            ref={stage}
+            className={`relative min-h-0 flex-1 ${zoom ? "overflow-auto" : "flex items-center justify-center px-4 pb-4 sm:px-16"}`}
             onClick={(e) => e.target === e.currentTarget && close()}
           >
             {current && (
@@ -148,10 +207,16 @@ export function Gallery({
                 width={current.width}
                 height={current.height}
                 decoding="async"
-                className="max-h-full max-w-full rounded-lg object-contain"
+                onClick={toggleZoom}
+                style={zoom ? { width: zoom, maxWidth: "none", height: "auto" } : undefined}
+                className={
+                  zoom
+                    ? "mx-auto block cursor-zoom-out rounded-lg"
+                    : "max-h-full max-w-full cursor-zoom-in rounded-lg object-contain"
+                }
               />
             )}
-            {many && (
+            {many && !zoom && (
               <>
                 <button
                   type="button"

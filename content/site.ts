@@ -68,7 +68,7 @@ export const stats = [
 // "Teaching & speaking" band under the stats. Originals live in /Photos (gitignored).
 export const speaking = {
   title: "Teaching & speaking",
-  lede: "I teach 60 to 80 engineers a semester in Auburn's Lean Systems course, and I present research and products to academic and industry audiences.",
+  lede: "In Auburn's Lean Systems course I run every lab and give lectures each semester for 60 to 80 engineers, and I present research and products to academic and industry audiences.",
   cta: { label: "Invite me to speak", href: "mailto:hello@diegocaputo.com?subject=Speaking%20invitation" },
   photos: [
     {
@@ -119,6 +119,7 @@ export type GalleryItem = {
   alt: string;
   caption: string;
   short?: string; // label under a strip thumbnail
+  position?: string; // object-position for cropped thumbnails
   width: number;
   height: number;
 };
@@ -200,8 +201,8 @@ export const projects: Project[] = [
           alt: "Measure phase storyboard: key metrics, baseline findings, defect category breakdown and current state process map",
           caption: "Measure storyboard: key metrics, baseline findings and current state",
           short: "Measure storyboard",
-          width: 1835,
-          height: 1036,
+          width: 2048,
+          height: 1152,
         },
         {
           thumb: "/work/bosch/process-map-thumb.webp",
@@ -209,8 +210,8 @@ export const projects: Project[] = [
           alt: "Current state process map of the injection molding line, from material prep through startup validation to good output and regrind",
           caption: "Current state process map of the injection molding line",
           short: "Process map",
-          width: 1490,
-          height: 1785,
+          width: 938,
+          height: 1330,
         },
         {
           thumb: "/work/bosch/pareto-thumb.webp",
@@ -218,8 +219,8 @@ export const projects: Project[] = [
           alt: "Pareto chart of defect categories, with potential streak-related defects highlighted in red",
           caption: "Pareto of defect categories, streak-related defects highlighted",
           short: "Defect Pareto",
-          width: 1350,
-          height: 1520,
+          width: 810,
+          height: 899,
         },
       ],
     },
@@ -431,6 +432,15 @@ export const news: {
     imageAlt: "Diego Caputo holding the Systems Showdown winner's check with Auburn Engineering faculty",
   },
   {
+    title: "Cub Scouts earn modular design badges through ISE lab",
+    date: "Mar 2026",
+    source: "Auburn Engineering",
+    href: "https://eng.auburn.edu/news/2026/03/cub-scouts-earn-modular-design-badges-through-ise-lab",
+    note: "Cub Scout Pack 29 earned its Modular Design Adventure badge in the Tiger Motors Lab, building with interchangeable, standardized parts.",
+    image: "cubscouts",
+    imageAlt: "Cub Scouts holding Lego cars in the Tiger Motors Lab with Diego Caputo, Tom Devall and their den leader",
+  },
+  {
     title: "Auburn Engineering hosts continuous improvement industry roundtable",
     date: "Jun 2024",
     source: "Auburn Engineering",
@@ -457,7 +467,8 @@ export const education = [
   { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017" },
 ];
 
-export const honors: { title: string; year: string; href?: string }[] = [
+// years: per-year links shown in one line (e.g. each IPC winners list)
+export const honors: { title: string; year: string; href?: string; years?: { label: string; href: string }[] }[] = [
   {
     title: "Winner, INCOSE Systems Showdown",
     year: "2026",
@@ -468,7 +479,15 @@ export const honors: { title: string; year: string; href?: string }[] = [
     year: "2022",
     href: "https://eng.auburn.edu/news/2023/02/ise-graduate-student-presented-lean-engineering-award",
   },
-  { title: "IPC Scholarship", year: "2023, 2024, 2025" },
+  {
+    title: "IPC Scholarship",
+    year: "2023, 2024, 2025",
+    years: [
+      { label: "2023", href: "https://www.electronicsfoundation.org/2023-scholarship-winners" },
+      { label: "2024", href: "https://www.electronicsfoundation.org/2024-scholarship-winners" },
+      { label: "2025", href: "https://www.electronicsfoundation.org/2025-scholarship-winners" },
+    ],
+  },
   { title: "Lean Six Sigma Green Belt", year: "Auburn University" },
 ];
 
@@ -561,7 +580,7 @@ export const outside = {
     instagram: { handle: "@ddronerd", href: "https://www.instagram.com/ddronerd/" },
     youtube: { label: "YouTube", href: "https://www.youtube.com/c/DiegoCaputoDrone" },
   },
-  lede: "Outside research, I run DDrone, a side business flying drones for engineering work. It's the same habit as the lab: measure first, then decide. Every flight ends in data an engineer can use.",
+  lede: "Outside research, I run DDrone, a side business flying drones for engineering work. It's the same habit as the lab: measure first, then decide. Every flight ends in data an engineer can use. On weekends I race with the Auburn Flyers, Auburn's cycling team.",
   photogrammetry: {
     title: "Photogrammetry and 3D terrain",
     text: "Georeferenced flights capture hundreds of overlapping high-resolution photos. Stitching them together produces photo-accurate 3D models and height-accurate topographic maps that can be measured, planned on and compared over time.",
@@ -573,5 +592,70 @@ export const outside = {
     text: "Thermal imaging shows what the eye can't: leaks, failed insulation, trapped moisture and energy losses across roofs, buildings and plant equipment. One flight becomes a ranked list of fixes.",
     tags: ["Leak detection", "Heat loss", "Energy efficiency", "Building envelope"],
     note: "Placeholder: an illustrative scene drawn for this page, not a real site.",
+  },
+  // Auburn Flyers: Auburn University's club cycling race team (SECCC, USA Cycling).
+  // Originals in /Photos/Auburn Flyers cycling (gitignored).
+  cycling: {
+    title: "Auburn Flyers cycling",
+    text: "I'm an active member of the Auburn Flyers, Auburn University's cycling race team in the Southeastern Collegiate Cycling Conference (USA Cycling). The same lean habits show up on the bike: plan the work, read the data, improve every week.",
+    roles: [
+      { title: "Road captain", detail: "Former captain and leader of the road cycling division." },
+      { title: "Training", detail: "Coordinated team training rides and race preparation." },
+      { title: "Race hosting", detail: "Helped host collegiate road and mountain bike races in Auburn for the conference." },
+      { title: "Racing", detail: "Raced for Auburn at conference road events across the Southeast." },
+    ],
+    tags: ["Team leadership", "Road racing", "Event operations", "USA Cycling collegiate"],
+    photos: [
+      {
+        thumb: "/outside/cycling/auburn-kit-thumb.webp",
+        src: "/outside/cycling/auburn-kit.webp",
+        alt: "Diego Caputo in the Auburn cycling kit with his bike at a race",
+        caption: "After a race in the Auburn kit",
+        width: 924,
+        height: 2000,
+        position: "50% 30%",
+      },
+      {
+        thumb: "/outside/cycling/finish-thumb.webp",
+        src: "/outside/cycling/finish.webp",
+        alt: "Diego Caputo riding toward the finish line of a road race",
+        caption: "Riding to the finish line",
+        width: 1170,
+        height: 780,
+      },
+      {
+        thumb: "/outside/cycling/race-start-thumb.webp",
+        src: "/outside/cycling/race-start.webp",
+        alt: "Auburn Flyers riders rolling out at the start of a road race at sunset",
+        caption: "Race start with the Auburn Flyers",
+        width: 2000,
+        height: 1500,
+        position: "58% 50%",
+      },
+      {
+        thumb: "/outside/cycling/golden-hour-thumb.webp",
+        src: "/outside/cycling/golden-hour.webp",
+        alt: "Diego Caputo, number 308, with Auburn teammates before a race at golden hour",
+        caption: "Before the start, number 308",
+        width: 1500,
+        height: 2000,
+      },
+      {
+        thumb: "/outside/cycling/staging-thumb.webp",
+        src: "/outside/cycling/staging.webp",
+        alt: "Riders from Auburn and other schools lining up before a collegiate road race",
+        caption: "Lining up with riders from across the conference",
+        width: 2000,
+        height: 1500,
+      },
+      {
+        thumb: "/outside/cycling/teammates-thumb.webp",
+        src: "/outside/cycling/teammates.webp",
+        alt: "Diego Caputo and an Auburn Flyers teammate on their bikes before a race",
+        caption: "With a teammate before a road race",
+        width: 1125,
+        height: 1500,
+      },
+    ] as GalleryItem[],
   },
 };

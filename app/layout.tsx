@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
+import { PdfViewer } from "@/components/PdfViewer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-[100dvh]">
         {children}
+        <PdfViewer />
         {/* Cloudflare Web Analytics: cookie-free, no consent banner needed */}
         <script
           defer

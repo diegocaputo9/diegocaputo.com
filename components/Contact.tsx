@@ -43,6 +43,7 @@ export function Contact() {
               <li key={label}>
                 <a
                   href={href}
+                  data-pdf-title={href.endsWith(".pdf") ? `${site.name}, résumé` : undefined}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
                   className={`group inline-flex h-12 items-center gap-2.5 rounded-full px-5 text-[15px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98] ${

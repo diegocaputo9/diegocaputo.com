@@ -181,6 +181,7 @@ export default function ResearchPage() {
                     {pr.poster && (
                       <a
                         href={pr.poster.href}
+                        data-pdf-title={`Poster: ${pr.title}`}
                         target="_blank"
                         rel="noreferrer"
                         className="mt-3 inline-flex items-center gap-1 text-[13px] text-ink-3 hover:text-accent sm:hidden"
@@ -193,6 +194,7 @@ export default function ResearchPage() {
                   {pr.poster && (
                     <a
                       href={pr.poster.href}
+                        data-pdf-title={`Poster: ${pr.title}`}
                       target="_blank"
                       rel="noreferrer"
                       className="group hidden shrink-0 sm:block"

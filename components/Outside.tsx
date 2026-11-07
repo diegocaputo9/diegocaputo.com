@@ -1,5 +1,6 @@
 import { InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 import { outside } from "@/content/site";
+import { Gallery } from "./Gallery";
 import { Reveal } from "./Reveal";
 import { TerrainViewer } from "./TerrainViewer";
 import { ThermalCompare } from "./ThermalCompare";
@@ -17,11 +18,12 @@ function Tags({ items }: { items: string[] }) {
   );
 }
 
-// Personal section: drone photogrammetry and thermal inspection.
+// Personal section: drone photogrammetry, thermal inspection and Auburn Flyers cycling.
 export function Outside() {
   const p = outside.photogrammetry;
   const t = outside.thermal;
   const b = outside.brand;
+  const c = outside.cycling;
   return (
     <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
       <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">
@@ -106,6 +108,29 @@ export function Outside() {
         <Reveal delay={0.08} className="lg:order-1">
           <ThermalCompare />
           <p className="mt-3 text-[13px] text-ink-3">{t.note} Drag the divider to compare.</p>
+        </Reveal>
+      </div>
+
+      <div className="mt-20 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+        <Reveal>
+          <p className="font-mono text-[12px] text-ink-3">03</p>
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{c.title}</h3>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{c.text}</p>
+          <ul className="mt-6 space-y-3">
+            {c.roles.map((r) => (
+              <li key={r.title} className="flex gap-3">
+                <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                <p className="text-[14px] leading-snug text-ink-2">
+                  <span className="font-medium text-ink">{r.title}.</span> {r.detail}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <Tags items={c.tags} />
+        </Reveal>
+        <Reveal delay={0.08}>
+          <Gallery items={c.photos} label="Auburn Flyers cycling" variant="mosaic" />
+          <p className="mt-3 text-[13px] text-ink-3">Open any photo to see the full set.</p>
         </Reveal>
       </div>
     </section>

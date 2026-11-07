@@ -1,6 +1,6 @@
 import { ArrowUpRight, Certificate } from "@phosphor-icons/react/dist/ssr";
 
-// A quiet inline link that opens a certificate PDF in a new tab.
+// A quiet inline link to a certificate PDF (opens in the site's PDF viewer).
 export function CertLink({ label, href, className = "" }: { label: string; href: string; className?: string }) {
   return (
     <a
