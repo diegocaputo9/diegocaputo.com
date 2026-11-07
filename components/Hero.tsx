@@ -2,6 +2,7 @@ import { ArrowRight, GithubLogo, LinkedinLogo, MapPin } from "@phosphor-icons/re
 import type { CSSProperties } from "react";
 import { site } from "@/content/site";
 import { AssemblyLine, RobotArm } from "./Blueprint";
+import { Credentials } from "./Credentials";
 import { GlassCard } from "./GlassCard";
 import { academicProfiles } from "./profiles";
 
@@ -51,9 +52,12 @@ export function Hero() {
               </a>
             </div>
           </div>
+          <div className="rise mt-10" style={d(320)}>
+            <Credentials />
+          </div>
         </div>
 
-        <div className="rise mx-auto w-full max-w-sm lg:max-w-none" style={d(320)}>
+        <div className="rise mx-auto w-full max-w-sm lg:max-w-none" style={d(400)}>
           <GlassCard className="rounded-[28px] p-7">
             <div className="flex items-center gap-4">
               {/* TODO: replace monogram with a portrait (public/portrait.jpg) */}

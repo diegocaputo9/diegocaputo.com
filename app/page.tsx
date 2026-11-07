@@ -11,7 +11,7 @@ import { Outside } from "@/components/Outside";
 import { ResearchSnippet } from "@/components/ResearchSnippet";
 import { Stats } from "@/components/Stats";
 import { Work } from "@/components/Work";
-import { about, honors, outside, site } from "@/content/site";
+import { about, credentials, honors, outside, site } from "@/content/site";
 
 // schema.org Person: lets Google show a knowledge-panel style result for your name.
 const personJsonLd = {
@@ -29,6 +29,15 @@ const personJsonLd = {
   knowsAbout: [...site.focus, ...about.research, "Drone photogrammetry", "Thermal imaging"],
   knowsLanguage: ["English", "Spanish"],
   award: honors.map((h) => h.title),
+  // earned credentials only (the Villanova Black Belt starts in 2027)
+  hasCredential: credentials
+    .filter((c) => !c.status)
+    .map((c) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: c.kind === "cert" ? `Graduate Certificate, ${c.title}` : c.title,
+      credentialCategory: c.kind === "cert" ? "Graduate certificate" : "Certification",
+      recognizedBy: { "@type": "CollegeOrUniversity", name: "Auburn University" },
+    })),
   identifier: { "@type": "PropertyValue", propertyID: "ORCID", value: "0009-0009-5492-0076" },
   sameAs: [site.links.linkedin, site.links.github, site.links.orcid, site.links.scholar, site.links.researchgate, outside.brand.youtube.href].filter(
     Boolean,

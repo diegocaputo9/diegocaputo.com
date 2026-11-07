@@ -25,6 +25,32 @@ export const site = {
   },
 };
 
+// Shown in the hero. Official names checked Nov 2026: Auburn ISE graduate
+// certificate (bulletin.auburn.edu) and Villanova's Lean Six Sigma Black Belt
+// (villanova.edu professional studies).
+export const credentials: {
+  mark: string;
+  kind: "green" | "black" | "cert";
+  title: string;
+  issuer: string;
+  status?: string;
+}[] = [
+  { mark: "GB", kind: "green", title: "Lean Six Sigma Green Belt", issuer: "Auburn University" },
+  {
+    mark: "BB",
+    kind: "black",
+    title: "Lean Six Sigma Black Belt",
+    issuer: "Villanova University",
+    status: "Starts 2027",
+  },
+  {
+    mark: "",
+    kind: "cert",
+    title: "Modeling and Data Analytics for Operations",
+    issuer: "Graduate certificate, Auburn University",
+  },
+];
+
 // Real figures from resume, CV and notes.
 export const stats = [
   { value: "10", unit: "years", label: "across engineering, data and instruction" },
