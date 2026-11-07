@@ -102,11 +102,28 @@ export function Leadership() {
                 href={n.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group grid gap-2 py-5 md:grid-cols-[140px_1fr_auto] md:items-center md:gap-8"
+                hrefLang={n.lang}
+                className="group grid grid-cols-[112px_1fr] gap-x-4 gap-y-1.5 py-5 sm:grid-cols-[176px_1fr] sm:gap-x-6 md:grid-cols-[110px_208px_1fr_auto] md:items-center md:gap-x-8"
               >
-                <p className="font-mono text-[12px] text-ink-3">{n.date}</p>
-                <div>
-                  <p className="text-[16px] font-medium text-ink transition-colors group-hover:text-accent">{n.title}</p>
+                <p className="col-start-2 row-start-1 font-mono text-[12px] text-ink-3 md:col-start-1">{n.date}</p>
+                <div className="col-start-1 row-span-2 row-start-1 self-start overflow-hidden rounded-[14px] border border-line bg-bg-2 md:col-start-2 md:row-span-1 md:self-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
+                  <img
+                    src={`/news/${n.image}-320.webp`}
+                    srcSet={`/news/${n.image}-320.webp 320w, /news/${n.image}-640.webp 640w`}
+                    sizes="(min-width: 768px) 208px, (min-width: 640px) 176px, 112px"
+                    alt={n.imageAlt}
+                    width={320}
+                    height={180}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-video w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="col-start-2 md:col-start-3 md:row-start-1">
+                  <p lang={n.lang} className="text-[16px] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
+                    {n.title}
+                  </p>
                   <p className="mt-1 text-[14px] leading-relaxed text-ink-2">
                     <span className="inline-flex items-center gap-1 text-ink-3">
                       <Newspaper size={13} />
@@ -118,7 +135,7 @@ export function Leadership() {
                 </div>
                 <ArrowUpRight
                   size={18}
-                  className="hidden text-ink-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink md:block"
+                  className="hidden text-ink-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink md:col-start-4 md:row-start-1 md:block"
                 />
               </a>
             </li>

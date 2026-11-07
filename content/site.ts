@@ -288,13 +288,35 @@ export const leadership = [
 ];
 
 // Coverage by Auburn Engineering news.
-export const news = [
+// image: lead photo of each article (og:image), self-hosted as 16:9 WebP in public/news
+export const news: {
+  title: string;
+  date: string;
+  source: string;
+  href: string;
+  note: string;
+  image: string;
+  imageAlt: string;
+  lang?: string;
+}[] = [
+  {
+    title: "Prozess-Turbo durch US-Team: Für Pax Bräu in Oberelsbach werden schnelle Lösungen gefunden",
+    date: "Jun 2026",
+    source: "Main-Post",
+    href: "https://www.mainpost.de/rhoengrabfeld/kreuzberg/oberelsbach-prozess-turbo-in-oberelsbach-us-team-nimmt-pax-braeu-unter-die-lupe-und-findet-schnelle-loesungen-2-114220703",
+    note: "The Germany 2026 Lean Six Sigma cohort improved processes at five companies in one week, ending at the Pax Bräu brewery. In German.",
+    image: "mainpost",
+    imageAlt: "Auburn students and professors in front of the Pax Bräu brewery in Oberelsbach",
+    lang: "de",
+  },
   {
     title: "ISE grad student wins Systems Showdown competition",
     date: "Apr 2026",
     source: "Auburn Engineering",
     href: "https://eng.auburn.edu/news/2026/04/ise-grad-student-wins-systems-showdown-competition",
     note: "First place at INCOSE's Systems Showdown with ChapterCore, a platform for running student organizations.",
+    image: "showdown",
+    imageAlt: "Diego Caputo holding the Systems Showdown winner's check with Auburn Engineering faculty",
   },
   {
     title: "Auburn Engineering hosts continuous improvement industry roundtable",
@@ -302,6 +324,8 @@ export const news = [
     source: "Auburn Engineering",
     href: "https://eng.auburn.edu/news/2024/06/auburn-engineering-hosts-continuous-improvement-industry-roundtable.html",
     note: "Leaders from Honda, Holcim, Brose, Navistar and others on building an operational excellence culture.",
+    image: "roundtable",
+    imageAlt: "Industry leaders around a conference table at the continuous improvement roundtable",
   },
   {
     title: "ISE graduate student presented Lean Engineering Award",
@@ -309,6 +333,8 @@ export const news = [
     source: "Auburn Engineering",
     href: "https://eng.auburn.edu/news/2023/02/ise-graduate-student-presented-lean-engineering-award",
     note: "Named the 2022 JT Black Lean Engineering Student of the Year.",
+    image: "jtblack",
+    imageAlt: "Diego Caputo receiving the JT Black Lean Engineering award",
   },
 ];
 
