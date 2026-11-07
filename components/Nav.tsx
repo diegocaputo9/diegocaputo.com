@@ -1,0 +1,93 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { site } from "@/content/site";
+
+const links = [
+  { id: "work", label: "Work" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
+];
+
+const spring = { type: "spring", stiffness: 380, damping: 32, mass: 0.8 } as const;
+
+export function Nav() {
+  const [active, setActive] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  // Pill tightens slightly once the page scrolls (state change: "you left the hero").
+  const scale = useTransform(scrollY, [0, 160], [1, reduce ? 1 : 0.96]);
+
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.getElementById(l.id))
+      .filter((el): el is HTMLElement => !!el);
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5] },
+    );
+    sections.forEach((s) => io.observe(s));
+    const onTop = new IntersectionObserver(([e]) => e.isIntersecting && setActive(null));
+    const top = document.getElementById("top");
+    if (top) onTop.observe(top);
+    return () => {
+      io.disconnect();
+      onTop.disconnect();
+    };
+  }, []);
+
+  // The highlight follows the hovered link, otherwise the active section.
+  const lit = hovered ?? active;
+
+  return (
+    <header className="fixed inset-x-0 top-4 z-40 flex justify-center px-4">
+      <motion.nav
+        style={{ scale }}
+        aria-label="Primary"
+        className="glass glass-strong flex h-14 items-center gap-1 rounded-full pl-2 pr-2"
+        onMouseLeave={() => setHovered(null)}
+      >
+        <a
+          href="#top"
+          className="flex h-10 items-center gap-2 rounded-full px-3 text-[15px] font-semibold tracking-tight text-ink"
+        >
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-[11px] font-semibold text-bg">
+            DC
+          </span>
+          <span className="hidden sm:inline">{site.name}</span>
+        </a>
+        <span aria-hidden className="mx-1 hidden h-5 w-px bg-line sm:block" />
+        <ul className="flex items-center">
+          {links.map((l) => (
+            <li key={l.id} className="relative">
+              {lit === l.id && (
+                <motion.span
+                  layoutId="nav-lens"
+                  transition={reduce ? { duration: 0 } : spring}
+                  className="absolute inset-0 rounded-full bg-ink/[0.06] shadow-[inset_0_1px_0_var(--glass-edge)] dark:bg-white/[0.08]"
+                />
+              )}
+              <a
+                href={`#${l.id}`}
+                onMouseEnter={() => setHovered(l.id)}
+                aria-current={active === l.id ? "true" : undefined}
+                className={`relative block rounded-full px-3.5 py-2 text-sm transition-colors duration-300 sm:px-4 ${
+                  lit === l.id ? "text-ink" : "text-ink-2 hover:text-ink"
+                }`}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </motion.nav>
+    </header>
+  );
+}
