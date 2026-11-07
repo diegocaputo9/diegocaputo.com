@@ -1,4 +1,5 @@
-import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import { featured } from "@/content/site";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
@@ -41,15 +42,24 @@ export function Featured() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={featured.href}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
-              >
-                Visit tigermotorslean.com
-                <ArrowUpRight size={15} weight="bold" />
-              </a>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  href="/work/tiger-motors/"
+                  className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+                >
+                  Read the case study
+                  <ArrowRight size={15} weight="bold" />
+                </Link>
+                <a
+                  href={featured.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="glass inline-flex h-11 w-fit items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                >
+                  Visit the site
+                  <ArrowUpRight size={15} weight="bold" />
+                </a>
+              </div>
             </div>
           </div>
         </GlassCard>

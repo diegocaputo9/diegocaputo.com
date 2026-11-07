@@ -20,7 +20,7 @@ export function Nav() {
   const onResearchPage = pathname.startsWith("/research");
   const onHome = pathname === "/";
   const [scrollActive, setActive] = useState<string | null>(null);
-  const active = onResearchPage ? "research" : scrollActive;
+  const active = onResearchPage ? "research" : pathname.startsWith("/work") ? "work" : scrollActive;
   const [hovered, setHovered] = useState<string | null>(null);
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
@@ -55,6 +55,12 @@ export function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-4 z-40 flex justify-center px-4">
+      <a
+        href="#main"
+        className="fixed left-4 top-4 z-50 -translate-y-24 whitespace-nowrap rounded-full bg-ink px-5 py-3 text-[14px] font-medium text-bg focus-visible:translate-y-0"
+      >
+        Skip to content
+      </a>
       <motion.nav
         style={{ scale }}
         aria-label="Primary"

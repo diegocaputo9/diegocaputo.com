@@ -209,7 +209,7 @@ body {
 
 @keyframes rise {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translate3d(0, 22px, 0);
     filter: blur(6px);
   }

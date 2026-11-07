@@ -47,7 +47,7 @@ export default function ResearchPage() {
       />
       <Backdrop />
       <Nav />
-      <main className="relative isolate">
+      <main id="main" tabIndex={-1} className="relative isolate outline-none">
         <Gears className="absolute right-[4%] top-28 -z-10 hidden w-[210px] lg:block" />
 
         <header className="mx-auto max-w-6xl px-5 pb-10 pt-32 md:px-8 md:pt-40">

@@ -43,7 +43,7 @@ export default function Home() {
       />
       <Backdrop />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <About />
         <Stats />
