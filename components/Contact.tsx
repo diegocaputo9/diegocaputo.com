@@ -36,7 +36,7 @@ export function Contact() {
             Get in touch
           </h2>
           <p className="mx-auto mt-5 max-w-[46ch] text-lg leading-relaxed text-ink-2">
-            Open to industry roles, research collaborations and lean or AI improvement projects.
+            Open to industry roles, research collaborations, speaking invitations and lean or AI improvement projects.
           </p>
           <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
             {items.map(({ label, value, href, Icon, primary }) => (

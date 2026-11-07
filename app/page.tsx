@@ -10,6 +10,7 @@ import { Nav } from "@/components/Nav";
 import { Outside } from "@/components/Outside";
 import { ResearchSnippet } from "@/components/ResearchSnippet";
 import { Stats } from "@/components/Stats";
+import { Speaking } from "@/components/Speaking";
 import { Work } from "@/components/Work";
 import { about, credentials, honors, outside, site } from "@/content/site";
 
@@ -62,6 +63,7 @@ export default function Home() {
         <Hero />
         <About />
         <Stats />
+        <Speaking />
         <Featured />
         <Work />
         <ResearchSnippet />

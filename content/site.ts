@@ -65,6 +65,35 @@ export const stats = [
   { value: "3", unit: "countries", label: "with Lean Six Sigma programs: USA, Germany, Spain" },
 ];
 
+// "Teaching & speaking" band under the stats. Originals live in /Photos (gitignored).
+export const speaking = {
+  title: "Teaching & speaking",
+  lede: "I teach 60 to 80 engineers a semester in Auburn's Lean Systems course, and I present research and products to academic and industry audiences.",
+  cta: { label: "Invite me to speak", href: "mailto:hello@diegocaputo.com?subject=Speaking%20invitation" },
+  photos: [
+    {
+      name: "lean-lecture",
+      width: 2000,
+      height: 1125,
+      position: "50% 55%",
+      alt: "Diego Caputo lecturing on the 7 wastes of lean in an Auburn lecture hall",
+      kicker: "Teaching",
+      title: "Lean Systems lecture: the 7 wastes",
+      meta: "Auburn University, INSY 5800/6800",
+    },
+    {
+      name: "systems-showdown",
+      width: 2000,
+      height: 1333,
+      position: "44% 40%",
+      alt: "Diego Caputo presenting ChapterCore at the INCOSE Systems Showdown",
+      kicker: "Speaking",
+      title: "ChapterCore pitch, INCOSE Systems Showdown",
+      meta: "First place, 2026",
+    },
+  ],
+};
+
 export const featured = {
   title: "Tiger Motors Lean Education Center",
   kind: "Featured project",
