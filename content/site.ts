@@ -11,6 +11,8 @@ export const site = {
   intro:
     "Lean and continuous improvement at Auburn University, from plant-floor diagnostics to research.",
   focus: ["Lean", "Continuous improvement", "Process design", "Operations"],
+  // Cloudflare Web Analytics site tag (public, it ships in the page HTML)
+  cfAnalyticsToken: "65d6b6c92bab4c4ea35b1b1d99d177dc",
   links: {
     github: "https://github.com/diegocaputo9",
     linkedin: "", // TODO: add LinkedIn profile URL

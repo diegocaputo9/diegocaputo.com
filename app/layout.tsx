@@ -17,13 +17,40 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: `${site.name}, ${site.role}`,
   description: site.intro,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: [
+    site.name,
+    "Industrial Engineer",
+    "Industrial and Systems Engineering",
+    "Lean",
+    "Continuous Improvement",
+    "Operational Excellence",
+    "Auburn University",
+    "Portfolio",
+  ],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   openGraph: {
-    title: site.name,
+    title: `${site.name}, ${site.role}`,
     description: site.intro,
     url: site.url,
     siteName: site.name,
-    type: "website",
+    locale: "en_US",
+    type: "profile",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name}, ${site.role}`,
+    description: site.intro,
+  },
+  referrer: "strict-origin-when-cross-origin",
+  formatDetection: { email: false, address: false, telephone: false },
 };
 
 export const viewport: Viewport = {
@@ -33,10 +60,36 @@ export const viewport: Viewport = {
   ],
 };
 
+// GitHub Pages can't send custom response headers, so the CSP is set here.
+// 'unsafe-inline' scripts are required by Next.js static export's inline bootstrap.
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https:",
+  "font-src 'self'",
+  "connect-src 'self' https://cloudflareinsights.com",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="min-h-[100dvh]">{children}</body>
+      <head>
+        {process.env.NODE_ENV === "production" && <meta httpEquiv="Content-Security-Policy" content={csp} />}
+      </head>
+      <body className="min-h-[100dvh]">
+        {children}
+        {/* Cloudflare Web Analytics: cookie-free, no consent banner needed */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: site.cfAnalyticsToken })}
+        />
+      </body>
     </html>
   );
 }

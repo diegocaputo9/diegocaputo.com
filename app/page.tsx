@@ -6,9 +6,26 @@ import { Nav } from "@/components/Nav";
 import { Work } from "@/components/Work";
 import { site } from "@/content/site";
 
+// schema.org Person: lets Google show a knowledge-panel style result for your name.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.url,
+  jobTitle: site.role,
+  affiliation: { "@type": "CollegeOrUniversity", name: "Auburn University" },
+  address: { "@type": "PostalAddress", addressLocality: "Auburn", addressRegion: "AL", addressCountry: "US" },
+  knowsAbout: site.focus,
+  sameAs: [site.links.github, site.links.linkedin].filter(Boolean),
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Backdrop />
       <Nav />
       <main>
