@@ -1,3 +1,4 @@
+import { InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 import { outside } from "@/content/site";
 import { Reveal } from "./Reveal";
 import { TerrainViewer } from "./TerrainViewer";
@@ -20,14 +21,48 @@ function Tags({ items }: { items: string[] }) {
 export function Outside() {
   const p = outside.photogrammetry;
   const t = outside.thermal;
+  const b = outside.brand;
   return (
     <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
-      <Reveal>
-        <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
-        <p className="mt-4 font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">
-          {outside.kicker} · {outside.title}
-        </p>
-        <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
+      <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">
+        <div>
+          <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
+          <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
+        </div>
+        <div className="glass flex w-fit items-center gap-4 rounded-[24px] p-3 pr-4">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export, small pre-sized logo */}
+          <img
+            src={b.logo}
+            alt={`${b.name} logo`}
+            width={64}
+            height={64}
+            className="h-16 w-16 shrink-0 rounded-[16px] shadow-[0_4px_14px_rgb(0_0_0/0.18)]"
+          />
+          <div>
+            <p className="text-[16px] font-semibold tracking-tight text-ink">{b.name}</p>
+            <p className="font-mono text-[12px] text-ink-3">
+              {outside.kicker} · {outside.title}
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {[
+                { href: b.instagram.href, label: b.instagram.handle, Icon: InstagramLogo, aria: `${b.name} on Instagram` },
+                { href: b.youtube.href, label: b.youtube.label, Icon: YoutubeLogo, aria: `${b.name} on YouTube` },
+              ].map(({ href, label, Icon, aria }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={aria}
+                  className="inline-flex h-8 items-center gap-1.5 rounded-full bg-ink/[0.05] px-3 text-[13px] text-ink-2 transition-colors hover:bg-ink/[0.09] hover:text-ink dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
+                >
+                  <Icon size={15} />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </Reveal>
 
       <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">

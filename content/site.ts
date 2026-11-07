@@ -273,7 +273,13 @@ export const about = {
 export const outside = {
   kicker: "Side business",
   title: "Drones for engineering",
-  lede: "Outside research, I run a side business flying drones for engineering work. It's the same habit as the lab: measure first, then decide. Every flight ends in data an engineer can use.",
+  brand: {
+    name: "DDrone",
+    logo: "/outside/ddrone-logo.png",
+    instagram: { handle: "@ddronerd", href: "https://www.instagram.com/ddronerd/" },
+    youtube: { label: "YouTube", href: "https://www.youtube.com/c/DiegoCaputoDrone" },
+  },
+  lede: "Outside research, I run DDrone, a side business flying drones for engineering work. It's the same habit as the lab: measure first, then decide. Every flight ends in data an engineer can use.",
   photogrammetry: {
     title: "Photogrammetry and 3D terrain",
     text: "Georeferenced flights capture hundreds of overlapping high-resolution photos. Stitching them together produces photo-accurate 3D models and height-accurate topographic maps that can be measured, planned on and compared over time.",
