@@ -1,6 +1,7 @@
-// Research papers, taken from the manuscripts in ~/Desktop/C.I. OpEx and
-// ~/Desktop/Dissertation Lego Lab (Nov 2026). All three are work in progress:
-// statuses say where each is headed, not that it is accepted.
+// Research papers, described for the site from the manuscripts in
+// ~/Desktop/C.I. OpEx and ~/Desktop/Dissertation Lego Lab (Nov 2026).
+// These are plain-language descriptions, not the submitted abstracts.
+// All three are work in progress: statuses say where each is headed.
 
 export type Paper = {
   slug: string;
@@ -8,17 +9,14 @@ export type Paper = {
   short: string;
   authors: string;
   venue: string;
+  type: string;
   status: string;
   year: string;
   summary: string; // one or two sentences for the home page
-  abstract: { label?: string; text: string }[];
+  sections: { label: string; text: string }[];
   keywords: string[];
   link?: { label: string; href: string };
-  /** Under double-blind review: show title, venue and status only. */
-  blind?: boolean;
 };
-
-export const blindNote = "Abstract will be shared after peer review.";
 
 export const researchIntro = {
   dissertation:
@@ -35,12 +33,30 @@ export const papers: Paper[] = [
     short: "Building blocks for a CI-driven OpEx program",
     authors: "Diego Caputo, Caitlin Tran, Ethan Andrews, Allison Ledford, Gregory Harris",
     venue: "The TQM Journal",
+    type: "Meta-review and industry roundtable",
     status: "Manuscript prepared for submission",
     year: "2026",
-    blind: true,
-    summary: "Abstract will be shared after peer review.",
-    abstract: [],
-    keywords: [],
+    summary:
+      "Compares what 22 systematic reviews say about continuous improvement with what plant leaders actually prioritize, and turns the gap into a five-phase, culture-first framework.",
+    sections: [
+      {
+        label: "Purpose",
+        text: "Continuous improvement and operational excellence are well studied, but the evidence is spread across many separate reviews and is rarely checked against what practitioners say matters. This study asks what industry emphasizes when it builds a CI-driven OpEx program, and where that agrees or disagrees with the academic literature.",
+      },
+      {
+        label: "Design",
+        text: "Two evidence streams side by side: a review of 22 published systematic reviews on CI and OpEx, found through a PRISMA-guided search, and a structured roundtable with CI and OpEx leaders from cement, automotive, commercial-vehicle and wood-products manufacturing. Each speaker's input was coded against eleven themes for depth.",
+      },
+      {
+        label: "Findings",
+        text: "The literature talks mostly about methods and toolkits: Lean, Six Sigma, DMAIC. Practitioners talk about the management system that keeps improvement alive: a people-first culture, the right KPIs, sustainment, operator voice, training and standards. Sustainment stands out: central for practitioners, yet covered by only 4 of the 22 reviews.",
+      },
+      {
+        label: "Practical implications",
+        text: "A five-phase sequence for building a CI-driven OpEx program that starts with culture: foundation building, employee engagement, process implementation, sustainment, and leadership and change management.",
+      },
+    ],
+    keywords: ["Operational excellence", "Continuous improvement", "Meta-review", "Lean", "Six Sigma", "Industry roundtable"],
   },
   {
     slug: "lean-training-review",
@@ -49,12 +65,30 @@ export const papers: Paper[] = [
     short: "Using Lean thinking to evaluate how Lean is taught",
     authors: "Diego Caputo et al.",
     venue: "ASEE Annual Conference & Exposition 2027",
+    type: "Systematic literature review",
     status: "Work-in-progress paper",
     year: "2027",
-    blind: true,
-    summary: "Abstract will be shared after peer review.",
-    abstract: [],
-    keywords: [],
+    summary:
+      "Treats Lean training as a production process, with the learner as the unit of flow, and maps which of the eight wastes each way of teaching Lean carries, across 104 studies.",
+    sections: [
+      {
+        label: "Purpose",
+        text: "Lean is taught through classes, hands-on games, learning factories, simulations, virtual reality, online modules and company programs. Studies of these methods usually ask whether people learned, not what the training process itself costs. This review applies Lean to Lean training: if the learner is the unit of flow, what waste does each delivery method carry?",
+      },
+      {
+        label: "Design",
+        text: "A PRISMA 2020 systematic review of Scopus, Web of Science and IEEE Xplore from 2000 to 2026. Of 9,048 records, 104 peer-reviewed studies met the criteria. Each was classified with a two-dimensional taxonomy (physical or virtual, experience-based or not) and coded for the eight wastes. Coding was drafted with AI assistance, verified by the first author and double-coded on a sample by a second reviewer.",
+      },
+      {
+        label: "Preliminary findings",
+        text: "Physical, in-person formats dominate (games 35%, learning factories 27%), and 48 studies report no evaluation or only learner opinions. Transportation and waiting show up in nearly every design. Remote formats avoid travel, but only 1 of 11 fully remote formats lets learners work with real equipment: a trade-off between access and hands-on fidelity. No study used Lean waste to evaluate training delivery.",
+      },
+      {
+        label: "Contribution",
+        text: "A map of how Lean manufacturing is taught, a reusable taxonomy of delivery methods, and a waste-based lens that educators and industry trainers can use to choose and improve training designs.",
+      },
+    ],
+    keywords: ["Lean training", "Systematic review", "PRISMA 2020", "Eight wastes", "Learning factories", "AI-assisted coding"],
   },
   {
     slug: "tiger-motors-platform",
@@ -63,19 +97,27 @@ export const papers: Paper[] = [
     short: "An immersive digital platform for Lean education",
     authors: "Diego Caputo, Gonzalo Gil, Tom Devall, Jorge Valenzuela",
     venue: "SMTA Pan Pacific Strategic Electronics Symposium 2027",
+    type: "Platform design and evaluation",
     status: "Abstract submitted",
     year: "2027",
     summary:
       "The Tiger Motors Lean Education Center, with each design decision mapped to the training waste it removes. Quiz scores rose from 50-56% to 80-86% across 148 students.",
-    abstract: [
+    sections: [
       {
-        text: "Electronics manufacturers face a growing shortage of engineers and technicians who can run, diagnose and improve high-mix, high-volume assembly systems. Hands-on Lean laboratories provide that experience but require travel, scheduled sessions and limited floor space.",
+        label: "Purpose",
+        text: "Electronics and automotive manufacturers need people who can run and improve high-volume assembly systems, and Lean is learned best by doing. Hands-on labs deliver that, but they require travel, fixed schedules and floor space. This paper designs training that keeps the hands-on experience while removing those wastes.",
       },
       {
-        text: "This paper applies Lean principles to the training process itself. It presents the Tiger Motors Lean Education Center, an open web platform developed at Auburn University under the NSF IUSE: EDU program (Award DUE-2417082), and maps each design decision to the waste it removes. The platform extends a 4,000-square-foot Integrated Manufacturing Facility (linked U-shaped cells, a conveyor line, an AS/RS, kanban and heijunka pull scheduling) to learners anywhere, organized around the Lean House with a Learn, Explore, Connect model, 360° tours and video, guided 5S and value stream mapping activities, quizzes and a certificate.",
+        label: "Design",
+        text: "The Tiger Motors Lean Education Center, an open web platform built at Auburn under the NSF IUSE: EDU program (DUE-2417082). It brings a 4,000 sq ft Integrated Manufacturing Facility (U-shaped cells, a conveyor line, an AS/RS, kanban and heijunka pull) to any browser through the Lean House: lectures, 360° tours and video of students running the line before and after kaizen, guided 5S and value stream mapping activities, quizzes and a certificate.",
       },
       {
-        text: "Teams from more than 20 organizations have trained with the program. In 2025-26, 148 students took part in the evaluation: pre/post quiz scores rose from 50-56% to 80-86% across the 5S and value stream mapping modules (p < .001, d = 1.17-1.47), and graduate students using video-based access scored comparably on the final exam to students in the in-person lab (80.6% vs. 83.4%, no significant difference).",
+        label: "Results",
+        text: "Teams from more than 20 organizations have trained with it, including Honda, GE Aerospace and Brose. Across 148 students in 2025-26, quiz scores rose from 50-56% to 80-86% in the 5S and value stream mapping modules (p < .001), and graduate students using video access scored about the same on the final exam as those in the physical lab (80.6% vs. 83.4%).",
+      },
+      {
+        label: "Practical implications",
+        text: "A reusable waste-to-design mapping for manufacturers and universities that want to scale experiential training without building more labs, including how to capture an existing line in 360° media and sequence content around it.",
       },
     ],
     keywords: ["Workforce development", "Learning factory", "360° virtual laboratory", "Immersive learning", "Lean manufacturing"],

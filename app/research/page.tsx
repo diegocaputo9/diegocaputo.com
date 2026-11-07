@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { GlassCard } from "@/components/GlassCard";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
-import { blindNote, papers, presentations, researchIntro } from "@/content/research";
+import { papers, presentations, researchIntro } from "@/content/research";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -30,7 +30,8 @@ const jsonLd = {
     "@type": "ScholarlyArticle",
     headline: p.title,
     author: p.authors.replace(/ et al\.$/, "").split(", ").map((name) => ({ "@type": "Person", name })),
-    ...(p.blind ? {} : { about: p.keywords, abstract: p.abstract.map((a) => a.text).join(" ") }),
+    about: p.keywords,
+    description: p.summary,
     url: `${site.url}/research/#${p.slug}`,
     creativeWorkStatus: p.status,
   })),
@@ -73,6 +74,7 @@ export default function ResearchPage() {
                     <span className="rounded-full bg-ink/[0.05] px-3 py-1 text-[12px] text-ink-2 dark:bg-white/[0.06]">
                       {p.status}
                     </span>
+                    <span className="rounded-full border border-line px-3 py-1 text-[12px] text-ink-2">{p.type}</span>
                     <span className="font-mono text-[12px] text-ink-3">{p.year}</span>
                   </div>
                   <h2 className="mt-5 max-w-[40ch] text-2xl font-semibold leading-snug tracking-tight text-ink md:text-[28px]">
@@ -80,45 +82,41 @@ export default function ResearchPage() {
                   </h2>
                   <p className="mt-3 text-[14px] text-ink-3">{p.authors}</p>
 
-                  {p.blind ? (
-                    <p className="mt-8 border-t border-line pt-6 text-[14px] text-ink-3">{blindNote}</p>
-                  ) : (
-                    <div className="mt-8 grid gap-10 border-t border-line pt-8 lg:grid-cols-[1fr_240px]">
-                      <div className="max-w-[70ch] space-y-4">
-                        <h3 className="sr-only">Abstract</h3>
-                        {p.abstract.map((a, j) => (
-                          <p key={j} className="text-[15px] leading-relaxed text-ink-2">
-                            {a.label && <span className="font-semibold text-ink">{a.label}. </span>}
-                            {a.text}
-                          </p>
+                  <div className="mt-8 grid gap-10 border-t border-line pt-8 lg:grid-cols-[1fr_220px]">
+                    {/* Structured description: Purpose / Design / Findings / Implications */}
+                    <dl className="grid gap-x-10 gap-y-7 md:grid-cols-2">
+                      {p.sections.map((sec) => (
+                        <div key={sec.label}>
+                          <dt className="text-[14px] font-semibold tracking-tight text-ink">{sec.label}</dt>
+                          <dd className="mt-2 text-[15px] leading-relaxed text-ink-2">{sec.text}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <aside>
+                      <h3 className="text-[13px] font-medium text-ink">Keywords</h3>
+                      <ul className="mt-3 flex flex-wrap gap-2">
+                        {p.keywords.map((k) => (
+                          <li key={k} className="rounded-full border border-line px-2.5 py-1 text-[12px] text-ink-2">
+                            {k}
+                          </li>
                         ))}
-                      </div>
-                      <aside>
-                        <h3 className="text-[13px] font-medium text-ink">Keywords</h3>
-                        <ul className="mt-3 flex flex-wrap gap-2">
-                          {p.keywords.map((k) => (
-                            <li
-                              key={k}
-                              className="rounded-full border border-line px-2.5 py-1 text-[12px] text-ink-2"
-                            >
-                              {k}
-                            </li>
-                          ))}
-                        </ul>
-                        {p.link && (
-                          <a
-                            href={p.link.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink hover:text-accent"
-                          >
-                            {p.link.label}
-                            <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                          </a>
-                        )}
-                      </aside>
-                    </div>
-                  )}
+                      </ul>
+                      {p.link && (
+                        <a
+                          href={p.link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink hover:text-accent"
+                        >
+                          {p.link.label}
+                          <ArrowUpRight
+                            size={14}
+                            className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          />
+                        </a>
+                      )}
+                    </aside>
+                  </div>
                 </GlassCard>
               </article>
             </Reveal>
