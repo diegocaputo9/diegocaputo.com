@@ -3,6 +3,7 @@ import ES from "country-flag-icons/react/3x2/ES";
 import US from "country-flag-icons/react/3x2/US";
 import { experience } from "@/content/site";
 import { Gears } from "./Blueprint";
+import { CertLink } from "./CertLink";
 import { Reveal } from "./Reveal";
 
 const flags = { DE, ES, US };
@@ -40,6 +41,7 @@ export function Experience() {
                 </li>
               ))}
             </ul>
+            {r.certificate && <CertLink {...r.certificate} className="mt-3" />}
             {r.countries && (
               <ul aria-label="Program countries" className="mt-4 flex flex-wrap gap-2">
                 {r.countries.map((c) => {

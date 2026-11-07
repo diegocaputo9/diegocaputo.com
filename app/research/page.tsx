@@ -172,13 +172,52 @@ export default function ResearchPage() {
               {presentations.map((pr) => (
                 <li key={pr.title} className="flex gap-4 border-t border-line py-6 last:border-b">
                   <Presentation size={22} className="mt-0.5 shrink-0 text-ink-3" />
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="font-mono text-[12px] text-ink-3">{pr.year}</p>
                     <p className="mt-1 text-[16px] font-medium text-ink">{pr.title}</p>
-                    <p className="mt-1 text-[14px] text-ink-2">
+                    <p className="mt-1 max-w-[70ch] text-[14px] text-ink-2">
                       {pr.venue}.{pr.note ? ` ${pr.note}` : ""}
                     </p>
+                    {pr.poster && (
+                      <a
+                        href={pr.poster.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 inline-flex items-center gap-1 text-[13px] text-ink-3 hover:text-accent sm:hidden"
+                      >
+                        View poster (PDF)
+                        <ArrowUpRight size={12} />
+                      </a>
+                    )}
                   </div>
+                  {pr.poster && (
+                    <a
+                      href={pr.poster.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group hidden shrink-0 sm:block"
+                      aria-label={`Open the poster (PDF): ${pr.title}`}
+                    >
+                      <span className="block w-[200px] overflow-hidden rounded-xl border border-line bg-white md:w-[240px]">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
+                        <img
+                          src={pr.poster.image}
+                          srcSet={pr.poster.imageSet}
+                          sizes="240px"
+                          alt={pr.poster.alt}
+                          width={480}
+                          height={360}
+                          loading="lazy"
+                          decoding="async"
+                          className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                        />
+                      </span>
+                      <span className="mt-2 flex items-center gap-1 text-[13px] text-ink-3 transition-colors group-hover:text-accent">
+                        View poster (PDF)
+                        <ArrowUpRight size={12} />
+                      </span>
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

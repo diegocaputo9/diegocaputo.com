@@ -8,6 +8,7 @@ import {
   UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
 import { projects, type Project } from "@/content/site";
+import { Gallery } from "./Gallery";
 import { GlassCard } from "./GlassCard";
 import { PressLightbox } from "./PressLightbox";
 import { Reveal } from "./Reveal";
@@ -61,6 +62,13 @@ export function Work() {
                       {p.image.credit}
                     </figcaption>
                   </figure>
+                ) : p.photo ? (
+                  <figure>
+                    <Gallery variant="hero" label={p.photo.caption} items={[p.photo]} />
+                    <figcaption className="mt-2 px-1 font-mono text-[11.5px] leading-snug text-ink-3">
+                      {p.photo.credit}
+                    </figcaption>
+                  </figure>
                 ) : (
                   <div
                     className={`relative min-h-28 flex-1 overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-100/80 to-zinc-200/40 dark:from-zinc-800/50 dark:to-zinc-900/30 ${texture[p.visual]}`}
@@ -101,6 +109,7 @@ export function Work() {
                       />
                     </a>
                   )}
+                  {p.gallery && <Gallery variant="strip" label={p.gallery.label} items={p.gallery.items} />}
                 </div>
               </GlassCard>
             </Reveal>

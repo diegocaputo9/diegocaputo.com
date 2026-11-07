@@ -82,6 +82,18 @@ export const featured = {
   ],
 };
 
+// A photo or figure opened in the full-screen viewer (components/Gallery).
+export type GalleryItem = {
+  thumb: string; // small file shown on the card
+  thumbSet?: string; // responsive variants of the thumb (hero only)
+  src: string; // full-size file, loaded only when the viewer opens
+  alt: string;
+  caption: string;
+  short?: string; // label under a strip thumbnail
+  width: number;
+  height: number;
+};
+
 export type Project = {
   title: string;
   kind: string;
@@ -89,6 +101,8 @@ export type Project = {
   year: string;
   size: "lg" | "md";
   visual: "plant" | "germany" | "ai" | "asrs" | "standard" | "app";
+  photo?: GalleryItem & { credit: string }; // fills the card's visual slot
+  gallery?: { label: string; items: GalleryItem[] }; // thumbnails under the text
   image?: {
     src: string;
     srcSet: string;
@@ -137,6 +151,49 @@ export const projects: Project[] = [
       date: "June 2026",
       href: "https://www.mainpost.de/rhoengrabfeld/kreuzberg/oberelsbach-prozess-turbo-in-oberelsbach-us-team-nimmt-pax-braeu-unter-die-lupe-und-findet-schnelle-loesungen-2-114220703",
     },
+    // From the team's Define/Measure report (Summer 2026). The Define storyboard is
+    // left out on purpose: it shows BSH cost-per-defect, volumes and an ERP screen.
+    gallery: {
+      label: "BSH Bosch project · Define & Measure",
+      items: [
+        {
+          thumb: "/work/bosch/team-thumb.webp",
+          src: "/work/bosch/team.webp",
+          alt: "Diego Caputo and Auburn Green Belt students in safety vests on the BSH Bosch injection molding floor",
+          caption: "The project team on the BSH Bosch production floor, Germany 2026",
+          short: "Project team",
+          width: 1024,
+          height: 768,
+        },
+        {
+          thumb: "/work/bosch/measure-thumb.webp",
+          src: "/work/bosch/measure.webp",
+          alt: "Measure phase storyboard: key metrics, baseline findings, defect category breakdown and current state process map",
+          caption: "Measure storyboard: key metrics, baseline findings and current state",
+          short: "Measure storyboard",
+          width: 1835,
+          height: 1036,
+        },
+        {
+          thumb: "/work/bosch/process-map-thumb.webp",
+          src: "/work/bosch/process-map.webp",
+          alt: "Current state process map of the injection molding line, from material prep through startup validation to good output and regrind",
+          caption: "Current state process map of the injection molding line",
+          short: "Process map",
+          width: 1490,
+          height: 1785,
+        },
+        {
+          thumb: "/work/bosch/pareto-thumb.webp",
+          src: "/work/bosch/pareto.webp",
+          alt: "Pareto chart of defect categories, with potential streak-related defects highlighted in red",
+          caption: "Pareto of defect categories, streak-related defects highlighted",
+          short: "Defect Pareto",
+          width: 1350,
+          height: 1520,
+        },
+      ],
+    },
   },
   {
     title: "Sawmill process diagnostics",
@@ -182,6 +239,16 @@ export const projects: Project[] = [
       "A centralized management platform for student organizations: communication, records and leadership handovers in one app, with attendance-based points that reward engagement. First place out of Auburn's student teams.",
     size: "md",
     visual: "app",
+    photo: {
+      thumb: "/work/chaptercore-showdown-800.webp",
+      thumbSet: "/work/chaptercore-showdown-800.webp 800w, /work/chaptercore-showdown-1600.webp 1600w",
+      src: "/work/chaptercore-showdown-2400.webp",
+      alt: "Diego Caputo presenting ChapterCore at the INCOSE Systems Showdown",
+      caption: "Presenting ChapterCore at the INCOSE Systems Showdown, 23 March 2026",
+      credit: "INCOSE Systems Showdown, 23 March 2026. Official event photo",
+      width: 2400,
+      height: 1600,
+    },
   },
 ];
 
@@ -193,7 +260,11 @@ export type Role = {
   points: string[];
   // ISO 3166 codes, rendered as flag chips under the points
   countries?: { code: "DE" | "ES" | "US"; name: string }[];
+  certificate?: CertRef; // quiet link under the points
 };
+
+// A certificate PDF in public/certificates, linked (not displayed) where it's relevant.
+export type CertRef = { label: string; href: string };
 
 export const experience: Role[] = [
   {
@@ -206,6 +277,10 @@ export const experience: Role[] = [
       "Process mapping and assessment of sawmills for the Rural Partnership Institute",
       "Systematic literature reviews for dissertation and journal manuscripts",
     ],
+    certificate: {
+      label: "CITI Responsible Conduct of Research, 2022",
+      href: "/certificates/citi-responsible-conduct-of-research-2022.pdf",
+    },
   },
   {
     role: "Graduate Teaching Assistant, Lean Systems",
@@ -252,6 +327,10 @@ export const experience: Role[] = [
       "Executive dashboards for senior leadership",
       "Reusable ETL pipelines that cut about one week from each reporting cycle",
     ],
+    certificate: {
+      label: "Business Intelligence with Excel and Power BI, PUCMM, 2021",
+      href: "/certificates/pucmm-business-intelligence-power-bi-2021.pdf",
+    },
   },
   {
     role: "Systems Engineer II",
@@ -269,7 +348,7 @@ export const experience: Role[] = [
   },
 ];
 
-export const leadership = [
+export const leadership: { title: string; period: string; text: string; certificate?: CertRef }[] = [
   {
     title: "President, SME Auburn",
     period: "2025 - 2026",
@@ -279,6 +358,10 @@ export const leadership = [
     title: "Vice President, SHPE Auburn",
     period: "2023 - 2024",
     text: "Society of Hispanic Professional Engineers, Auburn University chapter.",
+    certificate: {
+      label: "Certified Chapter Leader, SHPE NILA 2022",
+      href: "/certificates/shpe-nila-chapter-leader-2022.pdf",
+    },
   },
   {
     title: "Industry and outreach",
@@ -358,6 +441,72 @@ export const honors: { title: string; year: string; href?: string }[] = [
   },
   { title: "IPC Scholarship", year: "2023, 2024, 2025" },
   { title: "Lean Six Sigma Green Belt", year: "Auburn University" },
+];
+
+// Full list for /certificates (not on the home page). Files live in public/certificates.
+// The main credentials (Green Belts, graduate certificate) come from `credentials` above.
+export const certificates: {
+  group: "Leadership, data and research" | "Other training";
+  title: string;
+  issuer: string;
+  date: string;
+  note?: string;
+  href: string;
+  lang?: string;
+}[] = [
+  {
+    group: "Leadership, data and research",
+    title: "Certified Chapter Leader, Auburn University Chapter",
+    issuer: "SHPE, 36th National Institute for Leadership Advancement (NILA)",
+    date: "Jul 2022",
+    href: "/certificates/shpe-nila-chapter-leader-2022.pdf",
+  },
+  {
+    group: "Leadership, data and research",
+    title: "Responsible Conduct of Research",
+    issuer: "CITI Program, under requirements set by Auburn University",
+    date: "Oct 2022",
+    note: "Valid through Oct 2025",
+    href: "/certificates/citi-responsible-conduct-of-research-2022.pdf",
+  },
+  {
+    group: "Leadership, data and research",
+    title: "Business Intelligence with Excel and Power BI",
+    issuer: "TEP, Pontificia Universidad Católica Madre y Maestra (PUCMM)",
+    date: "Mar 2021",
+    note: "27-hour specialized course. Certificate in Spanish",
+    href: "/certificates/pucmm-business-intelligence-power-bi-2021.pdf",
+  },
+  {
+    group: "Other training",
+    title: "Phish or Treat? Phishing Edition",
+    issuer: "KnowBe4 security awareness training",
+    date: "Oct 2022",
+    href: "/certificates/knowbe4-phishing-2022.pdf",
+  },
+  {
+    group: "Other training",
+    title: "Don't Be Like Rick: Two-Factor Authentication",
+    issuer: "KnowBe4 security awareness training",
+    date: "Oct 2022",
+    href: "/certificates/knowbe4-two-factor-authentication-2022.pdf",
+  },
+  {
+    group: "Other training",
+    title: "Nueva Normalidad Laboral: Colaboradores",
+    issuer: "Capacítate para el Empleo (CARSO)",
+    date: "Jul 2020",
+    note: "Certificate in Spanish",
+    href: "/certificates/carso-nueva-normalidad-laboral-2020.pdf",
+    lang: "es",
+  },
+  {
+    group: "Other training",
+    title: "Salary Negotiation: Learn the Negotiation Mindset",
+    issuer: "Udemy",
+    date: "Sep 2017",
+    href: "/certificates/udemy-salary-negotiation-2017.pdf",
+  },
 ];
 
 export const about = {

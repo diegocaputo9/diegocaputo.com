@@ -141,17 +141,32 @@ export const reports = [
   },
 ];
 
-export const presentations: { title: string; venue: string; year: string; note?: string }[] = [
+export const presentations: {
+  title: string;
+  venue: string;
+  year: string;
+  note?: string;
+  // poster PDF plus a small preview image (public/research)
+  poster?: { href: string; image: string; imageSet: string; alt: string };
+}[] = [
   {
     title: "Strategies for building an Operational Excellence program",
     venue: "2025 Huntsville Research Symposium, Auburn University Research and Innovation Campus, Huntsville, AL",
     year: "2025",
     note: "With Caitlin Tran, Ethan Andrews, Allison Ledford and Gregory Harris. Literature review, industry roundtable and AI-assisted analysis condensed into a five-phase OpEx framework; funded by ICAMS.",
   },
+  // Year and title confirmed from the poster file and the conference program
+  // (Sept 19-21, 2022, Hyatt Regency Perimeter, Atlanta); the CV had "2023, to confirm".
   {
-    title: "Lean lab poster: training engineers through simulation and hands-on activities",
-    venue: "Lean Six Sigma & Data Science Conference, Atlanta, GA",
-    year: "2023",
-    note: "Won the student Lean Kahoot challenge.",
+    title: "Tiger Motors Lean Education Center: Student Built, Experimental Lean Learning",
+    venue: "IISE Lean Six Sigma & Data Science Conference 2022, Atlanta, GA",
+    year: "2022",
+    note: "Poster with Wa'ad Tarman, Victoria Ballard and Tom Devall on the student-built lean lab: lean tools, gemba learning and lab technology. Won the student Lean Kahoot challenge.",
+    poster: {
+      href: "/research/iise-2022-poster.pdf",
+      image: "/research/iise-2022-poster-480.webp",
+      imageSet: "/research/iise-2022-poster-480.webp 480w, /research/iise-2022-poster-960.webp 960w",
+      alt: "Poster: Tiger Motors Lean Education Center, Student Built – Experimental Lean Learning, by Diego Caputo, Wa'ad Tarman, Victoria Ballard and Tom Devall",
+    },
   },
 ];

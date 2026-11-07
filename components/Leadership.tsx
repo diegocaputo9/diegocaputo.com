@@ -1,6 +1,8 @@
-import { ArrowUpRight, Medal, Newspaper } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, Medal, Newspaper } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import { education, honors, leadership, news } from "@/content/site";
 import { KanbanCard } from "./Blueprint";
+import { CertLink } from "./CertLink";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
 
@@ -43,6 +45,7 @@ export function Leadership() {
               <p className="font-mono text-[12px] text-ink-3">{l.period}</p>
               <h3 className="mt-1 text-lg font-semibold tracking-tight text-ink">{l.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{l.text}</p>
+              {l.certificate && <CertLink {...l.certificate} className="mt-3" />}
             </Reveal>
           ))}
         </div>
@@ -89,6 +92,13 @@ export function Leadership() {
               </li>
             ))}
           </ul>
+          <Link
+            href="/certificates/"
+            className="group flex items-center gap-1.5 border-t border-line pt-4 text-[14px] text-ink-3 transition-colors hover:text-ink"
+          >
+            All certificates and training
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          </Link>
         </Reveal>
       </div>
 
