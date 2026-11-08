@@ -1,6 +1,6 @@
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, FilePdf } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-import { papers, researchIntro } from "@/content/research";
+import { papers, researchIntro, researchMaterials } from "@/content/research";
 import { ValueStream } from "./Blueprint";
 import { Reveal } from "./Reveal";
 
@@ -41,6 +41,50 @@ export function ResearchSnippet() {
           </Reveal>
         ))}
       </ol>
+
+      {/* Posters and reports: smaller than the papers; each opens its PDF in the in-page viewer */}
+      <Reveal delay={0.06} className="mt-12">
+        <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">Posters &amp; reports</p>
+        <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+          {researchMaterials.map((m) => (
+            <li key={m.href}>
+              <a
+                href={m.href}
+                data-pdf-title={`${m.kind}: ${m.title}`}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex h-full gap-3.5 rounded-[20px] border border-line p-2.5 transition-colors hover:border-accent/40 hover:bg-accent/[0.03] sm:flex-col sm:gap-0"
+              >
+                <span className="block w-[112px] shrink-0 overflow-hidden rounded-xl border border-line bg-white sm:w-full">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
+                  <img
+                    src={m.image}
+                    srcSet={m.imageSet}
+                    sizes="(min-width: 1152px) 340px, (min-width: 640px) 30vw, 112px"
+                    alt={m.alt}
+                    width={480}
+                    height={360}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  />
+                </span>
+                <span className="block min-w-0 sm:px-1.5 sm:pb-1.5 sm:pt-3.5">
+                  <span className="block font-mono text-[11.5px] uppercase tracking-[0.12em] text-ink-3">{m.kind}</span>
+                  <span className="mt-1 block text-[14px] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
+                    {m.title}
+                  </span>
+                  <span className="mt-1 block text-[12.5px] leading-snug text-ink-3">{m.meta}</span>
+                  <span className="mt-2 inline-flex items-center gap-1 text-[12.5px] text-ink-3 transition-colors group-hover:text-accent">
+                    <FilePdf size={14} />
+                    Open PDF
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
 
       <Reveal delay={0.1}>
         <Link

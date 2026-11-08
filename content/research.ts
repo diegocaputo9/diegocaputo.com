@@ -138,6 +138,12 @@ export const reports = [
       "Findings from a CI/OpEx roundtable with industry experts held at Auburn's Samuel Ginn College of Engineering on April 24, 2024, compared against the academic literature. An AI-assisted analysis of the transcript identifies the key characteristics of successful OpEx programs and a systematic approach for building one. It is the starting point for the TQM Journal manuscript above.",
     funding:
       "Funded by the Interdisciplinary Center for Advanced Manufacturing Systems (ICAMS) through the Industrial Base Analysis and Sustainment office of the Office of the Secretary of Defense.",
+    // local copy opens in the in-page PDF viewer; source is the official ICAMS URL
+    pdf: "/research/ci-opex-technical-report-24-01.pdf",
+    source: "https://eng.auburn.edu/icams/CI-OpEx-Technical-Report-24-01.pdf",
+    image: "/research/ci-opex-report-24-01-480.webp",
+    imageSet: "/research/ci-opex-report-24-01-480.webp 480w, /research/ci-opex-report-24-01-960.webp 960w",
+    alt: "Cover of ICAMS Technical Report 24-01, Building an Operational Excellence Program",
   },
 ];
 
@@ -154,6 +160,12 @@ export const presentations: {
     venue: "2025 Huntsville Research Symposium, Auburn University Research and Innovation Campus, Huntsville, AL",
     year: "2025",
     note: "With Caitlin Tran, Ethan Andrews, Allison Ledford and Gregory Harris. Literature review, industry roundtable and AI-assisted analysis condensed into a five-phase OpEx framework; funded by ICAMS.",
+    poster: {
+      href: "/research/ci-opex-poster-2025.pdf",
+      image: "/research/ci-opex-poster-2025-480.webp",
+      imageSet: "/research/ci-opex-poster-2025-480.webp 480w, /research/ci-opex-poster-2025-960.webp 960w",
+      alt: "Poster: Strategies for Building an Operational Excellence Program, by Caitlin Tran, Ethan Andrews, Diego Caputo, Allison Ledford and Gregory Harris",
+    },
   },
   // Year and title confirmed from the poster file and the conference program
   // (Sept 19-21, 2022, Hyatt Regency Perimeter, Atlanta); the CV had "2023, to confirm".
@@ -168,5 +180,37 @@ export const presentations: {
       imageSet: "/research/iise-2022-poster-480.webp 480w, /research/iise-2022-poster-960.webp 960w",
       alt: "Poster: Tiger Motors Lean Education Center, Student Built – Experimental Lean Learning, by Diego Caputo, Wa'ad Tarman, Victoria Ballard and Tom Devall",
     },
+  },
+];
+
+// Smaller items shown under the papers on the home page: posters and reports.
+// Each opens its PDF in the in-page viewer.
+export const researchMaterials = [
+  {
+    kind: "Poster",
+    title: "Strategies for building an Operational Excellence program",
+    meta: "Huntsville Research Symposium · 2025",
+    href: "/research/ci-opex-poster-2025.pdf",
+    image: "/research/ci-opex-poster-2025-480.webp",
+    imageSet: "/research/ci-opex-poster-2025-480.webp 480w, /research/ci-opex-poster-2025-960.webp 960w",
+    alt: "Poster: Strategies for Building an Operational Excellence Program",
+  },
+  {
+    kind: "Technical report",
+    title: "Building an Operational Excellence Program",
+    meta: "ICAMS Technical Report 24-01 · 2024",
+    href: "/research/ci-opex-technical-report-24-01.pdf",
+    image: "/research/ci-opex-report-24-01-480.webp",
+    imageSet: "/research/ci-opex-report-24-01-480.webp 480w, /research/ci-opex-report-24-01-960.webp 960w",
+    alt: "Cover of ICAMS Technical Report 24-01",
+  },
+  {
+    kind: "Poster",
+    title: "Tiger Motors Lean Education Center: student-built, experimental lean learning",
+    meta: "IISE Lean Six Sigma & Data Science Conference · 2022",
+    href: "/research/iise-2022-poster.pdf",
+    image: "/research/iise-2022-poster-480.webp",
+    imageSet: "/research/iise-2022-poster-480.webp 480w, /research/iise-2022-poster-960.webp 960w",
+    alt: "Poster: Tiger Motors Lean Education Center, Student Built – Experimental Lean Learning",
   },
 ];

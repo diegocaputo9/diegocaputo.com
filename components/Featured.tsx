@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr"
 import Link from "next/link";
 import { featured } from "@/content/site";
 import { GlassCard } from "./GlassCard";
+import { LoopVideo } from "./LoopVideo";
 import { Reveal } from "./Reveal";
 
 export function Featured() {
@@ -20,16 +21,15 @@ export function Featured() {
               rel="noreferrer"
               className="relative block self-center overflow-hidden rounded-[22px] border border-line bg-[#0b1120]"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}
-              <img
-                src={featured.image}
-                srcSet={featured.imageSet}
+              {/* the site's hero, recorded as one exact 28 s cycle so it loops without a seam */}
+              <LoopVideo
+                src={featured.video}
+                still={featured.image}
+                stillSet={featured.imageSet}
                 sizes="(min-width: 1152px) 600px, (min-width: 1024px) 52vw, 92vw"
-                decoding="async"
-                alt="Tiger Motors Lean Education Center homepage with an isometric drawing of the assembly lab"
+                alt="Tiger Motors Lean Education Center homepage with an isometric drawing of the assembly lab, cars moving down the line"
                 width={1456}
                 height={680}
-                loading="lazy"
                 className="aspect-[1456/680] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
               />
             </a>

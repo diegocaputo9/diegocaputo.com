@@ -102,6 +102,8 @@ export const featured = {
   href: "https://tigermotorslean.com",
   image: "/work/tiger-motors-1456.webp",
   imageSet: "/work/tiger-motors-800.webp 800w, /work/tiger-motors-1456.webp 1456w",
+  // one exact 28.068 s cycle of the site's hero animation, recorded frame by frame
+  video: "/work/tiger-motors-loop.mp4",
   summary:
     "An immersive digital learning environment for Auburn's 4,000 sq ft Integrated Manufacturing Facility, a lab that simulates high-volume automotive production.",
   points: [

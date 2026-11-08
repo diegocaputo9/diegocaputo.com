@@ -150,7 +150,7 @@ export default function ResearchPage() {
                   className="flex scroll-mt-28 gap-4 border-t border-line py-6 last:border-b"
                 >
                   <FileText size={22} className="mt-0.5 shrink-0 text-ink-3" />
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="font-mono text-[12px] text-ink-3">
                       {r.series} · {r.date}
                     </p>
@@ -158,7 +158,51 @@ export default function ResearchPage() {
                     <p className="mt-1 text-[14px] text-ink-3">{r.authors}</p>
                     <p className="mt-3 max-w-[70ch] text-[14px] leading-relaxed text-ink-2">{r.summary}</p>
                     <p className="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-ink-3">{r.funding}</p>
+                    <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[13px]">
+                      <a
+                        href={r.pdf}
+                        data-pdf-title={`${r.series}: ${r.title}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-ink-3 hover:text-accent"
+                      >
+                        Read the report (PDF)
+                        <ArrowUpRight size={12} />
+                      </a>
+                      <a
+                        href={r.source}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-ink-3 hover:text-accent"
+                      >
+                        Official copy at eng.auburn.edu
+                        <ArrowUpRight size={12} />
+                      </a>
+                    </p>
                   </div>
+                  <a
+                    href={r.pdf}
+                    data-pdf-title={`${r.series}: ${r.title}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group hidden shrink-0 sm:block"
+                    aria-label={`Open the report (PDF): ${r.title}`}
+                  >
+                    <span className="block w-[200px] overflow-hidden rounded-xl border border-line bg-white md:w-[240px]">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
+                      <img
+                        src={r.image}
+                        srcSet={r.imageSet}
+                        sizes="240px"
+                        alt={r.alt}
+                        width={480}
+                        height={360}
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                      />
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>
