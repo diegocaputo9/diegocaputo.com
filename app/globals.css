@@ -449,20 +449,20 @@ body {
 /* three poses, each held, moving smoothly between them, back to the first */
 @keyframes bp-arm-lower {
   0%, 22% { transform: rotate(0deg); }
-  33%, 55% { transform: rotate(-17deg); }
-  66%, 88% { transform: rotate(13deg); }
+  33%, 55% { transform: rotate(-9deg); }
+  66%, 88% { transform: rotate(7deg); }
   100% { transform: rotate(0deg); }
 }
 @keyframes bp-arm-upper {
   0%, 22% { transform: rotate(0deg); }
-  33%, 55% { transform: rotate(26deg); }
-  66%, 88% { transform: rotate(-20deg); }
+  33%, 55% { transform: rotate(14deg); }
+  66%, 88% { transform: rotate(-11deg); }
   100% { transform: rotate(0deg); }
 }
 @keyframes bp-arm-wrist {
   0%, 22% { transform: rotate(0deg); }
-  33%, 55% { transform: rotate(-22deg); }
-  66%, 88% { transform: rotate(18deg); }
+  33%, 55% { transform: rotate(-12deg); }
+  66%, 88% { transform: rotate(10deg); }
   100% { transform: rotate(0deg); }
 }
 @keyframes bp-lamp-run {

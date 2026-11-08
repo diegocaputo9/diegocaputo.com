@@ -52,10 +52,11 @@ function Dim({ x1, x2, y, label }: { x1: number; x2: number; y: number; label: s
   );
 }
 
-/** Side profile of a car body sitting on a skid, origin at its rear-bottom. */
+/** Side profile of a car body sitting on a skid, occupying x..x+132.
+ *  Mirrored so the car faces the other way along the conveyor. */
 function CarBody({ x, y }: { x: number; y: number }) {
   return (
-    <g transform={`translate(${x} ${y})`}>
+    <g transform={`translate(${x + 132} ${y}) scale(-1 1)`}>
       <path
         pathLength={P}
         d="M0 0 L0 -18 Q2 -26 14 -28 L34 -30 L54 -48 Q58 -52 66 -52 L92 -52 Q98 -52 102 -46 L114 -30 L124 -28 Q132 -26 132 -18 L132 0 L118 0 A13 13 0 0 0 92 0 L42 0 A13 13 0 0 0 16 0 Z"
