@@ -1,4 +1,4 @@
-import { ArrowRight, GithubLogo, LinkedinLogo, MapPin } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, FileText, GithubLogo, LinkedinLogo, MapPin } from "@phosphor-icons/react/dist/ssr";
 import type { CSSProperties } from "react";
 import { site } from "@/content/site";
 import { AssemblyLine, RobotArm } from "./Blueprint";
@@ -50,6 +50,19 @@ export function Hero() {
               >
                 Get in touch
               </a>
+              {/* quiet text link: opens in the in-page PDF viewer, so visitors stay on the site */}
+              {site.links.resume && (
+                <a
+                  href={site.links.resume}
+                  data-pdf-title="Diego Caputo, Résumé"
+                  className="group inline-flex h-12 items-center gap-1.5 px-2 text-[15px] font-medium text-ink-2 transition-colors hover:text-ink"
+                >
+                  <FileText size={17} className="text-ink-3 transition-colors group-hover:text-accent" />
+                  <span className="underline decoration-ink-3/40 decoration-1 underline-offset-[5px] transition-colors group-hover:decoration-accent">
+                    Résumé
+                  </span>
+                </a>
+              )}
             </div>
           </div>
           <div className="rise mt-10" style={d(320)}>
