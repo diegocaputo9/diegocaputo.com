@@ -94,6 +94,11 @@ main section[id] {
     scroll-margin-top: -56px;
   }
 }
+/* The hero is the page top: the brand link (#top) must land at scroll 0,
+   not past it, or the headline slides under the nav. */
+main section#top {
+  scroll-margin-top: 0;
+}
 
 body {
   background: var(--bg);
