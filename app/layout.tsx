@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
+import { RouteMemory } from "@/components/BackHome";
 import { PdfViewer } from "@/components/PdfViewer";
 
 const geistSans = Geist({
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-[100dvh]">
         {children}
         <PdfViewer />
+        <RouteMemory />
         {/* Cloudflare Web Analytics: cookie-free, no consent banner needed */}
         <script
           defer

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
 import { Gears } from "@/components/Blueprint";
+import { BackHome } from "@/components/BackHome";
 import { Footer } from "@/components/Footer";
 import { GlassCard } from "@/components/GlassCard";
 import { Nav } from "@/components/Nav";
@@ -269,6 +270,7 @@ export default function ResearchPage() {
             </ul>
           </Reveal>
         </section>
+        <BackHome fallback="/#research" />
       </main>
       <Footer />
     </>

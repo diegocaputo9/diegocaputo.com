@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowUpRight, Certificate, Seal } from "@phosphor-icons/reac
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
+import { BackHome } from "@/components/BackHome";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
@@ -103,6 +104,7 @@ export default function CertificatesPage() {
             </Reveal>
           </section>
         ))}
+        <BackHome fallback="/#leadership" />
       </main>
       <Footer />
     </>

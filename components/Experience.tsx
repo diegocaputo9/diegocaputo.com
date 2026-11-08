@@ -16,7 +16,7 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
   return (
     <section
       id="experience"
-      className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32"
+      className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-32"
     >
       <Gears className="absolute right-[3%] top-16 -z-10 hidden w-[200px] xl:block" />
       <Reveal>
@@ -97,7 +97,7 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
           href="/experience/"
           className="group mt-2 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent md:hidden"
         >
-          Full work history
+          Full work history ({experience.length})
           <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </Link>
       )}

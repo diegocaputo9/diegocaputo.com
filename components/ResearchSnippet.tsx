@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 
 export function ResearchSnippet() {
   return (
-    <section id="research" className="relative isolate mx-auto max-w-6xl px-5 pb-24 pt-24 md:px-8 md:pb-32 md:pt-32">
+    <section id="research" className="relative isolate mx-auto max-w-6xl px-5 pb-12 pt-12 md:px-8 md:pb-32 md:pt-32">
       {/* value stream map as a faded background behind the heading, fading toward the text */}
       <ValueStream className="sketch-fade-left absolute right-0 top-2 -z-10 hidden w-[520px] lg:block" />
       <Reveal>

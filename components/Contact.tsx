@@ -28,7 +28,7 @@ export function Contact() {
   ].filter(Boolean) as Item[];
 
   return (
-    <section id="contact" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+    <section id="contact" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-32">
       <Andon className="absolute right-10 top-0 -z-10 hidden w-[96px] lg:block" />
       <Reveal>
         <GlassCard tilt={0} className="rounded-[36px] px-6 py-14 text-center md:px-16 md:py-20">

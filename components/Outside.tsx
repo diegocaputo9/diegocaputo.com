@@ -25,7 +25,7 @@ export function Outside() {
   const b = outside.brand;
   const c = outside.cycling;
   return (
-    <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+    <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-32">
       <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">
         <div>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
@@ -86,7 +86,7 @@ export function Outside() {
         </Reveal>
       </div>
 
-      <div className="mt-20 grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+      <div className="mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
         <Reveal className="lg:order-2">
           <p className="font-mono text-[12px] text-ink-3">02</p>
           <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{t.title}</h3>
@@ -111,7 +111,7 @@ export function Outside() {
         </Reveal>
       </div>
 
-      <div className="mt-20 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+      <div className="mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         <Reveal>
           <p className="font-mono text-[12px] text-ink-3">03</p>
           <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{c.title}</h3>

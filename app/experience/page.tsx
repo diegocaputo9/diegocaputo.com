@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
 import { Experience } from "@/components/Experience";
+import { BackHome } from "@/components/BackHome";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { site } from "@/content/site";
@@ -37,6 +38,7 @@ export default function ExperiencePage() {
           </Link>
         </div>
         <Experience title="Work history" />
+        <BackHome fallback="/#experience" />
       </main>
       <Footer />
     </>

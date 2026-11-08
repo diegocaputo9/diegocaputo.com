@@ -1,6 +1,6 @@
 import { ArrowRight, ArrowUpRight, GraduationCap, Medal, Newspaper } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-import { education, honors, leadership, news } from "@/content/site";
+import { certificates, credentials, education, honors, leadership, news } from "@/content/site";
 import { KanbanCard } from "./Blueprint";
 import { CertLink } from "./CertLink";
 import { GlassCard } from "./GlassCard";
@@ -9,7 +9,7 @@ import { Reveal } from "./Reveal";
 export function Leadership() {
   const [lead, ...rest] = leadership;
   return (
-    <section id="leadership" className="relative isolate mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
+    <section id="leadership" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-32">
       <KanbanCard className="absolute right-[2%] top-16 -z-10 hidden w-[200px] rotate-[4deg] xl:block" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Leadership & recognition</h2>
@@ -52,7 +52,7 @@ export function Leadership() {
       </div>
 
       {/* Education + honors side by side */}
-      <div className="mt-20 grid gap-14 md:grid-cols-2">
+      <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-14">
         <Reveal>
           <h3 className="text-xl font-semibold tracking-tight text-ink">Education</h3>
           <ul className="mt-5">
@@ -118,14 +118,14 @@ export function Leadership() {
             href="/certificates/"
             className="group flex items-center gap-1.5 border-t border-line pt-4 text-[14px] text-ink-3 transition-colors hover:text-ink"
           >
-            All certificates and training
+            All certificates and training ({credentials.length + certificates.length})
             <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
         </Reveal>
       </div>
 
       {/* In the news: press rows linking out to the articles */}
-      <Reveal className="mt-20">
+      <Reveal className="mt-14 md:mt-20">
         <h3 className="text-xl font-semibold tracking-tight text-ink">In the news</h3>
         {/* phones: compact two-column cards, photo + date + headline */}
         <ul className="mt-5 grid grid-cols-2 gap-x-3 gap-y-5 md:hidden">

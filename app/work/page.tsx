@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
 import { Featured } from "@/components/Featured";
+import { BackHome } from "@/components/BackHome";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Work } from "@/components/Work";
@@ -39,7 +40,7 @@ export default function WorkPage() {
         </div>
         <Featured title="All projects" />
         <Work />
-        <div className="pb-24" />
+        <BackHome fallback="/#work" />
       </main>
       <Footer />
     </>

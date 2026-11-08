@@ -128,7 +128,7 @@ export function Work({ phoneLimit }: { phoneLimit?: number }) {
           href="/work/"
           className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent md:hidden"
         >
-          All projects
+          All projects ({projects.length + 1})
           <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </Link>
       )}

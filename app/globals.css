@@ -87,7 +87,7 @@ html {
 /* Nav jumps: sections have 96-128px of top padding, so pull them up so the
    heading lands just below the floating nav (bottom edge at 72px). */
 main section[id] {
-  scroll-margin-top: -24px;
+  scroll-margin-top: 24px; /* phones: 48-56px section padding, heading lands below the nav */
 }
 @media (min-width: 768px) {
   main section[id] {
