@@ -1,6 +1,8 @@
 import DE from "country-flag-icons/react/3x2/DE";
 import ES from "country-flag-icons/react/3x2/ES";
 import US from "country-flag-icons/react/3x2/US";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import { experience } from "@/content/site";
 import { Gears } from "./Blueprint";
 import { CertLink } from "./CertLink";
@@ -9,7 +11,8 @@ import { RoleDetails } from "./RoleDetails";
 
 const flags = { DE, ES, US };
 
-export function Experience() {
+// phoneLimit: on phones show only the first N roles and link to /experience/ for the rest.
+export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: number; title?: string }) {
   return (
     <section
       id="experience"
@@ -18,7 +21,7 @@ export function Experience() {
       <Gears className="absolute right-[3%] top-16 -z-10 hidden w-[200px] xl:block" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">
-          Experience
+          {title}
         </h2>
       </Reveal>
 
@@ -33,7 +36,7 @@ export function Experience() {
             as="li"
             key={r.role + r.org}
             delay={Math.min(i, 4) * 0.04}
-            className="relative pb-10 pl-9 last:pb-0"
+            className={`relative pb-10 pl-9 last:pb-0 ${phoneLimit !== undefined && i >= phoneLimit ? "max-md:hidden" : ""}`}
           >
             <RoleDetails title={r.role} details={r.details}>
               <p className="font-mono text-[12px] text-ink-3 md:absolute md:-left-[150px] md:top-[3px] md:w-[130px] md:text-right">
@@ -89,6 +92,15 @@ export function Experience() {
           </Reveal>
         ))}
       </ol>
+      {phoneLimit !== undefined && (
+        <Link
+          href="/experience/"
+          className="group mt-2 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent md:hidden"
+        >
+          Full work history
+          <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </Link>
+      )}
     </section>
   );
 }

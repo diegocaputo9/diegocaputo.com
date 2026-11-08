@@ -5,11 +5,11 @@ import { GlassCard } from "./GlassCard";
 import { LoopVideo } from "./LoopVideo";
 import { Reveal } from "./Reveal";
 
-export function Featured() {
+export function Featured({ title = "Selected work" }: { title?: string }) {
   return (
     <section id="work" className="mx-auto max-w-6xl px-5 pt-24 md:px-8 md:pt-32">
       <Reveal>
-        <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Selected work</h2>
+        <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">{title}</h2>
       </Reveal>
 
       <Reveal delay={0.08} className="mt-12">
@@ -24,6 +24,7 @@ export function Featured() {
               {/* the site's hero, recorded as one exact 28 s cycle so it loops without a seam */}
               <LoopVideo
                 src={featured.video}
+                srcSmall={featured.videoSmall}
                 still={featured.image}
                 stillSet={featured.imageSet}
                 sizes="(min-width: 1152px) 600px, (min-width: 1024px) 52vw, 92vw"

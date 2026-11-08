@@ -65,9 +65,9 @@ export default function Home() {
         <Stats />
         <Speaking />
         <Featured />
-        <Work />
+        <Work phoneLimit={1} />
         <ResearchSnippet />
-        <Experience />
+        <Experience phoneLimit={3} />
         <Leadership />
         <Outside />
         <Contact />

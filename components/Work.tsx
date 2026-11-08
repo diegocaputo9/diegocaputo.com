@@ -7,6 +7,7 @@ import {
   Package,
   UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import { projects, type Project } from "@/content/site";
 import { Gallery } from "./Gallery";
 import { GlassCard } from "./GlassCard";
@@ -35,14 +36,20 @@ const texture: Record<Project["visual"], string> = {
   app: "bg-[repeating-linear-gradient(135deg,var(--grid)_0_1px,transparent_1px_16px)]",
 };
 
-export function Work() {
+// phoneLimit: on phones show only the first N projects and link to /work/ for the rest.
+export function Work({ phoneLimit }: { phoneLimit?: number }) {
   return (
     <section className="mx-auto max-w-6xl px-5 pb-4 pt-5 md:px-8 md:pb-6">
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-12">
         {projects.map((p, i) => {
           const Icon = icon[p.visual];
           return (
-            <Reveal as="li" key={p.title} delay={(i % 2) * 0.08} className={spans[i]}>
+            <Reveal
+              as="li"
+              key={p.title}
+              delay={(i % 2) * 0.08}
+              className={`${spans[i]} ${phoneLimit !== undefined && i >= phoneLimit ? "max-md:hidden" : ""}`}
+            >
               <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-[28px] p-3">
                 {p.image ? (
                   <figure className="relative">
@@ -116,6 +123,15 @@ export function Work() {
           );
         })}
       </ul>
+      {phoneLimit !== undefined && (
+        <Link
+          href="/work/"
+          className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent md:hidden"
+        >
+          All projects
+          <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </Link>
+      )}
     </section>
   );
 }

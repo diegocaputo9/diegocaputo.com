@@ -14,6 +14,9 @@ export const site = {
   focus: ["Lean manufacturing", "Six Sigma / DMAIC", "AI in industrial engineering", "Engineering education"],
   // Cloudflare Web Analytics site tag (public, it ships in the page HTML)
   cfAnalyticsToken: "65d6b6c92bab4c4ea35b1b1d99d177dc",
+  // Contact form endpoint (Supabase edge function in supabase/functions/contact).
+  // Empty = the "Invite me to speak" button stays a plain mailto link.
+  contactEndpoint: "",
   links: {
     linkedin: "https://www.linkedin.com/in/diegorcaputo/",
     github: "https://github.com/diegocaputo9",
@@ -103,7 +106,8 @@ export const featured = {
   image: "/work/tiger-motors-1456.webp",
   imageSet: "/work/tiger-motors-800.webp 800w, /work/tiger-motors-1456.webp 1456w",
   // one exact 28.068 s cycle of the site's hero animation, recorded frame by frame
-  video: "/work/tiger-motors-loop.mp4",
+  video: "/work/tiger-motors-loop.mp4", // 1200 px, 2.9 MB
+  videoSmall: "/work/tiger-motors-loop-800.mp4", // 800 px, 1.5 MB, phones
   summary:
     "An immersive digital learning environment for Auburn's 4,000 sq ft Integrated Manufacturing Facility, a lab that simulates high-volume automotive production.",
   points: [

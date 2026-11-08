@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Props = {
   src: string; // muted mp4 that loops seamlessly (first frame === poster)
+  srcSmall?: string; // lighter file for phone-width screens
   still: string;
   stillSet?: string;
   sizes?: string;
@@ -16,10 +17,10 @@ type Props = {
 // A still image that turns into a looping video once it scrolls into view.
 // The video is only fetched when visible, pauses off-screen, and never loads
 // for people who prefer reduced motion or have Data Saver on.
-export function LoopVideo({ src, still, stillSet, sizes, alt, width, height, className = "" }: Props) {
+export function LoopVideo({ src, srcSmall, still, stillSet, sizes, alt, width, height, className = "" }: Props) {
   const wrap = useRef<HTMLSpanElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const [armed, setArmed] = useState(false); // video src attached
+  const [armed, setArmed] = useState<string | null>(null); // chosen video src, once visible
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export function LoopVideo({ src, still, stillSet, sizes, alt, width, height, cla
       ([entry]) => {
         const v = video.current;
         if (entry.isIntersecting) {
-          setArmed(true);
+          setArmed((a) => a ?? (srcSmall && window.innerWidth < 768 ? srcSmall : src));
           v?.play().catch(() => {});
         } else {
           v?.pause();
@@ -43,7 +44,7 @@ export function LoopVideo({ src, still, stillSet, sizes, alt, width, height, cla
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [src, srcSmall]);
 
   // once the source is attached, start it (the observer above already fired)
   useEffect(() => {
@@ -67,7 +68,7 @@ export function LoopVideo({ src, still, stillSet, sizes, alt, width, height, cla
       {armed && (
         <video
           ref={video}
-          src={src}
+          src={armed}
           muted
           loop
           playsInline

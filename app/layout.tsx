@@ -71,7 +71,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self'",
-  "connect-src 'self' https://cloudflareinsights.com",
+  `connect-src 'self' https://cloudflareinsights.com${site.contactEndpoint ? ` ${new URL(site.contactEndpoint).origin}` : ""}`,
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",

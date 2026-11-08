@@ -127,7 +127,37 @@ export function Leadership() {
       {/* In the news: press rows linking out to the articles */}
       <Reveal className="mt-20">
         <h3 className="text-xl font-semibold tracking-tight text-ink">In the news</h3>
-        <ul className="mt-5">
+        {/* phones: compact two-column cards, photo + date + headline */}
+        <ul className="mt-5 grid grid-cols-2 gap-x-3 gap-y-5 md:hidden">
+          {news.map((n) => (
+            <li key={n.href}>
+              <a href={n.href} target="_blank" rel="noreferrer" hrefLang={n.lang} className="group block">
+                <span className="block overflow-hidden rounded-[14px] border border-line bg-bg-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
+                  <img
+                    src={`/news/${n.image}-320.webp`}
+                    srcSet={`/news/${n.image}-320.webp 320w, /news/${n.image}-640.webp 640w`}
+                    sizes="46vw"
+                    alt={n.imageAlt}
+                    width={320}
+                    height={180}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-video w-full object-cover"
+                  />
+                </span>
+                <span className="mt-2 block font-mono text-[11px] text-ink-3">{n.date}</span>
+                <span
+                  lang={n.lang}
+                  className="mt-0.5 line-clamp-3 text-[13.5px] font-medium leading-snug text-ink transition-colors group-hover:text-accent"
+                >
+                  {n.title}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <ul className="mt-5 hidden md:block">
           {news.map((n) => (
             <li key={n.href} className="border-t border-line last:border-b">
               <a
