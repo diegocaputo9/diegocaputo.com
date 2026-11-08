@@ -36,8 +36,8 @@ const texture: Record<Project["visual"], string> = {
   app: "bg-[repeating-linear-gradient(135deg,var(--grid)_0_1px,transparent_1px_16px)]",
 };
 
-// phoneLimit: on phones show only the first N projects and link to /work/ for the rest.
-export function Work({ phoneLimit }: { phoneLimit?: number }) {
+// phoneKeep: on phones show only these projects (by title) and link to /work/ for the rest.
+export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
   return (
     <section className="mx-auto max-w-6xl px-5 pb-4 pt-5 md:px-8 md:pb-6">
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-12">
@@ -48,7 +48,7 @@ export function Work({ phoneLimit }: { phoneLimit?: number }) {
               as="li"
               key={p.title}
               delay={(i % 2) * 0.08}
-              className={`${spans[i]} ${phoneLimit !== undefined && i >= phoneLimit ? "max-md:hidden" : ""}`}
+              className={`${spans[i]} ${phoneKeep && !phoneKeep.includes(p.title) ? "max-md:hidden" : ""}`}
             >
               <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-[28px] p-3">
                 {p.image ? (
@@ -123,7 +123,7 @@ export function Work({ phoneLimit }: { phoneLimit?: number }) {
           );
         })}
       </ul>
-      {phoneLimit !== undefined && (
+      {phoneKeep && (
         <Link
           href="/work/"
           className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent md:hidden"

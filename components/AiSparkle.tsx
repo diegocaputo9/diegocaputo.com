@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Sparkle } from "@phosphor-icons/react";
 
-// AI sparkle: still until it scrolls into view, then every 6 s it does one
+// AI sparkle: still until it scrolls into view, then every 4.8 s it does one
 // full springy turn (ending exactly where it started, so the loop is seamless)
 // while two tiny stars pop out and fade. See .ai-spark-* in globals.css.
 export function AiSparkle() {

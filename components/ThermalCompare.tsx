@@ -24,15 +24,27 @@ export function ThermalCompare() {
     handle.current?.setAttribute("aria-valuenow", String(Math.round(split.current)));
   };
 
-  // draw both images once the viewer is close to the viewport
+  // Draw both images once the viewer is close to the viewport, then play one
+  // gentle sweep (so people see it can be dragged) only when most of it is
+  // actually on screen. On phones the drawing happens well below the fold, so
+  // a sweep tied to the drawing would finish before anyone saw it.
   useEffect(() => {
     const el = box.current;
     if (!el) return;
     let stop: (() => void) | undefined;
-    const io = new IntersectionObserver(
+    let drawn = false;
+    let touched = false;
+    // grabbing the slider cancels the sweep (or stops one already running)
+    const markTouched = () => {
+      touched = true;
+      stop?.();
+    };
+    el.addEventListener("pointerdown", markTouched);
+
+    const draw = new IntersectionObserver(
       ([e]) => {
         if (!e.isIntersecting) return;
-        io.disconnect();
+        draw.disconnect();
         const a = aerial.current?.getContext("2d");
         const t = thermal.current?.getContext("2d");
         if (!a || !t) return;
@@ -42,23 +54,35 @@ export function ThermalCompare() {
         t.imageSmoothingQuality = "high";
         t.drawImage(th.image, 0, 0, W, H);
         tempAt.current = th.tempAt;
+        drawn = true;
         setReady(true);
-        // one gentle sweep so people see it can be dragged
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          const ctl = animate(50, [50, 32, 66, 50], {
-            duration: 2.6,
-            delay: 0.6,
-            ease: "easeInOut",
-            onUpdate: setSplit,
-          });
-          stop = () => ctl.stop();
-        }
       },
       { rootMargin: "300px 0px" },
     );
-    io.observe(el);
+    draw.observe(el);
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sweep = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting || !drawn) return;
+        sweep.disconnect();
+        if (touched) return;
+        const ctl = animate(50, [50, 32, 66, 50], {
+          duration: 2.6,
+          delay: 0.4,
+          ease: "easeInOut",
+          onUpdate: setSplit,
+        });
+        stop = () => ctl.stop();
+      },
+      { threshold: 0.6 },
+    );
+    if (!reduced) sweep.observe(el);
+
     return () => {
-      io.disconnect();
+      draw.disconnect();
+      sweep.disconnect();
+      el.removeEventListener("pointerdown", markTouched);
       stop?.();
     };
   }, []);

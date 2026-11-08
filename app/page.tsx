@@ -79,7 +79,7 @@ export default function Home() {
         <Stats />
         <Speaking />
         <Featured />
-        <Work phoneLimit={1} />
+        <Work phoneKeep={["Lean Six Sigma Green Belt programs", "ChapterCore"]} />
         <ResearchSnippet />
         <Experience phoneLimit={3} />
         <Leadership />
