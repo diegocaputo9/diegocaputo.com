@@ -14,9 +14,6 @@ export const site = {
   focus: ["Lean manufacturing", "Six Sigma / DMAIC", "AI in industrial engineering", "Engineering education"],
   // Cloudflare Web Analytics site tag (public, it ships in the page HTML)
   cfAnalyticsToken: "65d6b6c92bab4c4ea35b1b1d99d177dc",
-  // Contact form endpoint (Supabase edge function in supabase/functions/contact).
-  // Empty = the "Invite me to speak" button stays a plain mailto link.
-  contactEndpoint: "", // set to https://lnlswachpjrxoaealtpd.supabase.co/functions/v1/contact once RESEND_API_KEY works
   links: {
     linkedin: "https://www.linkedin.com/in/diegorcaputo/",
     github: "https://github.com/diegocaputo9",
@@ -72,7 +69,7 @@ export const stats = [
 export const speaking = {
   title: "Teaching & speaking",
   lede: "In Auburn's Lean Systems course I run every lab and give lectures each semester for 60 to 80 engineers, and I present research and products to academic and industry audiences.",
-  cta: { label: "Invite me to speak", href: "mailto:hello@diegocaputo.com?subject=Speaking%20invitation" },
+  cta: { label: "Invite me to speak", href: "#contact" },
   photos: [
     {
       name: "lean-lecture",

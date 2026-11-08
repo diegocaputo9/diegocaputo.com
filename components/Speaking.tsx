@@ -1,5 +1,5 @@
+import { Microphone } from "@phosphor-icons/react/dist/ssr";
 import { speaking } from "@/content/site";
-import { InviteForm } from "./InviteForm";
 import { Reveal } from "./Reveal";
 
 const spans = ["md:col-span-7", "md:col-span-5"];
@@ -14,7 +14,13 @@ export function Speaking() {
           <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink-2">{speaking.lede}</p>
         </Reveal>
         <Reveal delay={0.06}>
-          <InviteForm label={speaking.cta.label} fallbackHref={speaking.cta.href} />
+          <a
+            href={speaking.cta.href}
+            className="glass inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+          >
+            <Microphone size={18} />
+            {speaking.cta.label}
+          </a>
         </Reveal>
       </div>
 
