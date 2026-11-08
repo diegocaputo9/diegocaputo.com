@@ -86,12 +86,30 @@ export function AssemblyLine({ className }: { className?: string }) {
           <Label x={x + 4} y={38}>{i === 0 ? "ST-02  WELD" : "ST-03  TRIM"}</Label>
         </g>
       ))}
-      <CarBody x={40} y={168} />
-      <CarBody x={250} y={168} />
-      <CarBody x={470} y={168} />
-      <Dim x1={40} x2={250} y={18} label="PITCH" />
+      {/* cars drift one pitch per cycle (seamless: 4 identical cars, 215 apart),
+          fading in at the left edge and out at the right (bp-cars in globals.css) */}
+      <defs>
+        <linearGradient id="al-fade-grad" x1="0" y1="0" x2="660" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0.14" stopColor="#fff" stopOpacity="1" />
+          <stop offset="0.82" stopColor="#fff" stopOpacity="1" />
+          <stop offset="0.98" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
+        <mask id="al-fade" maskUnits="userSpaceOnUse" x="0" y="0" width="660" height="220">
+          <rect x="0" y="0" width="660" height="220" fill="url(#al-fade-grad)" />
+        </mask>
+      </defs>
+      <g mask="url(#al-fade)">
+        <g className="bp-cars">
+          <CarBody x={-175} y={168} />
+          <CarBody x={40} y={168} />
+          <CarBody x={255} y={168} />
+          <CarBody x={470} y={168} />
+        </g>
+      </g>
+      <Dim x1={40} x2={255} y={18} label="PITCH" />
       <line className="dash" x1={40} y1={22} x2={40} y2={168} />
-      <line className="dash" x1={250} y1={22} x2={250} y2={168} />
+      <line className="dash" x1={255} y1={22} x2={255} y2={168} />
       <Label x={8} y={212}>BODY IN WHITE / FLOW →</Label>
     </Sketch>
   );
@@ -132,6 +150,16 @@ export function RobotArm({ className }: { className?: string }) {
   );
 }
 
+// Current-state figures the map "fills in" (illustrative): cycle time,
+// changeover, and days of inventory after each step. VA = 45+62+90+58 s,
+// lead time = 1.8 + 1.2 + 2.6 d.
+const VSM = [
+  { ct: "45 s", co: "30 m", inv: "1.8 d" },
+  { ct: "62 s", co: "15 m", inv: "1.2 d" },
+  { ct: "90 s", co: "40 m", inv: "2.6 d" },
+  { ct: "58 s", co: "5 m", inv: "" },
+];
+
 export function ValueStream({ className }: { className?: string }) {
   const steps = ["STAMP", "WELD", "PAINT", "ASSY"];
   return (
@@ -147,12 +175,21 @@ export function ValueStream({ className }: { className?: string }) {
             </Label>
             <Label x={x + 8} y={76}>C/T</Label>
             <Label x={x + 8} y={89}>C/O</Label>
+            <Label x={x + 88} y={76} textAnchor="end" className={`vsm-val vsm-${i * 3}`}>
+              {VSM[i].ct}
+            </Label>
+            <Label x={x + 88} y={89} textAnchor="end" className={`vsm-val vsm-${i * 3 + 1}`}>
+              {VSM[i].co}
+            </Label>
             {i < steps.length - 1 && (
               <g>
                 {/* inventory triangle */}
                 <path pathLength={P} d={`M${x + 123} 58 L${x + 133} 76 L${x + 113} 76 Z`} />
                 <Label x={x + 123} y={73} textAnchor="middle" className="tiny">
                   I
+                </Label>
+                <Label x={x + 123} y={50} textAnchor="middle" className={`vsm-val vsm-${i * 3 + 2}`}>
+                  {VSM[i].inv}
                 </Label>
                 {/* push arrow */}
                 <path pathLength={P} d={`M${x + 100} 90 L${x + 144} 90 M${x + 138} 86 L${x + 144} 90 L${x + 138} 94`} />
@@ -168,6 +205,14 @@ export function ValueStream({ className }: { className?: string }) {
       />
       <Label x={10} y={176}>VALUE STREAM MAP / CURRENT STATE</Label>
       <Dim x1={10} x2={556} y={18} label="LEAD TIME" />
+      <Label x={556} y={176} textAnchor="end" className="vsm-val vsm-11">
+        VA 255 s
+      </Label>
+      <g className="dim">
+        <Label x={336} y={12} className="vsm-val vsm-12">
+          = 5.6 d
+        </Label>
+      </g>
     </Sketch>
   );
 }

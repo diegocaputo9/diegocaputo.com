@@ -303,7 +303,9 @@ body {
   mask-image: linear-gradient(to right, transparent 0%, #000 45%);
 }
 
-/* Lines draw themselves as the drawing scrolls into view. */
+/* Lines draw themselves as a drawing scrolls in and erase as it scrolls out,
+   the same way in both directions. Ranges are named inside the keyframes so a
+   drawing already on screen at page load (the hero robot) starts fully drawn. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .sketch [pathLength] {
@@ -311,20 +313,24 @@ body {
       stroke-dashoffset: 1;
       animation: sketch-draw linear both;
       animation-timeline: view();
-      animation-range: entry 5% cover 40%;
     }
-    .sketch text {
+    .sketch text:not(.vsm-val) {
       animation: sketch-fade linear both;
       animation-timeline: view();
-      animation-range: entry 20% cover 45%;
     }
   }
 }
 @keyframes sketch-draw {
-  to { stroke-dashoffset: 0; }
+  entry 0% { stroke-dashoffset: 1; }
+  entry 85% { stroke-dashoffset: 0; }
+  exit 15% { stroke-dashoffset: 0; }
+  exit 100% { stroke-dashoffset: 1; }
 }
 @keyframes sketch-fade {
-  from { opacity: 0; }
+  entry 20% { opacity: 0; }
+  entry 100% { opacity: 1; }
+  exit 0% { opacity: 1; }
+  exit 80% { opacity: 0; }
 }
 
 /* Keyword tags framed by drafting corner brackets (top-left + bottom-right),
@@ -434,8 +440,8 @@ body {
   .bp-lamp-stop { animation: bp-lamp-stop 16s ease-in-out infinite; }
 }
 @keyframes bp-parallax {
-  from { transform: translateY(-36px); }
-  to { transform: translateY(36px); }
+  from { transform: translateY(-56px); }
+  to { transform: translateY(56px); }
 }
 @keyframes bp-spin {
   to { transform: rotate(360deg); }
@@ -443,20 +449,20 @@ body {
 /* three poses, each held, moving smoothly between them, back to the first */
 @keyframes bp-arm-lower {
   0%, 22% { transform: rotate(0deg); }
-  33%, 55% { transform: rotate(-9deg); }
-  66%, 88% { transform: rotate(7deg); }
+  33%, 55% { transform: rotate(-17deg); }
+  66%, 88% { transform: rotate(13deg); }
   100% { transform: rotate(0deg); }
 }
 @keyframes bp-arm-upper {
   0%, 22% { transform: rotate(0deg); }
-  33%, 55% { transform: rotate(14deg); }
-  66%, 88% { transform: rotate(-11deg); }
+  33%, 55% { transform: rotate(26deg); }
+  66%, 88% { transform: rotate(-20deg); }
   100% { transform: rotate(0deg); }
 }
 @keyframes bp-arm-wrist {
   0%, 22% { transform: rotate(0deg); }
-  33%, 55% { transform: rotate(-12deg); }
-  66%, 88% { transform: rotate(10deg); }
+  33%, 55% { transform: rotate(-22deg); }
+  66%, 88% { transform: rotate(18deg); }
   100% { transform: rotate(0deg); }
 }
 @keyframes bp-lamp-run {
@@ -502,3 +508,47 @@ body {
   17% { opacity: 0.9; transform: translate(-9px, 8px) scale(1); }
   30%, 100% { opacity: 0; transform: translate(-12px, 10px) scale(0.5); }
 }
+
+/* Assembly line: cars drift one pitch (215 units) every 12 s, then the loop
+   restarts with identical cars, so there is no visible jump. */
+@media (prefers-reduced-motion: no-preference) {
+  .bp-cars { animation: bp-cars 12s linear infinite; }
+}
+@keyframes bp-cars {
+  to { transform: translateX(215px); }
+}
+
+/* Value stream map: values are "written" left to right (clip reveal), then
+   VA and lead time, everything holds, clears left to right, and repeats. */
+.vsm-val { clip-path: inset(0 100% 0 0); }
+@media (prefers-reduced-motion: reduce) {
+  .vsm-val { clip-path: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .vsm-0 { animation: vsm-0 16s ease-out infinite; }
+  .vsm-1 { animation: vsm-1 16s ease-out infinite; }
+  .vsm-2 { animation: vsm-2 16s ease-out infinite; }
+  .vsm-3 { animation: vsm-3 16s ease-out infinite; }
+  .vsm-4 { animation: vsm-4 16s ease-out infinite; }
+  .vsm-5 { animation: vsm-5 16s ease-out infinite; }
+  .vsm-6 { animation: vsm-6 16s ease-out infinite; }
+  .vsm-7 { animation: vsm-7 16s ease-out infinite; }
+  .vsm-8 { animation: vsm-8 16s ease-out infinite; }
+  .vsm-9 { animation: vsm-9 16s ease-out infinite; }
+  .vsm-10 { animation: vsm-10 16s ease-out infinite; }
+  .vsm-11 { animation: vsm-11 16s ease-out infinite; }
+  .vsm-12 { animation: vsm-12 16s ease-out infinite; }
+}
+@keyframes vsm-0 { 0%, 4.0% { clip-path: inset(0 100% 0 0); } 7.2%, 80.0% { clip-path: inset(0 0 0 0); } 82.5%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-1 { 0%, 7.6% { clip-path: inset(0 100% 0 0); } 10.8%, 80.7% { clip-path: inset(0 0 0 0); } 83.2%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-2 { 0%, 11.2% { clip-path: inset(0 100% 0 0); } 14.4%, 81.4% { clip-path: inset(0 0 0 0); } 83.9%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-3 { 0%, 14.8% { clip-path: inset(0 100% 0 0); } 18.0%, 82.1% { clip-path: inset(0 0 0 0); } 84.6%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-4 { 0%, 18.4% { clip-path: inset(0 100% 0 0); } 21.6%, 82.8% { clip-path: inset(0 0 0 0); } 85.3%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-5 { 0%, 22.0% { clip-path: inset(0 100% 0 0); } 25.2%, 83.5% { clip-path: inset(0 0 0 0); } 86.0%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-6 { 0%, 25.6% { clip-path: inset(0 100% 0 0); } 28.8%, 84.2% { clip-path: inset(0 0 0 0); } 86.7%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-7 { 0%, 29.2% { clip-path: inset(0 100% 0 0); } 32.4%, 84.9% { clip-path: inset(0 0 0 0); } 87.4%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-8 { 0%, 32.8% { clip-path: inset(0 100% 0 0); } 36.0%, 85.6% { clip-path: inset(0 0 0 0); } 88.1%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-9 { 0%, 36.4% { clip-path: inset(0 100% 0 0); } 39.6%, 86.3% { clip-path: inset(0 0 0 0); } 88.8%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-10 { 0%, 40.0% { clip-path: inset(0 100% 0 0); } 43.2%, 87.0% { clip-path: inset(0 0 0 0); } 89.5%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-11 { 0%, 43.6% { clip-path: inset(0 100% 0 0); } 46.8%, 87.7% { clip-path: inset(0 0 0 0); } 90.2%, 100% { clip-path: inset(0 0 0 100%); } }
+@keyframes vsm-12 { 0%, 47.2% { clip-path: inset(0 100% 0 0); } 50.4%, 88.4% { clip-path: inset(0 0 0 0); } 90.9%, 100% { clip-path: inset(0 0 0 100%); } }
