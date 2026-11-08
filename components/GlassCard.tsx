@@ -31,17 +31,18 @@ export function GlassCard({ children, className = "", tilt = 6 }: Props) {
     const y = (e.clientY - r.top) / r.height;
     el.style.setProperty("--mx", `${x * 100}%`);
     el.style.setProperty("--my", `${y * 100}%`);
+    el.dataset.lit = ""; // fades the pointer light in (see .glass::after)
     if (!reduce) {
       px.set(x);
       py.set(y);
     }
   }
 
+  // Keep the last position so the light fades out where the pointer left.
   function onLeave() {
     px.set(0.5);
     py.set(0.5);
-    ref.current?.style.removeProperty("--mx");
-    ref.current?.style.removeProperty("--my");
+    if (ref.current) delete ref.current.dataset.lit;
   }
 
   return (
