@@ -43,7 +43,7 @@ export function Outside() {
           <div>
             <p className="text-[16px] font-semibold tracking-tight text-ink">{b.name}</p>
             <p className="font-mono text-[12px] text-ink-3">
-              {outside.kicker} · {outside.title}
+              {outside.title}
             </p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {[
@@ -82,7 +82,6 @@ export function Outside() {
         </Reveal>
         <Reveal delay={0.08}>
           <TerrainViewer />
-          <p className="mt-3 text-[13px] text-ink-3">{p.note}</p>
         </Reveal>
       </div>
 
@@ -107,7 +106,6 @@ export function Outside() {
         </Reveal>
         <Reveal delay={0.08} className="lg:order-1">
           <ThermalCompare />
-          <p className="mt-3 text-[13px] text-ink-3">{t.note} Drag the divider to compare.</p>
         </Reveal>
       </div>
 

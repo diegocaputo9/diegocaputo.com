@@ -282,7 +282,7 @@ export const projects: Project[] = [
       src: "/work/chaptercore-showdown-2400.webp",
       alt: "Diego Caputo presenting ChapterCore at the INCOSE Systems Showdown",
       caption: "Presenting ChapterCore at the INCOSE Systems Showdown, 23 March 2026",
-      credit: "INCOSE Systems Showdown, 23 March 2026. Official event photo",
+      credit: "INCOSE Systems Showdown, 23 March 2026",
       width: 2400,
       height: 1600,
     },
@@ -616,7 +616,6 @@ export const about = {
 // "Outside the lab": Diego's drone side business. Both visuals on the page are
 // placeholders (generated terrain, drawn thermal scene) until real projects exist.
 export const outside = {
-  kicker: "Side business",
   title: "Drones for engineering",
   brand: {
     name: "DDrone",
@@ -629,13 +628,11 @@ export const outside = {
     title: "Photogrammetry and 3D terrain",
     text: "Georeferenced flights capture hundreds of overlapping high-resolution photos. Stitching them together produces photo-accurate 3D models and height-accurate topographic maps that can be measured, planned on and compared over time.",
     tags: ["Georeferenced capture", "Image stitching", "3D models", "Topographic maps", "Contours"],
-    note: "Placeholder: a generated mountain, not survey data. A real project is coming soon.",
   },
   thermal: {
     title: "Thermal inspection",
     text: "Thermal imaging shows what the eye can't: leaks, failed insulation, trapped moisture and energy losses across roofs, buildings and plant equipment. One flight becomes a ranked list of fixes.",
     tags: ["Leak detection", "Heat loss", "Energy efficiency", "Building envelope"],
-    note: "Placeholder: an illustrative scene drawn for this page, not a real site.",
   },
   // Auburn Flyers: Auburn University's club cycling race team (SECCC, USA Cycling).
   // Originals in /Photos/Auburn Flyers cycling (gitignored).
