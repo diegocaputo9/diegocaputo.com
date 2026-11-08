@@ -179,10 +179,6 @@ body {
     var(--glass-shadow);
 }
 
-/* Pointer position, typed so the light can glide between positions. */
-@property --mx { syntax: "<percentage>"; inherits: true; initial-value: 18%; }
-@property --my { syntax: "<percentage>"; inherits: true; initial-value: 0%; }
-
 .glass::before,
 .glass::after {
   content: "";
@@ -200,23 +196,18 @@ body {
   transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* pointer light (GlassCard sets data-lit + --mx/--my): fades in fast and
-   trails the cursor by a few frames instead of snapping on */
+/* pointer light (GlassCard sets data-lit + --mx/--my): sits exactly under
+   the cursor (no transition on the position, so it never trails behind);
+   only its opacity fades, in on enter and out where the pointer left. */
 .glass::after {
-  background: radial-gradient(420px circle at var(--mx) var(--my), var(--glass-spec), transparent 55%);
+  background: radial-gradient(420px circle at var(--mx, 18%) var(--my, 0%), var(--glass-spec), transparent 55%);
   opacity: 0;
-  transition:
-    opacity 380ms cubic-bezier(0.16, 1, 0.3, 1),
-    --mx 120ms cubic-bezier(0.16, 1, 0.3, 1),
-    --my 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 380ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass[data-lit]::before { opacity: 0.2; }
 .glass[data-lit]::after {
   opacity: 0.55;
-  transition-duration: 160ms, 120ms, 120ms;
-}
-@media (prefers-reduced-motion: reduce) {
-  .glass::after { transition: opacity 160ms linear; }
+  transition-duration: 160ms;
 }
 
 .glass-strong {
