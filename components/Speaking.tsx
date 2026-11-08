@@ -7,7 +7,7 @@ const spans = ["md:col-span-7", "md:col-span-5"];
 // Two photos, wide + tall-cropped, so the band reads as one composition.
 export function Speaking() {
   return (
-    <section id="speaking" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-32">
+    <section id="speaking" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-24">
       <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
         <Reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">{speaking.title}</h2>

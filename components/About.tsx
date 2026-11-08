@@ -1,5 +1,6 @@
-import { Sparkle, Translate } from "@phosphor-icons/react/dist/ssr";
+import { Translate } from "@phosphor-icons/react/dist/ssr";
 import { about } from "@/content/site";
+import { AiSparkle } from "./AiSparkle";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
 
@@ -22,12 +23,7 @@ export function About() {
         <Reveal delay={0.08}>
           <GlassCard tilt={2} className="rounded-[24px] p-6 md:p-7">
             <p className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-ink">
-              {/* big star turns a quarter every few seconds while two small ones pop out */}
-              <span aria-hidden className="ai-spark relative inline-grid h-[18px] w-[18px] place-items-center text-accent">
-                <Sparkle size={18} weight="fill" className="ai-spark-main" />
-                <Sparkle size={7} weight="fill" className="ai-spark-pop ai-spark-pop-1 absolute" />
-                <Sparkle size={6} weight="fill" className="ai-spark-pop ai-spark-pop-2 absolute" />
-              </span>
+              <AiSparkle />
               AI in industrial engineering
             </p>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{about.ai}</p>

@@ -105,15 +105,20 @@ export function RobotArm({ className }: { className?: string }) {
       <rect pathLength={P} x={128} y={270} width={64} height={30} rx={4} />
       <circle pathLength={P} cx={160} cy={258} r={16} />
       <circle pathLength={P} cx={160} cy={258} r={5} />
-      {/* lower arm */}
-      <path pathLength={P} d="M146 250 L104 152 M174 252 L128 146" />
-      <circle pathLength={P} cx={114} cy={146} r={14} />
-      <circle pathLength={P} cx={114} cy={146} r={4} />
-      {/* upper arm */}
-      <path pathLength={P} d="M120 133 L222 84 M126 158 L232 108" />
-      <circle pathLength={P} cx={228} cy={96} r={10} />
-      {/* wrist + gripper */}
-      <path pathLength={P} d="M236 102 L262 134 M262 134 L252 156 M262 134 L276 152 M248 152 L256 160 M272 148 L282 154" />
+      {/* lower arm pivots at the shoulder, upper arm at the elbow (bp-arm-* in globals.css) */}
+      <g className="bp-arm-lower" style={{ transformOrigin: "160px 258px" }}>
+        <path pathLength={P} d="M146 250 L104 152 M174 252 L128 146" />
+        <circle pathLength={P} cx={114} cy={146} r={14} />
+        <circle pathLength={P} cx={114} cy={146} r={4} />
+        <g className="bp-arm-upper" style={{ transformOrigin: "114px 146px" }}>
+          <path pathLength={P} d="M120 133 L222 84 M126 158 L232 108" />
+          <circle pathLength={P} cx={228} cy={96} r={10} />
+          {/* wrist + gripper */}
+          <g className="bp-arm-wrist" style={{ transformOrigin: "228px 96px" }}>
+            <path pathLength={P} d="M236 102 L262 134 M262 134 L252 156 M262 134 L276 152 M248 152 L256 160 M272 148 L282 154" />
+          </g>
+        </g>
+      </g>
       {/* construction */}
       <path className="dash" d="M118 258 A42 42 0 0 1 160 216" />
       <line className="dash" x1={160} y1={258} x2={266} y2={146} />
@@ -206,10 +211,15 @@ function gearPath(cx: number, cy: number, teeth: number, rOut: number, rIn: numb
 export function Gears({ className }: { className?: string }) {
   return (
     <Sketch viewBox="0 0 300 220" label={19} className={className}>
-      <path pathLength={P} d={gearPath(100, 110, 16, 74, 62)} />
-      <circle pathLength={P} cx={100} cy={110} r={18} />
-      <path pathLength={P} d={gearPath(211, 86, 10, 46, 36)} />
-      <circle pathLength={P} cx={211} cy={86} r={11} />
+      {/* meshing gears: opposite directions, speeds in the 16:10 ratio */}
+      <g className="bp-gear-big" style={{ transformOrigin: "100px 110px" }}>
+        <path pathLength={P} d={gearPath(100, 110, 16, 74, 62)} />
+        <circle pathLength={P} cx={100} cy={110} r={18} />
+      </g>
+      <g className="bp-gear-small" style={{ transformOrigin: "211px 86px" }}>
+        <path pathLength={P} d={gearPath(211, 86, 10, 46, 36)} />
+        <circle pathLength={P} cx={211} cy={86} r={11} />
+      </g>
       <line className="dash" x1={10} y1={110} x2={190} y2={110} />
       <line className="dash" x1={100} y1={20} x2={100} y2={200} />
       <line className="dash" x1={150} y1={86} x2={272} y2={86} />
@@ -226,6 +236,10 @@ export function Andon({ className }: { className?: string }) {
       {[24, 62, 100].map((y) => (
         <rect key={y} pathLength={P} x={36} y={y} width={48} height={38} rx={4} />
       ))}
+      {/* lamps: RUN most of the time, CALL now and then, a short STOP */}
+      <rect className="bp-lamp bp-lamp-stop" x={40} y={28} width={40} height={30} rx={3} />
+      <rect className="bp-lamp bp-lamp-call" x={40} y={66} width={40} height={30} rx={3} />
+      <rect className="bp-lamp bp-lamp-run" x={40} y={104} width={40} height={30} rx={3} />
       <line pathLength={P} x1={60} y1={138} x2={60} y2={228} />
       <rect pathLength={P} x={30} y={228} width={60} height={14} rx={2} />
       <g className="dim">

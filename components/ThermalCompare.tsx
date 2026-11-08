@@ -184,7 +184,6 @@ export function ThermalCompare() {
           <span className="h-1.5 w-32 rounded-full" style={{ background: ironGradient }} />
           <span className="font-mono text-[12px] text-ink-3">{T_MAX}+ °C</span>
         </div>
-        <span className="font-mono text-[12px] text-ink-3">Sample scene · placeholder</span>
       </div>
     </div>
   );

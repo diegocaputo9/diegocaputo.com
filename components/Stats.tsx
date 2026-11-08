@@ -1,4 +1,5 @@
 import { stats } from "@/content/site";
+import { CountUp } from "./CountUp";
 import { Reveal } from "./Reveal";
 
 export function Stats() {
@@ -10,7 +11,7 @@ export function Stats() {
             <dt className="sr-only">{s.label}</dt>
             <dd>
               <p className="flex flex-wrap items-baseline gap-x-1.5 font-mono text-[28px] font-medium leading-tight tracking-tight text-ink md:text-4xl">
-                {s.value}
+                <CountUp value={s.value} />
                 <span className="font-sans text-sm font-normal tracking-normal text-ink-3">
                   {s.unit}
                 </span>

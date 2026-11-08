@@ -16,7 +16,7 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
   return (
     <section
       id="experience"
-      className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-32"
+      className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-24"
     >
       <Gears className="absolute right-[3%] top-16 -z-10 hidden w-[200px] xl:block" />
       <Reveal>

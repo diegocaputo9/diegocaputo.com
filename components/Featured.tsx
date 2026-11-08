@@ -7,7 +7,7 @@ import { Reveal } from "./Reveal";
 
 export function Featured({ title = "Selected work" }: { title?: string }) {
   return (
-    <section id="work" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-32">
+    <section id="work" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-24">
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">{title}</h2>
       </Reveal>

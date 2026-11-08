@@ -25,7 +25,7 @@ export function Outside() {
   const b = outside.brand;
   const c = outside.cycling;
   return (
-    <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-32">
+    <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-24">
       <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">
         <div>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
