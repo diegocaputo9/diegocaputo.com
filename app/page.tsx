@@ -50,12 +50,26 @@ const personJsonLd = {
   ),
 };
 
+// schema.org WebSite: the name Google shows above the result (instead of the
+// bare domain). Only valid on the home page.
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  alternateName: ["Diego R. Caputo", "diegocaputo.com"],
+  url: `${site.url}/`,
+};
+
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c") }}
       />
       <Backdrop />
       <Nav />
