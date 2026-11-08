@@ -376,7 +376,7 @@ export const experience: Role[] = [
     role: "Data Specialist",
     org: "Bank Superintendence",
     place: "Dominican Republic",
-    period: "2021 - 2022",
+    period: "2021",
     points: [
       "Executive dashboards for senior leadership",
       "Reusable ETL pipelines that cut about one week from each reporting cycle",
@@ -391,12 +391,16 @@ export const experience: Role[] = [
     },
   },
   {
-    role: "Systems Engineer II",
+    role: "Engineer III, Processes",
     org: "Claro Dominicana",
     place: "Dominican Republic",
     period: "2017 - 2021",
-    points: ["Analyzed and automated service provisioning processes"],
+    points: [
+      "Analyzed and automated service provisioning processes",
+      "Started as Senior Process/Data Analyst (2017 - 2018)",
+    ],
     details: [
+      "I joined Claro as a Senior Process/Data Analyst and was promoted to Engineer III in the processes team in 2018.",
       "I analyzed the provisioning processes for operating system services, assessed requirements and feasibility, and automated steps to make service activation more efficient.",
     ],
   },
@@ -404,7 +408,7 @@ export const experience: Role[] = [
     role: "Production Supervisor",
     org: "IE Industrial Electric",
     place: "Dominican Republic",
-    period: "2016 - 2017",
+    period: "2016",
     points: ["Supervised about 50 operators against production, safety and quality targets"],
     details: [
       "I supervised about 50 plant operators against production, safety and quality requirements, and coordinated daily production schedules with limited resources.",
