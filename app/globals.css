@@ -119,13 +119,26 @@ body {
 
 /* ------------------------------------------------------------------
    Grid backdrop. Fixed, pointer-events-none, faded at the edges.
+   .backdrop-fade holds the edge fade still; the patterns inside it are one
+   "+" tile (224px) taller than the screen and slide up with --grid-shift
+   (set by Backdrop.tsx on scroll, 6% of the scroll distance).
 ------------------------------------------------------------------- */
+.backdrop-fade {
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, #000 45%, transparent 100%);
+}
+.backdrop-scroll {
+  position: absolute;
+  inset: 0 0 -224px 0;
+  transform: translate3d(0, var(--grid-shift, 0px), 0);
+  will-change: transform;
+}
+
 .grid-backdrop {
   background-image:
     linear-gradient(to right, var(--grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, #000 45%, transparent 100%);
 }
 
 /* "+" registration marks on every 4th grid intersection, like a drawing sheet.
@@ -133,15 +146,12 @@ body {
 .plus-backdrop {
   background-color: var(--plus);
   --plus-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='224'%3E%3Cpath d='M105.5 112.5h14M112.5 105.5v14' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E");
-  --plus-fade: radial-gradient(ellipse 90% 80% at 50% 35%, #000 45%, transparent 100%);
-  -webkit-mask-image: var(--plus-tile), var(--plus-fade);
-  -webkit-mask-size: 224px 224px, 100% 100%;
-  -webkit-mask-repeat: repeat, no-repeat;
-  -webkit-mask-composite: source-in;
-  mask-image: var(--plus-tile), var(--plus-fade);
-  mask-size: 224px 224px, 100% 100%;
-  mask-repeat: repeat, no-repeat;
-  mask-composite: intersect;
+  -webkit-mask-image: var(--plus-tile);
+  -webkit-mask-size: 224px 224px;
+  -webkit-mask-repeat: repeat;
+  mask-image: var(--plus-tile);
+  mask-size: 224px 224px;
+  mask-repeat: repeat;
 }
 
 .blob {
