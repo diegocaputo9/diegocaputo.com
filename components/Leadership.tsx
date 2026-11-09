@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, GraduationCap, Medal } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, Certificate, GraduationCap, Medal } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { certificates, credentials, education, honors, leadership } from "@/content/site";
 import { KanbanCard } from "./Blueprint";
@@ -62,10 +62,17 @@ export function Leadership() {
           <ul className="mt-5">
             {education.map((e) => (
               <li key={e.degree} className="flex items-start gap-3 border-t border-line py-4">
-                <DegreeMark level={e.level} />
+                {e.level === 0 ? (
+                  <span aria-hidden className="flex w-[22px] shrink-0 justify-center text-ink-3">
+                    <Certificate size={21} weight="light" />
+                  </span>
+                ) : (
+                  <DegreeMark level={e.level} />
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-medium text-ink">{e.degree}</p>
                   <p className="text-[14px] text-ink-3">{e.school}</p>
+                  {e.certificate && <CertLink {...e.certificate} title={`${e.degree}, ${e.school}`} className="mt-1.5" />}
                 </div>
                 <p className="mt-1 shrink-0 font-mono text-[12px] text-ink-3">{e.year}</p>
               </li>
@@ -114,6 +121,7 @@ export function Leadership() {
                   ) : (
                     <p className="font-mono text-[12px] text-ink-3">{h.year}</p>
                   )}
+                  {h.certificate && <CertLink {...h.certificate} title={h.title} className="mt-1.5" />}
                 </div>
               </li>
             ))}

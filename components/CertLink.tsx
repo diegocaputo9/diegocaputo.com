@@ -1,10 +1,22 @@
 import { ArrowUpRight, Certificate } from "@phosphor-icons/react/dist/ssr";
 
 // A quiet inline link to a certificate PDF (opens in the site's PDF viewer).
-export function CertLink({ label, href, className = "" }: { label: string; href: string; className?: string }) {
+// title: heading shown in the PDF viewer (defaults to the link label)
+export function CertLink({
+  label,
+  href,
+  title,
+  className = "",
+}: {
+  label: string;
+  href: string;
+  title?: string;
+  className?: string;
+}) {
   return (
     <a
       href={href}
+      data-pdf-title={title}
       target="_blank"
       rel="noreferrer"
       className={`group/cert inline-flex items-center gap-1.5 text-[13px] text-ink-3 transition-colors hover:text-accent ${className}`}

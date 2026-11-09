@@ -34,6 +34,8 @@ export const credentials: {
   title: string;
   issuer: string;
   status?: string;
+  /** photo of the certificate (PDF), opened in the site's PDF viewer */
+  href?: string;
 }[] = [
   {
     mark: "/work/international-green-belt-badge.webp",
@@ -41,7 +43,13 @@ export const credentials: {
     title: "International Lean Six Sigma Green Belt",
     issuer: "Auburn University & THWS, Germany 2026",
   },
-  { mark: "GB", kind: "green", title: "Lean Six Sigma Green Belt", issuer: "Auburn University" },
+  {
+    mark: "/work/auburn-green-belt-badge.webp",
+    kind: "badge",
+    title: "Lean Six Sigma Green Belt",
+    issuer: "Auburn University, Dec 2023",
+    href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf",
+  },
   {
     mark: "BB",
     kind: "black",
@@ -52,8 +60,9 @@ export const credentials: {
   {
     mark: "",
     kind: "cert",
-    title: "Modeling and Data Analytics for Operations",
-    issuer: "Graduate certificate, Auburn University",
+    title: "Modeling and Data Analytics",
+    issuer: "Graduate certificate, Auburn University, Aug 2025",
+    href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf",
   },
 ];
 
@@ -501,15 +510,35 @@ export const news: {
 ];
 
 // level: graduation-cap rank mark (1 bar bachelor's, 2 master's, 3 doctorate in platinum)
-export const education: { degree: string; school: string; year: string; level: 1 | 2 | 3 }[] = [
+// certificate: graduate certificates get a certificate icon instead of a cap, plus a quiet link to the PDF
+export const education: {
+  degree: string;
+  school: string;
+  year: string;
+  level: 0 | 1 | 2 | 3;
+  certificate?: CertRef;
+}[] = [
   { degree: "PhD, Industrial & Systems Engineering", school: "Auburn University", year: "Expected 2027", level: 3 },
   { degree: "MS, Industrial & Systems Engineering", school: "Auburn University", year: "2026", level: 2 },
+  {
+    degree: "Graduate Certificate, Modeling and Data Analytics",
+    school: "Auburn University",
+    year: "2025",
+    level: 0,
+    certificate: { label: "Certificate", href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf" },
+  },
   { degree: "Master of Engineering Management", school: "Auburn University", year: "2023", level: 2 },
   { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017", level: 1 },
 ];
 
 // years: per-year links shown in one line (e.g. each IPC winners list)
-export const honors: { title: string; year: string; href?: string; years?: { label: string; href: string }[] }[] = [
+export const honors: {
+  title: string;
+  year: string;
+  href?: string;
+  years?: { label: string; href: string }[];
+  certificate?: CertRef;
+}[] = [
   {
     title: "Winner, INCOSE Systems Showdown",
     year: "2026",
@@ -519,6 +548,7 @@ export const honors: { title: string; year: string; href?: string; years?: { lab
     title: "JT Black Lean Engineering Student of the Year",
     year: "2022",
     href: "https://eng.auburn.edu/news/2023/02/ise-graduate-student-presented-lean-engineering-award",
+    certificate: { label: "Award certificate", href: "/certificates/auburn-jt-black-lean-engineering-award-2022.pdf" },
   },
   {
     title: "IPC Scholarship",
@@ -529,7 +559,11 @@ export const honors: { title: string; year: string; href?: string; years?: { lab
       { label: "2025", href: "https://www.electronicsfoundation.org/2025-scholarship-winners" },
     ],
   },
-  { title: "Lean Six Sigma Green Belt", year: "Auburn University" },
+  {
+    title: "Lean Six Sigma Green Belt",
+    year: "Auburn University, 2023",
+    certificate: { label: "Certificate", href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf" },
+  },
 ];
 
 // Full list for /certificates (not on the home page). Files live in public/certificates.

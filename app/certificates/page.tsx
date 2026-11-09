@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
 import { BackHome } from "@/components/BackHome";
+import { CertLink } from "@/components/CertLink";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
@@ -57,6 +58,7 @@ export default function CertificatesPage() {
                       {c.issuer}
                       {c.status && <span className="text-ink-3"> · {c.status}</span>}
                     </p>
+                    {c.href && <CertLink label="Certificate" href={c.href} title={c.title} className="mt-2" />}
                   </div>
                 </li>
               ))}
