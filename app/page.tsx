@@ -51,12 +51,14 @@ const personJsonLd = {
 };
 
 // schema.org WebSite: the name Google shows above the result (instead of the
-// bare domain). Only valid on the home page.
+// bare domain). Only valid on the home page. alternateName must not include
+// the domain itself, or Google may fall back to showing "diegocaputo.com".
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${site.url}/#website`,
   name: site.name,
-  alternateName: ["Diego R. Caputo", "diegocaputo.com"],
+  alternateName: "Diego R. Caputo",
   url: `${site.url}/`,
 };
 
