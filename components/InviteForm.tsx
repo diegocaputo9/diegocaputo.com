@@ -11,6 +11,13 @@ const field =
   "h-11 w-full rounded-xl border border-line bg-bg/70 px-3.5 text-[15px] text-ink placeholder:text-ink-3/70 outline-none transition-[border-color,box-shadow] focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_oklab,var(--accent)_14%,transparent)]";
 const label = "mb-1.5 block text-[13px] font-medium text-ink-2";
 
+// local calendar date as YYYY-MM-DD (what <input type="date"> uses)
+const ymd = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+// "2027-03-09" -> "Tuesday, March 9, 2027" for the email
+const longDate = (v: string) =>
+  new Date(`${v}T12:00:00`).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+
 // "Invite me to speak": a form in a dialog. The site is static (GitHub Pages),
 // so it posts to FormSubmit (site.inviteEndpoint), which emails the entries to
 // hello@diegocaputo.com (forwarded to Gmail). Reply-to is the sender's email.
@@ -18,9 +25,14 @@ export function InviteForm({ label: cta }: { label: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [sentTo, setSentTo] = useState("");
+  const [minDate, setMinDate] = useState(""); // tomorrow, set when the form opens
+  const [hasDate, setHasDate] = useState(false); // empty date shows muted like a placeholder
 
   const open = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (status !== "sending") setStatus("idle");
+    const t = new Date();
+    t.setDate(t.getDate() + 1);
+    setMinDate(ymd(t));
     setDialogOrigin(dialog.current, e.currentTarget);
     dialog.current?.showModal();
     document.documentElement.style.overflow = "hidden";
@@ -42,7 +54,7 @@ export function InviteForm({ label: cta }: { label: string }) {
           Name: data.name,
           Email: data.email,
           Organization: data.organization || "-",
-          Date: data.date || "-",
+          Date: data.date ? longDate(data.date) : "-",
           "Event or topic": data.event,
           Message: data.message,
           _replyto: data.email,
@@ -56,6 +68,7 @@ export function InviteForm({ label: cta }: { label: string }) {
       setSentTo(data.email);
       setStatus("sent");
       form.reset();
+      setHasDate(false);
     } catch {
       setStatus("error");
     }
@@ -146,7 +159,15 @@ export function InviteForm({ label: cta }: { label: string }) {
                 <label htmlFor="iv-date" className={label}>
                   Date <span className="font-normal text-ink-3">(optional)</span>
                 </label>
-                <input id="iv-date" name="date" maxLength={80} placeholder="e.g. March 2027" className={field} />
+                {/* native calendar (system picker on phones); only future dates */}
+                <input
+                  id="iv-date"
+                  name="date"
+                  type="date"
+                  min={minDate || undefined}
+                  onChange={(e) => setHasDate(!!e.currentTarget.value)}
+                  className={`${field} ${hasDate ? "" : "text-ink-3/70"} [color-scheme:light] dark:[color-scheme:dark] [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-60 [&::-webkit-calendar-picker-indicator]:hover:opacity-100 [&::-webkit-date-and-time-value]:text-left`}
+                />
               </div>
               <div className="sm:col-span-2">
                 <label htmlFor="iv-event" className={label}>
