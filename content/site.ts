@@ -23,6 +23,9 @@ export const site = {
     email: "hello@diegocaputo.com", // Namecheap forwarder to his Gmail (Gmail itself stays private)
     resume: "/Diego-Caputo-Resume.pdf", // built from resume/resume.html (no phone, no Gmail)
   },
+  // "Invite me to speak" form: FormSubmit emails the entries to hello@ (the
+  // first submission sends a one-time activation email there)
+  inviteEndpoint: "https://formsubmit.co/ajax/hello@diegocaputo.com",
 };
 
 // Shown in the hero. Official names checked Nov 2026: Auburn ISE graduate
@@ -78,7 +81,7 @@ export const stats = [
 export const speaking = {
   title: "Teaching & speaking",
   lede: "In Auburn's Lean Systems course I run every lab and give lectures each semester for 60 to 80 engineers, and I present research and products to academic and industry audiences.",
-  cta: { label: "Invite me to speak", href: "#contact" },
+  cta: { label: "Invite me to speak" },
   photos: [
     {
       name: "lean-lecture",

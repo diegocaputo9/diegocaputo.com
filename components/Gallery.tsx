@@ -1,9 +1,21 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { ArrowsOut, CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import type { GalleryItem } from "@/content/site";
 import { setDialogOrigin } from "./dialogOrigin";
+
+// The image box is the photo's own shape, as large as fits the stage (a size
+// container). max-width/max-height alone squash the box when the photo's shape
+// differs from the screen's, and the loading thumbnail behind it then shows
+// stretched at the sides (tall cycling photos on a wide screen).
+function fit(it: GalleryItem): React.CSSProperties {
+  return {
+    width: `min(100cqw, calc(100cqh * ${it.width} / ${it.height}))`,
+    height: "auto",
+    aspectRatio: `${it.width} / ${it.height}`,
+  };
+}
 
 // Keep the page from scrolling behind the open viewer.
 function lockScroll(on: boolean) {
@@ -16,14 +28,19 @@ function lockScroll(on: boolean) {
 // one figure at its own (wide) aspect ratio under a label, for charts and process
 // maps that a square thumbnail would crop. Each opens a
 // full-screen viewer; full-size files load only once the viewer opens.
+// `children` replaces the built-in layouts with the caller's own markup: any
+// element in it with data-open="<index>" opens that photo (e.g. the captioned
+// photos in Teaching & speaking).
 export function Gallery({
   items,
   label,
-  variant,
+  variant = "strip",
+  children,
 }: {
   items: GalleryItem[];
   label: string;
-  variant: "hero" | "strip" | "mosaic" | "wide";
+  variant?: "hero" | "strip" | "mosaic" | "wide";
+  children?: ReactNode;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
@@ -93,7 +110,17 @@ export function Gallery({
 
   return (
     <>
-      {variant === "mosaic" ? (
+      {children ? (
+        <div
+          className="contents"
+          onClick={(e) => {
+            const el = (e.target as Element).closest("[data-open]");
+            if (el) open(Number(el.getAttribute("data-open")), el);
+          }}
+        >
+          {children}
+        </div>
+      ) : variant === "mosaic" ? (
         <div className="grid h-[380px] grid-cols-[0.85fr_1fr] grid-rows-2 gap-2.5 sm:h-[520px] sm:gap-3">
           {items.slice(0, 3).map((it, i) => {
             const rest = items.length - 3;
@@ -258,7 +285,7 @@ export function Gallery({
             {current && !zoom && (
               // previous and current photo share one grid cell, so they overlap while crossfading
               <div
-                className="grid h-full w-full grid-cols-[100%] grid-rows-[100%] place-items-center"
+                className="grid h-full w-full grid-cols-[100%] grid-rows-[100%] place-items-center [container-type:size]"
                 onClick={(e) => e.target === e.currentTarget && close()}
               >
                 {prev && prev.src !== current.src && (
@@ -271,7 +298,8 @@ export function Gallery({
                     width={prev.width}
                     height={prev.height}
                     onAnimationEnd={() => setPrev(null)}
-                    className="viewer-out pointer-events-none max-h-full max-w-full rounded-lg object-contain [grid-area:1/1]"
+                    style={fit(prev)}
+                    className="viewer-out pointer-events-none rounded-lg [grid-area:1/1]"
                   />
                 )}
                 {/* eslint-disable-next-line @next/next/no-img-element -- full-size file, fetched only when the viewer opens */}
@@ -285,8 +313,8 @@ export function Gallery({
                   onClick={toggleZoom}
                   // loading state: the thumbnail (already downloaded for the card) fills
                   // the image box until the full-size file paints over it
-                  style={{ backgroundImage: `url(${current.thumb})`, backgroundSize: "100% 100%" }}
-                  className={`max-h-full max-w-full cursor-zoom-in rounded-lg object-contain [grid-area:1/1] ${prev ? "viewer-in" : ""}`}
+                  style={{ ...fit(current), backgroundImage: `url(${current.thumb})`, backgroundSize: "100% 100%" }}
+                  className={`cursor-zoom-in rounded-lg [grid-area:1/1] ${prev ? "viewer-in" : ""}`}
                 />
               </div>
             )}
