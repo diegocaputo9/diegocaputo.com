@@ -62,17 +62,17 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                         width={192}
                         height={192}
                         loading="lazy"
-                        className="pointer-events-none absolute -bottom-6 right-4 h-[72px] w-[72px] drop-shadow-[0_6px_16px_rgb(0_0_0/0.22)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:rotate-[-4deg] md:h-[84px] md:w-[84px]"
+                        className="pointer-events-none absolute -bottom-6 right-4 h-[72px] w-[72px] drop-shadow-[0_6px_16px_rgb(0_0_0/0.22)] transition-transform duration-500 ease-glide group-hover:-translate-y-1 group-hover:rotate-[-4deg] md:h-[84px] md:w-[84px]"
                       />
                     )}
-                    <figcaption className="mt-2 px-1 pr-24 font-mono text-[11.5px] leading-snug text-ink-3">
+                    <figcaption className="mt-2 px-1 pr-24 text-[12px] leading-snug text-ink-3">
                       {p.image.credit}
                     </figcaption>
                   </figure>
                 ) : p.photo ? (
                   <figure>
                     <Gallery variant="hero" label={p.photo.caption} items={[p.photo]} />
-                    <figcaption className="mt-2 px-1 font-mono text-[11.5px] leading-snug text-ink-3">
+                    <figcaption className="mt-2 px-1 text-[12px] leading-snug text-ink-3">
                       {p.photo.credit}
                     </figcaption>
                   </figure>
@@ -83,7 +83,7 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                     <Icon
                       size={38}
                       weight="thin"
-                      className="absolute bottom-4 left-4 text-ink-3 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1"
+                      className="absolute bottom-4 left-4 text-ink-3 transition-transform duration-500 ease-glide group-hover:-translate-y-1"
                     />
                     <span className="absolute right-4 top-3 font-mono text-[12px] text-ink-3">{p.year}</span>
                   </div>
@@ -98,10 +98,10 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                       target="_blank"
                       rel="noreferrer"
                       hrefLang="de"
-                      className="group/press mt-5 flex items-start gap-3 rounded-2xl border border-line p-3.5 transition-colors hover:border-accent/40 hover:bg-accent/[0.04]"
+                      className="group/press mt-5 flex items-start gap-3 rounded-2xl transition-colors md:border md:border-line md:p-3.5 md:hover:border-accent/40 md:hover:bg-accent/[0.04]"
                     >
                       <span className="min-w-0 flex-1">
-                        <span className="block font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3">
+                        <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">
                           In the press · {p.press.outlet} · {p.press.date}
                         </span>
                         <span lang="de" className="mt-1 block text-[14px] font-medium leading-snug text-ink">

@@ -16,7 +16,7 @@ export function Speaking() {
         <Reveal delay={0.06}>
           <a
             href={speaking.cta.href}
-            className="glass inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+            className="glass inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
           >
             <Microphone size={18} />
             {speaking.cta.label}
@@ -39,10 +39,10 @@ export function Speaking() {
                 loading="lazy"
                 decoding="async"
                 style={{ objectPosition: p.position }}
-                className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] md:aspect-auto md:h-[380px] lg:h-[420px]"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.03] md:aspect-auto md:h-[380px] lg:h-[420px]"
               />
               <figcaption className="absolute inset-x-3 bottom-3 rounded-[18px] bg-black/45 px-4 py-3 text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] backdrop-blur-md md:inset-x-4 md:bottom-4">
-                <p className="font-mono text-[11.5px] uppercase tracking-[0.14em] text-white/70">{p.kicker}</p>
+                <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-white/70">{p.kicker}</p>
                 <p className="mt-0.5 text-[15px] font-medium leading-snug">{p.title}</p>
                 <p className="text-[13px] text-white/75">{p.meta}</p>
               </figcaption>

@@ -19,7 +19,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
               href={featured.href}
               target="_blank"
               rel="noreferrer"
-              className="relative block self-center overflow-hidden rounded-[22px] border border-line bg-[#0b1120]"
+              className="relative block self-center overflow-hidden rounded-[20px] border md:rounded-[16px] border-line bg-[#0b1120]"
             >
               {/* the site's hero, recorded as one exact 28 s cycle so it loops without a seam */}
               <LoopVideo
@@ -30,7 +30,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
                 alt="Tiger Motors Lean Education Center homepage with an isometric drawing of the assembly lab, cars moving down the line"
                 width={1456}
                 height={680}
-                className="aspect-[1456/680] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+                className="aspect-[1456/680] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.02]"
               />
             </a>
             <div className="flex flex-col justify-center px-3 pb-4 lg:px-0 lg:pb-0 lg:pr-6">
@@ -57,7 +57,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/work/tiger-motors/"
-                  className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+                  className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
                 >
                   Read the case study
                   <ArrowRight size={15} weight="bold" />

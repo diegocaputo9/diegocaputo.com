@@ -30,7 +30,7 @@ export function RoleDetails({
   }
 
   const toggle = () => setOpen((o) => !o);
-  const ease = "ease-[cubic-bezier(0.16,1,0.3,1)]";
+  const ease = "ease-glide";
 
   return (
     <>

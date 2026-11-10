@@ -82,11 +82,11 @@ export function TerrainViewer() {
             {status === "error" ? "The 3D view needs WebGL, which is turned off in this browser." : "Loading 3D model…"}
           </div>
         )}
-        <span className="pointer-events-none absolute left-3 top-3 hidden rounded-full bg-bg/70 px-3 py-1.5 font-mono text-[12px] text-ink-2 backdrop-blur-md sm:block">
+        <span className="pointer-events-none absolute left-3 top-3 hidden rounded-full bg-bg/70 px-3 py-1.5 text-[12px] text-ink-2 backdrop-blur-md sm:block">
           Sample terrain · placeholder
         </span>
         <div className="pointer-events-none absolute right-3 top-3 rounded-2xl bg-bg/70 px-3 py-2 text-right backdrop-blur-md">
-          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3">Elevation</p>
+          <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Elevation</p>
           <p className="font-mono text-[14px] text-ink">
             <span ref={readout}>Hover or tap</span>
           </p>

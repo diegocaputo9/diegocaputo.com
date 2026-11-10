@@ -26,10 +26,10 @@ export function NewsList({ phoneLimit }: { phoneLimit?: number }) {
                   className="aspect-video w-full object-cover"
                 />
               </span>
-              <span className="mt-2 block font-mono text-[11px] text-ink-3">{n.date}</span>
+              <span className="mt-2 block font-mono text-[12px] text-ink-3">{n.date}</span>
               <span
                 lang={n.lang}
-                className="mt-0.5 line-clamp-3 text-[13.5px] font-medium leading-snug text-ink transition-colors group-hover:text-accent"
+                className="mt-0.5 line-clamp-3 text-[14px] font-medium leading-snug text-ink transition-colors group-hover:text-accent"
               >
                 {n.title}
               </span>
@@ -59,7 +59,7 @@ export function NewsList({ phoneLimit }: { phoneLimit?: number }) {
                   height={180}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-video w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                  className="aspect-video w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.04]"
                 />
               </div>
               <div className="col-start-2 md:col-start-3 md:row-start-1">

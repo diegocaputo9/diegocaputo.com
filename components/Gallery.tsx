@@ -108,7 +108,7 @@ export function Gallery({
                   loading="lazy"
                   decoding="async"
                   style={it.position ? { objectPosition: it.position } : undefined}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/m:scale-[1.04]"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-glide group-hover/m:scale-[1.04]"
                 />
                 {i === 2 && rest > 0 && (
                   <span className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
@@ -121,7 +121,7 @@ export function Gallery({
         </div>
       ) : variant === "wide" ? (
         <div className="mt-5">
-          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3">{label}</p>
+          <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{label}</p>
           <button
             type="button"
             onClick={() => open(0)}
@@ -137,13 +137,13 @@ export function Gallery({
               height={items[0].height}
               loading="lazy"
               decoding="async"
-              className="block h-auto w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/wide:scale-[1.02]"
+              className="block h-auto w-full transition-transform duration-500 ease-glide group-hover/wide:scale-[1.02]"
             />
             <span className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/wide:opacity-100 group-focus-visible/wide:opacity-100">
               <ArrowsOut size={13} weight="bold" />
             </span>
           </button>
-          {items[0].short && <p className="mt-1.5 text-[12.5px] leading-snug text-ink-3">{items[0].short}</p>}
+          {items[0].short && <p className="mt-1.5 text-[13px] leading-snug text-ink-3">{items[0].short}</p>}
         </div>
       ) : variant === "hero" ? (
         <button
@@ -163,7 +163,7 @@ export function Gallery({
             height={items[0].height}
             loading="lazy"
             decoding="async"
-            className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+            className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.02]"
           />
           <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100 max-md:opacity-100">
             <ArrowsOut size={14} weight="bold" />
@@ -172,7 +172,7 @@ export function Gallery({
         </button>
       ) : (
         <div className="mt-5">
-          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3">{label}</p>
+          <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{label}</p>
           <ul className="mt-2.5 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
             {items.map((it, i) => (
               <li key={it.src}>
@@ -192,10 +192,10 @@ export function Gallery({
                       height={240}
                       loading="lazy"
                       decoding="async"
-                      className="aspect-[3/2] w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/thumb:scale-[1.05]"
+                      className="aspect-[3/2] w-full object-cover transition-transform duration-500 ease-glide group-hover/thumb:scale-[1.05]"
                     />
                   </span>
-                  <span className="mt-1.5 block text-[12.5px] leading-snug text-ink-3 transition-colors group-hover/thumb:text-ink">
+                  <span className="mt-1.5 block text-[13px] leading-snug text-ink-3 transition-colors group-hover/thumb:text-ink">
                     {it.short}
                   </span>
                 </button>
@@ -213,7 +213,7 @@ export function Gallery({
       >
         <div className="flex h-full flex-col" onClick={(e) => e.target === e.currentTarget && close()}>
           <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <p className="min-w-0 truncate font-mono text-[12px] text-white/70">
+            <p className="min-w-0 truncate text-[13px] text-white/70">
               {many && index !== null && `${index + 1} / ${items.length} · `}
               {current?.caption}
             </p>
@@ -236,7 +236,13 @@ export function Gallery({
                 height={current.height}
                 decoding="async"
                 onClick={toggleZoom}
-                style={zoom ? { width: zoom, maxWidth: "none", height: "auto" } : undefined}
+                // loading state: the thumbnail (already downloaded for the card) fills
+                // the image box until the full-size file paints over it
+                style={{
+                  backgroundImage: `url(${current.thumb})`,
+                  backgroundSize: "100% 100%",
+                  ...(zoom ? { width: zoom, maxWidth: "none", height: "auto" } : {}),
+                }}
                 className={
                   zoom
                     ? "mx-auto block cursor-zoom-out rounded-lg"

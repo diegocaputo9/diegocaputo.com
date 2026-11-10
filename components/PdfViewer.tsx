@@ -251,7 +251,7 @@ export function PdfViewer() {
         <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-white/10 bg-black/40 px-3 py-2 backdrop-blur-xl sm:px-4">
           <div className="min-w-0 flex-1">
             <p className="truncate text-[14px] font-medium">{doc?.title}</p>
-            <p className="truncate font-mono text-[11.5px] text-white/55">
+            <p className="truncate font-mono text-[12px] text-white/55">
               {doc?.file}
               {pages > 0 && ` · ${pages} page${pages > 1 ? "s" : ""}`}
             </p>

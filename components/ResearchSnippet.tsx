@@ -44,7 +44,7 @@ export function ResearchSnippet() {
 
       {/* Posters and reports: smaller than the papers; each opens its PDF in the in-page viewer */}
       <Reveal delay={0.06} className="mt-12 hidden sm:block">
-        <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">Posters &amp; reports</p>
+        <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Posters &amp; reports</p>
         <ul className="mt-4 grid gap-4 sm:grid-cols-3">
           {researchMaterials.map((m) => (
             <li key={m.href}>
@@ -55,7 +55,7 @@ export function ResearchSnippet() {
                 rel="noreferrer"
                 className="group flex h-full flex-col rounded-[20px] border border-line p-2.5 transition-colors hover:border-accent/40 hover:bg-accent/[0.03]"
               >
-                <span className="block aspect-[4/3] w-full overflow-hidden rounded-xl border border-line bg-white">
+                <span className="block aspect-[4/3] w-full overflow-hidden rounded-[10px] border border-line bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
                   <img
                     src={m.image}
@@ -66,17 +66,17 @@ export function ResearchSnippet() {
                     height={360}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 ease-glide group-hover:scale-[1.03]"
                   />
                 </span>
                 {/* fixed 2-line title and meta so every card's lines sit at the same height */}
                 <span className="flex flex-1 flex-col px-1.5 pb-1.5 pt-3.5">
-                  <span className="block font-mono text-[11.5px] uppercase tracking-[0.12em] text-ink-3">{m.kind}</span>
+                  <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{m.kind}</span>
                   <span className="mt-1 line-clamp-2 min-h-[2.75em] text-[14px] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
                     {m.title}
                   </span>
-                  <span className="mt-1 line-clamp-2 min-h-[2.75em] text-[12.5px] leading-snug text-ink-3">{m.meta}</span>
-                  <span className="mt-auto inline-flex items-center gap-1 pt-2 text-[12.5px] text-ink-3 transition-colors group-hover:text-accent">
+                  <span className="mt-1 line-clamp-2 min-h-[2.75em] text-[13px] leading-snug text-ink-3">{m.meta}</span>
+                  <span className="mt-auto inline-flex items-center gap-1 pt-2 text-[13px] text-ink-3 transition-colors group-hover:text-accent">
                     <FilePdf size={14} />
                     Open PDF
                   </span>
@@ -90,7 +90,7 @@ export function ResearchSnippet() {
       <Reveal delay={0.1}>
         <Link
           href="/research/"
-          className="group mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+          className="group mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
         >
           Read about the research
           <ArrowRight size={16} weight="bold" className="transition-transform duration-300 group-hover:translate-x-0.5" />

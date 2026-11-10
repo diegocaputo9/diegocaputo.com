@@ -72,7 +72,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
           height={image.height}
           loading="lazy"
           decoding="async"
-          className="aspect-[1280/513] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+          className="aspect-[1280/513] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.02]"
         />
         <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/clip:opacity-100 group-focus-visible/clip:opacity-100 max-md:opacity-100">
           <ArrowsOut size={14} weight="bold" />
@@ -88,7 +88,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
       >
         <div className="flex h-full flex-col" onClick={(e) => e.target === e.currentTarget && close()}>
           <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <p className="min-w-0 truncate font-mono text-[12px] text-white/70">{image.credit}</p>
+            <p className="min-w-0 truncate text-[13px] text-white/70">{image.credit}</p>
             <div className="flex shrink-0 items-center gap-1.5">
               <button
                 type="button"

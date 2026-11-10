@@ -38,11 +38,11 @@ export function Outside() {
             alt={`${b.name} logo`}
             width={64}
             height={64}
-            className="h-16 w-16 shrink-0 rounded-[16px] shadow-[0_4px_14px_rgb(0_0_0/0.18)]"
+            className="h-16 w-16 shrink-0 rounded-[12px] shadow-[0_4px_14px_rgb(0_0_0/0.18)]"
           />
           <div>
             <p className="text-[16px] font-semibold tracking-tight text-ink">{b.name}</p>
-            <p className="font-mono text-[12px] text-ink-3">
+            <p className="text-[13px] font-medium text-ink-3">
               {outside.title}
             </p>
             <div className="mt-2 flex flex-wrap gap-1.5">
@@ -69,8 +69,7 @@ export function Outside() {
 
       <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         <Reveal>
-          <p className="font-mono text-[12px] text-ink-3">01</p>
-          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{p.title}</h3>
+          <h3 className="text-2xl font-semibold tracking-tight text-ink">{p.title}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{p.text}</p>
           <Tags items={p.tags} />
           <p className="mt-6 text-[13px] text-ink-3">
@@ -87,8 +86,7 @@ export function Outside() {
 
       <div className="mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
         <Reveal className="lg:order-2">
-          <p className="font-mono text-[12px] text-ink-3">02</p>
-          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{t.title}</h3>
+          <h3 className="text-2xl font-semibold tracking-tight text-ink">{t.title}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{t.text}</p>
           <ol className="mt-6 space-y-3">
             {findings.map((f) => (
@@ -111,8 +109,7 @@ export function Outside() {
 
       <div className="mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         <Reveal>
-          <p className="font-mono text-[12px] text-ink-3">03</p>
-          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{c.title}</h3>
+          <h3 className="text-2xl font-semibold tracking-tight text-ink">{c.title}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{c.text}</p>
           <ul className="mt-6 space-y-3">
             {c.roles.map((r) => (

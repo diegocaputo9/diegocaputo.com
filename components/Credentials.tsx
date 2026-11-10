@@ -12,8 +12,9 @@ const mark = {
 export function Credentials() {
   return (
     <div>
-      <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">Credentials</p>
-      <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+      <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Credentials</p>
+      {/* phones: one glass panel, rows grouped by spacing (see .cred-list); larger: one glass card each */}
+      <ul className="cred-list mt-3 grid gap-2.5 max-sm:gap-0 max-sm:rounded-[20px] max-sm:py-1 sm:grid-cols-2">
         {credentials.map((c) => {
           const body = (
             <>
@@ -36,7 +37,7 @@ export function Credentials() {
               )}
               <div className="min-w-0 flex-1">
                 <p className="text-[14px] font-medium leading-snug tracking-tight text-ink">{c.title}</p>
-                <p className="mt-0.5 text-[12.5px] leading-snug text-ink-3">
+                <p className="mt-0.5 text-[13px] leading-snug text-ink-3">
                   {c.issuer}
                   {c.status && <span className="text-accent"> · {c.status}</span>}
                 </p>

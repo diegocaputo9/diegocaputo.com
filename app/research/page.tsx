@@ -200,7 +200,7 @@ export default function ResearchPage() {
                         height={360}
                         loading="lazy"
                         decoding="async"
-                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.03]"
                       />
                     </span>
                   </a>
@@ -256,7 +256,7 @@ export default function ResearchPage() {
                           height={360}
                           loading="lazy"
                           decoding="async"
-                          className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                          className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.03]"
                         />
                       </span>
                       <span className="mt-2 flex items-center gap-1 text-[13px] text-ink-3 transition-colors group-hover:text-accent">

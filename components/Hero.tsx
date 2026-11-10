@@ -35,7 +35,7 @@ export function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
                 href="#work"
-                className="group inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="group inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 View work
                 <ArrowDown
@@ -46,7 +46,7 @@ export function Hero() {
               </a>
               <a
                 href="#contact"
-                className="glass inline-flex h-12 items-center rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="glass inline-flex h-12 items-center rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 Get in touch
               </a>
