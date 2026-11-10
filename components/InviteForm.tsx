@@ -8,7 +8,7 @@ import { setDialogOrigin } from "./dialogOrigin";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
-  "h-11 w-full rounded-xl border border-line bg-bg/70 px-3.5 text-[15px] text-ink placeholder:text-ink-3/70 outline-none transition-[border-color,box-shadow] focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_oklab,var(--accent)_22%,transparent)]";
+  "h-11 w-full rounded-xl border border-line bg-bg/70 px-3.5 text-[15px] text-ink placeholder:text-ink-3/70 outline-none transition-[border-color,box-shadow] focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_oklab,var(--accent)_14%,transparent)]";
 const label = "mb-1.5 block text-[13px] font-medium text-ink-2";
 
 // "Invite me to speak": a form in a dialog. The site is static (GitHub Pages),
