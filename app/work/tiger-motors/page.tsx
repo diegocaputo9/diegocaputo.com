@@ -47,14 +47,14 @@ export default function TigerMotorsPage() {
                 href={t.href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
               >
                 Visit tigermotorslean.com
                 <ArrowUpRight size={15} weight="bold" />
               </a>
               <Link
                 href="/research/#tiger-motors-platform"
-                className="glass inline-flex h-11 items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                className="glass inline-flex h-11 items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.97]"
               >
                 Read the paper summary
                 <ArrowRight size={15} />
@@ -65,7 +65,7 @@ export default function TigerMotorsPage() {
 
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <Reveal>
-            <GlassCard tilt={1} className="rounded-[32px] p-3 md:p-4">
+            <GlassCard tilt={1} className="rounded-4xl p-3 md:p-4">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}
               <img
                 src={t.image}
@@ -75,7 +75,7 @@ export default function TigerMotorsPage() {
                 alt="Tiger Motors Lean Education Center homepage with an isometric drawing of the assembly lab"
                 width={1456}
                 height={680}
-                className="aspect-[1456/680] w-full rounded-[20px] border border-line bg-[#0b1120] object-cover md:rounded-[16px]"
+                className="aspect-[1456/680] w-full rounded-panel border border-line bg-[#0b1120] object-cover md:rounded-2xl"
               />
               <dl className="grid grid-cols-2 gap-x-6 gap-y-4 px-3 pb-3 pt-5 md:grid-cols-4 md:px-4">
                 {t.facts.map(([k, v]) => (

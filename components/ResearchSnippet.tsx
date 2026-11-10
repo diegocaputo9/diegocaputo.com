@@ -53,9 +53,9 @@ export function ResearchSnippet() {
                 data-pdf-title={`${m.kind}: ${m.title}`}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex h-full flex-col rounded-[20px] border border-line p-2.5 transition-colors hover:border-accent/40 hover:bg-accent/[0.03]"
+                className="group flex h-full flex-col rounded-panel border border-line p-2 transition-[color,background-color,border-color,scale] duration-200 ease-glide active:scale-[0.97] hover:border-accent/40 hover:bg-accent/[0.03]"
               >
-                <span className="block aspect-[4/3] w-full overflow-hidden rounded-[10px] border border-line bg-white">
+                <span className="block aspect-[4/3] w-full overflow-hidden rounded-xl border border-line bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
                   <img
                     src={m.image}
@@ -90,7 +90,7 @@ export function ResearchSnippet() {
       <Reveal delay={0.1}>
         <Link
           href="/research/"
-          className="group mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
+          className="group mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
         >
           Read about the research
           <ArrowRight size={16} weight="bold" className="transition-transform duration-300 group-hover:translate-x-0.5" />

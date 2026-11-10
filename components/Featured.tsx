@@ -13,13 +13,13 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
       </Reveal>
 
       <Reveal delay={0.08} className="mt-12">
-        <GlassCard tilt={1.5} className="group rounded-[32px] p-3 md:p-4">
+        <GlassCard tilt={1.5} className="group rounded-4xl p-3 md:p-4">
           <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr] lg:gap-10">
             <a
               href={featured.href}
               target="_blank"
               rel="noreferrer"
-              className="relative block self-center overflow-hidden rounded-[20px] border md:rounded-[16px] border-line bg-[#0b1120]"
+              className="relative block self-center overflow-hidden rounded-panel border md:rounded-2xl border-line bg-[#0b1120]"
             >
               {/* the site's hero, recorded as one exact 28 s cycle so it loops without a seam */}
               <LoopVideo
@@ -57,7 +57,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/work/tiger-motors/"
-                  className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
+                  className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
                 >
                   Read the case study
                   <ArrowRight size={15} weight="bold" />
@@ -66,7 +66,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
                   href={featured.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="glass inline-flex h-11 w-fit items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
+                  className="glass inline-flex h-11 w-fit items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.97]"
                 >
                   Visit the site
                   <ArrowUpRight size={15} weight="bold" />

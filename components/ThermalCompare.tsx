@@ -67,13 +67,18 @@ export function ThermalCompare() {
         if (!e.isIntersecting || !drawn) return;
         sweep.disconnect();
         if (touched) return;
+        el.dataset.moving = "";
         const ctl = animate(50, [50, 32, 66, 50], {
           duration: 2.6,
           delay: 0.4,
           ease: "easeInOut",
           onUpdate: setSplit,
         });
-        stop = () => ctl.stop();
+        ctl.then(() => delete el.dataset.moving);
+        stop = () => {
+          ctl.stop();
+          delete el.dataset.moving;
+        };
       },
       { threshold: 0.6 },
     );
@@ -93,8 +98,15 @@ export function ThermalCompare() {
   }
 
   const dragging = useRef(false);
+  // the knob stretches ~12% sideways while it moves (data-moving on the box)
+  const moving = (on: boolean) => {
+    if (!box.current) return;
+    if (on) box.current.dataset.moving = "";
+    else delete box.current.dataset.moving;
+  };
   function onDown(e: React.PointerEvent<HTMLDivElement>) {
     dragging.current = true;
+    moving(true);
     e.currentTarget.setPointerCapture(e.pointerId);
     const p = posFromEvent(e);
     setSplit((p.x / p.w) * 100);
@@ -111,6 +123,7 @@ export function ThermalCompare() {
   }
   function onUp() {
     dragging.current = false;
+    moving(false);
   }
   function onLeave() {
     if (tip.current) tip.current.style.opacity = "0";
@@ -126,7 +139,7 @@ export function ThermalCompare() {
   }
 
   return (
-    <div className="glass overflow-hidden rounded-[28px]">
+    <div className="glass overflow-hidden rounded-card">
       <div
         ref={box}
         onPointerDown={onDown}
@@ -135,7 +148,7 @@ export function ThermalCompare() {
         onPointerCancel={onUp}
         onPointerLeave={onLeave}
         style={{ ["--split" as string]: "50%" }}
-        className="relative aspect-[16/10] cursor-ew-resize touch-pan-y select-none overflow-hidden bg-bg-2"
+        className="group/tc relative aspect-[16/10] cursor-ew-resize touch-pan-y select-none overflow-hidden bg-bg-2"
       >
         <canvas
           ref={aerial}
@@ -189,7 +202,7 @@ export function ThermalCompare() {
           aria-valuenow={50}
           aria-valuetext="Drag to compare visible and thermal"
           onKeyDown={onKey}
-          className="absolute left-[var(--split)] top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/70 bg-white/30 text-white shadow-[0_6px_24px_rgb(0_0_0/0.25)] backdrop-blur-md"
+          className="absolute left-[var(--split)] top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/70 bg-white/30 text-white shadow-[0_6px_24px_rgb(0_0_0/0.25)] backdrop-blur-md transition-[scale] duration-200 ease-glide group-data-[moving]/tc:scale-x-[1.12]"
         >
           <ArrowsHorizontal size={18} weight="bold" />
         </div>

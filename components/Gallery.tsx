@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowsOut, CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import type { GalleryItem } from "@/content/site";
+import { setDialogOrigin } from "./dialogOrigin";
 
 // Keep the page from scrolling behind the open viewer.
 function lockScroll(on: boolean) {
@@ -26,11 +27,15 @@ export function Gallery({
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
+  // the photo being replaced: it fades out under the new one (see .viewer-out)
+  const [prev, setPrev] = useState<GalleryItem | null>(null);
   const [zoom, setZoom] = useState<number | null>(null); // zoomed width in px, null = fit
   const stage = useRef<HTMLDivElement>(null);
   const many = items.length > 1;
 
-  const open = (i: number) => {
+  const open = (i: number, trigger?: Element) => {
+    setDialogOrigin(dialog.current, trigger);
+    setPrev(null);
     setIndex(i);
     setZoom(null);
     dialog.current?.showModal();
@@ -40,7 +45,11 @@ export function Gallery({
   const step = useCallback(
     (d: number) => {
       setZoom(null);
-      setIndex((i) => (i === null ? i : (i + d + items.length) % items.length));
+      setIndex((i) => {
+        if (i === null) return i;
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPrev(items[i]);
+        return (i + d + items.length) % items.length;
+      });
     },
     [items.length],
   );
@@ -80,7 +89,7 @@ export function Gallery({
     });
   };
   const btn =
-    "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 active:scale-95";
+    "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white backdrop-blur-md transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]";
 
   return (
     <>
@@ -92,10 +101,10 @@ export function Gallery({
               <button
                 key={it.src}
                 type="button"
-                onClick={() => open(i)}
+                onClick={(e) => open(i, e.currentTarget)}
                 aria-haspopup="dialog"
                 aria-label={`Open photo: ${it.caption}`}
-                className={`group/m relative block cursor-zoom-in overflow-hidden rounded-[20px] border border-line bg-bg-2 ${
+                className={`group/m relative block cursor-zoom-in transition-[scale] duration-200 ease-glide active:scale-[0.97] overflow-hidden rounded-panel border border-line bg-bg-2 ${
                   i === 0 ? "row-span-2" : ""
                 }`}
               >
@@ -124,10 +133,10 @@ export function Gallery({
           <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{label}</p>
           <button
             type="button"
-            onClick={() => open(0)}
+            onClick={(e) => open(0, e.currentTarget)}
             aria-haspopup="dialog"
             aria-label={`Open: ${items[0].caption}`}
-            className="group/wide relative mt-2.5 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-line"
+            className="group/wide relative mt-2.5 block w-full cursor-zoom-in transition-[scale] duration-200 ease-glide active:scale-[0.97] overflow-hidden rounded-xl border border-line"
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, small pre-sized webp */}
             <img
@@ -148,10 +157,10 @@ export function Gallery({
       ) : variant === "hero" ? (
         <button
           type="button"
-          onClick={() => open(0)}
+          onClick={(e) => open(0, e.currentTarget)}
           aria-haspopup="dialog"
           aria-label={`Open photo: ${items[0].caption}`}
-          className="group/photo relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-line bg-bg-2"
+          className="group/photo relative block w-full cursor-zoom-in transition-[scale] duration-200 ease-glide active:scale-[0.97] overflow-hidden rounded-2xl border border-line bg-bg-2"
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
           <img
@@ -178,10 +187,10 @@ export function Gallery({
               <li key={it.src}>
                 <button
                   type="button"
-                  onClick={() => open(i)}
+                  onClick={(e) => open(i, e.currentTarget)}
                   aria-haspopup="dialog"
                   aria-label={`Open: ${it.caption}`}
-                  className="group/thumb block w-full cursor-zoom-in text-left"
+                  className="group/thumb block w-full cursor-zoom-in transition-[scale] duration-200 ease-glide active:scale-[0.97] text-left"
                 >
                   <span className="block overflow-hidden rounded-xl border border-line bg-white">
                     {/* eslint-disable-next-line @next/next/no-img-element -- small static thumbnail */}
@@ -226,7 +235,7 @@ export function Gallery({
             className={`relative min-h-0 flex-1 ${zoom ? "overflow-auto" : "flex items-center justify-center px-4 pb-4 sm:px-16"}`}
             onClick={(e) => e.target === e.currentTarget && close()}
           >
-            {current && (
+            {current && zoom && (
               // eslint-disable-next-line @next/next/no-img-element -- full-size file, fetched only when the viewer opens
               <img
                 key={current.src}
@@ -236,19 +245,50 @@ export function Gallery({
                 height={current.height}
                 decoding="async"
                 onClick={toggleZoom}
-                // loading state: the thumbnail (already downloaded for the card) fills
-                // the image box until the full-size file paints over it
                 style={{
                   backgroundImage: `url(${current.thumb})`,
                   backgroundSize: "100% 100%",
-                  ...(zoom ? { width: zoom, maxWidth: "none", height: "auto" } : {}),
+                  width: zoom,
+                  maxWidth: "none",
+                  height: "auto",
                 }}
-                className={
-                  zoom
-                    ? "mx-auto block cursor-zoom-out rounded-lg"
-                    : "max-h-full max-w-full cursor-zoom-in rounded-lg object-contain"
-                }
+                className="mx-auto block cursor-zoom-out rounded-lg"
               />
+            )}
+            {current && !zoom && (
+              // previous and current photo share one grid cell, so they overlap while crossfading
+              <div
+                className="grid h-full w-full grid-cols-[100%] grid-rows-[100%] place-items-center"
+                onClick={(e) => e.target === e.currentTarget && close()}
+              >
+                {prev && prev.src !== current.src && (
+                  // eslint-disable-next-line @next/next/no-img-element -- outgoing photo, already loaded
+                  <img
+                    key={`out-${prev.src}`}
+                    src={prev.src}
+                    alt=""
+                    aria-hidden
+                    width={prev.width}
+                    height={prev.height}
+                    onAnimationEnd={() => setPrev(null)}
+                    className="viewer-out pointer-events-none max-h-full max-w-full rounded-lg object-contain [grid-area:1/1]"
+                  />
+                )}
+                {/* eslint-disable-next-line @next/next/no-img-element -- full-size file, fetched only when the viewer opens */}
+                <img
+                  key={current.src}
+                  src={current.src}
+                  alt={current.alt}
+                  width={current.width}
+                  height={current.height}
+                  decoding="async"
+                  onClick={toggleZoom}
+                  // loading state: the thumbnail (already downloaded for the card) fills
+                  // the image box until the full-size file paints over it
+                  style={{ backgroundImage: `url(${current.thumb})`, backgroundSize: "100% 100%" }}
+                  className={`max-h-full max-w-full cursor-zoom-in rounded-lg object-contain [grid-area:1/1] ${prev ? "viewer-in" : ""}`}
+                />
+              </div>
             )}
             {many && !zoom && (
               <>

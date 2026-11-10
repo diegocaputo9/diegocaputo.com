@@ -14,7 +14,7 @@ export function Credentials() {
     <div>
       <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Credentials</p>
       {/* phones: one glass panel, rows grouped by spacing (see .cred-list); larger: one glass card each */}
-      <ul className="cred-list mt-3 grid gap-2.5 max-sm:gap-0 max-sm:rounded-[20px] max-sm:py-1 sm:grid-cols-2">
+      <ul className="cred-list mt-3 grid gap-2.5 max-sm:gap-0 max-sm:rounded-panel max-sm:py-1 sm:grid-cols-2">
         {credentials.map((c) => {
           const body = (
             <>
@@ -30,7 +30,7 @@ export function Credentials() {
               ) : (
                 <span
                   aria-hidden
-                  className={`grid h-10 w-10 shrink-0 place-items-center rounded-[12px] font-mono text-[12px] font-semibold tracking-wide ${mark[c.kind]}`}
+                  className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl font-mono text-[12px] font-semibold tracking-wide ${mark[c.kind]}`}
                 >
                   {c.kind === "cert" ? <Certificate size={20} weight="duotone" /> : c.mark}
                 </span>
@@ -45,13 +45,13 @@ export function Credentials() {
             </>
           );
           return (
-            <li key={c.title} className="glass rounded-[20px]">
+            <li key={c.title} className="glass rounded-panel">
               {c.href ? (
                 // quiet link: opens the certificate in the site's PDF viewer
                 <a
                   href={c.href}
                   data-pdf-title={`${c.title}, certificate`}
-                  className="group flex items-center gap-3.5 p-3.5"
+                  className="group flex items-center gap-3.5 rounded-panel p-3.5 transition-[scale] duration-200 ease-glide active:scale-[0.97]"
                 >
                   {body}
                   <ArrowUpRight

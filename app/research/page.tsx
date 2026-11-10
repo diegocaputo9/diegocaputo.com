@@ -85,7 +85,7 @@ export default function ResearchPage() {
           {papers.map((p, i) => (
             <Reveal key={p.slug} delay={i === 0 ? 0.1 : 0}>
               <article id={p.slug} className="scroll-mt-28">
-                <GlassCard tilt={0} className="rounded-[28px] p-6 md:p-10">
+                <GlassCard tilt={0} className="rounded-card p-6 md:p-10">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-ink px-3 py-1 text-[12px] font-medium text-bg">{p.venue}</span>
                     <span className="rounded-full bg-ink/[0.05] px-3 py-1 text-[12px] text-ink-2 dark:bg-white/[0.06]">

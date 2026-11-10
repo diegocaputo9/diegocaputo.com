@@ -31,14 +31,14 @@ export function Outside() {
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
           <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
         </div>
-        <div className="glass flex w-fit items-center gap-4 rounded-[24px] p-3 pr-4">
+        <div className="glass flex w-fit items-center gap-4 rounded-3xl p-3 pr-4">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, small pre-sized logo */}
           <img
             src={b.logo}
             alt={`${b.name} logo`}
             width={64}
             height={64}
-            className="h-16 w-16 shrink-0 rounded-[12px] shadow-[0_4px_14px_rgb(0_0_0/0.18)]"
+            className="h-16 w-16 shrink-0 rounded-xl shadow-[0_4px_14px_rgb(0_0_0/0.18)]"
           />
           <div>
             <p className="text-[16px] font-semibold tracking-tight text-ink">{b.name}</p>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowsOut, ArrowUpRight, MagnifyingGlassMinus, MagnifyingGlassPlus, X } from "@phosphor-icons/react";
 import type { Project } from "@/content/site";
+import { setDialogOrigin } from "./dialogOrigin";
 
 type Img = NonNullable<Project["image"]>;
 
@@ -17,7 +18,8 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
   const full = image.full;
 
   const warm = () => setArmed(true);
-  const open = () => {
+  const open = (e: React.MouseEvent<HTMLElement>) => {
+    setDialogOrigin(dialog.current, e.currentTarget);
     setArmed(true);
     setZoom(false);
     dialog.current?.showModal();
@@ -49,7 +51,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
   }, []);
 
   const btn =
-    "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95";
+    "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]";
 
   return (
     <>
@@ -60,7 +62,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
         onFocus={warm}
         aria-haspopup="dialog"
         aria-label="Open the full newspaper page"
-        className="group/clip relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-line bg-[#e9e6df]"
+        className="group/clip relative block w-full cursor-zoom-in overflow-hidden transition-[scale] duration-200 ease-glide active:scale-[0.97] rounded-2xl border border-line bg-[#e9e6df]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
         <img

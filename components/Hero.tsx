@@ -35,7 +35,7 @@ export function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
                 href="#work"
-                className="group inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
+                className="group inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
               >
                 View work
                 <ArrowDown
@@ -46,7 +46,7 @@ export function Hero() {
               </a>
               <a
                 href="#contact"
-                className="glass inline-flex h-12 items-center rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
+                className="glass inline-flex h-12 items-center rounded-full px-6 text-[15px] font-medium text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
               >
                 Get in touch
               </a>
@@ -71,7 +71,7 @@ export function Hero() {
         </div>
 
         <div className="rise mx-auto w-full max-w-sm lg:max-w-none" style={d(400)}>
-          <GlassCard className="rounded-[28px] p-7">
+          <GlassCard className="rounded-card p-7">
             <div className="flex items-center gap-4">
               {/* TODO: replace monogram with a portrait (public/portrait.jpg) */}
               <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-to-br from-zinc-200 to-zinc-400 text-xl font-semibold tracking-tight text-zinc-800 shadow-[inset_0_1px_0_rgb(255_255_255/0.7)] dark:from-zinc-600 dark:to-zinc-800 dark:text-zinc-100">

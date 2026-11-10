@@ -11,6 +11,7 @@ import {
   X,
 } from "@phosphor-icons/react";
 import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
+import { setDialogOrigin } from "./dialogOrigin";
 
 // One viewer for every PDF link on the site. A click on any same-origin link to
 // a .pdf opens it here instead of downloading; cmd/ctrl/middle-click still opens
@@ -73,6 +74,7 @@ export function PdfViewer() {
       setZoom(1);
       setPercent(null);
       setPages(0);
+      setDialogOrigin(dialog.current, a);
       dialog.current?.showModal();
       document.documentElement.style.overflow = "hidden";
     };
@@ -117,7 +119,7 @@ export function PdfViewer() {
     const jobs: { canvas: HTMLCanvasElement; n: number }[] = [];
     for (let n = 1; n <= p.numPages; n++) {
       const canvas = document.createElement("canvas");
-      canvas.className = "mx-auto block rounded-[6px] bg-white shadow-[0_8px_40px_rgb(0_0_0/0.35)]";
+      canvas.className = "mx-auto block rounded-md bg-white shadow-[0_8px_40px_rgb(0_0_0/0.35)]";
       canvas.setAttribute("aria-label", `Page ${n} of ${p.numPages}`);
       canvas.setAttribute("role", "img");
       frag.appendChild(canvas);
@@ -237,7 +239,7 @@ export function PdfViewer() {
   };
 
   const btn =
-    "grid h-10 w-10 shrink-0 place-items-center rounded-full text-white/85 transition-colors hover:bg-white/15 hover:text-white active:scale-95 disabled:opacity-40";
+    "grid h-10 w-10 shrink-0 place-items-center rounded-full text-white/85 transition-[color,background-color,scale] hover:bg-white/15 hover:text-white active:scale-[0.97] disabled:opacity-40";
   const ready = status === "ready";
 
   return (
@@ -313,7 +315,7 @@ export function PdfViewer() {
             onClick={() => dialog.current?.close()}
             aria-label="Close"
             autoFocus
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]"
           >
             <X size={18} weight="bold" />
           </button>
@@ -326,7 +328,7 @@ export function PdfViewer() {
           onClick={(e) => e.target === e.currentTarget && dialog.current?.close()}
         >
           {status === "loading" && (
-            <div className="mx-auto mt-6 aspect-[8.5/11] w-[min(720px,calc(100%-24px))] animate-pulse rounded-[6px] bg-white/10" />
+            <div className="mx-auto mt-6 aspect-[8.5/11] w-[min(720px,calc(100%-24px))] animate-pulse rounded-md bg-white/10" />
           )}
           {status === "error" && (
             <div className="mx-auto mt-16 max-w-sm px-6 text-center text-[14px] text-white/80">

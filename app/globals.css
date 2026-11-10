@@ -82,6 +82,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --ease-glide: var(--glide);
+
+  /* corner radius scale (with Tailwind's md 6, xl 12, 2xl 16, 3xl 24, 4xl 32):
+     nested corners follow inner = outer - padding */
+  --radius-panel: 20px;
+  --radius-card: 28px;
 }
 
 html {
@@ -224,7 +229,7 @@ p, li, figcaption, dd {
 .glass::after {
   background: radial-gradient(420px circle at var(--mx, 18%) var(--my, 0%), var(--glass-spec), transparent 55%);
   opacity: 0;
-  transition: opacity 380ms var(--glide);
+  transition: opacity 130ms var(--glide); /* fade out: ~20% shorter than the fade in */
 }
 .glass[data-lit]::before { opacity: 0.2; }
 .glass[data-lit]::after {
@@ -412,35 +417,55 @@ p, li, figcaption, dd {
   border-color: var(--accent);
 }
 
-/* Newspaper lightbox: fade + settle in, honoring reduced motion */
+/* Full-screen viewers (photos, newspaper, PDFs): grow from 0.95 out of the
+   element that opened them (--origin, set by dialogOrigin.ts) and shrink back
+   into it. Closing runs ~20% shorter than opening. */
+.press-dialog {
+  opacity: 0;
+  transform: scale(0.95);
+  transform-origin: var(--origin, 50% 50%);
+  /* closing */
+  transition:
+    opacity 0.22s var(--glide),
+    transform 0.32s var(--glide),
+    overlay 0.32s allow-discrete,
+    display 0.32s allow-discrete;
+}
 .press-dialog[open] {
   opacity: 1;
   transform: none;
-}
-.press-dialog {
-  opacity: 0;
-  transform: scale(0.985);
-  transition:
-    opacity 0.28s var(--glide),
-    transform 0.4s var(--glide),
-    overlay 0.28s allow-discrete,
-    display 0.28s allow-discrete;
+  /* opening */
+  transition-duration: 0.28s, 0.4s, 0.4s, 0.4s;
 }
 @starting-style {
   .press-dialog[open] {
     opacity: 0;
-    transform: scale(0.985);
+    transform: scale(0.95);
   }
 }
 .press-dialog::backdrop {
-  transition: opacity 0.28s, overlay 0.28s allow-discrete, display 0.28s allow-discrete;
+  opacity: 0;
+  transition: opacity 0.22s, overlay 0.32s allow-discrete, display 0.32s allow-discrete;
+}
+.press-dialog[open]::backdrop {
   opacity: 1;
+  transition-duration: 0.28s, 0.4s, 0.4s;
 }
 @starting-style {
   .press-dialog[open]::backdrop {
     opacity: 0;
   }
 }
+
+/* Photo viewer: the next photo fades in over the previous one, which fades
+   out a little faster (old and new overlap instead of a hard cut). */
+@media (prefers-reduced-motion: no-preference) {
+  .viewer-in { animation: viewer-in 260ms var(--glide) both; }
+  .viewer-out { animation: viewer-out 200ms ease-in both; }
+}
+@keyframes viewer-in { from { opacity: 0; filter: blur(4px); } }
+@keyframes viewer-out { to { opacity: 0; filter: blur(4px); } }
+
 @media (prefers-reduced-motion: reduce) {
   .press-dialog,
   .press-dialog::backdrop {

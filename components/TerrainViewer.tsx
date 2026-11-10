@@ -66,10 +66,10 @@ export function TerrainViewer() {
   useEffect(() => handle.current?.setFlight(flight), [flight, status]);
 
   const iconBtn =
-    "grid h-9 w-9 place-items-center rounded-full text-ink-2 transition-colors hover:bg-ink/[0.06] hover:text-ink active:scale-95 dark:hover:bg-white/[0.08]";
+    "grid h-9 w-9 place-items-center rounded-full text-ink-2 transition-[color,background-color,scale] hover:bg-ink/[0.06] hover:text-ink active:scale-[0.97] dark:hover:bg-white/[0.08]";
 
   return (
-    <div ref={wrap} className="glass overflow-hidden rounded-[28px]">
+    <div ref={wrap} className="glass overflow-hidden rounded-card">
       <div className="relative aspect-[4/3]">
         <canvas
           ref={canvas}

@@ -6,7 +6,7 @@ import { CertLink } from "./CertLink";
 import { CountUp } from "./CountUp";
 import { GlassCard } from "./GlassCard";
 import { NewsList } from "./NewsList";
-import { Reveal } from "./Reveal";
+import { Reveal, RevealItem } from "./Reveal";
 
 export function Leadership() {
   const [lead, ...rest] = leadership;
@@ -20,7 +20,7 @@ export function Leadership() {
       {/* Leadership: one feature card + two quieter rows */}
       <div className="mt-14 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <Reveal>
-          <GlassCard tilt={2} className="rounded-[28px] p-7 md:p-9">
+          <GlassCard tilt={2} className="rounded-card p-7 md:p-9">
             <p className="font-mono text-[12px] text-ink-3">{lead.period}</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{lead.title}</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{lead.text}</p>
@@ -45,7 +45,7 @@ export function Leadership() {
         </Reveal>
         <div className="flex flex-col">
           {rest.map((l, i) => (
-            <Reveal key={l.title} delay={0.06 * (i + 1)} className="border-t border-line py-6 first:border-t-0 first:pt-2 lg:first:pt-6">
+            <Reveal key={l.title} delay={0.03 * (i + 1)} className="border-t border-line py-6 first:border-t-0 first:pt-2 lg:first:pt-6">
               <p className="font-mono text-[12px] text-ink-3">{l.period}</p>
               <h3 className="mt-1 text-lg font-semibold tracking-tight text-ink">{l.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{l.text}</p>
@@ -61,7 +61,7 @@ export function Leadership() {
           <h3 className="text-xl font-semibold tracking-tight text-ink">Education</h3>
           <ul className="mt-5">
             {education.map((e) => (
-              <li key={e.degree} className="flex items-start gap-3 border-t border-line py-4">
+              <RevealItem key={e.degree} className="flex items-start gap-3 border-t border-line py-4">
                 {e.level === 0 ? (
                   <span aria-hidden className="flex w-[22px] shrink-0 justify-center text-ink-3">
                     <Certificate size={21} weight="light" />
@@ -75,7 +75,7 @@ export function Leadership() {
                   {e.certificate && <CertLink {...e.certificate} title={`${e.degree}, ${e.school}`} className="mt-1.5" />}
                 </div>
                 <p className="mt-1 shrink-0 font-mono text-[12px] text-ink-3">{e.year}</p>
-              </li>
+              </RevealItem>
             ))}
           </ul>
         </Reveal>
@@ -83,7 +83,7 @@ export function Leadership() {
           <h3 className="text-xl font-semibold tracking-tight text-ink">Honors</h3>
           <ul className="mt-5">
             {honors.map((h) => (
-              <li key={h.title} className="flex items-start gap-3 border-t border-line py-4">
+              <RevealItem key={h.title} className="flex items-start gap-3 border-t border-line py-4">
                 <Medal size={18} className="mt-0.5 shrink-0 text-ink-3" />
                 <div>
                   {h.href ? (
@@ -123,7 +123,7 @@ export function Leadership() {
                   )}
                   {h.certificate && <CertLink {...h.certificate} title={h.title} className="mt-1.5" />}
                 </div>
-              </li>
+              </RevealItem>
             ))}
           </ul>
           <Link

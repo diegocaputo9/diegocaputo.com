@@ -80,7 +80,7 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
                       >
                         <Flag
                           aria-hidden
-                          className="h-[14px] w-[21px] shrink-0 rounded-[3px] shadow-[0_0_0_1px_rgb(0_0_0/0.12)]"
+                          className="h-[14px] w-[21px] shrink-0 rounded-sm shadow-[0_0_0_1px_rgb(0_0_0/0.12)]"
                         />
                         {c.name}
                       </li>

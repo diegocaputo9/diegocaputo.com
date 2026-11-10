@@ -49,7 +49,7 @@ export function BackHome({ fallback = "/" }: { fallback?: string }) {
       <a
         href={fallback}
         onClick={onClick}
-        className="group glass flex h-12 items-center gap-2.5 rounded-full pl-2 pr-5 text-[15px] font-semibold tracking-tight text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98]"
+        className="group glass flex h-12 items-center gap-2.5 rounded-full pl-2 pr-5 text-[15px] font-semibold tracking-tight text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
       >
         <span className="grid h-8 w-8 place-items-center rounded-full bg-ink text-[12px] font-semibold text-bg">DC</span>
         {site.name}

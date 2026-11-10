@@ -47,10 +47,10 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
             <Reveal
               as="li"
               key={p.title}
-              delay={(i % 2) * 0.08}
+              delay={(i % 2) * 0.03}
               className={`${spans[i]} ${phoneKeep && !phoneKeep.includes(p.title) ? "max-md:hidden" : ""}`}
             >
-              <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-[28px] p-3">
+              <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-card p-3">
                 {p.image ? (
                   <figure className="relative">
                     <PressLightbox image={p.image} articleHref={p.press?.href} />
@@ -98,7 +98,7 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                       target="_blank"
                       rel="noreferrer"
                       hrefLang="de"
-                      className="group/press mt-5 flex items-start gap-3 rounded-2xl transition-colors md:border md:border-line md:p-3.5 md:hover:border-accent/40 md:hover:bg-accent/[0.04]"
+                      className="group/press mt-5 flex items-start gap-3 rounded-2xl transition-[color,background-color,border-color,scale] duration-200 ease-glide active:scale-[0.97] md:border md:border-line md:p-3.5 md:hover:border-accent/40 md:hover:bg-accent/[0.04]"
                     >
                       <span className="min-w-0 flex-1">
                         <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">

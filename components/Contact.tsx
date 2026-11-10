@@ -31,7 +31,7 @@ export function Contact() {
     <section id="contact" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-24">
       <Andon className="absolute right-10 top-0 -z-10 hidden w-[96px] lg:block" />
       <Reveal>
-        <GlassCard tilt={0} className="rounded-[36px] px-6 py-14 text-center md:px-16 md:py-20">
+        <GlassCard tilt={0} className="rounded-4xl px-6 py-14 text-center md:px-16 md:py-20">
           <h2 className="mx-auto max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-ink md:text-6xl">
             Get in touch
           </h2>
@@ -46,7 +46,7 @@ export function Contact() {
                   data-pdf-title={href.endsWith(".pdf") ? `${site.name}, résumé` : undefined}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
-                  className={`group inline-flex h-12 items-center gap-2.5 rounded-full px-5 text-[15px] transition-all duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.98] ${
+                  className={`group inline-flex h-12 items-center gap-2.5 rounded-full px-5 text-[15px] transition-all duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97] ${
                     primary
                       ? "bg-ink font-medium text-bg"
                       : "bg-ink/[0.05] text-ink hover:bg-ink/[0.08] dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
