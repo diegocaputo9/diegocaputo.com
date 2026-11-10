@@ -11,7 +11,9 @@ function lockScroll(on: boolean) {
 
 // Photos and figures on a work card. "hero" is one large image that fills the
 // card's visual slot; "strip" is a row of small thumbnails; "mosaic" is one
-// tall photo beside two stacked ones, with a "+N" tile for the rest. Either opens a
+// tall photo beside two stacked ones, with a "+N" tile for the rest; "wide" is
+// one figure at its own (wide) aspect ratio under a label, for charts and process
+// maps that a square thumbnail would crop. Each opens a
 // full-screen viewer; full-size files load only once the viewer opens.
 export function Gallery({
   items,
@@ -20,7 +22,7 @@ export function Gallery({
 }: {
   items: GalleryItem[];
   label: string;
-  variant: "hero" | "strip" | "mosaic";
+  variant: "hero" | "strip" | "mosaic" | "wide";
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
@@ -116,6 +118,32 @@ export function Gallery({
               </button>
             );
           })}
+        </div>
+      ) : variant === "wide" ? (
+        <div className="mt-5">
+          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-3">{label}</p>
+          <button
+            type="button"
+            onClick={() => open(0)}
+            aria-haspopup="dialog"
+            aria-label={`Open: ${items[0].caption}`}
+            className="group/wide relative mt-2.5 block w-full cursor-zoom-in overflow-hidden rounded-xl border border-line"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export, small pre-sized webp */}
+            <img
+              src={items[0].thumb}
+              alt={items[0].alt}
+              width={items[0].width}
+              height={items[0].height}
+              loading="lazy"
+              decoding="async"
+              className="block h-auto w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/wide:scale-[1.02]"
+            />
+            <span className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/wide:opacity-100 group-focus-visible/wide:opacity-100">
+              <ArrowsOut size={13} weight="bold" />
+            </span>
+          </button>
+          {items[0].short && <p className="mt-1.5 text-[12.5px] leading-snug text-ink-3">{items[0].short}</p>}
         </div>
       ) : variant === "hero" ? (
         <button

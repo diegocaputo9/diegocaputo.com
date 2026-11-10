@@ -145,7 +145,7 @@ export type Project = {
   size: "lg" | "md";
   visual: "plant" | "germany" | "ai" | "asrs" | "standard" | "app";
   photo?: GalleryItem & { credit: string }; // fills the card's visual slot
-  gallery?: { label: string; items: GalleryItem[] }; // thumbnails under the text
+  gallery?: { label: string; items: GalleryItem[]; wide?: boolean }; // thumbnails under the text (wide: one full-width figure)
   image?: {
     src: string;
     srcSet: string;
@@ -246,6 +246,31 @@ export const projects: Project[] = [
       "Mapped and assessed continuous process manufacturing, including sawmill operations, to find improvement opportunities for Auburn's Rural Partnership Institute.",
     size: "md",
     visual: "plant",
+    photo: {
+      thumb: "/work/sawmill/log-yard-800.webp",
+      thumbSet: "/work/sawmill/log-yard-800.webp 800w, /work/sawmill/log-yard-1200.webp 1200w",
+      src: "/work/sawmill/log-yard-1200.webp",
+      alt: "Aerial view of a sawmill: the log yard with stacked logs and a loader, conveyors, the mill buildings and a rail line",
+      caption: "The sawmill and its log yard, where the process flow starts",
+      credit: "Partner sawmill, aerial view",
+      width: 1200,
+      height: 799,
+    },
+    gallery: {
+      label: "Process flow for the VSM",
+      wide: true,
+      items: [
+        {
+          thumb: "/work/sawmill/process-flow.webp",
+          src: "/work/sawmill/process-flow.webp",
+          alt: "Process flow chart in eight steps: log arrival, stem deck and debarker, merchandizer (cycle time 23.4 s per stem), chip and saw line (2.6 s per log), vertical saw and board edging, sorter and stacker, dry kilns (marked as the step that sets the pace) and planer mill",
+          caption: "Process flow for the value stream map: eight steps from log arrival to the planer mill; the dry kilns set the pace",
+          short: "Eight steps from log arrival to the planer mill. The dry kilns set the pace.",
+          width: 1333,
+          height: 261,
+        },
+      ],
+    },
   },
   {
     title: "AI-assisted engineering tools",

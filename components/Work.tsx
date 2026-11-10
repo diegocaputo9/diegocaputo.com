@@ -116,7 +116,9 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                       />
                     </a>
                   )}
-                  {p.gallery && <Gallery variant="strip" label={p.gallery.label} items={p.gallery.items} />}
+                  {p.gallery && (
+                    <Gallery variant={p.gallery.wide ? "wide" : "strip"} label={p.gallery.label} items={p.gallery.items} />
+                  )}
                 </div>
               </GlassCard>
             </Reveal>
