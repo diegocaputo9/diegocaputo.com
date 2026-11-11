@@ -89,6 +89,7 @@ export const speaking = {
   // interactive 3D lesson (components/FlowLab.tsx): the classic one-piece flow exercise
   lesson: {
     title: "A lean lesson you can run",
+    teaser: "One-piece flow against batches, in 3D",
     text: "Ten parts, three stations, one minute per step. The two lines differ in one thing only: how many parts move at a time. Watch when the first part comes out, and when the whole order is done.",
     tags: ["One-piece flow", "Batch and queue", "Lead time", "Work in process"],
   },

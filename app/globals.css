@@ -836,3 +836,32 @@ p, li, figcaption, dd {
 }
 .btn-line > svg:last-of-type { transition: translate 300ms var(--glide), color 200ms; }
 .btn-line:hover > svg:last-of-type { translate: var(--nudge, 2px 0); color: var(--accent); }
+
+/* ------------------------------------------------------------------
+   Mouse pointer: an open-end wrench whose handle is sharpened into an
+   arrowhead (public/cursors, drawn for this site; tip = hotspot at 2,2).
+   Ink on the page, accent over anything clickable. Mouse/trackpad only.
+   In the base layer so cursor utilities (zoom-in, grab, text) still win.
+------------------------------------------------------------------- */
+@layer base {
+  @media (pointer: fine) {
+    html {
+      cursor: url("/cursors/wrench.png") 2 2, auto;
+      cursor: image-set(url("/cursors/wrench.png") 1x, url("/cursors/wrench@2x.png") 2x) 2 2, auto;
+    }
+    :is(a, button, summary, select, label[for], [role="button"], [role="radio"]):not(:disabled) {
+      cursor: url("/cursors/wrench-link.png") 2 2, pointer;
+      cursor: image-set(url("/cursors/wrench-link.png") 1x, url("/cursors/wrench-link@2x.png") 2x) 2 2, pointer;
+    }
+    @media (prefers-color-scheme: dark) {
+      html {
+        cursor: url("/cursors/wrench-dark.png") 2 2, auto;
+        cursor: image-set(url("/cursors/wrench-dark.png") 1x, url("/cursors/wrench-dark@2x.png") 2x) 2 2, auto;
+      }
+      :is(a, button, summary, select, label[for], [role="button"], [role="radio"]):not(:disabled) {
+        cursor: url("/cursors/wrench-link-dark.png") 2 2, pointer;
+        cursor: image-set(url("/cursors/wrench-link-dark.png") 1x, url("/cursors/wrench-link-dark@2x.png") 2x) 2 2, pointer;
+      }
+    }
+  }
+}

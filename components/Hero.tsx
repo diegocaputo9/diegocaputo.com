@@ -9,6 +9,7 @@ import type { CSSProperties } from "react";
 import { site } from "@/content/site";
 import { AssemblyLine, RobotArm } from "./Blueprint";
 import { Credentials } from "./Credentials";
+import { GlassCard } from "./GlassCard";
 import { HeroCrosshair } from "./HeroCrosshair";
 import { Portrait } from "./Portrait";
 import { academicProfiles } from "./profiles";
@@ -16,7 +17,7 @@ import { academicProfiles } from "./profiles";
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 const social =
-  "grid h-9 w-9 place-items-center rounded-ctl text-ink-2 transition-[color,background-color,scale] hover:bg-ink/[0.06] hover:text-ink active:scale-[0.97]";
+  "grid h-10 w-10 place-items-center rounded-ctl text-ink-2 transition-[color,background-color,scale] hover:bg-ink/[0.06] hover:text-ink active:scale-[0.97]";
 
 // First screen: one statement, two actions, and the portrait standing on the
 // shop-floor line. Everything else (credentials, focus areas) sits below it.
@@ -89,58 +90,56 @@ export function Hero() {
           </div>
         </div>
 
-        {/* the portrait, with the robot cell drawn behind it */}
-        <div
-          className="rise relative mx-auto w-full max-w-[340px] lg:mr-0 lg:max-w-[420px]"
-          style={d(360)}
-        >
-          <RobotArm
-            caption={false}
-            className="absolute -right-[20%] top-[5%] -z-10 w-[74%]"
-          />
-          <Portrait />
-          {/* nameplate: grounds the cut-out at the floor line */}
-          <div className="absolute inset-x-5 bottom-5">
-            <div className="glass flex items-center justify-between gap-3 rounded-panel py-1.5 pl-4 pr-1.5">
-              <p className="flex items-center gap-1.5 text-[13px] font-medium text-ink-2">
-                <MapPin size={15} className="text-ink-3" />
+        {/* profile card with the robot cell drawn behind it; a cut-out portrait takes
+            this place once site.portrait is set */}
+        {site.portrait ? (
+          <div className="rise relative mx-auto w-full max-w-[340px] lg:mr-0 lg:max-w-[420px]" style={d(360)}>
+            <RobotArm caption={false} className="absolute -right-[20%] top-[5%] -z-10 w-[74%]" />
+            <Portrait />
+          </div>
+        ) : (
+          <div className="rise relative mx-auto w-full max-w-sm pb-10 lg:mr-0 lg:max-w-[400px] lg:self-center lg:pb-24" style={d(360)}>
+            <RobotArm caption={false} className="absolute -top-[200px] right-[-5%] -z-10 hidden w-[230px] lg:block" />
+            <GlassCard className="rounded-card p-6 sm:p-7">
+              <div className="flex items-center gap-4">
+                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-panel bg-ink text-lg font-semibold tracking-tight text-bg shadow-[inset_0_1px_0_rgb(255_255_255/0.16)]">
+                  DC
+                </div>
+                <div>
+                  <p className="text-lg font-semibold tracking-tight text-ink">{site.name}</p>
+                  <p className="text-sm text-ink-2">{site.role}</p>
+                </div>
+              </div>
+
+              <p className="mt-5 flex items-center gap-1.5 text-sm text-ink-2">
+                <MapPin size={16} className="text-ink-3" />
                 {site.location}
               </p>
-              <div className="flex">
-                <a
-                  href={site.links.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                  className={social}
-                >
-                  <LinkedinLogo size={19} />
+
+              <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-2.5 border-t border-line pt-5">
+                {site.focus.map((f) => (
+                  <li key={f} className="bracket text-[13px] text-ink-2">
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="-mx-1.5 mt-5 flex gap-1">
+                <a href={site.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className={social}>
+                  <LinkedinLogo size={20} />
                 </a>
-                <a
-                  href={site.links.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                  className={social}
-                >
-                  <GithubLogo size={19} />
+                <a href={site.links.github} target="_blank" rel="noreferrer" aria-label="GitHub" className={social}>
+                  <GithubLogo size={20} />
                 </a>
                 {academicProfiles.map(({ label, href, Icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={label}
-                    className={social}
-                  >
-                    <Icon size={17} />
+                  <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className={social}>
+                    <Icon size={18} />
                   </a>
                 ))}
               </div>
-            </div>
+            </GlassCard>
           </div>
-        </div>
+        )}
 
         {/* shop floor: the assembly line runs along the hero's base line, behind everything */}
         <AssemblyLine className="sketch-fade-top absolute bottom-0 left-[22%] -z-20 hidden w-[min(760px,66vw)] lg:block" />

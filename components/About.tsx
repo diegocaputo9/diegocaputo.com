@@ -1,5 +1,5 @@
 import { Translate } from "@phosphor-icons/react/dist/ssr";
-import { about, site } from "@/content/site";
+import { about } from "@/content/site";
 import { AiSparkle } from "./AiSparkle";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
@@ -14,13 +14,6 @@ export function About() {
           <p className="mt-6 max-w-[44ch] text-2xl leading-snug tracking-tight text-ink-2 md:text-[26px]">
             {about.body}
           </p>
-          <ul className="mt-7 flex flex-wrap gap-x-2 gap-y-2.5">
-            {site.focus.map((f) => (
-              <li key={f} className="bracket text-[13px] text-ink-2">
-                {f}
-              </li>
-            ))}
-          </ul>
           <p className="mt-6 flex items-center gap-2 text-[15px] text-ink-3">
             <Translate size={18} />
             {about.languages}
