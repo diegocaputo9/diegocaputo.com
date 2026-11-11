@@ -27,14 +27,17 @@ export default function NotFound() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
+              style={{ "--nudge": "-2px 0" } as React.CSSProperties}
+              className="btn btn-sm btn-primary"
             >
-              <ArrowLeft size={15} weight="bold" />
-              Back to the home page
+              <span className="btn-label">Back to the home page</span>
+              <span className="btn-cell">
+                <ArrowLeft size={15} weight="bold" />
+              </span>
             </Link>
             <Link
               href="/research/"
-              className="glass inline-flex h-11 items-center rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.97]"
+              className="btn btn-sm btn-frame"
             >
               See the research
             </Link>

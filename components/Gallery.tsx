@@ -106,7 +106,7 @@ export function Gallery({
     });
   };
   const btn =
-    "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white backdrop-blur-md transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]";
+    "grid h-10 w-10 place-items-center rounded-ctl bg-white/10 text-white backdrop-blur-md transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]";
 
   return (
     <>
@@ -147,7 +147,7 @@ export function Gallery({
                   className="h-full w-full object-cover transition-transform duration-700 ease-glide group-hover/m:scale-[1.04]"
                 />
                 {i === 2 && rest > 0 && (
-                  <span className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
+                  <span className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 rounded-ctl bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
                     <ArrowsOut size={13} weight="bold" />+{rest} photos
                   </span>
                 )}
@@ -175,7 +175,7 @@ export function Gallery({
               decoding="async"
               className="block h-auto w-full transition-transform duration-500 ease-glide group-hover/wide:scale-[1.02]"
             />
-            <span className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/wide:opacity-100 group-focus-visible/wide:opacity-100">
+            <span className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-ctl bg-white/10 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/wide:opacity-100 group-focus-visible/wide:opacity-100">
               <ArrowsOut size={13} weight="bold" />
             </span>
           </button>
@@ -201,7 +201,7 @@ export function Gallery({
             decoding="async"
             className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.02]"
           />
-          <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100 max-md:opacity-100">
+          <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-ctl bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100 max-md:opacity-100">
             <ArrowsOut size={14} weight="bold" />
             Full photo
           </span>

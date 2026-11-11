@@ -8,7 +8,11 @@ export const site = {
   org: "Auburn University",
   location: "Auburn, Alabama",
   url: "https://diegocaputo.com",
+  // Shown as the big quote in the hero. Replace with Diego's own words any time.
   headline: "Lean systems, taught on the floor and built with AI.",
+  // Hero portrait: a cut-out headshot (transparent background, WebP or PNG,
+  // about 900 x 1125) in /public, e.g. "/portrait.webp". Empty = placeholder.
+  portrait: "",
   intro:
     "PhD student at Auburn University. I teach lean manufacturing, lead improvement projects, and build AI-assisted tools for industrial engineering.",
   focus: ["Lean manufacturing", "Six Sigma / DMAIC", "AI in industrial engineering", "Engineering education"],
@@ -82,6 +86,12 @@ export const speaking = {
   title: "Teaching & speaking",
   lede: "In Auburn's Lean Systems course I run every lab and give lectures each semester for 60 to 80 engineers, and I present research and products to academic and industry audiences.",
   cta: { label: "Invite me to speak" },
+  // interactive 3D lesson (components/FlowLab.tsx): the classic one-piece flow exercise
+  lesson: {
+    title: "A lean lesson you can run",
+    text: "Ten parts, three stations, one minute per step. The two lines differ in one thing only: how many parts move at a time. Watch when the first part comes out, and when the whole order is done.",
+    tags: ["One-piece flow", "Batch and queue", "Lead time", "Work in process"],
+  },
   photos: [
     {
       name: "lean-lecture",

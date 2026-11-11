@@ -83,10 +83,19 @@
   --font-mono: var(--font-geist-mono);
   --ease-glide: var(--glide);
 
-  /* corner radius scale (with Tailwind's md 6, xl 12, 2xl 16, 3xl 24, 4xl 32):
-     nested corners follow inner = outer - padding */
-  --radius-panel: 20px;
-  --radius-card: 28px;
+  /* Corner radius scale: machined edges, not bubbles. Every Tailwind step is
+     remapped here, so the whole site changes shape from this one block.
+     ctl = buttons, chips and icon buttons (this replaces pills). */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --radius-xl: 3px;
+  --radius-2xl: 4px;
+  --radius-3xl: 5px;
+  --radius-4xl: 6px;
+  --radius-ctl: 3px;
+  --radius-panel: 4px;
+  --radius-card: 6px;
 }
 
 html {
@@ -131,7 +140,6 @@ p, li, figcaption, dd {
 :focus-visible:not(input, textarea, select) {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 999px;
 }
 /* Text fields match :focus-visible on every click; they keep their own shape
    and show focus with an accent border + soft ring (see InviteForm). */
@@ -623,3 +631,208 @@ p, li, figcaption, dd {
 @keyframes vsm-10 { 0%, 40.0% { clip-path: inset(0 100% 0 0); } 43.2%, 87.0% { clip-path: inset(0 0 0 0); } 89.5%, 100% { clip-path: inset(0 0 0 100%); } }
 @keyframes vsm-11 { 0%, 43.6% { clip-path: inset(0 100% 0 0); } 46.8%, 87.7% { clip-path: inset(0 0 0 0); } 90.2%, 100% { clip-path: inset(0 0 0 100%); } }
 @keyframes vsm-12 { 0%, 47.2% { clip-path: inset(0 100% 0 0); } 50.4%, 88.4% { clip-path: inset(0 0 0 0); } 90.9%, 100% { clip-path: inset(0 0 0 100%); } }
+
+
+/* ------------------------------------------------------------------
+   Buttons. Rectangular, machined corners.
+   .btn-primary: solid plate with a divided icon cell (label | icon); the
+     cell turns accent on hover and the icon nudges.
+   .btn-frame: drafting corner brackets that draw out into a full outline
+     on hover (each edge is a background layer whose length animates).
+   Markup: <a class="btn btn-primary">Label<span class="btn-cell"><Icon/></span></a>
+------------------------------------------------------------------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: 48px;
+  border-radius: var(--radius-ctl);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition: scale 200ms var(--glide), background-color 200ms, color 200ms;
+}
+.btn:active { scale: 0.97; }
+.btn-sm { height: 44px; font-size: 14px; }
+.btn > .btn-label,
+.btn-frame {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn > .btn-label { padding: 0 20px; }
+.btn-sm > .btn-label { padding: 0 16px; }
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14);
+}
+.btn-cell {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  border-left: 1px solid color-mix(in oklab, var(--bg) 22%, transparent);
+  border-radius: 0 var(--radius-ctl) var(--radius-ctl) 0;
+  transition: background-color 220ms var(--glide), color 220ms;
+}
+.btn-sm .btn-cell { width: 44px; }
+.btn-cell > svg { transition: translate 300ms var(--glide); }
+.btn-primary:hover .btn-cell { background: var(--accent); color: #fff; }
+.btn-primary:hover .btn-cell > svg { translate: var(--nudge, 2px 0); }
+.btn[disabled] { opacity: 0.7; }
+
+.btn-frame {
+  --arm: 9px; /* resting bracket arm length */
+  padding: 0 20px;
+  color: var(--ink);
+  background-color: transparent;
+  background-image:
+    linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position:
+    left top, left top, right top, right top,
+    left bottom, left bottom, right bottom, right bottom;
+  background-size:
+    var(--arm) 1.5px, 1.5px var(--arm), var(--arm) 1.5px, 1.5px var(--arm),
+    var(--arm) 1.5px, 1.5px var(--arm), var(--arm) 1.5px, 1.5px var(--arm);
+  transition: background-size 420ms var(--glide), background-color 300ms, scale 200ms var(--glide), color 200ms;
+}
+.btn-sm.btn-frame { padding: 0 16px; }
+.btn-frame:hover,
+.btn-frame:focus-visible {
+  background-color: color-mix(in oklab, var(--ink) 4%, transparent);
+  background-size:
+    50.5% 1.5px, 1.5px 50.5%, 50.5% 1.5px, 1.5px 50.5%,
+    50.5% 1.5px, 1.5px 50.5%, 50.5% 1.5px, 1.5px 50.5%;
+}
+/* only the trailing icon (the arrow) nudges; a leading icon stays put */
+.btn-frame > svg:last-of-type { transition: translate 300ms var(--glide), color 200ms; }
+.btn-frame:hover > svg:last-of-type { translate: var(--nudge, 2px 0); color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn-cell, .btn-cell > svg, .btn-frame, .btn-frame > svg:last-of-type { transition: none; }
+}
+
+/* ------------------------------------------------------------------
+   Top bar: a full-width strip of glass with a hairline under it. It always
+   carries the page color (iOS 26 Safari tints the status bar from fixed
+   elements at the top edge; a transparent one comes out black).
+------------------------------------------------------------------- */
+.nav-bar {
+  background: color-mix(in oklab, var(--bg) 74%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  backdrop-filter: blur(20px) saturate(170%);
+  border-bottom: 1px solid var(--line);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav-bar { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* ------------------------------------------------------------------
+   Hero
+------------------------------------------------------------------- */
+/* the opening quotation mark hangs in the margin so the text edge stays straight */
+.hero-quote { text-indent: -0.39em; } /* width of the opening mark in Geist */
+
+/* portrait (photo or placeholder) dissolves into the page at the floor line */
+.portrait-fade {
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
+}
+
+/* CAD crosshair (components/HeroCrosshair.tsx) */
+.crosshair { opacity: 0; transition: opacity 500ms var(--glide); }
+.crosshair[data-on] { opacity: 1; }
+.crosshair-v,
+.crosshair-h {
+  position: absolute;
+  background: var(--plus);
+  opacity: 0.55;
+}
+.crosshair-v { top: 0; bottom: 0; left: 0; width: 1px; transform: translate3d(var(--cx, 0), 0, 0); }
+.crosshair-h { left: 0; right: 0; top: 0; height: 1px; transform: translate3d(0, var(--cy, 0), 0); }
+.crosshair-x,
+.crosshair-y {
+  position: absolute;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.crosshair-x { top: 70px; left: 0; transform: translate3d(calc(var(--cx, 0px) + 8px), 0, 0); }
+.crosshair-y { left: 10px; top: 0; transform: translate3d(0, calc(var(--cy, 0px) - 20px), 0); }
+
+/* ------------------------------------------------------------------
+   Sheet rule: a hairline with end ticks that draws across as its section
+   scrolls in (and stays). Used as the base line of the hero and above
+   each section heading.
+------------------------------------------------------------------- */
+.sheet-rule {
+  position: relative;
+  height: 9px;
+  color: var(--ink-3);
+  background:
+    linear-gradient(currentColor, currentColor) left center / 1px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) right center / 1px 9px no-repeat,
+    linear-gradient(var(--line), var(--line)) center / 100% 1px no-repeat;
+  opacity: 0.9;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet-rule {
+      transform-origin: left center;
+      animation: rule-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+@keyframes rule-draw {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* ------------------------------------------------------------------
+   Flow lab (components/FlowLab.tsx): labels pinned to the 3D scene
+------------------------------------------------------------------- */
+.flow-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  will-change: transform;
+}
+.flow-label-count {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+/* .btn-line: quiet outlined button for groups of links (several bracket
+   frames side by side get noisy). */
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 16%, transparent);
+  transition: box-shadow 250ms var(--glide), background-color 250ms, scale 200ms var(--glide);
+}
+.btn-line:hover {
+  background: color-mix(in oklab, var(--ink) 4%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 45%, transparent);
+}
+.btn-line > svg:last-of-type { transition: translate 300ms var(--glide), color 200ms; }
+.btn-line:hover > svg:last-of-type { translate: var(--nudge, 2px 0); color: var(--accent); }

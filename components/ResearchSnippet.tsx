@@ -7,6 +7,8 @@ import { Reveal } from "./Reveal";
 export function ResearchSnippet() {
   return (
     <section id="research" className="relative isolate mx-auto max-w-6xl px-5 pb-12 pt-12 md:px-8 md:pb-24 md:pt-24">
+      {/* drafting rule: draws across as the section scrolls in */}
+      <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       {/* value stream map as a faded background behind the heading, fading toward the text */}
       <ValueStream className="sketch-fade-left absolute right-0 top-2 -z-10 hidden w-[520px] lg:block" />
       <Reveal>
@@ -90,10 +92,12 @@ export function ResearchSnippet() {
       <Reveal delay={0.1}>
         <Link
           href="/research/"
-          className="group mt-10 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
+          className="btn btn-primary mt-10"
         >
-          Read about the research
-          <ArrowRight size={16} weight="bold" className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          <span className="btn-label">Read about the research</span>
+          <span className="btn-cell">
+            <ArrowRight size={16} weight="bold" />
+          </span>
         </Link>
       </Reveal>
     </section>

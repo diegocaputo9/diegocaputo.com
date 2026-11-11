@@ -183,10 +183,10 @@ export function ThermalCompare() {
           <div className="absolute inset-0 grid place-items-center text-[13px] text-ink-3">Drawing sample scene…</div>
         )}
 
-        <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/45 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
+        <span className="pointer-events-none absolute left-3 top-3 rounded-ctl bg-black/45 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
           Visible
         </span>
-        <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-black/45 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
+        <span className="pointer-events-none absolute right-3 top-3 rounded-ctl bg-black/45 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">
           Thermal
         </span>
 

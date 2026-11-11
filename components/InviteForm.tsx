@@ -80,7 +80,8 @@ export function InviteForm({ label: cta }: { label: string }) {
         type="button"
         onClick={open}
         aria-haspopup="dialog"
-        className="glass inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-medium text-ink transition-[translate,scale] duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
+        style={{ "--nudge": "0 -2px" } as React.CSSProperties}
+        className="btn btn-frame"
       >
         <Microphone size={18} />
         {cta}
@@ -107,7 +108,7 @@ export function InviteForm({ label: cta }: { label: string }) {
               type="button"
               onClick={close}
               aria-label="Close"
-              className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-ink-2 transition-[color,background-color,scale] hover:bg-ink/5 hover:text-ink active:scale-[0.97]"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-ctl text-ink-2 transition-[color,background-color,scale] hover:bg-ink/5 hover:text-ink active:scale-[0.97]"
             >
               <X size={18} />
             </button>
@@ -121,7 +122,7 @@ export function InviteForm({ label: cta }: { label: string }) {
               <button
                 type="button"
                 onClick={close}
-                className="mt-6 inline-flex h-11 items-center rounded-full border border-line px-5 text-[14px] font-medium transition-[background-color,scale] hover:bg-ink/5 active:scale-[0.97]"
+                className="mt-6 inline-flex h-11 items-center rounded-ctl border border-line px-5 text-[14px] font-medium transition-[background-color,scale] hover:bg-ink/5 active:scale-[0.97]"
               >
                 Close
               </button>
@@ -216,17 +217,20 @@ export function InviteForm({ label: cta }: { label: string }) {
                 <button
                   type="button"
                   onClick={close}
-                  className="h-11 rounded-full px-4 text-[14px] font-medium text-ink-2 transition-[color,background-color,scale] hover:bg-ink/5 hover:text-ink active:scale-[0.97]"
+                  className="h-11 rounded-ctl px-4 text-[14px] font-medium text-ink-2 transition-[color,background-color,scale] hover:bg-ink/5 hover:text-ink active:scale-[0.97]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-bg transition-[translate,scale,opacity] duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97] disabled:translate-y-0 disabled:opacity-70"
+                  style={{ "--nudge": "2px -2px" } as React.CSSProperties}
+                  className="btn btn-sm btn-primary"
                 >
-                  <PaperPlaneTilt size={18} />
-                  {status === "sending" ? "Sending…" : "Send"}
+                  <span className="btn-label">{status === "sending" ? "Sending…" : "Send"}</span>
+                  <span className="btn-cell">
+                    <PaperPlaneTilt size={17} />
+                  </span>
                 </button>
               </div>
             </form>

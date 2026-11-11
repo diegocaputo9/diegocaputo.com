@@ -239,7 +239,7 @@ export function PdfViewer() {
   };
 
   const btn =
-    "grid h-10 w-10 shrink-0 place-items-center rounded-full text-white/85 transition-[color,background-color,scale] hover:bg-white/15 hover:text-white active:scale-[0.97] disabled:opacity-40";
+    "grid h-10 w-10 shrink-0 place-items-center rounded-ctl text-white/85 transition-[color,background-color,scale] hover:bg-white/15 hover:text-white active:scale-[0.97] disabled:opacity-40";
   const ready = status === "ready";
 
   return (
@@ -259,7 +259,7 @@ export function PdfViewer() {
             </p>
           </div>
           <div className="order-last flex w-full items-center justify-between gap-1 sm:order-none sm:w-auto sm:justify-end">
-            <div className="flex items-center rounded-full bg-white/[0.07] p-0.5">
+            <div className="flex items-center rounded-ctl bg-white/[0.07] p-0.5">
               <button
                 type="button"
                 className={btn}
@@ -315,7 +315,7 @@ export function PdfViewer() {
             onClick={() => dialog.current?.close()}
             aria-label="Close"
             autoFocus
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-ctl bg-white/10 text-white transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]"
           >
             <X size={18} weight="bold" />
           </button>

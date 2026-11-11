@@ -49,14 +49,11 @@ export function BackHome({ fallback = "/" }: { fallback?: string }) {
       <a
         href={fallback}
         onClick={onClick}
-        className="group glass flex h-12 items-center gap-2.5 rounded-full pl-2 pr-5 text-[15px] font-semibold tracking-tight text-ink transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
+        style={{ "--nudge": "-2px -2px" } as React.CSSProperties}
+        className="btn btn-frame font-semibold tracking-tight"
       >
-        <span className="grid h-8 w-8 place-items-center rounded-full bg-ink text-[12px] font-semibold text-bg">DC</span>
+        <ArrowUpLeft size={15} className="text-ink-3" />
         {site.name}
-        <ArrowUpLeft
-          size={14}
-          className="text-ink-3 transition-transform duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink"
-        />
         <span className="sr-only">Back to the home page</span>
       </a>
     </div>

@@ -43,7 +43,7 @@ export function RoleDetails({
         aria-controls={id}
         aria-label={`${open ? "Hide" : "Show"} details: ${title}`}
         title={open ? "Hide details" : "Show details"}
-        className={`glass group/plus absolute -left-[10.5px] top-[-4px] grid h-8 w-8 place-items-center rounded-full text-ink transition-[scale,color,box-shadow] duration-300 ${ease} hover:scale-110 hover:text-accent active:scale-[0.97] ${
+        className={`glass group/plus absolute -left-[10.5px] top-[-4px] grid h-8 w-8 place-items-center rounded-ctl text-ink transition-[scale,color,box-shadow] duration-300 ${ease} hover:scale-110 hover:text-accent active:scale-[0.97] ${
           open ? "text-accent shadow-[0_0_0_1px_color-mix(in_oklab,var(--accent)_35%,transparent)]" : ""
         }`}
       >
@@ -77,7 +77,7 @@ export function RoleDetails({
         onClick={toggle}
         aria-expanded={open}
         aria-controls={id}
-        className="mt-3 inline-flex items-center gap-1.5 rounded-full text-[13px] font-medium text-accent transition-opacity hover:opacity-80"
+        className="mt-3 inline-flex items-center gap-1.5 rounded-ctl text-[13px] font-medium text-accent transition-opacity hover:opacity-80"
       >
         {/* both labels share one grid cell and crossfade with a slight blur */}
         <span className="grid">

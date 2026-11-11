@@ -70,7 +70,7 @@ export default function ResearchPage() {
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    className="glass inline-flex h-10 items-center gap-2 rounded-full px-4 text-[14px] text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                    className="btn btn-sm btn-frame"
                   >
                     <Icon size={16} />
                     {label}
@@ -87,11 +87,11 @@ export default function ResearchPage() {
               <article id={p.slug} className="scroll-mt-28">
                 <GlassCard tilt={0} className="rounded-card p-6 md:p-10">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-ink px-3 py-1 text-[12px] font-medium text-bg">{p.venue}</span>
-                    <span className="rounded-full bg-ink/[0.05] px-3 py-1 text-[12px] text-ink-2 dark:bg-white/[0.06]">
+                    <span className="rounded-ctl bg-ink px-3 py-1 text-[12px] font-medium text-bg">{p.venue}</span>
+                    <span className="rounded-ctl bg-ink/[0.05] px-3 py-1 text-[12px] text-ink-2 dark:bg-white/[0.06]">
                       {p.status}
                     </span>
-                    <span className="rounded-full border border-line px-3 py-1 text-[12px] text-ink-2">{p.type}</span>
+                    <span className="rounded-ctl border border-line px-3 py-1 text-[12px] text-ink-2">{p.type}</span>
                     <span className="font-mono text-[12px] text-ink-3">{p.year}</span>
                   </div>
                   <h2 className="mt-5 max-w-[40ch] text-2xl font-semibold leading-snug tracking-tight text-ink md:text-[28px]">

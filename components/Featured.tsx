@@ -8,6 +8,8 @@ import { Reveal } from "./Reveal";
 export function Featured({ title = "Selected work" }: { title?: string }) {
   return (
     <section id="work" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-24">
+      {/* drafting rule: draws across as the section scrolls in */}
+      <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">{title}</h2>
       </Reveal>
@@ -40,7 +42,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
                   <span aria-hidden className="mx-1.5 text-ink-3">·</span>
                   <span className="font-semibold text-ink">{featured.role}</span>
                 </span>
-                <span className="rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[12px] leading-none text-accent">
+                <span className="rounded-ctl bg-accent/10 px-2.5 py-1 font-mono text-[12px] leading-none text-accent">
                   {featured.grant}
                 </span>
               </p>
@@ -57,16 +59,19 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/work/tiger-motors/"
-                  className="inline-flex h-11 w-fit items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
+                  className="btn btn-sm btn-primary w-fit"
                 >
-                  Read the case study
-                  <ArrowRight size={15} weight="bold" />
+                  <span className="btn-label">Read the case study</span>
+                  <span className="btn-cell">
+                    <ArrowRight size={15} weight="bold" />
+                  </span>
                 </Link>
                 <a
                   href={featured.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="glass inline-flex h-11 w-fit items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.97]"
+                  style={{ "--nudge": "2px -2px" } as React.CSSProperties}
+                  className="btn btn-sm btn-frame w-fit"
                 >
                   Visit the site
                   <ArrowUpRight size={15} weight="bold" />

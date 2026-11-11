@@ -18,6 +18,8 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
       id="experience"
       className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-24"
     >
+      {/* drafting rule: draws across as the section scrolls in */}
+      <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <Gears className="absolute right-[3%] top-16 -z-10 hidden w-[200px] xl:block" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">
@@ -76,7 +78,7 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
                     return (
                       <li
                         key={c.code}
-                        className="glass flex h-9 items-center gap-2 rounded-full pl-2.5 pr-3.5 text-[13px] text-ink-2"
+                        className="glass flex h-9 items-center gap-2 rounded-ctl pl-2.5 pr-3.5 text-[13px] text-ink-2"
                       >
                         <Flag
                           aria-hidden

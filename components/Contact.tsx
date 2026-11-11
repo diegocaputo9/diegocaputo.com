@@ -46,18 +46,26 @@ export function Contact() {
                   data-pdf-title={href.endsWith(".pdf") ? `${site.name}, résumé` : undefined}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
-                  className={`group inline-flex h-12 items-center gap-2.5 rounded-full px-5 text-[15px] transition-all duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97] ${
-                    primary
-                      ? "bg-ink font-medium text-bg"
-                      : "bg-ink/[0.05] text-ink hover:bg-ink/[0.08] dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
-                  }`}
+                  style={{ "--nudge": "2px -2px" } as React.CSSProperties}
+                  className={primary ? "btn btn-primary" : "btn btn-line font-normal"}
                 >
-                  <Icon size={18} />
-                  {value}
-                  <ArrowUpRight
-                    size={14}
-                    className={`transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${primary ? "opacity-70" : "text-ink-3"}`}
-                  />
+                  {primary ? (
+                    <>
+                      <span className="btn-label">
+                        <Icon size={18} />
+                        {value}
+                      </span>
+                      <span className="btn-cell">
+                        <ArrowUpRight size={15} weight="bold" />
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Icon size={18} />
+                      {value}
+                      <ArrowUpRight size={14} className="text-ink-3" />
+                    </>
+                  )}
                 </a>
               </li>
             ))}

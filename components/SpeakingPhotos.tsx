@@ -48,7 +48,7 @@ export function SpeakingPhotos() {
                 style={{ objectPosition: p.position }}
                 className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.03] md:aspect-auto md:h-[380px] lg:h-[420px]"
               />
-              <span className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 md:right-4 md:top-4">
+              <span className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-ctl bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 md:right-4 md:top-4">
                 <ArrowsOut size={14} weight="bold" />
               </span>
               <span className="absolute inset-x-3 bottom-3 block rounded-2xl bg-black/45 px-4 py-3 text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] backdrop-blur-md md:inset-x-4 md:bottom-4 md:rounded-xl">

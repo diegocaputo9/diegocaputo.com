@@ -47,14 +47,17 @@ export default function TigerMotorsPage() {
                 href={t.href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-5 text-[14px] font-medium text-bg transition-transform duration-300 ease-glide hover:-translate-y-0.5 active:scale-[0.97]"
+                style={{ "--nudge": "2px -2px" } as React.CSSProperties}
+                className="btn btn-sm btn-primary"
               >
-                Visit tigermotorslean.com
-                <ArrowUpRight size={15} weight="bold" />
+                <span className="btn-label">Visit tigermotorslean.com</span>
+                <span className="btn-cell">
+                  <ArrowUpRight size={15} weight="bold" />
+                </span>
               </a>
               <Link
                 href="/research/#tiger-motors-platform"
-                className="glass inline-flex h-11 items-center gap-2 rounded-full px-5 text-[14px] font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5 active:scale-[0.97]"
+                className="btn btn-sm btn-frame"
               >
                 Read the paper summary
                 <ArrowRight size={15} />

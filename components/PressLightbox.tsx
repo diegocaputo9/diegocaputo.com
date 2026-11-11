@@ -51,7 +51,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
   }, []);
 
   const btn =
-    "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]";
+    "grid h-10 w-10 place-items-center rounded-ctl bg-white/10 text-white transition-[color,background-color,scale] hover:bg-white/20 active:scale-[0.97]";
 
   return (
     <>
@@ -76,7 +76,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
           decoding="async"
           className="aspect-[1280/513] w-full object-cover transition-transform duration-700 ease-glide group-hover:scale-[1.02]"
         />
-        <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/clip:opacity-100 group-focus-visible/clip:opacity-100 max-md:opacity-100">
+        <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-ctl bg-black/55 px-3 py-1.5 text-[12px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/clip:opacity-100 group-focus-visible/clip:opacity-100 max-md:opacity-100">
           <ArrowsOut size={14} weight="bold" />
           Full page
         </span>
@@ -105,7 +105,7 @@ export function PressLightbox({ image, articleHref }: { image: Img; articleHref?
                   href={articleHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="hidden h-10 items-center gap-1.5 rounded-full bg-white/10 px-4 text-[13px] font-medium transition-colors hover:bg-white/20 sm:flex"
+                  className="hidden h-10 items-center gap-1.5 rounded-ctl bg-white/10 px-4 text-[13px] font-medium transition-colors hover:bg-white/20 sm:flex"
                 >
                   Read online
                   <ArrowUpRight size={14} weight="bold" />

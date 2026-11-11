@@ -66,7 +66,7 @@ export function TerrainViewer() {
   useEffect(() => handle.current?.setFlight(flight), [flight, status]);
 
   const iconBtn =
-    "grid h-9 w-9 place-items-center rounded-full text-ink-2 transition-[color,background-color,scale] hover:bg-ink/[0.06] hover:text-ink active:scale-[0.97] dark:hover:bg-white/[0.08]";
+    "grid h-9 w-9 place-items-center rounded-ctl text-ink-2 transition-[color,background-color,scale] hover:bg-ink/[0.06] hover:text-ink active:scale-[0.97] dark:hover:bg-white/[0.08]";
 
   return (
     <div ref={wrap} className="glass overflow-hidden rounded-card">
@@ -82,7 +82,7 @@ export function TerrainViewer() {
             {status === "error" ? "The 3D view needs WebGL, which is turned off in this browser." : "Loading 3D model…"}
           </div>
         )}
-        <span className="pointer-events-none absolute left-3 top-3 hidden rounded-full bg-bg/70 px-3 py-1.5 text-[12px] text-ink-2 backdrop-blur-md sm:block">
+        <span className="pointer-events-none absolute left-3 top-3 hidden rounded-ctl bg-bg/70 px-3 py-1.5 text-[12px] text-ink-2 backdrop-blur-md sm:block">
           Sample terrain · placeholder
         </span>
         <div className="pointer-events-none absolute right-3 top-3 rounded-2xl bg-bg/70 px-3 py-2 text-right backdrop-blur-md">
@@ -104,7 +104,7 @@ export function TerrainViewer() {
 
       {/* toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-3 py-2.5">
-        <div role="radiogroup" aria-label="View" className="flex rounded-full bg-ink/[0.04] p-1 dark:bg-white/[0.05]">
+        <div role="radiogroup" aria-label="View" className="flex rounded-ctl bg-ink/[0.04] p-1 dark:bg-white/[0.05]">
           {modes.map((m) => (
             <button
               key={m.id}
@@ -112,7 +112,7 @@ export function TerrainViewer() {
               role="radio"
               aria-checked={mode === m.id}
               onClick={() => setMode(m.id)}
-              className={`relative rounded-full px-3.5 py-1.5 text-[13px] transition-colors ${
+              className={`relative rounded-ctl px-3.5 py-1.5 text-[13px] transition-colors ${
                 mode === m.id ? "text-ink" : "text-ink-3 hover:text-ink"
               }`}
             >
@@ -120,7 +120,7 @@ export function TerrainViewer() {
                 <motion.span
                   layoutId="terrain-mode"
                   transition={reduce ? { duration: 0 } : spring}
-                  className="absolute inset-0 rounded-full bg-bg shadow-[0_1px_2px_rgb(0_0_0/0.08),inset_0_1px_0_var(--glass-edge)]"
+                  className="absolute inset-0 rounded-ctl bg-bg shadow-[0_1px_2px_rgb(0_0_0/0.08),inset_0_1px_0_var(--glass-edge)]"
                 />
               )}
               <span className="relative">{m.label}</span>
@@ -132,7 +132,7 @@ export function TerrainViewer() {
             type="button"
             aria-pressed={flight}
             onClick={() => setFlight((f) => !f)}
-            className={`flex h-9 items-center gap-1.5 rounded-full px-3 text-[13px] transition-colors ${
+            className={`flex h-9 items-center gap-1.5 rounded-ctl px-3 text-[13px] transition-colors ${
               flight ? "bg-accent/10 text-accent" : "text-ink-3 hover:text-ink"
             }`}
           >

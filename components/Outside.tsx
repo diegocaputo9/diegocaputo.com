@@ -26,6 +26,8 @@ export function Outside() {
   const c = outside.cycling;
   return (
     <section id="outside" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-24">
+      {/* drafting rule: draws across as the section scrolls in */}
+      <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">
         <div>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
@@ -56,7 +58,7 @@ export function Outside() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={aria}
-                  className="inline-flex h-8 items-center gap-1.5 rounded-full bg-ink/[0.05] px-3 text-[13px] text-ink-2 transition-colors hover:bg-ink/[0.09] hover:text-ink dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
+                  className="inline-flex h-8 items-center gap-1.5 rounded-ctl bg-ink/[0.05] px-3 text-[13px] text-ink-2 transition-colors hover:bg-ink/[0.09] hover:text-ink dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
                 >
                   <Icon size={15} />
                   {label}

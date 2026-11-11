@@ -116,7 +116,7 @@ export function AssemblyLine({ className }: { className?: string }) {
   );
 }
 
-export function RobotArm({ className }: { className?: string }) {
+export function RobotArm({ className, caption = true }: { className?: string; caption?: boolean }) {
   return (
     <Sketch viewBox="0 0 320 340" label={16} className={className}>
       {/* base + turntable */}
@@ -146,7 +146,7 @@ export function RobotArm({ className }: { className?: string }) {
         <Label x={96} y={214}>AXIS 1</Label>
         <Label x={222} y={196}>REACH</Label>
       </g>
-      <Label x={90} y={336}>6-AXIS ROBOT / CELL 04</Label>
+      {caption && <Label x={90} y={336}>6-AXIS ROBOT / CELL 04</Label>}
     </Sketch>
   );
 }
