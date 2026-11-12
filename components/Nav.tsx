@@ -101,7 +101,7 @@ export function Nav() {
       >
         Skip to content
       </a>
-      <div ref={bar} className="relative mx-auto flex h-[60px] max-w-[1300px] items-center justify-between gap-3 px-5 md:px-8">
+      <div ref={bar} className="relative mx-auto flex h-[60px] max-w-[1274px] items-center justify-between gap-3 px-5 md:px-8">
         {/* selection frame: one element that slides and resizes, so the corners never stretch */}
         <motion.span
           aria-hidden
@@ -148,7 +148,7 @@ export function Nav() {
         </a>
 
         <nav aria-label="Primary" onMouseLeave={() => setHovered(null)}>
-          <ul className="flex items-center">
+          <ul className="-mr-2.5 flex items-center sm:-mr-4">
             {links.map((l) => (
               <li key={l.id}>
                 <a

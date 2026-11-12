@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 
 export function Stats() {
   return (
-    <section aria-label="At a glance" className="mx-auto max-w-[1300px] px-5 md:px-8">
+    <section aria-label="At a glance" className="mx-auto max-w-[1274px] px-5 md:px-8">
       <dl className="grid grid-cols-2 gap-x-6 gap-y-10 border-y border-line py-10 md:grid-cols-4 md:gap-0 md:divide-x md:divide-line">
         {stats.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.05} className="md:px-8 md:first:pl-0">

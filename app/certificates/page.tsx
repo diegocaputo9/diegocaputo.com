@@ -32,7 +32,7 @@ export default function CertificatesPage() {
       <Backdrop />
       <Nav />
       <main id="main" tabIndex={-1} className="relative isolate outline-none">
-        <header className="mx-auto max-w-[1300px] px-5 pb-6 pt-32 md:px-8 md:pt-40">
+        <header className="mx-auto max-w-[1274px] px-5 pb-6 pt-32 md:px-8 md:pt-40">
           <div className="rise">
             <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
               <ArrowLeft size={14} />
@@ -45,7 +45,7 @@ export default function CertificatesPage() {
           </div>
         </header>
 
-        <section className="mx-auto max-w-[1300px] px-5 pt-10 md:px-8">
+        <section className="mx-auto max-w-[1274px] px-5 pt-10 md:px-8">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Credentials</h2>
             <ul className="mt-8">
@@ -67,7 +67,7 @@ export default function CertificatesPage() {
         </section>
 
         {groups.map((g) => (
-          <section key={g} className="mx-auto max-w-[1300px] px-5 pt-20 last-of-type:pb-24 md:px-8">
+          <section key={g} className="mx-auto max-w-[1274px] px-5 pt-20 last-of-type:pb-24 md:px-8">
             <Reveal>
               <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">{g}</h2>
               <ul className="mt-8">
