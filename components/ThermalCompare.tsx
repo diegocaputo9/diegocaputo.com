@@ -3,9 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { animate } from "motion/react";
 import { ArrowsHorizontal } from "@phosphor-icons/react";
-import { buildThermal, drawAerial, findings, H, ironGradient, T_MAX, T_MIN, W } from "./thermal/scene";
+import { findings, H, ironGradient, T_MAX, T_MIN, tempFromPixel, thermalSrc, visibleSrc, W } from "./thermal/photo";
 
-// Before/after viewer: visible-light aerial on the left, thermal on the right.
+const loadImage = (src: string) =>
+  new Promise<HTMLImageElement>((ok, fail) => {
+    const i = new Image();
+    i.onload = () => ok(i);
+    i.onerror = fail;
+    i.src = src;
+  });
+
+// Before/after viewer: the drone photo on the left, the same view in thermal on the right.
 // The split and the temperature readout are written straight to the DOM
 // (no React state per pointer move).
 export function ThermalCompare() {
@@ -46,16 +54,21 @@ export function ThermalCompare() {
         if (!e.isIntersecting) return;
         draw.disconnect();
         const a = aerial.current?.getContext("2d");
-        const t = thermal.current?.getContext("2d");
+        const t = thermal.current?.getContext("2d", { willReadFrequently: true });
         if (!a || !t) return;
-        drawAerial(a);
-        const th = buildThermal();
-        t.imageSmoothingEnabled = true;
-        t.imageSmoothingQuality = "high";
-        t.drawImage(th.image, 0, 0, W, H);
-        tempAt.current = th.tempAt;
-        drawn = true;
-        setReady(true);
+        Promise.all([loadImage(visibleSrc), loadImage(thermalSrc)])
+          .then(([vis, ir]) => {
+            a.drawImage(vis, 0, 0, W, H);
+            t.drawImage(ir, 0, 0, W, H);
+            const px = t.getImageData(0, 0, W, H).data;
+            tempAt.current = (x, y) => {
+              const i = (Math.min(H - 1, Math.max(0, Math.round(y))) * W + Math.min(W - 1, Math.max(0, Math.round(x)))) * 4;
+              return tempFromPixel(px[i], px[i + 1], px[i + 2]);
+            };
+            drawn = true;
+            setReady(true);
+          })
+          .catch(() => {});
       },
       { rootMargin: "300px 0px" },
     );
@@ -148,14 +161,14 @@ export function ThermalCompare() {
         onPointerCancel={onUp}
         onPointerLeave={onLeave}
         style={{ ["--split" as string]: "50%" }}
-        className="group/tc relative aspect-[16/10] cursor-ew-resize touch-pan-y select-none overflow-hidden bg-bg-2"
+        className="group/tc relative aspect-[1200/820] cursor-ew-resize touch-pan-y select-none overflow-hidden bg-bg-2"
       >
         <canvas
           ref={aerial}
           width={W}
           height={H}
           role="img"
-          aria-label="Sample aerial photo of an industrial site: a flat-roof building, a tank, a pipe rack and a parking lot"
+          aria-label="Drone photo of an industrial site: a flat-roof building with rooftop units, a tank, pipe runs, loading docks and a parking lot"
           className="absolute inset-0 h-full w-full"
         />
         <div className="absolute inset-0 [clip-path:inset(0_0_0_var(--split))]">
@@ -176,12 +189,23 @@ export function ThermalCompare() {
                 className="thermal-marker absolute z-10 grid h-6 w-6 cursor-default transition-[background-color,border-color,scale] duration-200 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-black/55 font-mono text-[12px] font-medium text-white backdrop-blur-sm"
               >
                 {f.n}
+                {/* note on hover: what the hot spot is and how warm */}
+                <span
+                  className={`pointer-events-none absolute top-1/2 z-20 w-max max-w-[220px] -translate-y-1/2 rounded-lg bg-black/75 px-2.5 py-1.5 text-left font-sans text-[12px] font-normal leading-snug text-white opacity-0 shadow-[0_6px_18px_rgb(0_0_0/0.3)] backdrop-blur-md transition-opacity duration-200 [.thermal-marker:hover>&]:opacity-100 ${
+                    f.x > W * 0.6 ? "right-[calc(100%+8px)]" : "left-[calc(100%+8px)]"
+                  }`}
+                >
+                  <span className="block font-medium">
+                    {f.title} <span className="font-mono text-white/70">{f.temp}</span>
+                  </span>
+                  <span className="block text-white/75">{f.detail}</span>
+                </span>
               </span>
             ))}
         </div>
 
         {!ready && (
-          <div className="absolute inset-0 grid place-items-center text-[13px] text-ink-3">Drawing sample scene…</div>
+          <div className="absolute inset-0 grid place-items-center text-[13px] text-ink-3">Loading images…</div>
         )}
 
         <span className="pointer-events-none absolute left-3 top-3 rounded-ctl bg-black/45 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-md">

@@ -4,7 +4,7 @@ import { Gallery } from "./Gallery";
 import { Reveal } from "./Reveal";
 import { TerrainViewer } from "./TerrainViewer";
 import { ThermalCompare } from "./ThermalCompare";
-import { findings } from "./thermal/scene";
+import { findings } from "./thermal/photo";
 
 function Tags({ items }: { items: string[] }) {
   return (
