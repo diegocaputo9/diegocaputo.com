@@ -838,23 +838,32 @@ p, li, figcaption, dd {
 .btn-line:hover > svg:last-of-type { translate: var(--nudge, 2px 0); color: var(--accent); }
 
 /* ------------------------------------------------------------------
-   Mouse pointer: the system arrow everywhere, and the same arrow shape in
-   the accent blue over anything clickable (public/cursors, drawn to match
-   the standard pointer: white outline, tip = hotspot at 3,2). Mouse and
-   trackpad only. In the base layer so cursor utilities (zoom-in, grab,
-   text) still win.
+   Mouse pointer: one arrow, drawn to the macOS pointer's size and shape
+   (public/cursors; black fill, 1 pt white outline, soft shadow; tip =
+   hotspot at 2,2). Over anything clickable the same arrow turns accent
+   blue, so the only change is the color. Both states are images on
+   purpose: switching from the system arrow to an image would jump in
+   size and shape. Text fields keep the text cursor; cursor utilities
+   (zoom-in, grab) still win. Mouse and trackpad only.
 ------------------------------------------------------------------- */
 @layer base {
   @media (pointer: fine) {
+    html {
+      cursor: url("/cursors/arrow.png") 2 2, default;
+      cursor: image-set(url("/cursors/arrow.png") 1x, url("/cursors/arrow@2x.png") 2x) 2 2, default;
+    }
     :is(a, button, summary, select, label[for], [role="button"], [role="radio"]):not(:disabled) {
-      cursor: url("/cursors/arrow-accent.png") 3 2, pointer;
-      cursor: image-set(url("/cursors/arrow-accent.png") 1x, url("/cursors/arrow-accent@2x.png") 2x) 3 2, pointer;
+      cursor: url("/cursors/arrow-accent.png") 2 2, pointer;
+      cursor: image-set(url("/cursors/arrow-accent.png") 1x, url("/cursors/arrow-accent@2x.png") 2x) 2 2, pointer;
     }
     @media (prefers-color-scheme: dark) {
       :is(a, button, summary, select, label[for], [role="button"], [role="radio"]):not(:disabled) {
-        cursor: url("/cursors/arrow-accent-dark.png") 3 2, pointer;
-        cursor: image-set(url("/cursors/arrow-accent-dark.png") 1x, url("/cursors/arrow-accent-dark@2x.png") 2x) 3 2, pointer;
+        cursor: url("/cursors/arrow-accent-dark.png") 2 2, pointer;
+        cursor: image-set(url("/cursors/arrow-accent-dark.png") 1x, url("/cursors/arrow-accent-dark@2x.png") 2x) 2 2, pointer;
       }
+    }
+    :is(input:not([type="range"], [type="checkbox"], [type="radio"], [type="button"], [type="submit"]), textarea, [contenteditable="true"]) {
+      cursor: text;
     }
   }
 }
