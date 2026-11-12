@@ -139,10 +139,14 @@ export function Outside() {
                 overlaps the photo, so only the part over the page background glows (dark mode) */}
             <span
               aria-hidden
-              className="pointer-events-none absolute -left-3.5 -top-5 z-10 hidden h-[64px] w-[64px] transition-transform duration-500 ease-glide [--ox:14px] [--oy:20px] [clip-path:polygon(-20px_-20px,calc(100%+20px)_-20px,calc(100%+20px)_var(--oy),var(--ox)_var(--oy),var(--ox)_calc(100%+20px),-20px_calc(100%+20px))] group-hover:-translate-y-1 group-hover:rotate-[-8deg] md:-left-5 md:h-[80px] md:w-[80px] md:[--ox:20px] dark:block"
+              className="pointer-events-none absolute -left-3.5 -top-5 z-10 hidden h-[64px] w-[64px] [--ox:14px] [--oy:20px] [clip-path:polygon(-30px_-30px,calc(100%+30px)_-30px,calc(100%+30px)_var(--oy),var(--ox)_var(--oy),var(--ox)_calc(100%+30px),-30px_calc(100%+30px))] md:-left-5 md:h-[80px] md:w-[80px] md:[--ox:20px] dark:block"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- glow copy of the logo */}
-              <img src="/outside/auburn-flyers.webp" alt="" width={240} height={240} className="h-full w-full [filter:brightness(0)_invert(1)_drop-shadow(0_0_1px_rgb(255_255_255/0.5))_drop-shadow(0_0_6px_rgb(255_255_255/0.22))] opacity-70" />
+              {/* the clip (outer span) stays put at the photo's corner; only this inner part
+                  lifts and tilts with the logo, so the glow follows it all the way round */}
+              <span className="block h-full w-full transition-transform duration-500 ease-glide group-hover:-translate-y-1 group-hover:rotate-[-8deg]">
+                {/* eslint-disable-next-line @next/next/no-img-element -- glow copy of the logo */}
+                <img src="/outside/auburn-flyers.webp" alt="" width={240} height={240} className="h-full w-full [filter:brightness(0)_invert(1)_drop-shadow(0_0_1px_rgb(255_255_255/0.5))_drop-shadow(0_0_6px_rgb(255_255_255/0.22))] opacity-70" />
+              </span>
             </span>
             {/* eslint-disable-next-line @next/next/no-img-element -- small static logo */}
             <img
