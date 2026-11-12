@@ -132,10 +132,18 @@ export function Outside() {
           <Tags items={c.tags} />
         </Reveal>
         <Reveal delay={0.08}>
-          {/* team logo pinned to the main photo's corner; lifts and tilts on hover, like the belt badge.
-              In dark mode a thin white rim and soft glow keep the navy ring visible. */}
+          {/* team logo pinned to the main photo's corner; lifts and tilts on hover, like the belt badge. */}
           <div className="group relative">
             <Gallery items={c.photos} label="Auburn Flyers cycling" variant="mosaic" />
+            {/* the glow is its own copy behind the logo, clipped away where the logo
+                overlaps the photo, so only the part over the page background glows (dark mode) */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -left-3.5 -top-5 z-10 hidden h-[64px] w-[64px] transition-transform duration-500 ease-glide [--ox:14px] [--oy:20px] [clip-path:polygon(-20px_-20px,calc(100%+20px)_-20px,calc(100%+20px)_var(--oy),var(--ox)_var(--oy),var(--ox)_calc(100%+20px),-20px_calc(100%+20px))] group-hover:-translate-y-1 group-hover:rotate-[-8deg] md:-left-5 md:h-[80px] md:w-[80px] md:[--ox:20px] dark:block"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- glow copy of the logo */}
+              <img src="/outside/auburn-flyers.webp" alt="" width={240} height={240} className="h-full w-full [filter:brightness(0)_invert(1)_drop-shadow(0_0_1px_rgb(255_255_255/0.5))_drop-shadow(0_0_6px_rgb(255_255_255/0.22))] opacity-70" />
+            </span>
             {/* eslint-disable-next-line @next/next/no-img-element -- small static logo */}
             <img
               src="/outside/auburn-flyers.webp"
@@ -143,7 +151,7 @@ export function Outside() {
               width={240}
               height={240}
               loading="lazy"
-              className="pointer-events-none absolute -left-3.5 -top-5 z-10 h-[64px] w-[64px] [filter:drop-shadow(0_6px_16px_rgb(0_0_0/0.25))] transition-transform duration-500 ease-glide group-hover:-translate-y-1 group-hover:rotate-[-8deg] md:-left-5 md:h-[80px] md:w-[80px] dark:[filter:drop-shadow(0_0_1.5px_rgb(255_255_255/0.85))_drop-shadow(0_0_10px_rgb(255_255_255/0.35))]"
+              className="pointer-events-none absolute -left-3.5 -top-5 z-10 h-[64px] w-[64px] [filter:drop-shadow(0_6px_16px_rgb(0_0_0/0.25))] transition-transform duration-500 ease-glide group-hover:-translate-y-1 group-hover:rotate-[-8deg] md:-left-5 md:h-[80px] md:w-[80px]"
             />
           </div>
           <p className="mt-3 text-[13px] text-ink-3">Open any photo to see the full set.</p>
