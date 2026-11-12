@@ -26,7 +26,7 @@ export function Hero() {
     <section id="top" className="relative isolate overflow-clip">
       <HeroCrosshair />
 
-      <div className="relative mx-auto grid max-w-6xl items-end gap-x-12 gap-y-10 px-5 pt-[104px] md:px-8 lg:min-h-[min(760px,calc(100dvh-150px))] lg:grid-cols-[1.25fr_0.75fr] lg:pt-[92px]">
+      <div className="relative mx-auto grid max-w-6xl items-end gap-x-12 gap-y-10 px-5 pt-[104px] md:px-8 lg:min-h-[min(760px,calc(100dvh-205px))] lg:grid-cols-[1.25fr_0.75fr] lg:pt-[92px]">
         {/* the statement */}
         <div className="pb-4 lg:self-center lg:pb-24">
           <div className="rise" style={d(60)}>
