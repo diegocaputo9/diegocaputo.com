@@ -297,3 +297,33 @@ export function Andon({ className }: { className?: string }) {
     </Sketch>
   );
 }
+
+// Poka-yoke fit check: a keyed part comes down upside down, stops on the
+// fixture's key, lifts, flips and seats; the OK lamp lights, then it repeats.
+// With reduced motion the part simply sits in place.
+export function FitCheck({ className }: { className?: string }) {
+  return (
+    <Sketch viewBox="0 0 320 250" label={13} className={className}>
+      {/* fixture: a nest with a key in the middle */}
+      <path pathLength={P} d="M60 205 H260 V150 H212 V172 H170 V160 H150 V172 H108 V150 H60 Z" />
+      <line className="dash" x1={160} y1={20} x2={160} y2={225} />
+      <line className="dash" x1={40} y1={172} x2={280} y2={172} />
+      {/* the part (slot on its underside) */}
+      <g className="bp-fit-part" style={{ transform: "translate(160px, 147px)" }}>
+        <path pathLength={P} d="M-50 -25 H50 V25 H10 V13 H-10 V25 H-50 Z" />
+        <circle pathLength={P} cx={-28} cy={-4} r={5} />
+        <circle pathLength={P} cx={28} cy={-4} r={5} />
+      </g>
+      {/* OK lamp */}
+      <circle pathLength={P} cx={236} cy={186} r={7} />
+      <circle className="bp-lamp bp-fit-ok" cx={236} cy={186} r={5} />
+      <g className="dim">
+        <line x1={110} y1={232} x2={210} y2={232} />
+        <line x1={110} y1={227} x2={110} y2={237} />
+        <line x1={210} y1={227} x2={210} y2={237} />
+        <Label x={124} y={247}>FIT CHECK</Label>
+      </g>
+      <Label x={62} y={140}>POKA-YOKE</Label>
+    </Sketch>
+  );
+}

@@ -77,8 +77,11 @@ export default function Home() {
       <Nav />
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
-        <About />
-        <Stats />
+        {/* About and its numbers fill one screen on computers, so the next section starts below the fold */}
+        <div className="lg:flex lg:min-h-[100dvh] lg:flex-col lg:justify-center lg:pb-10">
+          <About />
+          <Stats />
+        </div>
         <Speaking />
         <Featured />
         <Work phoneKeep={["Lean Six Sigma Green Belt programs", "ChapterCore"]} />

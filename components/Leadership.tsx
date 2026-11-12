@@ -58,7 +58,7 @@ export function Leadership() {
       </div>
 
       {/* Education + honors side by side */}
-      <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-14">
+      <div className="mt-14 grid max-w-[1060px] gap-12 md:mt-20 md:grid-cols-2 md:gap-14">
         <Reveal>
           <h3 className="text-xl font-semibold tracking-tight text-ink">Education</h3>
           <ul className="mt-5">

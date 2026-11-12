@@ -14,10 +14,17 @@ export function LessonBanner() {
   const panel = useRef<HTMLDivElement>(null);
   const l = speaking.lesson;
 
+  const returnTo = useRef<number | null>(null); // where the page was when the lesson opened
   const toggle = () => {
     const next = !open;
     setOpen(next);
+    if (!next && returnTo.current !== null) {
+      // closing: glide back to where the reader was when they opened it
+      window.scrollTo({ top: returnTo.current, behavior: "smooth" });
+      returnTo.current = null;
+    }
     if (next) {
+      returnTo.current = window.scrollY;
       setMounted(true);
       // bring the opened lesson into view once it has its height
       window.setTimeout(() => panel.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }), 420);

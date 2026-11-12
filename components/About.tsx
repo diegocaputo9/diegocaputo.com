@@ -1,6 +1,7 @@
 import { Translate } from "@phosphor-icons/react/dist/ssr";
 import { about } from "@/content/site";
 import { AiSparkle } from "./AiSparkle";
+import { FitCheck } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
 import { Reveal } from "./Reveal";
 
@@ -21,6 +22,8 @@ export function About() {
         </Reveal>
 
         <Reveal delay={0.08}>
+          {/* drawing above the AI card: a part that only fits one way */}
+          <FitCheck className="mx-auto mb-6 hidden w-[280px] lg:block" />
           <GlassCard tilt={2} className="rounded-3xl p-6 md:p-7">
             <p className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-ink">
               <AiSparkle />

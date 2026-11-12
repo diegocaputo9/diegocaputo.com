@@ -517,6 +517,27 @@ p, li, figcaption, dd {
   .bp-lamp-run { animation: bp-lamp-run 16s ease-in-out infinite; }
   .bp-lamp-call { animation: bp-lamp-call 16s ease-in-out infinite; }
   .bp-lamp-stop { animation: bp-lamp-stop 16s ease-in-out infinite; }
+  .bp-fit-part { animation: bp-fit-part 13s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+  .bp-fit-ok { animation: bp-fit-ok 13s ease-in-out infinite; }
+}
+.bp-fit-ok { fill: #2f9e44; opacity: 0.4; }
+/* upside down onto the key, a small jiggle, lift, flip, seat, hold, fade, again */
+@keyframes bp-fit-part {
+  0% { transform: translate(160px, 40px) scaleY(-1); opacity: 0; }
+  5% { transform: translate(160px, 50px) scaleY(-1); opacity: 1; }
+  17% { transform: translate(160px, 135px) scaleY(-1); }
+  20% { transform: translate(162px, 135px) scaleY(-1); }
+  23% { transform: translate(158px, 135px) scaleY(-1); }
+  26% { transform: translate(160px, 135px) scaleY(-1); }
+  36% { transform: translate(160px, 75px) scaleY(-1); }
+  46% { transform: translate(160px, 75px) scaleY(1); }
+  58%, 86% { transform: translate(160px, 147px) scaleY(1); opacity: 1; }
+  95%, 100% { transform: translate(160px, 147px) scaleY(1); opacity: 0; }
+}
+@keyframes bp-fit-ok {
+  0%, 58% { opacity: 0; }
+  62%, 86% { opacity: 0.45; }
+  92%, 100% { opacity: 0; }
 }
 @keyframes bp-parallax {
   from { transform: translateY(-56px); }
