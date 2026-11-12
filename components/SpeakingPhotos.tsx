@@ -21,46 +21,43 @@ const items: GalleryItem[] = speaking.photos.map((p) => ({
 export function SpeakingPhotos() {
   return (
     <Gallery items={items} label={speaking.title}>
-      <ul className="mt-10 grid gap-5 md:grid-cols-12">
+      {/* full bleed: the two photos sit flush, edge to edge across the screen,
+          with their captions in a strip underneath instead of over the image */}
+      <ul className="mt-10 ml-[calc(50%-50vw)] grid w-screen border-y border-line md:grid-cols-12">
         {speaking.photos.map((p, i) => (
-          <Reveal as="li" key={p.name} delay={i * 0.08} className={spans[i]}>
+          <Reveal as="li" key={p.name} delay={i * 0.08} className={`${spans[i]} ${i ? "border-t border-line md:border-l md:border-t-0" : ""}`}>
             <button
               type="button"
               data-open={i}
               aria-haspopup="dialog"
               aria-label={`Open photo: ${p.title}`}
-              className="group relative block h-full w-full cursor-zoom-in overflow-hidden rounded-card border border-line bg-bg-2 text-left transition-[scale] duration-200 ease-glide active:scale-[0.97]"
+              className="group relative flex h-full w-full cursor-zoom-in flex-col justify-start text-left"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
-              <img
-                src={`/speaking/${p.name}-800.webp`}
-                srcSet={`/speaking/${p.name}-800.webp 800w, /speaking/${p.name}-1400.webp 1400w`}
-                sizes={
-                  i === 0
-                    ? "(min-width: 1152px) 640px, (min-width: 768px) 58vw, 92vw"
-                    : "(min-width: 1152px) 460px, (min-width: 768px) 42vw, 92vw"
-                }
-                alt={p.alt}
-                width={p.width}
-                height={p.height}
-                loading="lazy"
-                decoding="async"
-                style={{ objectPosition: p.position }}
-                className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.03] md:aspect-auto md:h-[380px] lg:h-[420px]"
-              />
-              <span className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-ctl bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 md:right-4 md:top-4">
-                <ArrowsOut size={14} weight="bold" />
+              <span className="relative block overflow-hidden bg-bg-2">
+                {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
+                <img
+                  src={`/speaking/${p.name}-800.webp`}
+                  srcSet={`/speaking/${p.name}-800.webp 800w, /speaking/${p.name}-1400.webp 1400w, /speaking/${p.name}-full.webp 2000w`}
+                  sizes={i === 0 ? "(min-width: 768px) 58vw, 100vw" : "(min-width: 768px) 42vw, 100vw"}
+                  alt={p.alt}
+                  width={p.width}
+                  height={p.height}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ objectPosition: p.position }}
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.02] md:aspect-auto md:h-[clamp(340px,48vh,520px)]"
+                />
+                <span className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-ctl bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                  <ArrowsOut size={14} weight="bold" />
+                </span>
               </span>
-              <span className="absolute inset-x-3 bottom-3 block rounded-2xl bg-black/45 px-4 py-3 text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] backdrop-blur-md md:inset-x-4 md:bottom-4 md:rounded-xl">
-                <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-white/70">
-                  {p.kicker}
+              {/* caption strip */}
+              <span className={`flex flex-1 flex-col gap-1 border-t sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 border-line px-5 py-4 md:py-5 ${i === 0 ? "md:pl-[max(2rem,calc(50vw-605px))] md:pr-8" : "md:pl-8 md:pr-[max(2rem,calc(50vw-605px))]"}`}>
+                <span className="min-w-0">
+                  <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{p.kicker}</span>
+                  <span className="mt-1 block text-[16px] font-medium leading-snug tracking-tight text-ink transition-colors group-hover:text-accent">{p.title}</span>
                 </span>
-                <span className="mt-0.5 block text-[15px] font-medium leading-snug">
-                  {p.title}
-                </span>
-                <span className="block text-[13px] text-white/75">
-                  {p.meta}
-                </span>
+                <span className="shrink-0 font-mono text-[12px] text-ink-3">{p.meta}</span>
               </span>
             </button>
           </Reveal>
