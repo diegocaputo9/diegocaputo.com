@@ -10,7 +10,7 @@ export function Speaking() {
     <section id="speaking" className="mx-auto max-w-[1274px] px-5 pb-4 pt-14 md:px-8 md:pb-8 md:pt-16">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
-      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
         <Reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">{speaking.title}</h2>
           <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink-2">{speaking.lede}</p>

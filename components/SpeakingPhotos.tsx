@@ -23,7 +23,7 @@ export function SpeakingPhotos() {
     <Gallery items={items} label={speaking.title}>
       {/* full bleed: the two photos sit flush, edge to edge across the screen,
           with their captions in a strip underneath instead of over the image */}
-      <ul className="mt-10 ml-[calc(50%-50vw)] grid w-screen border-y border-line md:grid-cols-12">
+      <ul className="mt-7 ml-[calc(50%-50vw)] grid w-screen border-y border-line md:grid-cols-12">
         {speaking.photos.map((p, i) => (
           <Reveal as="li" key={p.name} delay={i * 0.08} className={`${spans[i]} ${i ? "border-t border-line md:border-l md:border-t-0" : ""}`}>
             <button
@@ -45,14 +45,14 @@ export function SpeakingPhotos() {
                   loading="lazy"
                   decoding="async"
                   style={{ objectPosition: p.position }}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.02] md:aspect-auto md:h-[clamp(340px,48vh,520px)]"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.02] md:aspect-auto md:h-[clamp(260px,calc(100dvh-510px),520px)]"
                 />
                 <span className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-ctl bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <ArrowsOut size={14} weight="bold" />
                 </span>
               </span>
               {/* caption strip */}
-              <span className={`flex flex-1 flex-col gap-1 border-t sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 border-line px-5 py-4 md:py-5 ${i === 0 ? "md:pl-[max(2rem,calc(50vw-605px))] md:pr-8" : "md:pl-8 md:pr-[max(2rem,calc(50vw-605px))]"}`}>
+              <span className={`flex flex-1 flex-col gap-1 border-t sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 border-line px-5 py-3 md:py-3 ${i === 0 ? "md:pl-[max(2rem,calc(50vw-605px))] md:pr-8" : "md:pl-8 md:pr-[max(2rem,calc(50vw-605px))]"}`}>
                 <span className="min-w-0">
                   <span className="block text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{p.kicker}</span>
                   <span className="mt-1 block text-[16px] font-medium leading-snug tracking-tight text-ink transition-colors group-hover:text-accent">{p.title}</span>
