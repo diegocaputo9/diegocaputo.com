@@ -70,8 +70,8 @@ export function Outside() {
       </Reveal>
 
       {/* photogrammetry: text on top, the 3D map as a full-width band */}
-      <div className="mt-14">
-        <Reveal className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
+      <div className="topo-band mt-14 ml-[calc(50%-50vw)] w-screen pt-12 md:pt-14">
+        <Reveal className="mx-auto grid max-w-[1274px] gap-6 px-5 md:px-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
           <div>
             <h3 className="text-2xl font-semibold tracking-tight text-ink">{p.title}</h3>
             <p className="mt-3 max-w-[64ch] text-[15px] leading-relaxed text-ink-2">{p.text}</p>

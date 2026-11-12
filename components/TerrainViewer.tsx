@@ -74,7 +74,7 @@ export function TerrainViewer({ wide = false }: { wide?: boolean }) {
     <div
       ref={wrap}
       style={{ "--edge": wide ? "max(1.25rem, calc(50vw - 605px))" : "0.75rem" } as React.CSSProperties}
-      className={wide ? "ml-[calc(50%-50vw)] w-screen overflow-hidden border-y border-line bg-bg-2/40" : "glass overflow-hidden rounded-card"}
+      className={wide ? "ml-[calc(50%-50vw)] w-screen overflow-hidden border-t border-line" : "glass overflow-hidden rounded-card"}
     >
       <div className={wide ? "relative aspect-[4/3] sm:aspect-auto sm:h-[clamp(340px,calc(100dvh-300px),560px)]" : "relative aspect-[4/3]"}>
         <canvas
@@ -88,9 +88,6 @@ export function TerrainViewer({ wide = false }: { wide?: boolean }) {
             {status === "error" ? "The 3D view needs WebGL, which is turned off in this browser." : "Loading 3D model…"}
           </div>
         )}
-        <span className="pointer-events-none absolute left-[var(--edge)] top-3 hidden rounded-ctl bg-bg/70 px-3 py-1.5 text-[12px] text-ink-2 backdrop-blur-md sm:block">
-          Sample terrain · placeholder
-        </span>
         <div className="pointer-events-none absolute right-[var(--edge)] top-3 rounded-2xl bg-bg/70 px-3 py-2 text-right backdrop-blur-md">
           <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Elevation</p>
           <p className="font-mono text-[14px] text-ink">

@@ -1,6 +1,7 @@
 import { ArrowUpRight, EnvelopeSimple, FileText, GithubLogo, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/content/site";
 import { Andon } from "./Blueprint";
+import { ContactEmail } from "./ContactEmail";
 import { GlassCard } from "./GlassCard";
 import { academicProfiles } from "./profiles";
 import { Reveal } from "./Reveal";
@@ -41,6 +42,9 @@ export function Contact() {
           <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
             {items.map(({ label, value, href, Icon, primary }) => (
               <li key={label}>
+                {label === "Email" ? (
+                  <ContactEmail email={value} />
+                ) : (
                 <a
                   href={href}
                   data-pdf-title={href.endsWith(".pdf") ? `${site.name}, résumé` : undefined}
@@ -67,6 +71,7 @@ export function Contact() {
                     </>
                   )}
                 </a>
+                )}
               </li>
             ))}
           </ul>
