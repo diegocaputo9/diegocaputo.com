@@ -58,7 +58,7 @@ export function Leadership() {
       </div>
 
       {/* Education + honors side by side */}
-      <div className="mt-14 grid max-w-[1060px] gap-12 md:mt-20 md:grid-cols-2 md:gap-14">
+      <div className="mx-auto mt-14 grid max-w-[1060px] gap-12 md:mt-20 md:grid-cols-2 md:gap-14">
         <Reveal>
           <h3 className="text-xl font-semibold tracking-tight text-ink">Education</h3>
           <ul className="mt-5">
@@ -139,7 +139,7 @@ export function Leadership() {
       </div>
 
       {/* In the news: four on phones, with a link to the full list */}
-      <Reveal className="mt-14 md:mt-20">
+      <Reveal className="mx-auto mt-14 max-w-[1060px] md:mt-20">
         <h3 className="text-xl font-semibold tracking-tight text-ink">In the news</h3>
         <NewsList phoneLimit={4} />
       </Reveal>
