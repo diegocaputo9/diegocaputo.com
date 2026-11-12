@@ -889,26 +889,31 @@ p, li, figcaption, dd {
   }
 }
 
-/* Survey band behind the 3D terrain: full screen width, a slightly cooler
-   tone than the page and faint topographic contour lines (public/topo.svg). */
-.topo-band {
-  position: relative;
+/* Night-flight band: only the 3D map's own strip (between its top line and
+   the toolbar) goes dark navy with faint light contour lines, so the
+   terrain reads like a drone's view at dusk. Overlays turn to dark glass. */
+.night-band {
   isolation: isolate;
-  background: color-mix(in oklab, var(--bg-2) 82%, var(--accent) 4%);
-  border-block: 1px solid var(--line);
+  color-scheme: dark;
+  background:
+    radial-gradient(120% 90% at 50% 110%, #1d2c5c 0%, transparent 60%),
+    linear-gradient(180deg, #0b1226 0%, #101a36 100%);
 }
-.topo-band::before {
+.night-band::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background: url("/topo.svg") center / cover no-repeat;
-  opacity: 0.22;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  filter: invert(1);
+  opacity: 0.09;
   pointer-events: none;
 }
-@media (prefers-color-scheme: dark) {
-  .topo-band { background: color-mix(in oklab, var(--bg-2) 85%, var(--accent) 6%); }
-  .topo-band::before { filter: invert(1); opacity: 0.16; }
+.night-band > .bg-bg\/70 {
+  background: rgb(10 16 34 / 0.55);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
 }
+.night-band > .bg-bg\/70 .text-ink { color: #f4f6fb; }
+.night-band > .bg-bg\/70 .text-ink-3,
+.night-band > div .text-ink-3 { color: rgb(226 232 245 / 0.62); }
+.night-band > div:not(.bg-bg\/70) { color: rgb(226 232 245 / 0.7); }

@@ -34,7 +34,8 @@ export function ContactEmail({ email }: { email: string }) {
   };
 
   return (
-    <span className="relative inline-flex items-stretch gap-1.5">
+    // one outlined box: the address (opens the form) | a thin divider | copy
+    <span className="relative inline-flex h-12 items-stretch rounded-ctl shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--ink)_16%,transparent)] transition-shadow duration-300 hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--ink)_45%,transparent)]">
       <InviteForm
         kind="contact"
         label="Send me a message"
@@ -43,23 +44,23 @@ export function ContactEmail({ email }: { email: string }) {
             type="button"
             onClick={open}
             aria-haspopup="dialog"
-            style={{ "--nudge": "2px -2px" } as React.CSSProperties}
-            className="btn btn-line font-normal"
+            className="group/em inline-flex items-center gap-2 rounded-l-ctl pl-[18px] pr-4 text-[15px] text-ink transition-[background-color,scale] duration-200 hover:bg-ink/[0.04] active:scale-[0.98]"
           >
             <EnvelopeSimple size={18} />
             {email}
-            <ArrowUpRight size={14} className="text-ink-3" />
+            <ArrowUpRight size={14} className="text-ink-3 transition-[translate,color] duration-300 group-hover/em:translate-x-0.5 group-hover/em:-translate-y-0.5 group-hover/em:text-accent" />
           </button>
         )}
       />
+      <span aria-hidden className="my-2.5 w-px bg-line" />
       <button
         type="button"
         onClick={copy}
         aria-label={copied ? "Email address copied" : "Copy email address"}
         title="Copy email address"
-        className="btn btn-line w-12 justify-center px-0"
+        className="grid w-12 place-items-center rounded-r-ctl text-ink-2 transition-[background-color,color,scale] duration-200 hover:bg-ink/[0.04] hover:text-ink active:scale-[0.94]"
       >
-        {copied ? <Check size={17} weight="bold" className="text-accent" /> : <Copy size={17} />}
+        {copied ? <Check size={20} weight="bold" className="text-accent" /> : <Copy size={20} />}
       </button>
 
       {/* toast, just above the buttons */}
