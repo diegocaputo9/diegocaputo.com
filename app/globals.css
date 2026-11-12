@@ -838,29 +838,22 @@ p, li, figcaption, dd {
 .btn-line:hover > svg:last-of-type { translate: var(--nudge, 2px 0); color: var(--accent); }
 
 /* ------------------------------------------------------------------
-   Mouse pointer: an open-end wrench whose handle is sharpened into an
-   arrowhead (public/cursors, drawn for this site; tip = hotspot at 2,2).
-   Ink on the page, accent over anything clickable. Mouse/trackpad only.
-   In the base layer so cursor utilities (zoom-in, grab, text) still win.
+   Mouse pointer: the system arrow everywhere, and the same arrow shape in
+   the accent blue over anything clickable (public/cursors, drawn to match
+   the standard pointer: white outline, tip = hotspot at 3,2). Mouse and
+   trackpad only. In the base layer so cursor utilities (zoom-in, grab,
+   text) still win.
 ------------------------------------------------------------------- */
 @layer base {
   @media (pointer: fine) {
-    html {
-      cursor: url("/cursors/wrench.png") 2 2, auto;
-      cursor: image-set(url("/cursors/wrench.png") 1x, url("/cursors/wrench@2x.png") 2x) 2 2, auto;
-    }
     :is(a, button, summary, select, label[for], [role="button"], [role="radio"]):not(:disabled) {
-      cursor: url("/cursors/wrench-link.png") 2 2, pointer;
-      cursor: image-set(url("/cursors/wrench-link.png") 1x, url("/cursors/wrench-link@2x.png") 2x) 2 2, pointer;
+      cursor: url("/cursors/arrow-accent.png") 3 2, pointer;
+      cursor: image-set(url("/cursors/arrow-accent.png") 1x, url("/cursors/arrow-accent@2x.png") 2x) 3 2, pointer;
     }
     @media (prefers-color-scheme: dark) {
-      html {
-        cursor: url("/cursors/wrench-dark.png") 2 2, auto;
-        cursor: image-set(url("/cursors/wrench-dark.png") 1x, url("/cursors/wrench-dark@2x.png") 2x) 2 2, auto;
-      }
       :is(a, button, summary, select, label[for], [role="button"], [role="radio"]):not(:disabled) {
-        cursor: url("/cursors/wrench-link-dark.png") 2 2, pointer;
-        cursor: image-set(url("/cursors/wrench-link-dark.png") 1x, url("/cursors/wrench-link-dark@2x.png") 2x) 2 2, pointer;
+        cursor: url("/cursors/arrow-accent-dark.png") 3 2, pointer;
+        cursor: image-set(url("/cursors/arrow-accent-dark.png") 1x, url("/cursors/arrow-accent-dark@2x.png") 2x) 3 2, pointer;
       }
     }
   }

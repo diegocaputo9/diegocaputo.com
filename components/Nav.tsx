@@ -20,15 +20,18 @@ const lock = { type: "spring", stiffness: 520, damping: 22, mass: 0.6 } as const
 const corner = "absolute h-[7px] w-[7px] border-current";
 
 // Top bar: the name on the left, plain text tabs on the right. The current
-// tab is framed by four corner brackets that glide between tabs and "lock on"
-// when the section changes. A hairline along the bottom edge fills with the
-// accent color as the page scrolls (a gauge for how far down you are).
+// place is framed by four corner brackets: around the name while you are at
+// the top of the home page (above Work), then around each tab as its section
+// comes up. The frame glides between them and "locks on" when it changes. A
+// hairline along the bottom edge fills with the accent color as the page
+// scrolls (a gauge for how far down you are).
 export function Nav() {
   const pathname = usePathname();
   const onResearchPage = pathname.startsWith("/research");
   const onHome = pathname === "/";
   const [scrollActive, setActive] = useState<string | null>(null);
-  const active = onResearchPage ? "research" : pathname.startsWith("/work") ? "work" : scrollActive;
+  // "home" = the name in the top bar
+  const active = onResearchPage ? "research" : pathname.startsWith("/work") ? "work" : onHome ? (scrollActive ?? "home") : null;
   const [hovered, setHovered] = useState<string | null>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -38,41 +41,52 @@ export function Nav() {
   // scroll-spy until it settles so the frame goes straight to the clicked tab.
   const lockUntil = useRef(0);
 
+  // Scroll-spy: the current section is the last one whose top has passed 45%
+  // of the screen; above Work it is the name ("home"). At the very bottom of
+  // the page Contact wins, since it can be too short to reach the 45% line.
   useEffect(() => {
-    const sections = links
-      .map((l) => document.getElementById(l.id))
-      .filter((el): el is HTMLElement => !!el);
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (Date.now() < lockUntil.current) return;
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(visible.target.id);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5] },
-    );
-    sections.forEach((s) => io.observe(s));
-    const onTop = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && Date.now() >= lockUntil.current) setActive(null);
-    });
-    const top = document.getElementById("top");
-    if (top) onTop.observe(top);
-    return () => {
-      io.disconnect();
-      onTop.disconnect();
+    if (!onHome) return;
+    let raf = 0;
+    const read = () => {
+      raf = 0;
+      if (Date.now() < lockUntil.current) return;
+      const line = window.innerHeight * 0.45;
+      let id = "home";
+      for (const l of links) {
+        const el = document.getElementById(l.id);
+        if (el && el.getBoundingClientRect().top <= line) id = l.id;
+      }
+      const doc = document.documentElement;
+      if (window.scrollY + window.innerHeight >= doc.scrollHeight - 4) id = "contact";
+      setActive(id);
     };
-  }, []);
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(read);
+    };
+    read();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [onHome]);
 
   // The frame previews the hovered tab, otherwise it sits on the current one.
   const lit = hovered ?? active;
-  const list = useRef<HTMLUListElement>(null);
+  const bar = useRef<HTMLDivElement>(null);
   // when nothing is lit the frame keeps its last position and fades out in place
-  const [box, setBox] = useState({ x: 0, w: 0, show: false });
+  const [box, setBox] = useState({ x: 0, w: 0, h: 30, show: false });
   useLayoutEffect(() => {
     const measure = () => {
-      const el = lit ? list.current?.querySelector<HTMLElement>(`[data-tab="${lit}"]`) : null;
-      setBox((b) => (el ? { x: el.offsetLeft, w: el.offsetWidth, show: true } : { ...b, show: false }));
+      const host = bar.current;
+      const el = lit ? host?.querySelector<HTMLElement>(`[data-tab="${lit}"]`) : null;
+      if (!host || !el) return setBox((b) => ({ ...b, show: false }));
+      const r = el.getBoundingClientRect();
+      const x = r.left - host.getBoundingClientRect().left;
+      // the name gets a little air around it; tabs are framed as laid out
+      setBox(lit === "home" ? { x: x - 7, w: r.width + 14, h: 40, show: true } : { x, w: r.width, h: 30, show: true });
     };
     measure();
     window.addEventListener("resize", measure);
@@ -87,14 +101,45 @@ export function Nav() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex h-[60px] max-w-6xl items-center justify-between gap-3 px-5 md:px-8">
+      <div ref={bar} className="relative mx-auto flex h-[60px] max-w-6xl items-center justify-between gap-3 px-5 md:px-8">
+        {/* selection frame: one element that slides and resizes, so the corners never stretch */}
+        <motion.span
+          aria-hidden
+          initial={false}
+          animate={{ x: box.x, width: box.w, height: box.h, y: -box.h / 2, opacity: box.show ? 1 : 0 }}
+          transition={reduce ? { duration: 0 } : { ...glide, opacity: { duration: 0.2 } }}
+          className={`pointer-events-none absolute left-0 top-1/2 transition-colors duration-300 ${
+            lit === active ? "text-accent" : "text-ink-3"
+          }`}
+        >
+          {/* remounts when the current place changes: corners start wide and snap in */}
+          <motion.span
+            key={active ?? "none"}
+            initial={reduce ? false : { scale: 1.22, opacity: 0.3 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={lock}
+            className="absolute inset-0 block"
+          >
+            <span className={`${corner} left-0 top-0 border-l-[1.5px] border-t-[1.5px]`} />
+            <span className={`${corner} right-0 top-0 border-r-[1.5px] border-t-[1.5px]`} />
+            <span className={`${corner} bottom-0 left-0 border-b-[1.5px] border-l-[1.5px]`} />
+            <span className={`${corner} bottom-0 right-0 border-b-[1.5px] border-r-[1.5px]`} />
+          </motion.span>
+        </motion.span>
+
         <a
+          data-tab="home"
           href={onHome ? "#top" : "/"}
+          onMouseEnter={() => setHovered("home")}
+          onMouseLeave={() => setHovered(null)}
+          onFocus={() => setHovered("home")}
+          onBlur={() => setHovered(null)}
           onClick={() => {
             lockUntil.current = Date.now() + 900;
-            setActive(null);
+            setActive("home");
           }}
-          className="group flex h-10 items-center gap-2.5 text-[15px] font-semibold tracking-tight text-ink"
+          aria-current={active === "home" ? "true" : undefined}
+          className="group relative flex h-10 items-center gap-2.5 text-[15px] font-semibold tracking-tight text-ink"
         >
           <span className="grid h-7 w-7 place-items-center rounded-ctl bg-ink text-[12px] font-semibold text-bg transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
             DC
@@ -103,31 +148,7 @@ export function Nav() {
         </a>
 
         <nav aria-label="Primary" onMouseLeave={() => setHovered(null)}>
-          <ul ref={list} className="relative flex items-center">
-            {/* selection frame: one element that slides and resizes, so the corners never stretch */}
-            <motion.li
-              aria-hidden
-              initial={false}
-              animate={{ x: box.x, width: box.w, opacity: box.show ? 1 : 0 }}
-              transition={reduce ? { duration: 0 } : { ...glide, opacity: { duration: 0.2 } }}
-              className={`pointer-events-none absolute left-0 top-1/2 -mt-[15px] h-[30px] transition-colors duration-300 ${
-                lit === active ? "text-accent" : "text-ink-3"
-              }`}
-            >
-              {/* remounts when the current section changes: corners start wide and snap in */}
-              <motion.span
-                key={active ?? "none"}
-                initial={reduce ? false : { scale: 1.22, opacity: 0.3 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={lock}
-                className="absolute inset-0 block"
-              >
-                <span className={`${corner} left-0 top-0 border-l-[1.5px] border-t-[1.5px]`} />
-                <span className={`${corner} right-0 top-0 border-r-[1.5px] border-t-[1.5px]`} />
-                <span className={`${corner} bottom-0 left-0 border-b-[1.5px] border-l-[1.5px]`} />
-                <span className={`${corner} bottom-0 right-0 border-b-[1.5px] border-r-[1.5px]`} />
-              </motion.span>
-            </motion.li>
+          <ul className="flex items-center">
             {links.map((l) => (
               <li key={l.id}>
                 <a
