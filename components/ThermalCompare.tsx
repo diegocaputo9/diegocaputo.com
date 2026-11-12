@@ -171,8 +171,9 @@ export function ThermalCompare() {
             findings.map((f) => (
               <span
                 key={f.n}
+                data-marker={f.n}
                 style={{ left: `${(f.x / W) * 100}%`, top: `${(f.y / H) * 100}%` }}
-                className="absolute grid h-6 w-6 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-black/55 font-mono text-[12px] font-medium text-white backdrop-blur-sm"
+                className="thermal-marker absolute z-10 grid h-6 w-6 cursor-default transition-[background-color,border-color,scale] duration-200 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-black/55 font-mono text-[12px] font-medium text-white backdrop-blur-sm"
               >
                 {f.n}
               </span>

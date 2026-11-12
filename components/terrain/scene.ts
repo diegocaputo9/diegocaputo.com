@@ -225,7 +225,8 @@ export function createTerrain(canvas: HTMLCanvasElement, opts: Opts): TerrainHan
 
   const scene = new Scene();
   const camera = new PerspectiveCamera(30, 1, 0.1, 200);
-  const home = new Vector3(13.8, 9.9, 14.9);
+  // close and fairly low: the mountain fills the band (its base may run past the bottom edge)
+  const home = new Vector3(9.2, 5.45, 9.9);
   const target = new Vector3(0, 1.05, 0);
   camera.position.copy(home);
 

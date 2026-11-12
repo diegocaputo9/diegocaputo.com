@@ -31,9 +31,9 @@ export function Outside() {
       <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">
         <div>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
-          <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
+          <p className="mt-4 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
         </div>
-        <div className="glass flex w-fit items-center gap-4 rounded-3xl p-3 pr-4">
+        <div className="glass flex w-fit items-center gap-4 rounded-3xl p-3 pr-4 lg:w-[360px]">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, small pre-sized logo */}
           <img
             src={b.logo}
@@ -70,13 +70,14 @@ export function Outside() {
       </Reveal>
 
       {/* photogrammetry: text on top, the 3D map as a full-width band */}
-      <div className="mt-14">
-        <Reveal className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
+      {/* same two columns as above: text left, keywords right under the DDrone card */}
+      <div className="mt-8 md:mt-9">
+        <Reveal className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-start lg:gap-14">
           <div>
             <h3 className="text-2xl font-semibold tracking-tight text-ink">{p.title}</h3>
             <p className="mt-3 max-w-[64ch] text-[15px] leading-relaxed text-ink-2">{p.text}</p>
           </div>
-          <div className="lg:max-w-[360px]">
+          <div className="lg:w-[360px] [&>ul]:mt-0">
             <Tags items={p.tags} />
             <p className="mt-4 text-[13px] text-ink-3">
               <span className="sm:hidden">Drag sideways to rotate, pinch to zoom, tap to read the elevation.</span>
@@ -86,7 +87,7 @@ export function Outside() {
             </p>
           </div>
         </Reveal>
-        <Reveal delay={0.08} className="mt-8">
+        <Reveal delay={0.08} className="mt-6">
           <TerrainViewer wide />
         </Reveal>
       </div>
@@ -97,7 +98,7 @@ export function Outside() {
           <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{t.text}</p>
           <ol className="mt-6 space-y-3">
             {findings.map((f) => (
-              <li key={f.n} className="flex gap-3">
+              <li key={f.n} data-finding={f.n} className="finding flex gap-3">
                 <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ink font-mono text-[12px] text-bg">
                   {f.n}
                 </span>

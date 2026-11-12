@@ -917,3 +917,14 @@ p, li, figcaption, dd {
 .night-band > .bg-bg\/70 .text-ink-3,
 .night-band > div .text-ink-3 { color: rgb(226 232 245 / 0.62); }
 .night-band > div:not(.bg-bg\/70) { color: rgb(226 232 245 / 0.7); }
+
+/* Thermal: hovering a numbered hot spot on the image lights its finding in the list */
+.thermal-marker:hover { background: var(--accent); border-color: #fff; scale: 1.12; }
+.finding > span, .finding p, .finding p span { transition: color 200ms, background-color 200ms; }
+#outside:has([data-marker="1"]:hover) [data-finding="1"],
+#outside:has([data-marker="2"]:hover) [data-finding="2"],
+#outside:has([data-marker="3"]:hover) [data-finding="3"],
+#outside:has([data-marker="4"]:hover) [data-finding="4"] {
+  & > span { background: var(--accent); }
+  & p, & p span { color: var(--accent); }
+}

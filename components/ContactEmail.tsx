@@ -58,7 +58,7 @@ export function ContactEmail({ email }: { email: string }) {
         onClick={copy}
         aria-label={copied ? "Email address copied" : "Copy email address"}
         title="Copy email address"
-        className="grid w-12 place-items-center rounded-r-ctl text-ink-2 transition-[background-color,color,scale] duration-200 hover:bg-ink/[0.04] hover:text-ink active:scale-[0.94]"
+        className="grid w-12 place-items-center rounded-r-ctl text-ink-2 transition-[background-color,color,scale] duration-200 hover:bg-ink/[0.04] hover:text-accent active:scale-[0.94]"
       >
         {copied ? <Check size={20} weight="bold" className="text-accent" /> : <Copy size={20} />}
       </button>
