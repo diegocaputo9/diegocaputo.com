@@ -29,9 +29,13 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative isolate mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-24">
-      <Andon className="absolute right-10 top-0 -z-10 hidden w-[96px] lg:block" />
+      <Andon className="glass-src-andon absolute right-10 top-0 -z-10 hidden w-[96px] lg:block" />
       <Reveal>
-        <GlassCard tilt={0} className="rounded-4xl px-6 py-14 text-center md:px-16 md:py-20">
+        <GlassCard
+          tilt={0}
+          liquid={{ sources: ['[data-glass-src="backdrop"]', ".glass-src-andon"], size: 1.2 }}
+          className="rounded-4xl px-6 py-14 text-center md:px-16 md:py-20"
+        >
           <h2 className="mx-auto max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-ink md:text-6xl">
             Get in touch
           </h2>

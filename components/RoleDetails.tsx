@@ -1,7 +1,8 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { CaretDown, Plus } from "@phosphor-icons/react";
+import { useLiquidGlass } from "./liquid/useLiquidGlass";
 
 // One timeline entry: the "+" node on the drafting line opens a longer account
 // of the role. The summary (children) is rendered on the server and always shown.
@@ -16,6 +17,10 @@ export function RoleDetails({
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
+  const plus = useRef<HTMLButtonElement>(null);
+  // the "+" is a small drop of liquid glass sitting on the timeline: the line
+  // and the page grid bend through its edge
+  useLiquidGlass(plus, details?.length ? { sources: ['[data-glass-src="backdrop"]', '[data-glass-src="timeline"]'], size: 0.45 } : null);
 
   if (!details?.length) {
     return (
@@ -37,6 +42,7 @@ export function RoleDetails({
   return (
     <>
       <button
+        ref={plus}
         type="button"
         onClick={toggle}
         aria-expanded={open}

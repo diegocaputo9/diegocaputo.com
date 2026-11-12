@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 import { RouteMemory } from "@/components/BackHome";
+import { GlassTuner } from "@/components/liquid/GlassTuner";
 import { PdfViewer } from "@/components/PdfViewer";
 
 const geistSans = Geist({
@@ -89,6 +90,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <PdfViewer />
         <RouteMemory />
+        {/* hidden unless the address has ?tune */}
+        <GlassTuner />
         {/* Cloudflare Web Analytics: cookie-free, no consent banner needed */}
         <script
           defer

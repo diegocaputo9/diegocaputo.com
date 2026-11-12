@@ -50,7 +50,7 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
               delay={(i % 2) * 0.03}
               className={`${spans[i]} ${phoneKeep && !phoneKeep.includes(p.title) ? "max-md:hidden" : ""}`}
             >
-              <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-card p-3">
+              <GlassCard tilt={2.5} liquid={{ sources: ['[data-glass-src="backdrop"]'] }} className="group flex h-full flex-col rounded-card p-3">
                 {p.image ? (
                   <figure className="relative">
                     <PressLightbox image={p.image} articleHref={p.press?.href} />

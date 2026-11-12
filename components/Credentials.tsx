@@ -1,5 +1,6 @@
 import { ArrowUpRight, Certificate } from "@phosphor-icons/react/dist/ssr";
 import { credentials } from "@/content/site";
+import { LiquidPanel } from "./liquid/LiquidPanel";
 
 // Every mark sits in the same 44px rounded square, centred. Belt colors follow
 // the Lean Six Sigma convention; the certificate uses the site accent; badges
@@ -58,7 +59,15 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
             </>
           );
           return (
-            <li key={c.title} className={`glass rounded-panel ${row}`}>
+            <LiquidPanel
+              as="li"
+              key={c.title}
+              className={`glass rounded-panel ${row}`}
+              // on phones the four sit in one shared panel, so only from 640px up
+              media="(min-width: 640px)"
+              size={0.7}
+              sources={['[data-glass-src="backdrop"]', '[data-glass-src="crosshair"]']}
+            >
               {c.href ? (
                 // quiet link: opens the certificate in the site's PDF viewer
                 <a
@@ -76,7 +85,7 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
               ) : (
                 <div className={`${inner} grid-cols-[2.75rem_minmax(0,1fr)]`}>{body}</div>
               )}
-            </li>
+            </LiquidPanel>
           );
         })}
       </ul>

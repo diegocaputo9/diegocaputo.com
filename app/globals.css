@@ -874,9 +874,11 @@ p, li, figcaption, dd {
    and draws the layers: a refracted copy of the backdrop (lens), a thin
    tint, a specular rim lit from --lg-la, and a soft shadow.
 ------------------------------------------------------------------- */
-.lg {
-  --lg-tint: 34%;
-  --lg-spec: 0.95;
+/* :where(html:not(.lg-off)) lets the tuner's "Liquid off" switch show the
+   frosted fallback for comparison; it adds no specificity */
+:where(html:not(.lg-off)) .lg {
+  --lg-tint: var(--lg-tint-light, 34%);
+  --lg-spec: var(--lg-spec-light, 0.95);
   isolation: isolate;
   background: none !important;
   -webkit-backdrop-filter: none !important;
@@ -885,12 +887,13 @@ p, li, figcaption, dd {
     0 1px 2px rgb(24 24 27 / 0.06),
     0 14px 36px -14px rgb(63 63 70 / 0.35) !important;
 }
-.lg::before,
-.lg::after { display: none !important; }
+html.lg-off .lg-layers { display: none; }
+:where(html:not(.lg-off)) .lg::before,
+:where(html:not(.lg-off)) .lg::after { display: none !important; }
 @media (prefers-color-scheme: dark) {
-  .lg {
-    --lg-tint: 30%;
-    --lg-spec: 0.7;
+  :where(html:not(.lg-off)) .lg {
+    --lg-tint: var(--lg-tint-dark, 30%);
+    --lg-spec: var(--lg-spec-dark, 0.7);
     box-shadow:
       0 1px 2px rgb(0 0 0 / 0.4),
       0 18px 44px -16px rgb(0 0 0 / 0.7) !important;

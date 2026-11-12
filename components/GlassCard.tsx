@@ -2,19 +2,23 @@
 
 import { useRef, type ReactNode } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { useLiquidGlass, type LiquidHookOpts } from "./liquid/useLiquidGlass";
 
 type Props = {
   children: ReactNode;
   className?: string;
   /** max tilt in degrees; 0 disables tilt but keeps the moving highlight */
   tilt?: number;
+  /** liquid glass: what sits behind the card (falls back to this frosted look) */
+  liquid?: LiquidHookOpts;
 };
 
 // Glass surface whose specular highlight follows the pointer and that tilts
 // a few degrees toward it, like a pane catching light. Motion values only,
 // no React state, so pointer moves never re-render.
-export function GlassCard({ children, className = "", tilt = 6 }: Props) {
+export function GlassCard({ children, className = "", tilt = 6, liquid }: Props) {
   const ref = useRef<HTMLDivElement>(null);
+  useLiquidGlass(ref, liquid ?? null);
   const reduce = useReducedMotion();
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);

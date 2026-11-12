@@ -15,7 +15,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
       </Reveal>
 
       <Reveal delay={0.08} className="mt-12">
-        <GlassCard tilt={1.5} className="group rounded-4xl p-3 md:p-4">
+        <GlassCard tilt={1.5} liquid={{ sources: ['[data-glass-src="backdrop"]'] }} className="group rounded-4xl p-3 md:p-4">
           <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr] lg:gap-10">
             <a
               href={featured.href}

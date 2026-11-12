@@ -21,7 +21,7 @@ export function About() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <GlassCard tilt={2} className="rounded-3xl p-6 md:p-7">
+          <GlassCard tilt={2} liquid={{ sources: ['[data-glass-src="backdrop"]'] }} className="rounded-3xl p-6 md:p-7">
             <p className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-ink">
               <AiSparkle />
               AI in industrial engineering

@@ -13,17 +13,16 @@
 // Where an engine is not verified, nothing happens and the element keeps its
 // CSS .glass look.
 
+import { getGlass, onGlass } from "./settings";
+
 export type LiquidOpts = {
   /** CSS selectors of the things behind the glass to copy, bottom to top */
   sources: string[];
-  /** bevel width in CSS px (the curved band that bends light) */
-  bevel?: number;
-  /** maximum bend at the rim, CSS px */
-  refraction?: number;
-  /** color split between R and B passes, as a fraction of the bend */
-  dispersion?: number;
-  /** frost: gaussian blur stdDeviation before bending, CSS px */
-  frost?: number;
+  /**
+   * Size of this piece relative to the site settings (settings.ts): scales the
+   * bevel width and the bend. 1 for cards, smaller for buttons and slim bars.
+   */
+  size?: number;
 };
 
 const SS = 2; // bake the map at 2x: the rim lives in a few pixels
@@ -47,6 +46,17 @@ export function liquidSupported() {
 }
 
 /** Bevel map: refraction offset per pixel, encoded around neutral in R (x) and G (y). */
+const baked = new Map<string, string>();
+function bakeCached(w: number, h: number, r: number, bevel: number) {
+  const key = `${w}x${h}r${r}b${bevel.toFixed(1)}`;
+  let url = baked.get(key);
+  if (!url) {
+    url = bake(w, h, r, bevel);
+    if (baked.size > 60) baked.clear();
+    baked.set(key, url);
+  }
+  return url;
+}
 function bake(w: number, h: number, r: number, bevel: number) {
   const W = Math.max(1, Math.round(w * SS));
   const H = Math.max(1, Math.round(h * SS));
@@ -176,10 +186,8 @@ function copyVars(from: HTMLElement | SVGElement, to: HTMLElement | SVGElement) 
 export function attachLiquidGlass(host: HTMLElement, opts: LiquidOpts) {
   if (!liquidSupported()) return () => {};
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const bevel = opts.bevel ?? 18;
-  const refraction = opts.refraction ?? 26;
-  const dispersion = opts.dispersion ?? 0.14;
-  const frost = opts.frost ?? 1.1;
+  const size = opts.size ?? 1;
+  let g = getGlass();
   const id = `lg-${++uid}`;
   const filter = makeFilter(id);
 
@@ -254,38 +262,63 @@ export function attachLiquidGlass(host: HTMLElement, opts: LiquidOpts) {
     mirrors.push({ src, wrap, copy, mo });
   }
 
-  // map + filter sizing
+  // map + filter sizing. The map is baked the first time the glass is on
+  // screen (and again on resize or a bevel change), not at load.
   let lastKey = "";
   let strength = reduce ? 1 : 0; // lensing ramps in when the glass first shows ("materializes")
   let target = 1;
+  let visible = false;
+  let dirty = true;
   const setScale = () => {
-    const s = refraction * 2 * strength;
-    filter.passes[0].setAttribute("scale", (s * (1 + dispersion)).toFixed(2));
+    const s = g.refraction * size * 2 * strength;
+    filter.passes[0].setAttribute("scale", (s * (1 + g.dispersion)).toFixed(2));
     filter.passes[1].setAttribute("scale", s.toFixed(2));
-    filter.passes[2].setAttribute("scale", (s * (1 - dispersion)).toFixed(2));
+    filter.passes[2].setAttribute("scale", (s * (1 - g.dispersion)).toFixed(2));
   };
   const resize = () => {
+    if (!visible) {
+      dirty = true;
+      return;
+    }
+    dirty = false;
     const w = host.offsetWidth;
     const h = host.offsetHeight;
     const r = parseFloat(getComputedStyle(host).borderTopLeftRadius) || 0;
-    const key = `${w}x${h}r${r}`;
+    const bevel = Math.min(g.bevel * size, w / 2, h / 2);
+    const key = `${w}x${h}r${r}b${bevel}`;
     if (!w || !h || key === lastKey) return;
     lastKey = key;
-    filter.map.setAttribute("href", bake(w, h, r, Math.min(bevel, w / 2, h / 2)));
+    filter.map.setAttribute("href", bakeCached(w, h, r, bevel));
     filter.map.setAttribute("width", String(w));
     filter.map.setAttribute("height", String(h));
-    const m = refraction + 4 * frost + 4;
+    const m = g.refraction * size + 4 * g.frost + 4;
     // region: the box plus room for rim pixels to sample outside it
     filter.node.setAttribute("x", String(-m));
     filter.node.setAttribute("y", String(-m));
     filter.node.setAttribute("width", String(w + 2 * m));
     filter.node.setAttribute("height", String(h + 2 * m));
   };
-  filter.blur.setAttribute("stdDeviation", String(frost));
-  resize();
+  filter.blur.setAttribute("stdDeviation", String(g.frost));
   setScale();
   const ro = new ResizeObserver(resize);
   ro.observe(host);
+
+  // live settings (the tuner): bend, split and frost apply at once; a new
+  // bevel width rebakes the map shortly after the slider stops
+  let rebake = 0;
+  const offGlass = onGlass((next) => {
+    const bevelChanged = next.bevel !== g.bevel || next.refraction !== g.refraction || next.frost !== g.frost;
+    g = next;
+    filter.blur.setAttribute("stdDeviation", String(g.frost));
+    setScale();
+    if (bevelChanged) {
+      clearTimeout(rebake);
+      rebake = window.setTimeout(() => {
+        lastKey = "";
+        resize();
+      }, 120);
+    }
+  });
 
   // light: the rim is lit from the pointer's side (fixed top-left on touch)
   let la = 225;
@@ -297,14 +330,13 @@ export function attachLiquidGlass(host: HTMLElement, opts: LiquidOpts) {
   };
   if (!reduce) window.addEventListener("pointermove", onPointer, { passive: true });
   // hover: the glass "wakes" a little (more bend)
-  const enter = () => (target = 1.25);
+  const enter = () => (target = 1 + g.hover);
   const leave = () => (target = 1);
   host.addEventListener("pointerenter", enter);
   host.addEventListener("pointerleave", leave);
 
   // frame loop, only while on screen
   let raf = 0;
-  let visible = false;
   const tick = () => {
     raf = 0;
     const hr = host.getBoundingClientRect();
@@ -327,6 +359,7 @@ export function attachLiquidGlass(host: HTMLElement, opts: LiquidOpts) {
   };
   const io = new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
+    if (visible && dirty) resize();
     if (visible && !raf) raf = requestAnimationFrame(tick);
   });
   io.observe(host);
@@ -334,6 +367,8 @@ export function attachLiquidGlass(host: HTMLElement, opts: LiquidOpts) {
   return () => {
     io.disconnect();
     ro.disconnect();
+    offGlass();
+    clearTimeout(rebake);
     cancelAnimationFrame(raf);
     window.removeEventListener("pointermove", onPointer);
     host.removeEventListener("pointerenter", enter);

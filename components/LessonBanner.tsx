@@ -15,7 +15,7 @@ export function LessonBanner() {
   const panel = useRef<HTMLDivElement>(null);
   const banner = useRef<HTMLButtonElement>(null);
   // liquid glass over the page grid (falls back to the frosted .glass look)
-  useLiquidGlass(banner, { sources: ['[data-glass-src="backdrop"]'], bevel: 14, refraction: 22 });
+  useLiquidGlass(banner, { sources: ['[data-glass-src="backdrop"]'], size: 0.8 });
   const l = speaking.lesson;
 
   const toggle = () => {

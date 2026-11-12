@@ -104,8 +104,7 @@ export function Hero() {
             <LiquidPanel
               className="glass rounded-card p-6 sm:p-7"
               sources={['[data-glass-src="backdrop"]', ".glass-src-arm", '[data-glass-src="crosshair"]']}
-              bevel={20}
-              refraction={28}
+              size={1.1}
             >
               <div className="flex items-center gap-4">
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-panel bg-ink text-lg font-semibold tracking-tight text-bg shadow-[inset_0_1px_0_rgb(255_255_255/0.16)]">

@@ -1,6 +1,7 @@
 import { InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 import { outside } from "@/content/site";
 import { Gallery } from "./Gallery";
+import { LiquidPanel } from "./liquid/LiquidPanel";
 import { Reveal } from "./Reveal";
 import { TerrainViewer } from "./TerrainViewer";
 import { ThermalCompare } from "./ThermalCompare";
@@ -33,7 +34,7 @@ export function Outside() {
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Outside the lab</h2>
           <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-ink-2">{outside.lede}</p>
         </div>
-        <div className="glass flex w-fit items-center gap-4 rounded-3xl p-3 pr-4">
+        <LiquidPanel sources={['[data-glass-src="backdrop"]']} size={0.8} className="glass flex w-fit items-center gap-4 rounded-3xl p-3 pr-4">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export, small pre-sized logo */}
           <img
             src={b.logo}
@@ -66,7 +67,7 @@ export function Outside() {
               ))}
             </div>
           </div>
-        </div>
+        </LiquidPanel>
       </Reveal>
 
       <div className="mt-14 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
