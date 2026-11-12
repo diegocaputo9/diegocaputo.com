@@ -26,11 +26,11 @@ export function Hero() {
     <section id="top" className="relative isolate overflow-clip">
       <HeroCrosshair />
 
-      <div className="relative mx-auto grid max-w-6xl items-end gap-x-12 gap-y-10 px-5 pt-[104px] md:px-8 lg:min-h-[min(760px,calc(100dvh-205px))] lg:grid-cols-[1.25fr_0.75fr] lg:pt-[92px]">
+      <div className="relative mx-auto grid max-w-[1360px] items-end gap-x-12 gap-y-10 px-5 pt-[104px] md:px-8 lg:min-h-[min(720px,calc(100dvh-245px))] lg:grid-cols-[1.25fr_0.75fr] lg:pt-[92px]">
         {/* the statement */}
-        <div className="pb-4 lg:self-center lg:pb-24">
+        <div className="pb-4 lg:self-center lg:pb-16">
           <div className="rise" style={d(60)}>
-            <h1 className="hero-quote max-w-[17ch] text-[44px] font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[68px]">
+            <h1 className="hero-quote max-w-[17ch] text-[44px] font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl lg:text-[68px] xl:text-[78px]">
               <span aria-hidden className="text-ink-3/60">
                 “
               </span>
@@ -98,7 +98,7 @@ export function Hero() {
             <Portrait />
           </div>
         ) : (
-          <div className="rise relative mx-auto w-full max-w-sm pb-10 lg:mr-0 lg:max-w-[400px] lg:self-center lg:pb-24" style={d(360)}>
+          <div className="rise relative mx-auto w-full max-w-sm pb-10 lg:mr-0 lg:max-w-[400px] lg:self-center lg:pb-16 xl:max-w-[440px]" style={d(360)}>
             <RobotArm caption={false} className="absolute -top-[200px] right-[-5%] -z-10 hidden w-[230px] lg:block" />
             <GlassCard className="rounded-card p-6 sm:p-7">
               <div className="flex items-center gap-4">
@@ -146,9 +146,9 @@ export function Hero() {
       </div>
 
       {/* base line of the first screen, then the credentials as a title-block strip */}
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
+      <div className="mx-auto max-w-[1360px] px-5 md:px-8">
         <div aria-hidden className="sheet-rule" />
-        <div className="rise pb-14 pt-7 md:pb-20" style={d(460)}>
+        <div className="rise pb-14 pt-5 md:pb-20" style={d(460)}>
           <Credentials wide />
         </div>
       </div>

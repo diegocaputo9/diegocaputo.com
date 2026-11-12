@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 
 export function ResearchSnippet() {
   return (
-    <section id="research" className="relative isolate mx-auto max-w-6xl px-5 pb-12 pt-12 md:px-8 md:pb-24 md:pt-24">
+    <section id="research" className="relative isolate mx-auto max-w-[1360px] px-5 pb-12 pt-12 md:px-8 md:pb-24 md:pt-24">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       {/* value stream map as a faded background behind the heading, fading toward the text */}

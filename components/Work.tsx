@@ -39,7 +39,7 @@ const texture: Record<Project["visual"], string> = {
 // phoneKeep: on phones show only these projects (by title) and link to /work/ for the rest.
 export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
   return (
-    <section className="mx-auto max-w-6xl px-5 pb-4 pt-5 md:px-8 md:pb-6">
+    <section className="mx-auto max-w-[1360px] px-5 pb-4 pt-5 md:px-8 md:pb-6">
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-12">
         {projects.map((p, i) => {
           const Icon = icon[p.visual];

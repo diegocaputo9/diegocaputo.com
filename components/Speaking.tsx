@@ -7,7 +7,7 @@ import { SpeakingPhotos } from "./SpeakingPhotos";
 // Two photos, wide + tall-cropped, so the band reads as one composition.
 export function Speaking() {
   return (
-    <section id="speaking" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-24">
+    <section id="speaking" className="mx-auto max-w-[1360px] px-5 pt-14 md:px-8 md:pt-24">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">

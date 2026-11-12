@@ -30,7 +30,7 @@ export default function TigerMotorsPage() {
       <Backdrop />
       <Nav />
       <main id="main" tabIndex={-1} className="relative isolate outline-none">
-        <header className="relative isolate mx-auto max-w-6xl px-5 pb-12 pt-32 md:px-8 md:pt-40">
+        <header className="relative isolate mx-auto max-w-[1360px] px-5 pb-12 pt-32 md:px-8 md:pt-40">
           <AssemblyLine className="sketch-fade-top absolute bottom-0 right-0 -z-10 hidden w-[620px] lg:block" />
           <div className="rise">
             <Link href="/#work" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
@@ -66,7 +66,7 @@ export default function TigerMotorsPage() {
           </div>
         </header>
 
-        <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="mx-auto max-w-[1360px] px-5 md:px-8">
           <Reveal>
             <GlassCard tilt={1} className="rounded-4xl p-3 md:p-4">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, image is pre-sized */}

@@ -7,7 +7,7 @@ import { Reveal } from "./Reveal";
 
 export function Featured({ title = "Selected work" }: { title?: string }) {
   return (
-    <section id="work" className="mx-auto max-w-6xl px-5 pt-14 md:px-8 md:pt-24">
+    <section id="work" className="mx-auto max-w-[1360px] px-5 pt-14 md:px-8 md:pt-24">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <Reveal>
