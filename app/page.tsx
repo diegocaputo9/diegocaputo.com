@@ -78,7 +78,7 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         {/* About and its numbers fill one screen on computers, so the next section starts below the fold */}
-        <div className="lg:flex lg:min-h-[100dvh] lg:flex-col lg:justify-center lg:pb-10">
+        <div className="lg:flex lg:min-h-[calc(100dvh+10px)] lg:flex-col lg:justify-start lg:pb-10 lg:pt-4">
           <About />
           <Stats />
         </div>

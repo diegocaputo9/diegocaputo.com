@@ -8,6 +8,27 @@ import { FlowLab } from "./FlowLab";
 // The lean lesson, folded away: a slim banner under the photos. Clicking it
 // opens the lesson (text + 3D model) below; clicking again folds it back.
 // The 3D code is only loaded the first time the banner is opened.
+// A slower, eased scroll than the browser's "smooth" (which is quick and
+// linear-feeling): about 0.9 s, easing in and out.
+function glideTo(top: number) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return window.scrollTo(0, top);
+  const from = window.scrollY;
+  const dist = top - from;
+  const dur = Math.min(1200, 850 + Math.abs(dist) * 0.2);
+  const t0 = performance.now();
+  const html = document.documentElement;
+  const prev = html.style.scrollBehavior;
+  html.style.scrollBehavior = "auto"; // step frames ourselves
+  const step = (now: number) => {
+    const t = Math.min(1, (now - t0) / dur);
+    const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    window.scrollTo(0, from + dist * e);
+    if (t < 1) requestAnimationFrame(step);
+    else html.style.scrollBehavior = prev;
+  };
+  requestAnimationFrame(step);
+}
+
 export function LessonBanner() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false); // stays true after the first open
@@ -20,7 +41,7 @@ export function LessonBanner() {
     setOpen(next);
     if (!next && returnTo.current !== null) {
       // closing: glide back to where the reader was when they opened it
-      window.scrollTo({ top: returnTo.current, behavior: "smooth" });
+      glideTo(returnTo.current);
       returnTo.current = null;
     }
     if (next) {

@@ -148,7 +148,7 @@ export function Hero() {
       {/* base line of the first screen, then the credentials as a title-block strip */}
       <div className="mx-auto max-w-[1274px] px-5 md:px-8">
         <div aria-hidden className="sheet-rule" />
-        <div className="rise pb-14 pt-5 md:pb-20" style={d(460)}>
+        <div className="rise pb-10 pt-5 md:pb-10" style={d(460)}>
           <Credentials wide />
         </div>
       </div>

@@ -9,7 +9,7 @@ import { Reveal } from "./Reveal";
 export function About() {
   return (
     <section id="about" className="relative isolate mx-auto max-w-[1274px] px-5 pb-16 pt-4 md:px-8 md:pb-16 md:pt-6">
-      <div className="grid items-end gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+      <div className="grid items-end gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:gap-16">
         <Reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">About</h2>
           <p className="mt-6 max-w-[44ch] text-2xl leading-snug tracking-tight text-ink-2 md:text-[26px]">
