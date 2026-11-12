@@ -45,7 +45,7 @@ export function HeroCrosshair() {
   }, []);
 
   return (
-    <div ref={root} aria-hidden className="crosshair pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div ref={root} aria-hidden data-glass-src="crosshair" className="crosshair pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <span className="crosshair-v" />
       <span className="crosshair-h" />
       <span ref={xr} className="crosshair-x" />
