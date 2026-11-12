@@ -132,7 +132,19 @@ export function Outside() {
           <Tags items={c.tags} />
         </Reveal>
         <Reveal delay={0.08}>
-          <Gallery items={c.photos} label="Auburn Flyers cycling" variant="mosaic" />
+          {/* team logo pinned to the main photo's corner; lifts and tilts on hover, like the belt badge */}
+          <div className="group relative">
+            <Gallery items={c.photos} label="Auburn Flyers cycling" variant="mosaic" />
+            {/* eslint-disable-next-line @next/next/no-img-element -- small static logo */}
+            <img
+              src="/outside/auburn-flyers.webp"
+              alt="Auburn Flyers cycling team logo"
+              width={240}
+              height={240}
+              loading="lazy"
+              className="pointer-events-none absolute -left-4 -top-6 z-10 h-[76px] w-[76px] drop-shadow-[0_6px_16px_rgb(0_0_0/0.25)] transition-transform duration-500 ease-glide group-hover:-translate-y-1 group-hover:rotate-[-8deg] md:-left-6 md:h-[92px] md:w-[92px]"
+            />
+          </div>
           <p className="mt-3 text-[13px] text-ink-3">Open any photo to see the full set.</p>
         </Reveal>
       </div>
