@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: researchIntro.dissertation,
     url: `${site.url}/research/`,
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630 }],
+    images: [{ url: "/og-card.png", width: 1200, height: 630 }],
   },
 };
 

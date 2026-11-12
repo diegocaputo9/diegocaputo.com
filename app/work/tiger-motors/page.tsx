@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: t.lede,
     url: `${site.url}/work/tiger-motors/`,
     type: "article",
-    images: [{ url: "/og.png", width: 1200, height: 630 }],
+    images: [{ url: "/og-card.png", width: 1200, height: 630 }],
   },
 };
 
