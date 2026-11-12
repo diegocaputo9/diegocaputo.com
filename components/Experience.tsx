@@ -31,7 +31,6 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
       <ol className="relative mt-14 md:ml-[150px]">
         <span
           aria-hidden
-          data-glass-src="timeline"
           className="absolute bottom-2 left-[5px] top-2 w-px bg-line md:left-[5px]"
         />
         {experience.map((r, i) => (

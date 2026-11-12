@@ -9,7 +9,7 @@ import type { CSSProperties } from "react";
 import { site } from "@/content/site";
 import { AssemblyLine, RobotArm } from "./Blueprint";
 import { Credentials } from "./Credentials";
-import { LiquidPanel } from "./liquid/LiquidPanel";
+import { GlassCard } from "./GlassCard";
 import { HeroCrosshair } from "./HeroCrosshair";
 import { Portrait } from "./Portrait";
 import { academicProfiles } from "./profiles";
@@ -99,13 +99,8 @@ export function Hero() {
           </div>
         ) : (
           <div className="rise relative mx-auto w-full max-w-sm pb-10 lg:mr-0 lg:max-w-[400px] lg:self-center lg:pb-24" style={d(360)}>
-            <RobotArm caption={false} className="glass-src-arm absolute -top-[200px] right-[-5%] -z-10 hidden w-[230px] lg:block" />
-            {/* liquid glass: bends the grid, the robot arm and the crosshair behind it */}
-            <LiquidPanel
-              className="glass rounded-card p-6 sm:p-7"
-              sources={['[data-glass-src="backdrop"]', ".glass-src-arm", '[data-glass-src="crosshair"]']}
-              size={1.1}
-            >
+            <RobotArm caption={false} className="absolute -top-[200px] right-[-5%] -z-10 hidden w-[230px] lg:block" />
+            <GlassCard className="rounded-card p-6 sm:p-7">
               <div className="flex items-center gap-4">
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-panel bg-ink text-lg font-semibold tracking-tight text-bg shadow-[inset_0_1px_0_rgb(255_255_255/0.16)]">
                   DC
@@ -142,7 +137,7 @@ export function Hero() {
                   </a>
                 ))}
               </div>
-            </LiquidPanel>
+            </GlassCard>
           </div>
         )}
 

@@ -22,7 +22,7 @@ export function Leadership() {
       {/* Leadership: one feature card + two quieter rows */}
       <div className="mt-14 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <Reveal>
-          <GlassCard tilt={2} liquid={{ sources: ['[data-glass-src="backdrop"]'] }} className="rounded-card p-7 md:p-9">
+          <GlassCard tilt={2} className="rounded-card p-7 md:p-9">
             <p className="font-mono text-[12px] text-ink-3">{lead.period}</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{lead.title}</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{lead.text}</p>

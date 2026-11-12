@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { CubeFocus, Plus } from "@phosphor-icons/react";
 import { speaking } from "@/content/site";
 import { FlowLab } from "./FlowLab";
-import { useLiquidGlass } from "./liquid/useLiquidGlass";
 
 // The lean lesson, folded away: a slim banner under the photos. Clicking it
 // opens the lesson (text + 3D model) below; clicking again folds it back.
@@ -13,9 +12,6 @@ export function LessonBanner() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false); // stays true after the first open
   const panel = useRef<HTMLDivElement>(null);
-  const banner = useRef<HTMLButtonElement>(null);
-  // liquid glass over the page grid (falls back to the frosted .glass look)
-  useLiquidGlass(banner, { sources: ['[data-glass-src="backdrop"]'], size: 0.8 });
   const l = speaking.lesson;
 
   const toggle = () => {
@@ -31,7 +27,6 @@ export function LessonBanner() {
   return (
     <div className="mt-5">
       <button
-        ref={banner}
         type="button"
         onClick={toggle}
         aria-expanded={open}
