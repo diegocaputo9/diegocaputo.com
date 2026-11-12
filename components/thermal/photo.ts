@@ -17,7 +17,7 @@ export type Finding = { n: number; x: number; y: number; title: string; detail: 
 export const findings: Finding[] = [
   { n: 1, x: 421, y: 262, title: "Steam line", detail: "Missing insulation, about 60 °C at the gap", temp: "≈ 60 °C" },
   { n: 2, x: 1040, y: 492, title: "Rooftop unit", detail: "Exhaust running much hotter than its neighbors", temp: "≈ 48 °C" },
-  { n: 3, x: 620, y: 437, title: "Roof membrane", detail: "Wet insulation holding heat under the surface", temp: "≈ 38 °C" },
+  { n: 3, x: 662, y: 472, title: "Roof membrane", detail: "Wet insulation holding heat under the surface", temp: "≈ 38 °C" },
   { n: 4, x: 884, y: 604, title: "Dock door 2", detail: "Failed seal, warm air escaping", temp: "≈ 41 °C" },
 ];
 
