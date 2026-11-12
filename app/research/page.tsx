@@ -51,7 +51,7 @@ export default function ResearchPage() {
       <main id="main" tabIndex={-1} className="relative isolate outline-none">
         <Gears className="absolute right-[4%] top-28 -z-10 hidden w-[210px] lg:block" />
 
-        <header className="mx-auto max-w-[1360px] px-5 pb-10 pt-32 md:px-8 md:pt-40">
+        <header className="mx-auto max-w-[1300px] px-5 pb-10 pt-32 md:px-8 md:pt-40">
           <div className="rise">
             <Link
               href="/"
@@ -81,7 +81,7 @@ export default function ResearchPage() {
           </div>
         </header>
 
-        <div className="mx-auto flex max-w-[1360px] flex-col gap-6 px-5 md:px-8">
+        <div className="mx-auto flex max-w-[1300px] flex-col gap-6 px-5 md:px-8">
           {papers.map((p, i) => (
             <Reveal key={p.slug} delay={i === 0 ? 0.1 : 0}>
               <article id={p.slug} className="scroll-mt-28">
@@ -140,7 +140,7 @@ export default function ResearchPage() {
           ))}
         </div>
 
-        <section className="mx-auto max-w-[1360px] px-5 pt-24 md:px-8">
+        <section className="mx-auto max-w-[1300px] px-5 pt-24 md:px-8">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Reports</h2>
             <ul className="mt-8">
@@ -210,7 +210,7 @@ export default function ResearchPage() {
           </Reveal>
         </section>
 
-        <section className="mx-auto max-w-[1360px] px-5 py-24 md:px-8">
+        <section className="mx-auto max-w-[1300px] px-5 py-24 md:px-8">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Presentations</h2>
             <ul className="mt-8">

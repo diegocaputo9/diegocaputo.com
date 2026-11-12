@@ -32,13 +32,13 @@ export default function NewsPage() {
       <Backdrop />
       <Nav />
       <main id="main" tabIndex={-1} className="relative isolate pt-12 outline-none md:pt-16">
-        <div className="mx-auto max-w-[1360px] px-5 pt-16 md:px-8">
+        <div className="mx-auto max-w-[1300px] px-5 pt-16 md:px-8">
           <Link href="/#leadership" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
             <ArrowLeft size={14} />
             Home
           </Link>
         </div>
-        <section className="mx-auto max-w-[1360px] px-5 py-12 md:px-8 md:py-16">
+        <section className="mx-auto max-w-[1300px] px-5 py-12 md:px-8 md:py-16">
           <Reveal>
             <h1 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">In the news</h1>
             <div className="mt-6">

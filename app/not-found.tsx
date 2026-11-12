@@ -16,7 +16,7 @@ export default function NotFound() {
     <>
       <Backdrop />
       <Nav />
-      <main id="main" tabIndex={-1} className="relative isolate mx-auto grid outline-none min-h-[100dvh] max-w-[1360px] content-center px-5 py-32 md:px-8">
+      <main id="main" tabIndex={-1} className="relative isolate mx-auto grid outline-none min-h-[100dvh] max-w-[1300px] content-center px-5 py-32 md:px-8">
         <Andon className="sketch-fade-left absolute right-[4%] top-1/2 -z-10 hidden w-[260px] -translate-y-1/2 md:block" />
         <div className="rise max-w-[52ch]">
           <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-ink-3">Error 404 · Line stop</p>

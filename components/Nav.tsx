@@ -101,7 +101,7 @@ export function Nav() {
       >
         Skip to content
       </a>
-      <div ref={bar} className="relative mx-auto flex h-[60px] max-w-[1360px] items-center justify-between gap-3 px-5 md:px-8">
+      <div ref={bar} className="relative mx-auto flex h-[60px] max-w-[1300px] items-center justify-between gap-3 px-5 md:px-8">
         {/* selection frame: one element that slides and resizes, so the corners never stretch */}
         <motion.span
           aria-hidden

@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 
 export function ResearchSnippet() {
   return (
-    <section id="research" className="relative isolate mx-auto max-w-[1360px] px-5 pb-12 pt-12 md:px-8 md:pb-24 md:pt-24">
+    <section id="research" className="relative isolate mx-auto max-w-[1300px] px-5 pb-12 pt-12 md:px-8 md:pb-24 md:pt-24">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       {/* value stream map as a faded background behind the heading, fading toward the text */}
@@ -45,7 +45,7 @@ export function ResearchSnippet() {
       </ol>
 
       {/* Posters and reports: smaller than the papers; each opens its PDF in the in-page viewer */}
-      <Reveal delay={0.06} className="mt-12 hidden sm:block">
+      <Reveal delay={0.06} className="mt-12 hidden sm:block min-[1360px]:-mx-[30px]">
         <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Posters &amp; reports</p>
         <ul className="mt-4 grid gap-4 sm:grid-cols-3">
           {researchMaterials.map((m) => (

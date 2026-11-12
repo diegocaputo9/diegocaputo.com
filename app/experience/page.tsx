@@ -31,7 +31,7 @@ export default function ExperiencePage() {
       <Backdrop />
       <Nav />
       <main id="main" tabIndex={-1} className="relative isolate pt-12 outline-none md:pt-16">
-        <div className="mx-auto max-w-[1360px] px-5 pt-16 md:px-8">
+        <div className="mx-auto max-w-[1300px] px-5 pt-16 md:px-8">
           <Link href="/#experience" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
             <ArrowLeft size={14} />
             Home

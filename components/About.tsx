@@ -7,7 +7,7 @@ import { Reveal } from "./Reveal";
 // Sits right after the hero: who Diego is, then the numbers row (Stats) as evidence.
 export function About() {
   return (
-    <section id="about" className="relative isolate mx-auto max-w-[1360px] px-5 pb-16 pt-4 md:px-8 md:pb-20 md:pt-6">
+    <section id="about" className="relative isolate mx-auto max-w-[1300px] px-5 pb-16 pt-4 md:px-8 md:pb-20 md:pt-6">
       <div className="grid items-end gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
         <Reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">About</h2>

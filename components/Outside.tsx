@@ -25,7 +25,7 @@ export function Outside() {
   const b = outside.brand;
   const c = outside.cycling;
   return (
-    <section id="outside" className="relative isolate mx-auto max-w-[1360px] px-5 py-12 md:px-8 md:py-24">
+    <section id="outside" className="relative isolate mx-auto max-w-[1300px] px-5 py-12 md:px-8 md:py-24">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <Reveal className="grid items-end gap-8 lg:grid-cols-[1fr_auto] lg:gap-14">

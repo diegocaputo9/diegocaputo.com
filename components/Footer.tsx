@@ -9,7 +9,7 @@ export function Footer() {
     ["Sheet", `© ${new Date().getFullYear()}`],
   ];
   return (
-    <footer className="mx-auto max-w-[1360px] px-5 pb-12 pt-4 md:px-8">
+    <footer className="mx-auto max-w-[1300px] px-5 pb-12 pt-4 md:px-8">
       <dl className="grid grid-cols-2 border border-line md:grid-cols-4">
         {cells.map(([k, v], i) => (
           <div

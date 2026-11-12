@@ -11,7 +11,7 @@ import { Reveal, RevealItem } from "./Reveal";
 export function Leadership() {
   const [lead, ...rest] = leadership;
   return (
-    <section id="leadership" className="relative isolate mx-auto max-w-[1360px] px-5 py-12 md:px-8 md:py-24">
+    <section id="leadership" className="relative isolate mx-auto max-w-[1300px] px-5 py-12 md:px-8 md:py-24">
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <KanbanCard className="absolute right-[2%] top-16 -z-10 hidden w-[200px] rotate-[4deg] xl:block" />

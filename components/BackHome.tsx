@@ -45,7 +45,7 @@ export function BackHome({ fallback = "/" }: { fallback?: string }) {
   }
 
   return (
-    <div className="mx-auto flex max-w-[1360px] justify-center px-5 pb-6 pt-16 md:px-8 md:pt-20">
+    <div className="mx-auto flex max-w-[1300px] justify-center px-5 pb-6 pt-16 md:px-8 md:pt-20">
       <a
         href={fallback}
         onClick={onClick}
