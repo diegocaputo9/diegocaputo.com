@@ -13,6 +13,7 @@ import { Gallery } from "./Gallery";
 import { GlassCard } from "./GlassCard";
 import { PressLightbox } from "./PressLightbox";
 import { Reveal } from "./Reveal";
+import { RunSheets } from "./RunSheets";
 import { SawmillFlow } from "./SawmillFlow";
 
 // Bento rhythm: 7/5, 5/7, 6/6 on a 12-col grid.
@@ -77,6 +78,8 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                       {p.photo.credit}
                     </figcaption>
                   </figure>
+                ) : p.visual === "standard" ? (
+                  <RunSheets year={p.year} />
                 ) : (
                   <div
                     className={`relative min-h-28 flex-1 overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-100/80 to-zinc-200/40 dark:from-zinc-800/50 dark:to-zinc-900/30 ${texture[p.visual]}`}

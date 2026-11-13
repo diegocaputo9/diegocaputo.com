@@ -16,14 +16,14 @@ const Y2 = 104;
 
 type Step = { label: string[]; note?: string; dwell: number; pace?: boolean };
 const steps: Step[] = [
-  { label: ["Log arrival"], dwell: 0.5 },
-  { label: ["Stem deck", "and debarker"], dwell: 0.6 },
-  { label: ["Merchandizer"], note: "C/T 23.4 s/stem", dwell: 0.8 },
-  { label: ["Chip and", "saw line"], note: "C/T 2.6 s/log", dwell: 0.6 },
-  { label: ["Vertical saw", "and edging"], dwell: 0.6 },
-  { label: ["Sorter and", "stacker"], dwell: 0.6 },
-  { label: ["Dry kilns"], note: "sets the pace", dwell: 2.2, pace: true },
-  { label: ["Planer mill"], dwell: 0.6 },
+  { label: ["Log arrival"], dwell: 1.2 },
+  { label: ["Stem deck", "and debarker"], dwell: 1 },
+  { label: ["Merchandizer"], note: "C/T 23.4 s/stem", dwell: 1.2 },
+  { label: ["Chip and", "saw line"], note: "C/T 2.6 s/log", dwell: 1 },
+  { label: ["Vertical saw", "and edging"], dwell: 1 },
+  { label: ["Sorter and", "stacker"], dwell: 1 },
+  { label: ["Dry kilns"], note: "sets the pace", dwell: 3.6, pace: true },
+  { label: ["Planer mill"], dwell: 1 },
 ];
 
 // Snake layout: 1-4 left to right, 5-8 right to left underneath.
@@ -49,7 +49,7 @@ const exit = (i: number) => {
   if (i === 3) return { x: b.x + BW / 2, y: b.y + BH };
   return i < 3 ? { x: b.x + BW, y: b.y + BH / 2 } : { x: b.x, y: b.y + BH / 2 };
 };
-const MOVE = 1.2; // seconds on each arrow
+const MOVE = 2.1; // seconds on each arrow
 type Seg = { t0: number; t1: number; kind: "move" | "dwell"; i: number; a?: { x: number; y: number }; b?: { x: number; y: number } };
 const timeline: Seg[] = [];
 {
@@ -64,7 +64,7 @@ const timeline: Seg[] = [];
   }
 }
 const CYCLE = timeline[timeline.length - 1].t1;
-const SPAWN = 3.2; // takt between pieces, longer than the kiln dwell so nothing queues
+const SPAWN = 5.2; // takt between pieces, longer than the kiln dwell so nothing queues
 
 
 // The material after step i (stage 0 = raw log before step 1).
@@ -250,7 +250,7 @@ export function SawmillFlow({ label, caption }: { label: string; caption: string
           {Array.from({ length: SLOTS }, (_, k) => (
             <g key={k} data-piece style={{ opacity: 0 }}>
               {Array.from({ length: 8 }, (_, s) => (
-                <g key={s} data-stage={s} transform="scale(0.72)" style={{ display: s ? "none" : undefined }}>
+                <g key={s} data-stage={s} transform={`scale(${s === 3 || s === 4 ? 1.05 : 0.72})`} style={{ display: s ? "none" : undefined }}>
                   <Material stage={s} />
                 </g>
               ))}
@@ -270,7 +270,7 @@ export function SawmillFlow({ label, caption }: { label: string; caption: string
                   rx={6}
                   className={`vsm-box ${s.pace ? "vsm-pace" : ""}`}
                 />
-                <rect data-bar x={b.x + 6} y={b.y + BH - 3.5} width={0} height={1.6} rx={0.8} fill="var(--accent)" />
+                <rect data-bar x={b.x + 6} y={b.y + BH - 3.5} width={0} height={1.6} rx={0.8} fill="var(--ink-3)" opacity={0.55} />
                 <text x={b.x + 6} y={b.y + 11} className="fill-[var(--ink-3)] font-mono text-[8px]">
                   {i + 1}
                 </text>
