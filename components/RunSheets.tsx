@@ -16,7 +16,7 @@ const sheets = [
 
 const N = sheets.length;
 const STEP_Y = -11; // each sheet further back sits a bit higher
-const LIFT_MS = 1700;
+const LIFT_MS = 2200;
 
 function Sheet({ s, checked }: { s: (typeof sheets)[number]; checked: number }) {
   return (
@@ -87,7 +87,7 @@ export function RunSheets({ year }: { year: string }) {
   useEffect(() => {
     if (reduce || !visible || lifting !== null) return;
     const n = sheets[order[0]].steps.length;
-    const id = setTimeout(() => (checked < n ? setChecked((c) => c + 1) : flip()), checked === 0 ? 1800 : checked < n ? 1300 : 1800);
+    const id = setTimeout(() => (checked < n ? setChecked((c) => c + 1) : flip()), checked === 0 ? 3000 : checked < n ? 2400 : 3500);
     return () => clearTimeout(id);
   }, [checked, visible, lifting, reduce, order]); // eslint-disable-line react-hooks/exhaustive-deps
 
