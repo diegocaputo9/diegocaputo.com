@@ -17,7 +17,7 @@ export function Speaking() {
           <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink-2">{speaking.lede}</p>
         </Reveal>
         <div className="relative">
-          <Pareto className="pointer-events-none absolute bottom-[calc(100%+34px)] left-1/2 -z-10 hidden w-[150px] -translate-x-[95%] md:block" />
+          <Pareto className="pointer-events-none absolute bottom-[calc(100%+52px)] left-1/2 -z-10 hidden w-[150px] -translate-x-[70%] md:block" />
           <Reveal delay={0.06}>
             <InviteForm label={speaking.cta.label} />
           </Reveal>

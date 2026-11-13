@@ -94,7 +94,7 @@ export function Outside() {
       </div>
 
       <div className="relative mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
-        <ControlChart className="pointer-events-none absolute -top-20 right-[10%] -z-10 hidden w-[190px] lg:block" />
+        <ControlChart className="pointer-events-none absolute -top-20 right-0 -z-10 hidden w-[190px] lg:block" />
         <Reveal className="lg:order-2">
           <h3 className="text-2xl font-semibold tracking-tight text-ink">{t.title}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{t.text}</p>
