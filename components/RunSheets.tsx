@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 // clipboard. Click to flip by hand.
 
 const sheets = [
-  { lab: "Lab 1", title: "5S workstation", rev: "Rev. C", time: "45 min", steps: ["Sort parts into red-tag bins", "Set in order with shadow board", "Shine and inspect fixtures", "Audit with 5S checklist"] },
+  { lab: "Lab 1", title: "5S workstation", rev: "Rev. C", time: "45 min", steps: ["Sort: red-tag what the cell does not need", "Set in order: shadow board for every tool", "Shine: clean and inspect fixtures", "Standardize: post the cell layout", "Sustain: score the 5S audit"] },
   { lab: "Lab 2", title: "Takt and line balancing", rev: "Rev. B", time: "60 min", steps: ["Time each element, 10 cycles", "Compute takt from demand", "Build yamazumi chart", "Rebalance and re-run"] },
   { lab: "Lab 3", title: "Kanban pull system", rev: "Rev. D", time: "50 min", steps: ["Run push round, log WIP", "Size kanban loops", "Run pull round", "Compare lead time"] },
   { lab: "Lab 4", title: "SMED changeover", rev: "Rev. A", time: "40 min", steps: ["Film baseline changeover", "Split internal / external", "Convert to external", "Time the new changeover"] },
@@ -16,7 +16,7 @@ const sheets = [
 
 const N = sheets.length;
 const STEP_Y = -11; // each sheet further back sits a bit higher
-const LIFT_MS = 1150;
+const LIFT_MS = 1700;
 
 function Sheet({ s, checked }: { s: (typeof sheets)[number]; checked: number }) {
   return (
@@ -86,9 +86,10 @@ export function RunSheets({ year }: { year: string }) {
   // Tick the front sheet's boxes, then flip to the next one.
   useEffect(() => {
     if (reduce || !visible || lifting !== null) return;
-    const id = setTimeout(() => (checked < 4 ? setChecked((c) => c + 1) : flip()), checked === 0 ? 900 : checked < 4 ? 650 : 1100);
+    const n = sheets[order[0]].steps.length;
+    const id = setTimeout(() => (checked < n ? setChecked((c) => c + 1) : flip()), checked === 0 ? 1800 : checked < n ? 1300 : 1800);
     return () => clearTimeout(id);
-  }, [checked, visible, lifting, reduce]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [checked, visible, lifting, reduce, order]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <button
@@ -99,7 +100,7 @@ export function RunSheets({ year }: { year: string }) {
       className="relative block min-h-[300px] w-full flex-1 cursor-pointer rounded-2xl bg-gradient-to-br from-zinc-100/80 to-zinc-200/40 bg-[repeating-linear-gradient(0deg,var(--grid)_0_1px,transparent_1px_14px)] dark:from-zinc-800/50 dark:to-zinc-900/30"
     >
       <span className="absolute right-4 top-3 font-mono text-[12px] text-ink-3">{year}</span>
-      <div className="absolute left-1/2 top-1/2 h-[250px] w-[min(250px,70%)] -translate-x-1/2 -translate-y-[38%] text-left">
+      <div className="absolute left-1/2 top-1/2 h-[262px] w-[min(310px,78%)] -translate-x-1/2 -translate-y-[38%] text-left">
         {order.map((idx, depth) => {
           const isLift = lifting === idx && !reduce;
           const rest = { y: depth * STEP_Y, scale: 1 - depth * 0.045, rotate: depth % 2 ? 1.2 : -0.8 * depth, opacity: 1 };
