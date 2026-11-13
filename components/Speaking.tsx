@@ -1,4 +1,5 @@
 import { speaking } from "@/content/site";
+import { Pareto } from "./Blueprint";
 import { InviteForm } from "./InviteForm";
 import { LessonBanner } from "./LessonBanner";
 import { Reveal } from "./Reveal";
@@ -15,9 +16,12 @@ export function Speaking() {
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">{speaking.title}</h2>
           <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-ink-2">{speaking.lede}</p>
         </Reveal>
-        <Reveal delay={0.06}>
-          <InviteForm label={speaking.cta.label} />
-        </Reveal>
+        <div className="relative">
+          <Pareto className="pointer-events-none absolute bottom-[calc(100%+34px)] left-1/2 -z-10 hidden w-[150px] -translate-x-[95%] md:block" />
+          <Reveal delay={0.06}>
+            <InviteForm label={speaking.cta.label} />
+          </Reveal>
+        </div>
       </div>
 
       <SpeakingPhotos />

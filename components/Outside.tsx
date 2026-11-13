@@ -1,5 +1,6 @@
 import { InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 import { outside } from "@/content/site";
+import { ControlChart } from "./Blueprint";
 import { Gallery } from "./Gallery";
 import { Reveal } from "./Reveal";
 import { TerrainViewer } from "./TerrainViewer";
@@ -92,7 +93,8 @@ export function Outside() {
         </Reveal>
       </div>
 
-      <div className="mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+      <div className="relative mt-14 grid items-center gap-10 md:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+        <ControlChart className="pointer-events-none absolute -top-20 right-[10%] -z-10 hidden w-[190px] lg:block" />
         <Reveal className="lg:order-2">
           <h3 className="text-2xl font-semibold tracking-tight text-ink">{t.title}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{t.text}</p>

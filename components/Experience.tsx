@@ -4,7 +4,7 @@ import US from "country-flag-icons/react/3x2/US";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { experience } from "@/content/site";
-import { ControlChart, Gears } from "./Blueprint";
+import { Gears } from "./Blueprint";
 import { CertLink } from "./CertLink";
 import { Reveal } from "./Reveal";
 import { RoleDetails } from "./RoleDetails";
@@ -20,7 +20,6 @@ export function Experience({ phoneLimit, title = "Experience" }: { phoneLimit?: 
     >
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
-      <ControlChart className="absolute left-[calc(50%-50vw+14px)] top-[46%] -z-10 hidden w-[132px] min-[1400px]:block" />
       <Gears className="absolute right-[3%] top-16 -z-10 hidden w-[200px] xl:block" />
       <Reveal>
         <h2 className="text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">

@@ -1,13 +1,12 @@
 import { ArrowRight, ArrowUpRight, FilePdf } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { papers, researchIntro, researchMaterials } from "@/content/research";
-import { Pareto, ValueStream } from "./Blueprint";
+import { ValueStream } from "./Blueprint";
 import { Reveal } from "./Reveal";
 
 export function ResearchSnippet() {
   return (
     <section id="research" className="relative isolate mx-auto max-w-[1274px] px-5 pb-12 pt-12 md:px-8 md:pb-16 md:pt-16">
-      <Pareto className="absolute right-[calc(50%-50vw+14px)] top-24 -z-10 hidden w-[132px] min-[1400px]:block" />
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       {/* value stream map as a faded background behind the heading, fading toward the text */}
