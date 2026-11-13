@@ -560,18 +560,18 @@ export const education: {
   { degree: "PhD, Industrial & Systems Engineering", school: "Auburn University", year: "Expected 2027", level: 3 },
   { degree: "MS, Industrial & Systems Engineering", school: "Auburn University", year: "2026", level: 2 },
   {
-    degree: "Graduate Certificate, Modeling and Data Analytics",
-    school: "Auburn University",
-    year: "2025",
-    level: 0,
-    certificate: { label: "Certificate", href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf" },
-  },
-  {
     degree: "Master of Engineering Management",
     school: "Auburn University",
     year: "2023",
     level: 2,
     certificate: { label: "Diploma", href: "/certificates/auburn-master-engineering-management-diploma-2023.pdf" },
+  },
+  {
+    degree: "Graduate Certificate, Modeling and Data Analytics",
+    school: "Auburn University",
+    year: "2025",
+    level: 0,
+    certificate: { label: "Certificate", href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf" },
   },
   { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017", level: 1 },
 ];

@@ -63,7 +63,7 @@ export function Leadership() {
           <h3 className="text-xl font-semibold tracking-tight text-ink">Education</h3>
           <ul className="mt-5">
             {education.map((e) => (
-              <RevealItem key={e.degree} className="flex items-start gap-3 border-t border-line py-4">
+              <RevealItem key={e.degree} className="flex min-h-[82px] items-start gap-3 border-t border-line py-4">
                 {e.level === 0 ? (
                   <span aria-hidden className="flex w-[22px] shrink-0 justify-center text-ink-3">
                     <Certificate size={21} weight="light" />
@@ -73,8 +73,10 @@ export function Leadership() {
                 )}
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] font-medium text-ink">{e.degree}</p>
-                  <p className="text-[14px] text-ink-3">{e.school}</p>
-                  {e.certificate && <CertLink {...e.certificate} title={`${e.degree}, ${e.school}`} className="mt-1.5" />}
+                  <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[14px] text-ink-3">
+                    {e.school}
+                    {e.certificate && <CertLink {...e.certificate} title={`${e.degree}, ${e.school}`} />}
+                  </p>
                 </div>
                 <p className="mt-1 shrink-0 font-mono text-[12px] text-ink-3">{e.year}</p>
               </RevealItem>
@@ -85,7 +87,7 @@ export function Leadership() {
           <h3 className="text-xl font-semibold tracking-tight text-ink">Honors</h3>
           <ul className="mt-5">
             {honors.map((h) => (
-              <RevealItem key={h.title} className="flex items-start gap-3 border-t border-line py-4">
+              <RevealItem key={h.title} className="flex min-h-[82px] items-start gap-3 border-t border-line py-4">
                 <Medal size={18} className="mt-0.5 shrink-0 text-ink-3" />
                 <div>
                   {h.href ? (
@@ -121,9 +123,11 @@ export function Leadership() {
                       ))}
                     </p>
                   ) : (
-                    <p className="font-mono text-[12px] text-ink-3">{h.year}</p>
+                    <p className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px] text-ink-3">
+                      {h.year}
+                      {h.certificate && <CertLink {...h.certificate} title={h.title} className="font-sans" />}
+                    </p>
                   )}
-                  {h.certificate && <CertLink {...h.certificate} title={h.title} className="mt-1.5" />}
                 </div>
               </RevealItem>
             ))}
