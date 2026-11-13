@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import { site } from "@/content/site";
+import { markHomeReturn } from "./homeReturn";
 
 // All links scroll to home-page sections; from /research they jump back home.
 const links = [
@@ -26,6 +27,7 @@ const corner = "absolute h-[7px] w-[7px] border-current";
 // hairline along the bottom edge fills with the accent color as the page
 // scrolls (a gauge for how far down you are).
 export function Nav() {
+  const router = useRouter();
   const pathname = usePathname();
   const onResearchPage = pathname.startsWith("/research");
   const onHome = pathname === "/";
@@ -134,7 +136,13 @@ export function Nav() {
           onMouseLeave={() => setHovered(null)}
           onFocus={() => setHovered("home")}
           onBlur={() => setHovered(null)}
-          onClick={() => {
+          onClick={(e) => {
+            // from a sub-page: back to where the visitor was on the home page
+            if (!onHome && !e.metaKey && !e.ctrlKey && markHomeReturn()) {
+              e.preventDefault();
+              router.push("/", { scroll: false });
+              return;
+            }
             lockUntil.current = Date.now() + 900;
             setActive("home");
           }}

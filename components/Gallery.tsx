@@ -36,11 +36,13 @@ export function Gallery({
   label,
   variant = "strip",
   children,
+  phoneMax,
 }: {
   items: GalleryItem[];
   label: string;
   variant?: "hero" | "strip" | "mosaic" | "wide";
   children?: ReactNode;
+  phoneMax?: number; // strip: on phones show only the first N
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
@@ -211,7 +213,7 @@ export function Gallery({
           <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">{label}</p>
           <ul className="mt-2.5 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
             {items.map((it, i) => (
-              <li key={it.src}>
+              <li key={it.src} className={phoneMax !== undefined && i >= phoneMax ? "max-md:hidden" : undefined}>
                 <button
                   type="button"
                   onClick={(e) => open(i, e.currentTarget)}

@@ -6,7 +6,8 @@ import { GlassCard } from "./GlassCard";
 import { LoopVideo } from "./LoopVideo";
 import { Reveal } from "./Reveal";
 
-export function Featured({ title = "Selected work" }: { title?: string }) {
+// phoneCompact: hide the bullet list on phones (home page).
+export function Featured({ title = "Selected work", phoneCompact }: { title?: string; phoneCompact?: boolean }) {
   return (
     <section id="work" className="relative mx-auto max-w-[1274px] px-5 pt-14 md:px-8 md:pt-16">
       {/* edge drawing in the side margin (wide screens) */}
@@ -51,7 +52,7 @@ export function Featured({ title = "Selected work" }: { title?: string }) {
               </p>
               <h3 className="mt-1 text-2xl font-semibold tracking-tight text-ink md:text-3xl">{featured.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{featured.summary}</p>
-              <ul className="mt-5 space-y-2.5">
+              <ul className={`mt-5 space-y-2.5 ${phoneCompact ? "max-md:hidden" : ""}`}>
                 {featured.points.map((p) => (
                   <li key={p} className="flex gap-2.5 text-[14px] leading-snug text-ink-2">
                     <Check size={16} weight="bold" className="mt-0.5 shrink-0 text-accent" />

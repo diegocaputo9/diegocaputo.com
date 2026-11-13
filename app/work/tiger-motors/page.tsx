@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
 import { AssemblyLine } from "@/components/Blueprint";
 import { BackHome } from "@/components/BackHome";
+import { HomeLink } from "@/components/HomeLink";
 import { Footer } from "@/components/Footer";
 import { GlassCard } from "@/components/GlassCard";
 import { Nav } from "@/components/Nav";
@@ -33,10 +34,10 @@ export default function TigerMotorsPage() {
         <header className="relative isolate mx-auto max-w-[1274px] px-5 pb-12 pt-32 md:px-8 md:pt-40">
           <AssemblyLine className="sketch-fade-top absolute bottom-0 right-0 -z-10 hidden w-[620px] lg:block" />
           <div className="rise">
-            <Link href="/#work" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
+            <HomeLink fallback="/#work" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
               <ArrowLeft size={14} />
               Selected work
-            </Link>
+            </HomeLink>
             <p className="mt-6 text-[13px] text-ink-3">{t.kind}</p>
             <h1 className="mt-2 max-w-[18ch] text-5xl font-semibold leading-[1.05] tracking-[-0.035em] text-ink md:text-6xl">
               {t.title}

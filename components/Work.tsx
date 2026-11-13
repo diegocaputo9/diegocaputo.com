@@ -39,7 +39,8 @@ const texture: Record<Project["visual"], string> = {
 };
 
 // phoneKeep: on phones show only these projects (by title) and link to /work/ for the rest.
-export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
+// phoneOrder: on phones these titles come first, in this order.
+export function Work({ phoneKeep, phoneOrder }: { phoneKeep?: string[]; phoneOrder?: string[] }) {
   return (
     <section className="mx-auto max-w-[1274px] px-5 pb-4 pt-5 md:px-8 md:pb-6">
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-12">
@@ -50,7 +51,7 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
               as="li"
               key={p.title}
               delay={(i % 2) * 0.03}
-              className={`${spans[i]} ${phoneKeep && !phoneKeep.includes(p.title) ? "max-md:hidden" : ""}`}
+              className={`${spans[i]} ${phoneKeep && !phoneKeep.includes(p.title) ? "max-md:hidden" : ""} ${phoneOrder ? (["max-md:order-1", "max-md:order-2", "max-md:order-3"][phoneOrder.indexOf(p.title)] ?? "max-md:order-4") : ""}`}
             >
               <GlassCard tilt={2.5} className="group flex h-full flex-col rounded-card p-3">
                 {p.image ? (
@@ -123,7 +124,7 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                   {p.gallery && p.visual === "plant" ? (
                     <SawmillFlow label={p.gallery.label} caption={p.gallery.items[0].short ?? p.gallery.items[0].caption} />
                   ) : p.gallery && (
-                    <Gallery variant={p.gallery.wide ? "wide" : "strip"} label={p.gallery.label} items={p.gallery.items} />
+                    <Gallery variant={p.gallery.wide ? "wide" : "strip"} label={p.gallery.label} items={p.gallery.items} phoneMax={phoneKeep ? 2 : undefined} />
                   )}
                 </div>
               </GlassCard>

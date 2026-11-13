@@ -1,3 +1,4 @@
+import { HomeScroll } from "@/components/HomeScroll";
 import { About } from "@/components/About";
 import { Backdrop } from "@/components/Backdrop";
 import { Contact } from "@/components/Contact";
@@ -75,6 +76,7 @@ export default function Home() {
       />
       <Backdrop />
       <Nav />
+      <HomeScroll />
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         {/* About and its numbers fill one screen on computers, so the next section starts below the fold */}
@@ -83,7 +85,7 @@ export default function Home() {
           <Stats />
         </div>
         <Speaking />
-        <Featured />
+        <Featured phoneCompact />
         <Work phoneKeep={["Lean Six Sigma Green Belt programs", "ChapterCore"]} />
         <ResearchSnippet />
         <Experience phoneLimit={3} />

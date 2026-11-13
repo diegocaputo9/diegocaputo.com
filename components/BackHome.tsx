@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ArrowUpLeft } from "@phosphor-icons/react";
 import { site } from "@/content/site";
+import { markHomeReturn } from "./homeReturn";
 
 const PREV = "route:prev";
 const CUR = "route:cur";
@@ -34,13 +35,9 @@ export function BackHome({ fallback = "/" }: { fallback?: string }) {
 
   function onClick(e: React.MouseEvent<HTMLAnchorElement>) {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    let prev = "";
-    try {
-      prev = sessionStorage.getItem(PREV) ?? "";
-    } catch {}
-    if (prev === "/") {
+    if (markHomeReturn()) {
       e.preventDefault();
-      router.back();
+      router.push("/", { scroll: false });
     }
   }
 

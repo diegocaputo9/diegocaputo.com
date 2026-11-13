@@ -1,9 +1,9 @@
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Backdrop } from "@/components/Backdrop";
 import { Featured } from "@/components/Featured";
 import { BackHome } from "@/components/BackHome";
+import { HomeLink } from "@/components/HomeLink";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Work } from "@/components/Work";
@@ -33,13 +33,13 @@ export default function WorkPage() {
       <Nav />
       <main id="main" tabIndex={-1} className="relative isolate pt-12 outline-none md:pt-16">
         <div className="mx-auto max-w-[1274px] px-5 pt-16 md:px-8">
-          <Link href="/#work" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
+          <HomeLink fallback="/#work" className="inline-flex items-center gap-1.5 text-sm text-ink-3 transition-colors hover:text-ink">
             <ArrowLeft size={14} />
             Home
-          </Link>
+          </HomeLink>
         </div>
         <Featured title="All projects" />
-        <Work />
+        <Work phoneOrder={["Lean Six Sigma Green Belt programs", "ChapterCore"]} />
         <BackHome fallback="/#work" />
       </main>
       <Footer />
