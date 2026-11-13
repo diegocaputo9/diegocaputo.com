@@ -327,3 +327,86 @@ export function FitCheck({ className }: { className?: string }) {
     </Sketch>
   );
 }
+
+// Takt clock: a stopwatch whose hand sweeps once per cycle.
+export function TaktClock({ className }: { className?: string }) {
+  const ticks = Array.from({ length: 12 }, (_, i) => {
+    const a = (i / 12) * Math.PI * 2;
+    const r1 = i % 3 === 0 ? 40 : 44;
+    return [70 + Math.sin(a) * r1, 98 - Math.cos(a) * r1, 70 + Math.sin(a) * 50, 98 - Math.cos(a) * 50];
+  });
+  return (
+    <Sketch viewBox="0 0 140 180" label={12} className={className}>
+      <rect pathLength={P} x={62} y={26} width={16} height={10} rx={2} />
+      <line pathLength={P} x1={70} y1={36} x2={70} y2={44} />
+      <circle pathLength={P} cx={70} cy={98} r={54} />
+      {ticks.map(([x1, y1, x2, y2], i) => (
+        <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />
+      ))}
+      <g className="bp-takt-hand" style={{ transformOrigin: "70px 98px" }}>
+        <line x1={70} y1={104} x2={70} y2={58} />
+      </g>
+      <circle cx={70} cy={98} r={3} />
+      <Label x={36} y={172}>TAKT 60 s</Label>
+    </Sketch>
+  );
+}
+
+// SPC control chart: centre line, control limits, and a reading that walks
+// along the points; one point sits outside the upper limit.
+export function ControlChart({ className }: { className?: string }) {
+  const pts = [
+    [20, 84], [44, 70], [68, 92], [92, 76], [116, 62], [140, 88], [164, 26], [188, 74], [212, 80],
+  ];
+  return (
+    <Sketch viewBox="0 0 230 150" label={12} className={className}>
+      <line pathLength={P} x1={10} y1={130} x2={224} y2={130} />
+      <line pathLength={P} x1={10} y1={14} x2={10} y2={130} />
+      <line className="dash" x1={10} y1={40} x2={224} y2={40} />
+      <line x1={10} y1={78} x2={224} y2={78} />
+      <line className="dash" x1={10} y1={116} x2={224} y2={116} />
+      <polyline pathLength={P} points={pts.map((p) => p.join(",")).join(" ")} />
+      {pts.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={2.2} />
+      ))}
+      <g className="dim">
+        <circle cx={164} cy={26} r={7} className="bp-spc-flag" />
+      </g>
+      <circle className="bp-spc-dot" r={3.2} style={{ fill: "var(--accent)", stroke: "none" }} />
+      <Label x={14} y={34}>UCL</Label>
+      <Label x={14} y={146}>SPC / X̄ CHART</Label>
+    </Sketch>
+  );
+}
+
+// Pareto chart: falling bars and the cumulative line; the bars breathe slowly.
+export function Pareto({ className }: { className?: string }) {
+  const bars = [92, 64, 40, 24, 14, 8];
+  let sum = 0;
+  const total = bars.reduce((a, b) => a + b, 0);
+  const line = bars.map((b, i) => {
+    sum += b;
+    return `${30 + i * 30},${130 - (sum / total) * 110}`;
+  });
+  return (
+    <Sketch viewBox="0 0 220 160" label={12} className={className}>
+      <line pathLength={P} x1={12} y1={130} x2={208} y2={130} />
+      <line pathLength={P} x1={12} y1={16} x2={12} y2={130} />
+      {bars.map((h, i) => (
+        <rect
+          key={i}
+          className="bp-pareto-bar"
+          style={{ transformOrigin: `0 130px`, animationDelay: `${i * 0.25}s` }}
+          x={18 + i * 30}
+          y={130 - h}
+          width={22}
+          height={h}
+        />
+      ))}
+      <polyline className="dim" points={line.join(" ")} />
+      <line className="dash" x1={12} y1={42} x2={208} y2={42} />
+      <Label x={168} y={36}>80%</Label>
+      <Label x={14} y={152}>PARETO / DEFECTS</Label>
+    </Sketch>
+  );
+}

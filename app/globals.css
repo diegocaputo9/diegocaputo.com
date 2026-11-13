@@ -519,6 +519,10 @@ p, li, figcaption, dd {
   .bp-lamp-stop { animation: bp-lamp-stop 16s ease-in-out infinite; }
   .bp-fit-part { animation: bp-fit-part 13s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
   .bp-fit-ok { animation: bp-fit-ok 13s ease-in-out infinite; }
+  .bp-takt-hand { animation: bp-spin 12s linear infinite; }
+  .bp-spc-dot { animation: bp-spc-walk 9s ease-in-out infinite; }
+  .bp-spc-flag { animation: bp-spc-flag 9s ease-in-out infinite; }
+  .bp-pareto-bar { animation: bp-pareto 10s ease-in-out infinite; }
 }
 .bp-fit-ok { fill: #2f9e44; opacity: 0.4; }
 /* upside down onto the key, a small jiggle, lift, flip, seat, hold, fade, again */
@@ -927,4 +931,28 @@ p, li, figcaption, dd {
 #outside:has([data-marker="4"]:hover) [data-finding="4"] {
   & > span { background: var(--accent); }
   & p, & p span { color: var(--accent); }
+}
+
+/* control chart: the reading steps point to point; the out-of-limit point flashes as it lands there */
+.bp-spc-dot { transform: translate(20px, 84px); }
+@keyframes bp-spc-walk {
+  0% { transform: translate(20px, 84px); }
+  11% { transform: translate(44px, 70px); }
+  22% { transform: translate(68px, 92px); }
+  33% { transform: translate(92px, 76px); }
+  44% { transform: translate(116px, 62px); }
+  55% { transform: translate(140px, 88px); }
+  66% { transform: translate(164px, 26px); }
+  77% { transform: translate(188px, 74px); }
+  88%, 100% { transform: translate(212px, 80px); }
+}
+.bp-spc-flag { opacity: 0.4; }
+@keyframes bp-spc-flag {
+  0%, 62% { opacity: 0.15; }
+  66%, 76% { opacity: 1; }
+  82%, 100% { opacity: 0.15; }
+}
+@keyframes bp-pareto {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.82); }
 }

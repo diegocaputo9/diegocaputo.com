@@ -1,5 +1,6 @@
 import { ArrowUpRight, Certificate } from "@phosphor-icons/react/dist/ssr";
 import { credentials } from "@/content/site";
+import { GlassCard } from "./GlassCard";
 
 // Every mark sits in the same 44px rounded square, centred. Belt colors follow
 // the Lean Six Sigma convention; the certificate uses the site accent; badges
@@ -58,7 +59,7 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
             </>
           );
           return (
-            <li key={c.title} className={`glass rounded-panel ${row}`}>
+            <GlassCard as="li" bare tilt={3} key={c.title} className={`rounded-panel ${row}`}>
               {c.href ? (
                 // quiet link: opens the certificate in the site's PDF viewer
                 <a
@@ -76,7 +77,7 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
               ) : (
                 <div className={`${inner} grid-cols-[2.75rem_minmax(0,1fr)]`}>{body}</div>
               )}
-            </li>
+            </GlassCard>
           );
         })}
       </ul>

@@ -1,13 +1,16 @@
 import { ArrowRight, ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { featured } from "@/content/site";
+import { TaktClock } from "./Blueprint";
 import { GlassCard } from "./GlassCard";
 import { LoopVideo } from "./LoopVideo";
 import { Reveal } from "./Reveal";
 
 export function Featured({ title = "Selected work" }: { title?: string }) {
   return (
-    <section id="work" className="mx-auto max-w-[1274px] px-5 pt-14 md:px-8 md:pt-16">
+    <section id="work" className="relative mx-auto max-w-[1274px] px-5 pt-14 md:px-8 md:pt-16">
+      {/* edge drawing in the side margin (wide screens) */}
+      <TaktClock className="absolute left-[calc(50%-50vw+18px)] top-28 -z-10 hidden w-[108px] min-[1400px]:block" />
       {/* drafting rule: draws across as the section scrolls in */}
       <div aria-hidden className="sheet-rule mb-8 md:mb-10" />
       <Reveal>

@@ -99,7 +99,6 @@ export function Hero() {
           </div>
         ) : (
           <div className="rise relative mx-auto w-full max-w-sm pb-10 lg:mr-0 lg:max-w-[400px] lg:self-center lg:pb-16 xl:max-w-[440px]" style={d(360)}>
-            <RobotArm caption={false} className="absolute -top-[200px] right-[-5%] -z-10 hidden w-[230px] lg:block" />
             <GlassCard className="rounded-card p-6 sm:p-7">
               <div className="flex items-center gap-4">
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-panel bg-ink text-lg font-semibold tracking-tight text-bg shadow-[inset_0_1px_0_rgb(255_255_255/0.16)]">
@@ -140,6 +139,9 @@ export function Hero() {
             </GlassCard>
           </div>
         )}
+
+        {/* robot cell: stands at the right edge of the screen, partly behind the profile card */}
+        <RobotArm caption={false} className="absolute right-[max(10px,calc(50vw-745px))] top-[64px] -z-10 hidden w-[230px] lg:block" />
 
         {/* shop floor: the assembly line runs along the hero's base line, behind everything */}
         <AssemblyLine className="sketch-fade-top absolute bottom-0 left-[22%] -z-20 hidden w-[min(760px,66vw)] lg:block" />

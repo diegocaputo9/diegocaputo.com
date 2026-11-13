@@ -8,13 +8,17 @@ type Props = {
   className?: string;
   /** max tilt in degrees; 0 disables tilt but keeps the moving highlight */
   tilt?: number;
+  /** element to render (li inside lists) */
+  as?: "div" | "li";
+  /** no wrapper div: perspective goes on the card itself (keeps grid/subgrid layouts intact) */
+  bare?: boolean;
 };
 
 // Glass surface whose specular highlight follows the pointer and that tilts
 // a few degrees toward it, like a pane catching light. Motion values only,
 // no React state, so pointer moves never re-render.
-export function GlassCard({ children, className = "", tilt = 6 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+export function GlassCard({ children, className = "", tilt = 6, as = "div", bare = false }: Props) {
+  const ref = useRef<HTMLDivElement & HTMLLIElement>(null);
   const reduce = useReducedMotion();
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);
@@ -23,7 +27,7 @@ export function GlassCard({ children, className = "", tilt = 6 }: Props) {
   const rotateY = useTransform(sx, [0, 1], [-tilt, tilt]);
   const rotateX = useTransform(sy, [0, 1], [tilt, -tilt]);
 
-  function onMove(e: React.PointerEvent<HTMLDivElement>) {
+  function onMove(e: React.PointerEvent<HTMLElement>) {
     const el = ref.current;
     if (!el || e.pointerType === "touch") return;
     const r = el.getBoundingClientRect();
@@ -45,13 +49,29 @@ export function GlassCard({ children, className = "", tilt = 6 }: Props) {
     if (ref.current) delete ref.current.dataset.lit;
   }
 
+  const tiltStyle = reduce || tilt === 0 ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" as const };
+  if (bare) {
+    const M = as === "li" ? motion.li : motion.div;
+    return (
+      <M
+        ref={ref}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+        style={tiltStyle ? { ...tiltStyle, transformPerspective: 1200 } : undefined}
+        className={`glass ${className}`}
+      >
+        {children}
+      </M>
+    );
+  }
+
   return (
     <div style={{ perspective: 1200 }} className="h-full">
       <motion.div
         ref={ref}
         onPointerMove={onMove}
         onPointerLeave={onLeave}
-        style={reduce || tilt === 0 ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }}
+        style={tiltStyle}
         className={`glass h-full ${className}`}
       >
         {children}
