@@ -13,6 +13,7 @@ import { Gallery } from "./Gallery";
 import { GlassCard } from "./GlassCard";
 import { PressLightbox } from "./PressLightbox";
 import { Reveal } from "./Reveal";
+import { SawmillFlow } from "./SawmillFlow";
 
 // Bento rhythm: 7/5, 5/7, 6/6 on a 12-col grid.
 const spans = ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7", "md:col-span-6", "md:col-span-6"];
@@ -116,7 +117,9 @@ export function Work({ phoneKeep }: { phoneKeep?: string[] }) {
                       />
                     </a>
                   )}
-                  {p.gallery && (
+                  {p.gallery && p.visual === "plant" ? (
+                    <SawmillFlow label={p.gallery.label} caption={p.gallery.items[0].short ?? p.gallery.items[0].caption} />
+                  ) : p.gallery && (
                     <Gallery variant={p.gallery.wide ? "wide" : "strip"} label={p.gallery.label} items={p.gallery.items} />
                   )}
                 </div>

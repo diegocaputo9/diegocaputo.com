@@ -956,3 +956,13 @@ p, li, figcaption, dd {
   0%, 100% { transform: scaleY(1); }
   50% { transform: scaleY(0.82); }
 }
+
+/* Sawmill value stream: opaque boxes hide the piece while it is processed. */
+.vsm-box { fill: var(--bg); stroke: var(--sketch); stroke-width: 1; transition: stroke 0.25s, fill 0.25s; }
+.vsm-box.vsm-pace { stroke: var(--accent); stroke-width: 1.4; }
+.vsm-box.vsm-on { stroke: var(--accent); fill: color-mix(in srgb, var(--accent) 7%, var(--bg)); }
+.vsm-arrow { stroke-dasharray: 3 3; }
+@media (prefers-reduced-motion: no-preference) {
+  .vsm-arrow { animation: vsm-flow 0.9s linear infinite; }
+}
+@keyframes vsm-flow { to { stroke-dashoffset: -6; } }
