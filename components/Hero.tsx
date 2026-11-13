@@ -108,7 +108,7 @@ export function Hero() {
                   width={600}
                   height={600}
                   fetchPriority="high"
-                  className="aspect-[4/5] w-[128px] shrink-0 rounded-panel object-cover object-[50%_15%] shadow-[0_1px_2px_rgb(0_0_0/0.08),0_8px_24px_rgb(24_24_27/0.14)]"
+                  className="aspect-[4/5] w-[150px] sm:w-[168px] shrink-0 rounded-panel object-cover object-[50%_15%] shadow-[0_1px_2px_rgb(0_0_0/0.08),0_8px_24px_rgb(24_24_27/0.14)]"
                 />
                 <div>
                   <p className="text-lg font-semibold tracking-tight text-ink">{site.name}</p>
