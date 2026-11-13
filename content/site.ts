@@ -566,7 +566,13 @@ export const education: {
     level: 0,
     certificate: { label: "Certificate", href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf" },
   },
-  { degree: "Master of Engineering Management", school: "Auburn University", year: "2023", level: 2 },
+  {
+    degree: "Master of Engineering Management",
+    school: "Auburn University",
+    year: "2023",
+    level: 2,
+    certificate: { label: "Diploma", href: "/certificates/auburn-master-engineering-management-diploma-2023.pdf" },
+  },
   { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017", level: 1 },
 ];
 
