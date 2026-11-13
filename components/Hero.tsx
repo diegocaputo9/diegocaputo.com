@@ -100,20 +100,25 @@ export function Hero() {
         ) : (
           <div className="rise relative mx-auto w-full max-w-sm pb-10 lg:mr-0 lg:max-w-[400px] lg:self-center lg:pb-16 xl:max-w-[440px]" style={d(360)}>
             <GlassCard className="rounded-card p-6 sm:p-7">
-              <div className="flex items-center gap-4">
-                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-panel bg-ink text-lg font-semibold tracking-tight text-bg shadow-[inset_0_1px_0_rgb(255_255_255/0.16)]">
-                  DC
-                </div>
+              <div className="flex items-center gap-5">
+                {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized webp */}
+                <img
+                  src="/headshot-600.webp"
+                  alt={`Portrait of ${site.name}`}
+                  width={600}
+                  height={600}
+                  fetchPriority="high"
+                  className="aspect-[4/5] w-[128px] shrink-0 rounded-panel object-cover object-[50%_15%] shadow-[0_1px_2px_rgb(0_0_0/0.08),0_8px_24px_rgb(24_24_27/0.14)]"
+                />
                 <div>
                   <p className="text-lg font-semibold tracking-tight text-ink">{site.name}</p>
                   <p className="text-sm text-ink-2">{site.role}</p>
+                  <p className="mt-3 flex items-center gap-1.5 text-sm text-ink-2">
+                    <MapPin size={16} className="text-ink-3" />
+                    {site.location}
+                  </p>
                 </div>
               </div>
-
-              <p className="mt-5 flex items-center gap-1.5 text-sm text-ink-2">
-                <MapPin size={16} className="text-ink-3" />
-                {site.location}
-              </p>
 
               <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-2.5 border-t border-line pt-5">
                 {site.focus.map((f) => (
