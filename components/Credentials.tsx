@@ -60,7 +60,6 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
               <p className="col-start-2 row-start-2 text-[13px] leading-snug text-ink-3">
                 {c.issuer}
                 {c.status && <span className="text-accent"> · {c.status}</span>}
-                {c.linkLabel && <span> · {c.linkLabel}</span>}
               </p>
             </>
           );
