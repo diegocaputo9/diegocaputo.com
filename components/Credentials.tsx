@@ -6,7 +6,7 @@ import { GlassCard } from "./GlassCard";
 // the Lean Six Sigma convention; the certificate uses the site accent; badges
 // sit on a neutral tile.
 const mark = {
-  msu: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
+  msu: "bg-white/90 shadow-[inset_0_0_0_1px_var(--line)]",
   badge: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
   green: "bg-[#2b8a3e] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25)]",
   black:
@@ -60,21 +60,17 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
               <p className="col-start-2 row-start-2 text-[13px] leading-snug text-ink-3">
                 {c.issuer}
                 {c.status && <span className="text-accent"> · {c.status}</span>}
-                {c.linkLabel && c.href && <a href={c.href} className="ml-2 inline-block text-[12px] text-ink-3 underline decoration-line underline-offset-4 transition-colors hover:text-accent">{c.linkLabel}<span className="sr-only"> — Apple Manufacturing Academy badges</span></a>}
+                {c.linkLabel && <span> · {c.linkLabel}</span>}
               </p>
             </>
           );
           return (
             <GlassCard as="li" bare tilt={3} key={c.title} className={`rounded-panel ${row}`}>
-              {c.linkLabel && c.href ? (
-                <div className={`${inner} grid-cols-[2.75rem_minmax(0,1fr)]`}>
-                  {body}
-                </div>
-              ) : c.href ? (
+              {c.href ? (
                 // quiet link: opens the certificate in the site's PDF viewer
                 <a
                   href={c.href}
-                  data-pdf-title={`${c.title}, certificate`}
+                  data-pdf-title={c.linkLabel ? undefined : `${c.title}, certificate`}
                   className={`group ${inner} grid-cols-[2.75rem_minmax(0,1fr)_auto] rounded-panel transition-[scale] duration-200 ease-glide active:scale-[0.97]`}
                 >
                   {body}

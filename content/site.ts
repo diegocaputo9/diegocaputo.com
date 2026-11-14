@@ -55,7 +55,7 @@ export const credentials: {
     mark: "/work/michigan-state-logo.png",
     kind: "msu",
     title: "Apple Manufacturing Academy",
-    issuer: "Michigan State University & Apple",
+    issuer: "Michigan State University & Apple, Nov, 2026",
     href: "/certificates/#manufacturing-academy",
     linkLabel: "Process Topics",
   },
