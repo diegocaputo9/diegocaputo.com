@@ -54,7 +54,7 @@ export default function CertificatesPage() {
                   <span className="grid h-12 w-12 shrink-0 place-items-center">
                     {c.mark && (c.kind === "badge" || c.kind === "msu") ? (
                       // eslint-disable-next-line @next/next/no-img-element -- original static credential badge
-                      <img src={c.mark} alt="" width={192} height={192} className={`h-12 w-12 object-contain ${c.kind === "msu" ? "rounded-lg bg-white/90 p-1.5" : ""}`} />
+                      <img src={c.mark} alt="" width={192} height={192} className="h-12 w-12 object-contain" />
                     ) : <Seal size={24} className="text-ink-3" />}
                   </span>
                   <div>

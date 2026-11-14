@@ -6,7 +6,7 @@ import { GlassCard } from "./GlassCard";
 // the Lean Six Sigma convention; the certificate uses the site accent; badges
 // sit on a neutral tile.
 const mark = {
-  msu: "bg-white/90 shadow-[inset_0_0_0_1px_var(--line)]",
+  msu: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
   badge: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
   green: "bg-[#2b8a3e] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25)]",
   black:
