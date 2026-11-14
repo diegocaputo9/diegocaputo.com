@@ -6,7 +6,7 @@ import { GlassCard } from "./GlassCard";
 // the Lean Six Sigma convention; the certificate uses the site accent; badges
 // sit on a neutral tile.
 const mark = {
-  msu: "overflow-hidden bg-black shadow-[inset_0_0_0_1px_var(--line)]",
+  msu: "relative overflow-hidden bg-black shadow-[inset_0_0_0_1px_var(--line)]",
   badge: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
   green: "bg-[#2b8a3e] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25)]",
   black:
@@ -47,7 +47,7 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
                 ) : c.kind === "msu" ? (
                   // Crop the Spartan mark from the supplied MSU course badge.
                   // eslint-disable-next-line @next/next/no-img-element -- static badge artwork
-                  <img src={c.mark} alt="" width={600} height={600} className="h-[120px] w-[120px] max-w-none translate-x-[27px] brightness-[2.5]" />
+                  <img src={c.mark} alt="" width={600} height={600} className="absolute -left-[10px] -top-[17px] h-[85px] w-[85px] max-w-none brightness-[2.5]" />
                 ) : c.kind === "cert" ? (
                   <Certificate size={22} weight="duotone" />
                 ) : (
@@ -60,6 +60,7 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
               <p className="col-start-2 row-start-2 text-[13px] leading-snug text-ink-3">
                 {c.issuer}
                 {c.status && <span className="text-accent"> · {c.status}</span>}
+                {c.linkLabel && c.href && <a href={c.href} className="ml-2 inline-block text-[12px] text-ink-3 underline decoration-line underline-offset-4 transition-colors hover:text-accent">{c.linkLabel}<span className="sr-only"> — Apple Manufacturing Academy badges</span></a>}
               </p>
             </>
           );
@@ -68,7 +69,6 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
               {c.linkLabel && c.href ? (
                 <div className={`${inner} grid-cols-[2.75rem_minmax(0,1fr)]`}>
                   {body}
-                  <a href={c.href} className="col-start-2 text-[12px] text-ink-3 underline decoration-line underline-offset-4 transition-colors hover:text-accent">{c.linkLabel}<span className="sr-only"> — Apple Manufacturing Academy badges</span></a>
                 </div>
               ) : c.href ? (
                 // quiet link: opens the certificate in the site's PDF viewer
