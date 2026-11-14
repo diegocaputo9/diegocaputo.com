@@ -641,10 +641,13 @@ export const certificates: {
   note?: string;
   href: string;
   lang?: string;
+  logo?: string;
+  shortTitle?: string;
 }[] = [
   {
     group: "Leadership, data and research",
     title: "Certified Chapter Leader, Auburn University Chapter",
+    logo: "/work/shpe-logo.png",
     issuer: "SHPE, 36th National Institute for Leadership Advancement (NILA)",
     date: "Jul 2022",
     href: "/certificates/shpe-nila-chapter-leader-2022.pdf",
@@ -652,6 +655,7 @@ export const certificates: {
   {
     group: "Leadership, data and research",
     title: "Responsible Conduct of Research",
+    logo: "/work/citi-logo.png",
     issuer: "CITI Program, under requirements set by Auburn University",
     date: "Oct 2022",
     note: "Valid through Oct 2025",
@@ -660,6 +664,7 @@ export const certificates: {
   {
     group: "Leadership, data and research",
     title: "Business Intelligence with Excel and Power BI",
+    logo: "/work/pucmm-logo.png",
     issuer: "TEP, Pontificia Universidad Católica Madre y Maestra (PUCMM)",
     date: "Mar 2021",
     note: "27-hour specialized course. Certificate in Spanish",
@@ -668,6 +673,7 @@ export const certificates: {
   {
     group: "Other training",
     title: "Phish or Treat? Phishing Edition",
+    shortTitle: "Phishing awareness",
     issuer: "KnowBe4 security awareness training",
     date: "Oct 2022",
     href: "/certificates/knowbe4-phishing-2022.pdf",
@@ -675,6 +681,7 @@ export const certificates: {
   {
     group: "Other training",
     title: "Don't Be Like Rick: Two-Factor Authentication",
+    shortTitle: "Two-factor authentication",
     issuer: "KnowBe4 security awareness training",
     date: "Oct 2022",
     href: "/certificates/knowbe4-two-factor-authentication-2022.pdf",
@@ -682,6 +689,7 @@ export const certificates: {
   {
     group: "Other training",
     title: "Nueva Normalidad Laboral: Colaboradores",
+    shortTitle: "Nueva Normalidad Laboral",
     issuer: "Capacítate para el Empleo (CARSO)",
     date: "Jul 2020",
     note: "Certificate in Spanish",
@@ -691,6 +699,7 @@ export const certificates: {
   {
     group: "Other training",
     title: "Salary Negotiation: Learn the Negotiation Mindset",
+    shortTitle: "Salary negotiation",
     issuer: "Udemy",
     date: "Sep 2017",
     href: "/certificates/udemy-salary-negotiation-2017.pdf",
