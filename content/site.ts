@@ -52,7 +52,7 @@ export const credentials: {
     status: "Starts 2027",
   },
   {
-    mark: "/certificates/msu-apple-lean-manufacturing.png",
+    mark: "/certificates/msu-apple-automation.png",
     kind: "msu",
     title: "Apple Manufacturing Academy",
     issuer: "Michigan State University & Apple",
