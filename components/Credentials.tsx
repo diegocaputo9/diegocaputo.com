@@ -6,7 +6,7 @@ import { GlassCard } from "./GlassCard";
 // the Lean Six Sigma convention; the certificate uses the site accent; badges
 // sit on a neutral tile.
 const mark = {
-  msu: "relative overflow-hidden bg-black shadow-[inset_0_0_0_1px_var(--line)]",
+  msu: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
   badge: "bg-ink/[0.04] shadow-[inset_0_0_0_1px_var(--line)] dark:bg-white/[0.06]",
   green: "bg-[#2b8a3e] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25)]",
   black:
@@ -45,9 +45,9 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
                     className="h-9 w-9 drop-shadow-[0_1px_3px_rgb(0_0_0/0.18)]"
                   />
                 ) : c.kind === "msu" ? (
-                  // Crop the Spartan mark from the supplied MSU course badge.
+                  // Keep the full MSU mark inside the same bounds as the other badges.
                   // eslint-disable-next-line @next/next/no-img-element -- static badge artwork
-                  <img src={c.mark} alt="" width={600} height={600} className="absolute -left-[10px] -top-[17px] h-[85px] w-[85px] max-w-none brightness-[2.5]" />
+                  <img src={c.mark} alt="" width={600} height={600} className="h-9 w-9 object-contain" />
                 ) : c.kind === "cert" ? (
                   <Certificate size={22} weight="duotone" />
                 ) : (

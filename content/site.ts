@@ -74,6 +74,18 @@ export const credentials: {
   },
 ];
 
+// Full credentials retain the Auburn Green Belt after the graduate certificate.
+export const allCredentials = [
+  ...credentials,
+  {
+    mark: "/work/auburn-green-belt-badge.webp",
+    kind: "badge" as const,
+    title: "Lean Six Sigma Green Belt",
+    issuer: "Auburn University, Dec 2023",
+    href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf",
+  },
+];
+
 // Completed course badges supplied by Diego; the original images remain unmodified.
 export const manufacturingAcademy = [
   { title: "Automation", description: "Automation types, modular design and practical tools for smart manufacturing.", image: "/certificates/msu-apple-automation.png" },
@@ -630,13 +642,6 @@ export const certificates: {
   href: string;
   lang?: string;
 }[] = [
-  {
-    group: "Leadership, data and research",
-    title: "Lean Six Sigma Green Belt",
-    issuer: "Auburn University",
-    date: "Dec 2023",
-    href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf",
-  },
   {
     group: "Leadership, data and research",
     title: "Certified Chapter Leader, Auburn University Chapter",

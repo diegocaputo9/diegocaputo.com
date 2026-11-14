@@ -7,7 +7,7 @@ import { CertLink } from "@/components/CertLink";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
-import { certificates, credentials, manufacturingAcademy, site } from "@/content/site";
+import { allCredentials, certificates, manufacturingAcademy, site } from "@/content/site";
 
 const description = `Credentials, certificates and training completed by ${site.name}, with the original certificates.`;
 
@@ -49,9 +49,14 @@ export default function CertificatesPage() {
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Credentials</h2>
             <ul className="mt-8">
-              {credentials.map((c) => (
+              {allCredentials.map((c) => (
                 <li key={c.title} className="flex gap-4 border-t border-line py-5 last:border-b">
-                  <Seal size={22} className="mt-0.5 shrink-0 text-ink-3" />
+                  <span className="grid h-12 w-12 shrink-0 place-items-center">
+                    {c.mark && (c.kind === "badge" || c.kind === "msu") ? (
+                      // eslint-disable-next-line @next/next/no-img-element -- original static credential badge
+                      <img src={c.mark} alt="" width={192} height={192} className="h-12 w-12 object-contain" />
+                    ) : <Seal size={24} className="text-ink-3" />}
+                  </span>
                   <div>
                     <p className="text-[16px] font-medium text-ink">{c.title}</p>
                     <p className="mt-1 text-[14px] text-ink-2">
@@ -70,16 +75,22 @@ export default function CertificatesPage() {
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Apple Manufacturing Academy</h2>
             <p className="mt-3 max-w-[65ch] text-ink-2">Michigan State University & Apple · Online course completion</p>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+            <ul className="mt-8">
               {manufacturingAcademy.map((course) => (
-                <li key={course.title} className="rounded-panel border border-line bg-bg-2/50 p-5">
-                  <a href={course.image} target="_blank" rel="noreferrer" className="group block rounded-panel focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent">
-                    {/* eslint-disable-next-line @next/next/no-img-element -- supplied badge, fixed-size static asset */}
-                    <img src={course.image} alt={`${course.title} course completion badge`} width={600} height={600} loading="lazy" className="mx-auto h-auto w-full max-w-[210px] transition-transform duration-300 group-hover:scale-[1.03]" />
-                    <h3 className="mt-5 text-lg font-semibold text-ink group-hover:text-accent">{course.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-2">{course.description}</p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-[13px] text-ink-3">View badge <ArrowUpRight size={14} aria-hidden /></span>
-                  </a>
+                <li key={course.title} className="border-t border-line last:border-b">
+                  <div className="flex items-start gap-4 py-5">
+                    <a href={course.image} target="_blank" rel="noreferrer" className="shrink-0 rounded-full" aria-label={`View ${course.title} badge`}>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- original supplied course badge */}
+                      <img src={course.image} alt="" width={600} height={600} loading="lazy" className="h-12 w-12 object-contain" />
+                    </a>
+                    <div className="min-w-0">
+                      <h3 className="text-[16px] font-medium text-ink">{course.title}</h3>
+                      <p className="mt-1 text-[14px] leading-relaxed text-ink-2">{course.description}</p>
+                    </div>
+                    <a href={course.image} target="_blank" rel="noreferrer" className="ml-auto inline-flex shrink-0 items-center gap-1 self-center text-[13px] text-ink-3 underline decoration-line underline-offset-4 hover:text-accent" aria-label={`View ${course.title} badge`}>
+                      <span className="hidden sm:inline">Badge</span><ArrowUpRight size={14} aria-hidden />
+                    </a>
+                  </div>
                 </li>
               ))}
             </ul>
