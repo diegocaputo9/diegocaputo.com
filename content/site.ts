@@ -37,26 +37,13 @@ export const site = {
 // (villanova.edu professional studies).
 export const credentials: {
   mark: string;
-  kind: "green" | "black" | "cert" | "badge";
+  kind: "green" | "black" | "cert" | "badge" | "msu";
   title: string;
   issuer: string;
   status?: string;
-  /** photo of the certificate (PDF), opened in the site's PDF viewer */
   href?: string;
+  linkLabel?: string;
 }[] = [
-  {
-    mark: "/work/international-green-belt-badge.webp",
-    kind: "badge",
-    title: "International Lean Six Sigma Green Belt",
-    issuer: "Auburn University & THWS, Germany 2026",
-  },
-  {
-    mark: "/work/auburn-green-belt-badge.webp",
-    kind: "badge",
-    title: "Lean Six Sigma Green Belt",
-    issuer: "Auburn University, Dec 2023",
-    href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf",
-  },
   {
     mark: "/work/villanova-v.svg",
     kind: "badge",
@@ -65,12 +52,33 @@ export const credentials: {
     status: "Starts 2027",
   },
   {
+    mark: "/certificates/msu-apple-lean-manufacturing.png",
+    kind: "msu",
+    title: "Apple Manufacturing Academy",
+    issuer: "Michigan State University & Apple",
+    href: "/certificates/#manufacturing-academy",
+    linkLabel: "Process Topics",
+  },
+  {
+    mark: "/work/international-green-belt-badge.webp",
+    kind: "badge",
+    title: "International Lean Six Sigma Green Belt",
+    issuer: "Auburn University & THWS, Germany 2026",
+  },
+  {
     mark: "",
     kind: "cert",
     title: "Modeling and Data Analytics",
     issuer: "Graduate certificate, Auburn University, Aug 2025",
     href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf",
   },
+];
+
+// Completed course badges supplied by Diego; the original images remain unmodified.
+export const manufacturingAcademy = [
+  { title: "Automation", description: "Automation types, modular design and practical tools for smart manufacturing.", image: "/certificates/msu-apple-automation.png" },
+  { title: "Lean Manufacturing", description: "Lean tools, data-driven improvement and reducing process waste.", image: "/certificates/msu-apple-lean-manufacturing.png" },
+  { title: "Preventive Maintenance", description: "Equipment warning signs, maintenance tasks and preventive plans.", image: "/certificates/msu-apple-preventive-maintenance.png" },
 ];
 
 // Real figures from resume, CV and notes.
@@ -622,6 +630,13 @@ export const certificates: {
   href: string;
   lang?: string;
 }[] = [
+  {
+    group: "Leadership, data and research",
+    title: "Lean Six Sigma Green Belt",
+    issuer: "Auburn University",
+    date: "Dec 2023",
+    href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf",
+  },
   {
     group: "Leadership, data and research",
     title: "Certified Chapter Leader, Auburn University Chapter",

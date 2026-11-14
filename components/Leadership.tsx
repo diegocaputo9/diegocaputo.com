@@ -1,6 +1,6 @@
 import { ArrowRight, ArrowUpRight, Certificate, GraduationCap, Medal } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-import { certificates, credentials, education, honors, leadership } from "@/content/site";
+import { certificates, credentials, education, honors, leadership, manufacturingAcademy } from "@/content/site";
 import { KanbanCard } from "./Blueprint";
 import { CertLink } from "./CertLink";
 import { CountUp } from "./CountUp";
@@ -136,7 +136,7 @@ export function Leadership() {
             href="/certificates/"
             className="group flex items-center gap-1.5 border-t border-line pt-4 text-[14px] text-ink-3 transition-colors hover:text-ink"
           >
-            All certificates and training ({credentials.length + certificates.length})
+            All certificates and training ({credentials.length + certificates.length + manufacturingAcademy.length - 1})
             <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
         </Reveal>

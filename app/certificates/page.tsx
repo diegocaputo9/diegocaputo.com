@@ -7,7 +7,7 @@ import { CertLink } from "@/components/CertLink";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { Reveal } from "@/components/Reveal";
-import { certificates, credentials, site } from "@/content/site";
+import { certificates, credentials, manufacturingAcademy, site } from "@/content/site";
 
 const description = `Credentials, certificates and training completed by ${site.name}, with the original certificates.`;
 
@@ -40,7 +40,7 @@ export default function CertificatesPage() {
             </Link>
             <h1 className="mt-6 text-5xl font-semibold tracking-[-0.035em] text-ink md:text-6xl">Certificates</h1>
             <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-ink-2">
-              Credentials, courses and training. Each certificate opens as the original PDF.
+              Credentials, courses and training, with certificates and course badges.
             </p>
           </div>
         </header>
@@ -58,8 +58,28 @@ export default function CertificatesPage() {
                       {c.issuer}
                       {c.status && <span className="text-ink-3"> · {c.status}</span>}
                     </p>
-                    {c.href && <CertLink label="Certificate" href={c.href} title={c.title} className="mt-2" />}
+                    {c.href && !c.linkLabel && <CertLink label="Certificate" href={c.href} title={c.title} className="mt-2" />}
                   </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+
+        <section id="manufacturing-academy" className="mx-auto max-w-[1274px] scroll-mt-24 px-5 pt-20 md:px-8">
+          <Reveal>
+            <h2 className="text-3xl font-semibold tracking-[-0.03em] text-ink">Apple Manufacturing Academy</h2>
+            <p className="mt-3 max-w-[65ch] text-ink-2">Michigan State University & Apple · Online course completion</p>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+              {manufacturingAcademy.map((course) => (
+                <li key={course.title} className="rounded-panel border border-line bg-bg-2/50 p-5">
+                  <a href={course.image} target="_blank" rel="noreferrer" className="group block rounded-panel focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- supplied badge, fixed-size static asset */}
+                    <img src={course.image} alt={`${course.title} course completion badge`} width={600} height={600} loading="lazy" className="mx-auto h-auto w-full max-w-[210px] transition-transform duration-300 group-hover:scale-[1.03]" />
+                    <h3 className="mt-5 text-lg font-semibold text-ink group-hover:text-accent">{course.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-2">{course.description}</p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-[13px] text-ink-3">View badge <ArrowUpRight size={14} aria-hidden /></span>
+                  </a>
                 </li>
               ))}
             </ul>
