@@ -58,8 +58,8 @@ export const credentials: {
     href: "/certificates/auburn-lean-six-sigma-green-belt-2023.pdf",
   },
   {
-    mark: "BB",
-    kind: "black",
+    mark: "/work/villanova-v.svg",
+    kind: "badge",
     title: "Lean Six Sigma Black Belt",
     issuer: "Villanova University",
     status: "Starts 2027",
