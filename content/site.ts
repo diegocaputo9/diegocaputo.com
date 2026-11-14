@@ -52,7 +52,7 @@ export const credentials: {
     status: "Starts 2027",
   },
   {
-    mark: "/certificates/msu-apple-automation.png",
+    mark: "/work/michigan-state-logo.png",
     kind: "msu",
     title: "Apple Manufacturing Academy",
     issuer: "Michigan State University & Apple",
@@ -66,8 +66,8 @@ export const credentials: {
     issuer: "Auburn University & THWS, Germany 2026",
   },
   {
-    mark: "",
-    kind: "cert",
+    mark: "/work/auburn-au-logo.png",
+    kind: "badge",
     title: "Modeling and Data Analytics",
     issuer: "Graduate certificate, Auburn University, Aug 2025",
     href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf",
