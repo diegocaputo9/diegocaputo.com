@@ -6,7 +6,7 @@ import { RevealItem } from "./Reveal";
 // Press coverage. Phones get compact two-column cards (photo, date, headline);
 // larger screens get full rows with the source and a note.
 // phoneLimit: on phones show only the first N and link to /news/ for the rest.
-export function NewsList({ phoneLimit }: { phoneLimit?: number }) {
+export function NewsList({ phoneLimit, limit }: { phoneLimit?: number; limit?: number }) {
   return (
     <>
       <ul className="mt-5 grid grid-cols-2 gap-x-3 gap-y-5 md:hidden">
@@ -39,7 +39,7 @@ export function NewsList({ phoneLimit }: { phoneLimit?: number }) {
         ))}
       </ul>
       <ul className="mt-5 hidden md:block">
-        {news.map((n) => (
+        {news.slice(0, limit).map((n) => (
           <RevealItem key={n.href} className="border-t border-line last:border-b">
             <a
               href={n.href}
@@ -87,7 +87,7 @@ export function NewsList({ phoneLimit }: { phoneLimit?: number }) {
       {phoneLimit !== undefined && news.length > phoneLimit && (
         <Link
           href="/news/"
-          className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent md:hidden"
+          className={`group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-2 transition-colors hover:text-accent ${limit !== undefined && news.length > limit ? "" : "md:hidden"}`}
         >
           All news ({news.length})
           <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

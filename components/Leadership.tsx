@@ -142,10 +142,10 @@ export function Leadership() {
         </Reveal>
       </div>
 
-      {/* In the news: four on phones, with a link to the full list */}
+      {/* In the news: four on phones, five on larger screens, with a quiet link to the full list */}
       <Reveal className="mx-auto mt-14 max-w-[1060px] md:mt-20">
         <h3 className="text-xl font-semibold tracking-tight text-ink">In the news</h3>
-        <NewsList phoneLimit={4} />
+        <NewsList phoneLimit={4} limit={5} />
       </Reveal>
     </section>
   );
