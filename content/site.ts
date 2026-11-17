@@ -22,6 +22,7 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/diegorcaputo/",
     github: "https://github.com/diegocaputo9",
     orcid: "https://orcid.org/0009-0009-5492-0076",
+    webofscience: "https://www.webofscience.com/wos/author/record/RNC-8438-2026",
     scholar: "", // TODO: Google Scholar profile URL (shows automatically once set)
     researchgate: "", // TODO: ResearchGate profile URL (shows automatically once set)
     email: "hello@diegocaputo.com", // Namecheap forwarder to his Gmail (Gmail itself stays private)

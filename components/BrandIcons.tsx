@@ -1,6 +1,6 @@
 // Official brand marks from the Simple Icons package (not hand-drawn), sized and
 // colored like the Phosphor icons used elsewhere (currentColor).
-import { siGooglescholar, siOrcid, siResearchgate, type SimpleIcon } from "simple-icons";
+import { siClarivate, siGooglescholar, siOrcid, siResearchgate, type SimpleIcon } from "simple-icons";
 
 type Props = { size?: number; className?: string };
 
@@ -19,3 +19,5 @@ function make(icon: SimpleIcon) {
 export const OrcidIcon = make(siOrcid);
 export const ScholarIcon = make(siGooglescholar);
 export const ResearchGateIcon = make(siResearchgate);
+// Web of Science researcher profile (Clarivate owns Web of Science)
+export const WebOfScienceIcon = make(siClarivate);

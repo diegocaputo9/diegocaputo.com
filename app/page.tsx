@@ -46,7 +46,7 @@ const personJsonLd = {
         : { "@type": "CollegeOrUniversity", name: "Auburn University" },
     })),
   identifier: { "@type": "PropertyValue", propertyID: "ORCID", value: "0009-0009-5492-0076" },
-  sameAs: [site.links.linkedin, site.links.github, site.links.orcid, site.links.scholar, site.links.researchgate, outside.brand.youtube.href].filter(
+  sameAs: [site.links.linkedin, site.links.github, site.links.orcid, site.links.webofscience, site.links.scholar, site.links.researchgate, outside.brand.youtube.href].filter(
     Boolean,
   ),
 };
