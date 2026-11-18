@@ -3,6 +3,7 @@
 import { ArrowsOut } from "@phosphor-icons/react";
 import { speaking, type GalleryItem } from "@/content/site";
 import { Gallery } from "./Gallery";
+import { LayeredPhoto } from "./LayeredPhoto";
 import { Reveal } from "./Reveal";
 
 const spans = ["md:col-span-7", "md:col-span-5"];
@@ -34,19 +35,17 @@ export function SpeakingPhotos() {
               className="group relative flex h-full w-full cursor-zoom-in flex-col justify-start text-left"
             >
               <span className="relative block overflow-hidden bg-bg-2">
-                {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized responsive webp */}
-                <img
-                  src={`/speaking/${p.name}-800.webp`}
-                  srcSet={`/speaking/${p.name}-800.webp 800w, /speaking/${p.name}-1400.webp 1400w, /speaking/${p.name}-full.webp 2000w`}
-                  sizes={i === 0 ? "(min-width: 768px) 58vw, 100vw" : "(min-width: 768px) 42vw, 100vw"}
-                  alt={p.alt}
-                  width={p.width}
-                  height={p.height}
-                  loading="lazy"
-                  decoding="async"
-                  style={{ objectPosition: p.position }}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-[900ms] ease-glide group-hover:scale-[1.02] md:aspect-auto md:h-[clamp(260px,calc(100dvh-510px),520px)]"
-                />
+                {/* layered: seating groups and speaker settle into place as the photo scrolls in */}
+                <span className="block transition-transform duration-[900ms] ease-glide group-hover:scale-[1.02]">
+                  <LayeredPhoto
+                    name={p.name}
+                    alt={p.alt}
+                    width={p.width}
+                    height={p.height}
+                    position={p.position}
+                    className="aspect-[4/3] w-full object-cover md:aspect-auto md:h-[clamp(260px,calc(100dvh-510px),520px)]"
+                  />
+                </span>
                 <span className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-ctl bg-black/45 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <ArrowsOut size={14} weight="bold" />
                 </span>

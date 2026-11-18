@@ -27,7 +27,7 @@ export function Credentials({ wide = false }: { wide?: boolean }) {
     <div>
       <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Credentials</p>
       {/* phones: one glass panel, rows grouped by spacing (see .cred-list); larger: one glass card each */}
-      <ul className={`cred-list mt-3 grid gap-x-2.5 gap-y-2.5 max-sm:gap-y-0 max-sm:rounded-panel max-sm:py-1 sm:grid-cols-2 ${wide ? "lg:grid-cols-4" : ""}`}>
+      <ul className={`cred-list ${wide ? "cred-rise" : ""} mt-3 grid gap-x-2.5 gap-y-2.5 max-sm:gap-y-0 max-sm:rounded-panel max-sm:py-1 sm:grid-cols-2 ${wide ? "lg:grid-cols-4" : ""}`}>
         {credentials.map((c) => {
           const body = (
             <>

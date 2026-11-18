@@ -17,8 +17,11 @@ const sheets = [
 const N = sheets.length;
 const STEP_Y = -11; // each sheet further back sits a bit higher
 const LIFT_MS = 2200;
+// wait before the next tick: the first box after a pause, then one per step, then a beat before the flip
+const tickMs = (checked: number, n: number) => (checked === 0 ? 3000 : checked < n ? 2400 : 3500);
 
-function Sheet({ s, checked }: { s: (typeof sheets)[number]; checked: number }) {
+// loadingMs: how long the next box takes to fill before it is checked (0 = idle)
+function Sheet({ s, checked, loadingMs = 0 }: { s: (typeof sheets)[number]; checked: number; loadingMs?: number }) {
   return (
     <div className="flex h-full flex-col rounded-[10px] border border-line bg-[var(--bg)] p-4 shadow-[0_1px_2px_rgb(0_0_0/0.06),0_10px_30px_rgb(24_24_27/0.12)]">
       <div className="flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-ink-3">
@@ -30,8 +33,14 @@ function Sheet({ s, checked }: { s: (typeof sheets)[number]; checked: number }) 
         {s.steps.map((t, i) => (
           <li key={t} className="flex items-center gap-2 text-[12px] leading-tight text-ink-2">
             <span
-              className={`grid h-3.5 w-3.5 shrink-0 place-items-center rounded-[3px] border text-[9px] transition-colors duration-300 ${
-                i < checked ? "border-ink-2 bg-ink-2 text-[var(--bg)]" : "border-[var(--sketch)]"
+              key={i === checked && loadingMs ? `load-${checked}` : "box"}
+              style={i === checked && loadingMs ? ({ "--fill-ms": `${loadingMs}ms` } as React.CSSProperties) : undefined}
+              className={`grid h-3.5 w-3.5 shrink-0 place-items-center overflow-hidden rounded-[3px] border text-[9px] transition-colors duration-300 ${
+                i < checked
+                  ? "border-ink-2 bg-ink-2 text-[var(--bg)]"
+                  : i === checked && loadingMs
+                    ? "box-loading border-ink-3"
+                    : "border-[var(--sketch)]"
               }`}
             >
               {i < checked ? "✓" : ""}
@@ -87,7 +96,7 @@ export function RunSheets({ year }: { year: string }) {
   useEffect(() => {
     if (reduce || !visible || lifting !== null) return;
     const n = sheets[order[0]].steps.length;
-    const id = setTimeout(() => (checked < n ? setChecked((c) => c + 1) : flip()), checked === 0 ? 3000 : checked < n ? 2400 : 3500);
+    const id = setTimeout(() => (checked < n ? setChecked((c) => c + 1) : flip()), tickMs(checked, n));
     return () => clearTimeout(id);
   }, [checked, visible, lifting, reduce, order]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -128,7 +137,11 @@ export function RunSheets({ year }: { year: string }) {
                   : { type: "spring", stiffness: 260, damping: 28 }
               }
             >
-              <Sheet s={sheets[idx]} checked={depth === 0 && !isLift ? checked : 0} />
+              <Sheet
+                s={sheets[idx]}
+                checked={depth === 0 && !isLift ? checked : 0}
+                loadingMs={depth === 0 && !isLift && !reduce && visible && lifting === null && checked < sheets[idx].steps.length ? tickMs(checked, sheets[idx].steps.length) : 0}
+              />
             </motion.div>
           );
         })}
