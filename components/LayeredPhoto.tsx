@@ -10,21 +10,21 @@ import { useRef } from "react";
 // a quarter of the way down the screen every layer lines up into the real photo.
 
 type Move = { x: number; y: number; scale: number; origin: string };
-const settle = cubicBezier(0.22, 1, 0.36, 1);
+const settle = cubicBezier(0.4, 0, 0.3, 1);
 
 // Starting offsets (percent of the photo) for each layer; all end at 0.
 const moves: Record<string, Record<"bg" | "me" | "left" | "right", Move>> = {
   "lean-lecture": {
-    bg: { x: 0, y: -2.5, scale: 1.06, origin: "50% 40%" },
-    me: { x: -3, y: 1.5, scale: 1, origin: "50% 50%" },
-    left: { x: -7, y: 10, scale: 1.1, origin: "0% 100%" },
-    right: { x: 6, y: 9, scale: 1.08, origin: "100% 100%" },
+    bg: { x: 0, y: -5, scale: 1.12, origin: "50% 40%" },
+    me: { x: -7, y: 3, scale: 1, origin: "50% 50%" },
+    left: { x: -16, y: 22, scale: 1.22, origin: "0% 100%" },
+    right: { x: 14, y: 20, scale: 1.18, origin: "100% 100%" },
   },
   "systems-showdown": {
-    bg: { x: 0, y: -2.5, scale: 1.06, origin: "50% 40%" },
-    me: { x: 3, y: 1.5, scale: 1, origin: "50% 50%" },
-    left: { x: -7, y: 9, scale: 1.1, origin: "0% 100%" },
-    right: { x: 6, y: 10, scale: 1.09, origin: "100% 100%" },
+    bg: { x: 0, y: -5, scale: 1.12, origin: "50% 40%" },
+    me: { x: 7, y: 3, scale: 1, origin: "50% 50%" },
+    left: { x: -16, y: 20, scale: 1.22, origin: "0% 100%" },
+    right: { x: 14, y: 22, scale: 1.2, origin: "100% 100%" },
   },
 };
 
