@@ -384,8 +384,8 @@ export const experience: Role[] = [
       "Systematic literature reviews for dissertation and journal manuscripts",
     ],
     certificate: {
-      label: "CITI Responsible Conduct of Research, 2022",
-      href: "/certificates/citi-responsible-conduct-of-research-2022.pdf",
+      label: "CITI Responsible Conduct of Research, 2026",
+      href: "/certificates/citi-responsible-conduct-of-research-2026.pdf",
     },
     details: [
       "I'm the lead developer of the Tiger Motors Lean Education Center, the NSF-funded (DUE-2417082) learning platform for Auburn's Integrated Manufacturing Facility. I designed and built the site, the 360° lab tours, the Lean House learning modules and the completion certificate.",
@@ -685,9 +685,9 @@ export const certificates: {
     title: "Responsible Conduct of Research",
     logo: "/work/citi-logo.png",
     issuer: "CITI Program, under requirements set by Auburn University",
-    date: "Oct 2022",
-    note: "Valid through Oct 2025",
-    href: "/certificates/citi-responsible-conduct-of-research-2022.pdf",
+    date: "Nov 2026",
+    note: "Valid through Nov 2029",
+    href: "/certificates/citi-responsible-conduct-of-research-2026.pdf",
   },
   {
     group: "Leadership, data and research",
