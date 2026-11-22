@@ -621,7 +621,13 @@ export const education: {
     level: 0,
     certificate: { label: "Certificate", href: "/certificates/auburn-modeling-and-data-analytics-certificate-2025.pdf" },
   },
-  { degree: "BS, Industrial Engineering", school: "PUCMM, Dominican Republic", year: "2017", level: 1 },
+  {
+    degree: "BS, Industrial Engineering",
+    school: "PUCMM, Dominican Republic",
+    year: "2017",
+    level: 1,
+    certificate: { label: "Diploma", href: "/certificates/pucmm-bs-industrial-engineering-diploma-2017.pdf" },
+  },
 ];
 
 // years: per-year links shown in one line (e.g. each IPC winners list)
