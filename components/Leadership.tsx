@@ -72,7 +72,10 @@ export function Leadership() {
                   <DegreeMark level={e.level} />
                 )}
                 <div className="min-w-0 flex-1">
-                  <p className="text-[15px] font-medium text-ink">{e.degree}</p>
+                  <p className="text-[15px] font-medium text-ink">
+                    {e.degree}
+                    {e.honor && <span className="font-normal text-accent"> · {e.honor}</span>}
+                  </p>
                   <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[14px] text-ink-3">
                     {e.school}
                     {e.certificate && <CertLink {...e.certificate} title={`${e.degree}, ${e.school}`} />}

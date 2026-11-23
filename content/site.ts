@@ -603,6 +603,7 @@ export const education: {
   school: string;
   year: string;
   level: 0 | 1 | 2 | 3;
+  honor?: string; // Latin honors, shown after the degree in the accent color
   certificate?: CertRef;
 }[] = [
   { degree: "PhD, Industrial & Systems Engineering", school: "Auburn University", year: "Expected 2027", level: 3 },
@@ -626,6 +627,7 @@ export const education: {
     school: "PUCMM, Dominican Republic",
     year: "2017",
     level: 1,
+    honor: "Magna Cum Laude",
     certificate: { label: "Diploma", href: "/certificates/pucmm-bs-industrial-engineering-diploma-2017.pdf" },
   },
 ];
